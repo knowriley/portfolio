@@ -54,44 +54,46 @@ export default function WorkGrid() {
   )
 
   return (
-    <section className="max-w-7xl mx-auto px-8 py-16">
-      {/* Section header + filters */}
-      <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
-        <h2 className="text-xl font-semibold text-text-primary">Featured Work</h2>
+    <section className="flex justify-center px-10 pb-20">
+      <div className="max-w-page w-full">
+        {/* Section header + filters */}
+        <div className="flex items-center justify-between mb-10 flex-wrap gap-4">
+          <h2 className="text-xl font-medium text-text-primary">Featured Work</h2>
 
-        <div className="flex flex-wrap gap-2">
-          <button
-            onClick={() => setActiveTag(null)}
-            className={`text-sm px-3 py-1.5 rounded-full border transition-colors ${
-              activeTag === null
-                ? 'bg-text-primary text-text-inverse border-text-primary'
-                : 'border-border text-text-secondary hover:border-border-strong hover:text-text-primary'
-            }`}
-          >
-            All
-          </button>
-
-          {allTags.map((tag) => (
+          <div className="flex flex-wrap gap-2">
             <button
-              key={tag}
-              onClick={() => setActiveTag(activeTag === tag ? null : tag)}
-              className={`text-sm px-3 py-1.5 rounded-full border transition-colors ${
-                activeTag === tag
+              onClick={() => setActiveTag(null)}
+              className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                activeTag === null
                   ? 'bg-text-primary text-text-inverse border-text-primary'
                   : 'border-border text-text-secondary hover:border-border-strong hover:text-text-primary'
               }`}
             >
-              {tag}
+              All
             </button>
+
+            {allTags.map((tag) => (
+              <button
+                key={tag}
+                onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+                className={`text-xs px-3 py-1.5 rounded-full border transition-colors ${
+                  activeTag === tag
+                    ? 'bg-text-primary text-text-inverse border-text-primary'
+                    : 'border-border text-text-secondary hover:border-border-strong hover:text-text-primary'
+                }`}
+              >
+                {tag}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {filtered.map((study) => (
+            <CaseStudyCard key={study.slug} study={study} />
           ))}
         </div>
-      </div>
-
-      {/* Grid */}
-      <div className="grid grid-cols-2 gap-x-8 gap-y-12">
-        {filtered.map((study) => (
-          <CaseStudyCard key={study.slug} study={study} />
-        ))}
       </div>
     </section>
   )

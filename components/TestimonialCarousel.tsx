@@ -63,10 +63,10 @@ export default function TestimonialCarousel() {
   const t = testimonials[index]
 
   return (
-    <section className="border-t border-border-subtle py-24">
-      <div className="max-w-4xl mx-auto px-8">
+    <section className="flex justify-center px-10 py-20">
+      <div className="max-w-page w-full flex flex-col gap-12">
         {/* Quote */}
-        <p className="text-3xl font-semibold text-text-primary leading-snug mb-12">
+        <p className="font-medium text-text-primary leading-[1.3] text-[28px] md:text-3xl lg:text-4xl">
           {t.segments.map((seg, i) =>
             seg.highlight ? (
               <span key={i} className="text-accent">
@@ -78,48 +78,44 @@ export default function TestimonialCarousel() {
           )}
         </p>
 
+        {/* Dots */}
+        <div className="flex items-center justify-center gap-2.5">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              aria-label={`Go to testimonial ${i + 1}`}
+              className={`size-2 rounded-full transition-all ${
+                i === index ? 'bg-text-primary' : 'bg-border-strong hover:bg-text-tertiary'
+              }`}
+            />
+          ))}
+        </div>
+
         {/* Controls row */}
-        <div className="flex items-end justify-between">
-          {/* Dots */}
-          <div className="flex items-center gap-2.5">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => setIndex(i)}
-                aria-label={`Go to testimonial ${i + 1}`}
-                className={`rounded-full transition-all ${
-                  i === index
-                    ? 'w-2 h-2 bg-text-primary'
-                    : 'w-2 h-2 bg-border-strong hover:bg-text-tertiary'
-                }`}
-              />
-            ))}
+        <div className="flex items-center justify-end gap-6">
+          {/* Attribution + arrows */}
+          <div className="text-right">
+            <p className="text-sm font-medium text-text-primary">{t.author}</p>
+            <p className="text-xs text-text-tertiary">{t.title}</p>
+            <p className="text-xs text-text-tertiary">{t.subtitle}</p>
           </div>
 
-          {/* Attribution + arrows */}
-          <div className="flex items-center gap-6">
-            <div className="text-right">
-              <p className="text-sm font-medium text-text-primary">{t.author}</p>
-              <p className="text-xs text-text-tertiary">{t.title}</p>
-              <p className="text-xs text-text-tertiary">{t.subtitle}</p>
-            </div>
-
-            <div className="flex gap-2">
-              <button
-                onClick={prev}
-                aria-label="Previous testimonial"
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-secondary hover:border-border-strong hover:text-text-primary transition-colors"
-              >
-                ←
-              </button>
-              <button
-                onClick={next}
-                aria-label="Next testimonial"
-                className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-text-secondary hover:border-border-strong hover:text-text-primary transition-colors"
-              >
-                →
-              </button>
-            </div>
+          <div className="flex gap-2">
+            <button
+              onClick={prev}
+              aria-label="Previous testimonial"
+              className="size-10 rounded-full border border-border flex items-center justify-center text-text-secondary hover:border-border-strong hover:text-text-primary transition-colors"
+            >
+              ←
+            </button>
+            <button
+              onClick={next}
+              aria-label="Next testimonial"
+              className="size-10 rounded-full border border-border flex items-center justify-center text-text-secondary hover:border-border-strong hover:text-text-primary transition-colors"
+            >
+              →
+            </button>
           </div>
         </div>
       </div>

@@ -43,10 +43,10 @@ export default function Footer() {
     : '—'
 
   return (
-    <footer className="border-t border-border-subtle mt-24">
-      <div className="max-w-7xl mx-auto px-8 pt-12">
+    <footer className="flex justify-center px-10">
+      <div className="max-w-page w-full">
         {/* Top row */}
-        <div className="flex justify-between items-start mb-12">
+        <div className="flex justify-between items-start mb-12 pt-12">
           <div className="space-y-1">
             <p className="text-xs uppercase tracking-widest text-text-tertiary mb-2">local time</p>
             <p className="text-sm text-text-secondary">
@@ -93,19 +93,14 @@ export default function Footer() {
         </div>
 
         {/* Wordmark */}
-        <div className="overflow-hidden -mx-8">
-          <p
-            className="text-accent font-bold leading-none tracking-tight select-none px-8"
-            style={{ fontSize: 'clamp(64px, 11vw, 160px)' }}
-          >
-            Riley Knowles
-          </p>
-        </div>
+        <p className="text-accent font-normal leading-none tracking-wordmark select-none text-[56px] md:text-[80px] lg:text-[120px]">
+          Riley Knowles
+        </p>
 
         {/* Copyright */}
-        <div className="border-t border-border-subtle py-4 mt-0">
+        <div className="border-t border-border-subtle py-4">
           <p className="text-xs text-text-tertiary">
-            © {now ? now.getFullYear() : new Date().getFullYear()} Riley Knowles
+            © {now ? now.getFullYear() : new Date().getFullYear()} Claude-coded from scratch by Riley Knowles
           </p>
         </div>
       </div>

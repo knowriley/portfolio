@@ -23,12 +23,11 @@ const config: Config = {
           950: '#100D0A',
         },
         primary: {
-          DEFAULT: '#2B6B6B',
-          hover: '#1E5252',
-          active: '#164040',
-          light: '#4A9090',
-          lighter: '#A8D4D4',
-          subtle: '#EAF4F4',
+          DEFAULT: '#6941C6',
+          hover: '#53389E',
+          active: '#42307D',
+          light: '#9B8AFB',
+          subtle: '#F4F3FF',
         },
         secondary: {
           DEFAULT: '#E8B84B',
@@ -98,6 +97,12 @@ const config: Config = {
         '3xl': '24px',
         '4xl': '32px',
         full: '9999px',
+      },
+      maxWidth: {
+        page: '1560px',
+      },
+      letterSpacing: {
+        wordmark: '-0.02em',
       },
       boxShadow: {
         xs: '0 1px 2px 0 rgba(26,22,18,0.05)',
