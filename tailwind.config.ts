@@ -23,11 +23,11 @@ const config: Config = {
           950: '#100D0A',
         },
         primary: {
-          DEFAULT: '#6941C6',
-          hover: '#53389E',
-          active: '#42307D',
-          light: '#9B8AFB',
-          subtle: '#F4F3FF',
+          DEFAULT: '#f02065',
+          hover: '#c91a54',
+          active: '#a11443',
+          light: '#f4729a',
+          subtle: '#fef0f4',
         },
         secondary: {
           DEFAULT: '#E8B84B',
@@ -35,12 +35,13 @@ const config: Config = {
           light: '#F0CC7A',
           subtle: '#FDF5DC',
         },
+        gradient: {
+          red: '#f02065',    // shared gradient start (highlight + wordmark)
+          pink: '#d5189b',   // highlight gradient end
+          orange: '#ff7700', // wordmark gradient end
+        },
         accent: {
-          DEFAULT: '#6941C6',
-          hover: '#53389E',
-          active: '#42307D',
-          light: '#9B8AFB',
-          subtle: '#F4F3FF',
+          DEFAULT: '#e40089', // brand pink — primary button hover bg
         },
         bg: {
           DEFAULT: '#FFFFFF',
@@ -62,8 +63,8 @@ const config: Config = {
           placeholder: '#C4BFB9',
           disabled: '#C4BFB9',
           inverse: '#FFFFFF',
-          link: '#2B6B6B',
-          'link-hover': '#1E5252',
+          link: '#0a7acc',
+          'link-hover': '#085fa0',
           'on-brand': '#FFFFFF',
         },
       },
@@ -85,6 +86,15 @@ const config: Config = {
         '4xl': ['48px', { lineHeight: '1.1' }],
         '5xl': ['60px', { lineHeight: '1.05' }],
         '6xl': ['72px', { lineHeight: '1' }],
+        // Type system roles — mirrors Figma text styles exactly
+        'display':      ['3.5rem',   { lineHeight: '1.3' }],
+        'h1':           ['2.488rem', { lineHeight: '1.3' }],
+        'h2':           ['2.074rem', { lineHeight: '1.3' }],
+        'h3':           ['1.728rem', { lineHeight: '1.3' }],
+        'body-biggest': ['1.44rem',  { lineHeight: '1.5' }],
+        'body-big':     ['1.2rem',   { lineHeight: '1.5' }],
+        'body-small':   ['1rem',     { lineHeight: '1.5' }],
+        'small':        ['0.833rem', { lineHeight: '1' }],
       },
       borderRadius: {
         none: '0px',

@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { ArrowLeft, ArrowRight } from 'lucide-react'
+import IconButton from './IconButton'
 
 interface Segment {
   text: string
@@ -35,22 +37,34 @@ const testimonials: Testimonial[] = [
     subtitle: 'Professor turned Client',
   },
   {
-    segments: [{ text: '"[Testimonial coming soon]"' }],
-    author: 'Name',
-    title: 'Title',
-    subtitle: 'Company',
+    segments: [
+      { text: 'Riley’s systems thinking approach and knack for simplifying complex concepts proved invaluable when she delivered a seamless billing experience, despite multiple integrations and high load times. ' },
+      { text: 'She brings her strategic lens to all problems, ', highlight: true },
+      { text: 'consistently improving the user experience while driving business results.' },
+      
+    ],
+    author: 'Ishan Patel',
+    title: 'Experience Design Manager @ Chubb',
+    subtitle: '',
   },
   {
-    segments: [{ text: '"[Testimonial coming soon]"' }],
-    author: 'Name',
-    title: 'Title',
-    subtitle: 'Company',
+    segments: [
+      { text: 'I can confidently say that she is an outstanding UX Designer.' },
+      { text: 'Riley’s attention to detail, thoughtfulness, and courteous demeanor truly set her apart.', highlight: true }
+    ],
+    
+    author: 'Nolan Braman',
+    title: 'Senior Software Engineer',
+    subtitle: 'Freelance client',
   },
   {
-    segments: [{ text: '"[Testimonial coming soon]"' }],
-    author: 'Name',
-    title: 'Title',
-    subtitle: 'Company',
+    segments: [
+      { text: 'I have been so impressed by your thoughtfulness and proactiveness! You’ve been a lifesaver with the website work,' },
+      { text: 'literally and obviously wouldn’t have been able to do it without you.', highlight: true }
+    ],
+    author: 'Jenny Li',
+    title: 'Director of Product Marketing @ Conductor',
+    subtitle: 'Cross-functional Partner',
   },
 ]
 
@@ -63,13 +77,13 @@ export default function TestimonialCarousel() {
   const t = testimonials[index]
 
   return (
-    <section className="flex justify-center px-10 py-20">
+    <section className="flex justify-center px-5 md:px-10 py-12 md:py-20">
       <div className="max-w-page w-full flex flex-col gap-12">
         {/* Quote */}
-        <p className="font-medium text-text-primary leading-[1.3] text-[28px] md:text-3xl lg:text-4xl">
+        <p className="font-medium text-text-primary text-h2 lg:text-h1">
           {t.segments.map((seg, i) =>
             seg.highlight ? (
-              <span key={i} className="text-accent">
+              <span key={i} className="bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">
                 {seg.text}
               </span>
             ) : (
@@ -96,26 +110,22 @@ export default function TestimonialCarousel() {
         <div className="flex items-center justify-end gap-6">
           {/* Attribution + arrows */}
           <div className="text-right">
-            <p className="text-sm font-medium text-text-primary">{t.author}</p>
-            <p className="text-xs text-text-tertiary">{t.title}</p>
-            <p className="text-xs text-text-tertiary">{t.subtitle}</p>
+            <p className="text-body-small font-medium text-text-primary">{t.author}</p>
+            <p className="text-body-small text-text-tertiary">{t.title}</p>
+            <p className="text-body-small text-text-tertiary">{t.subtitle}</p>
           </div>
 
           <div className="flex gap-2">
-            <button
+            <IconButton
+              icon={<ArrowLeft size={20} strokeWidth={2} />}
               onClick={prev}
               aria-label="Previous testimonial"
-              className="size-10 rounded-full border border-border flex items-center justify-center text-text-secondary hover:border-border-strong hover:text-text-primary transition-colors"
-            >
-              ←
-            </button>
-            <button
+            />
+            <IconButton
+              icon={<ArrowRight size={20} strokeWidth={2} />}
               onClick={next}
               aria-label="Next testimonial"
-              className="size-10 rounded-full border border-border flex items-center justify-center text-text-secondary hover:border-border-strong hover:text-text-primary transition-colors"
-            >
-              →
-            </button>
+            />
           </div>
         </div>
       </div>

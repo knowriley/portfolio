@@ -10,7 +10,6 @@ export default function HomePage() {
       <Nav />
       <main>
         <Hero />
-        <div className="border-t border-border-subtle" />
         <WorkGrid />
         <TestimonialCarousel />
       </main>

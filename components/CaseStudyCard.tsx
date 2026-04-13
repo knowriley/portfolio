@@ -1,14 +1,7 @@
 import Link from 'next/link'
+import { type CaseStudy } from '@/data/case-studies'
 
-export interface CaseStudy {
-  slug: string
-  title: string
-  description: string
-  tags: string[]
-  year: string
-  role: string
-  comingSoon?: boolean
-}
+export type { CaseStudy }
 
 export default function CaseStudyCard({ study }: { study: CaseStudy }) {
   const content = (
@@ -17,9 +10,9 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
       <div className="bg-bg-secondary rounded-2xl overflow-hidden aspect-video mb-5 shadow-xs transition-shadow group-hover:shadow-md">
         <div className="w-full h-full bg-bg-tertiary flex items-center justify-center">
           {study.comingSoon ? (
-            <span className="text-xs text-text-tertiary tracking-wide uppercase">Coming soon</span>
+            <span className="text-body-small text-text-tertiary tracking-wide uppercase">Coming soon</span>
           ) : (
-            <span className="text-xs text-text-tertiary">Image placeholder</span>
+            <span className="text-small text-text-tertiary">Image placeholder</span>
           )}
         </div>
       </div>
@@ -30,7 +23,7 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
           {study.tags.map((tag) => (
             <span
               key={tag}
-              className="text-xs text-text-secondary bg-bg-tertiary rounded-full px-3 py-1"
+              className="text-body-small text-text-secondary bg-bg-tertiary rounded-full px-3 py-1"
             >
               {tag}
             </span>
@@ -38,7 +31,7 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
         </div>
 
         <h3
-          className={`text-lg font-semibold leading-snug transition-colors ${
+          className={`text-body-biggest font-medium transition-colors ${
             study.comingSoon
               ? 'text-text-tertiary'
               : 'text-text-primary group-hover:text-primary'
@@ -48,11 +41,11 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
         </h3>
 
         {!study.comingSoon && (
-          <p className="text-sm text-text-secondary leading-relaxed">{study.description}</p>
+          <p className="text-body-small text-text-secondary">{study.description}</p>
         )}
 
-        <p className="text-xs text-text-tertiary">
-          {study.year} · {study.role}
+        <p className="text-body-small text-text-tertiary">
+          {study.year}
         </p>
       </div>
     </>
