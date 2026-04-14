@@ -1,9 +1,11 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
+import Button from '@/components/Button'
 import CaseStudyCard from '@/components/CaseStudyCard'
 import TableOfContents from '@/components/TableOfContents'
 import InlineLink from '@/components/InlineLink'
-import { ArrowUpRight } from 'lucide-react'
+import AnimateOnScroll from '@/components/AnimateOnScroll'
+import { ArrowDownRight } from 'lucide-react'
 import {
   Label,
   SectionDivider,
@@ -57,38 +59,34 @@ export default function BricksDesignSystemCaseStudyPage() {
       <main>
 
         {/* ── Hero ── */}
-        <section className="flex justify-center px-5 md:px-10 pt-10 md:pt-16 pb-8 md:pb-12">
-          <div className="max-w-page w-full">
-            <div className="flex flex-wrap gap-2">
-              {study.tags.map((tag) => (
-                <span key={tag} className="text-body-small text-text-secondary bg-bg-tertiary rounded-full px-3 py-1">
-                  {tag}
-                </span>
-              ))}
+        <div className="animate-fade-in-up">
+          <section className="flex justify-center px-5 md:px-10 pt-10 md:pt-16 pb-8 md:pb-12">
+            <div className="max-w-page w-full">
+              <div className="flex flex-wrap gap-2">
+                {study.tags.map((tag) => (
+                  <span key={tag} className="text-body-small text-text-secondary bg-bg-tertiary rounded-full px-3 py-1">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <div className="h-8" />
+              <div className="flex items-end gap-8">
+                <h1 className="text-h1 md:text-display font-normal text-text-primary flex-1 min-w-0">
+                  {study.title}
+                </h1>
+                <Button href="https://bricks.supernova-docs.io/latest/welcome-to-bricks/welcome-to-bricks-2mJr8rzI" external>View Live</Button>
+              </div>
             </div>
-            <div className="h-8" />
-            <div className="flex items-end gap-8">
-              <h1 className="text-h1 md:text-display font-normal text-text-primary flex-1 min-w-0">
-                {study.title}
-              </h1>
-              <a
-                href="https://bricks-docs.conductor.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0 inline-flex items-center gap-1.5 text-body-small font-medium bg-bg-inverse text-text-inverse rounded-md px-6 h-10 hover:bg-accent transition-colors"
-              >
-                View Live
-                <ArrowUpRight size={20} strokeWidth={2} />
-              </a>
-            </div>
-          </div>
-        </section>
+          </section>
 
-        {/* ── Cover image ── */}
-        <div className="flex justify-center px-5 md:px-10 pb-10 md:pb-16">
-          <div className="max-w-page w-full">
-            <div className="bg-bg-secondary rounded-sm aspect-video flex items-center justify-center">
-              <span className="text-small text-text-tertiary">Cover image</span>
+          {/* ── Cover image ── */}
+          <div className="flex justify-center px-5 md:px-10 pb-10 md:pb-16">
+            <div className="max-w-page w-full">
+              <img
+                src="/images/bricks-cover.png"
+                alt="Bricks Design System documentation site showing the welcome page"
+                className="w-full rounded-sm border border-border-subtle shadow-sm"
+              />
             </div>
           </div>
         </div>
@@ -166,7 +164,11 @@ export default function BricksDesignSystemCaseStudyPage() {
                   </h2>
 
                   <div className="h-12" />
-                  <ImageBlock label="Problem framing image" />
+                  <img
+                    src="/images/bricks-unorganized-files.png"
+                    alt="Scattered Figma files showing disorganized design system documentation"
+                    className="w-full"
+                  />
                   <div className="h-12 md:h-24" />
 
                   {/* Subsection: Designers */}
@@ -244,19 +246,11 @@ export default function BricksDesignSystemCaseStudyPage() {
                     <h2 className="text-h2 font-medium text-text-primary leading-[1.3] flex-1 min-w-0">
                       A trusted, single-source of truth that aligns development and design teams.
                     </h2>
-                    <a
-                      href="https://bricks-docs.conductor.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="shrink-0 inline-flex items-center gap-1.5 text-body-small font-medium text-accent rounded-md px-6 h-10 hover:opacity-80 transition-opacity"
-                    >
-                      View Live
-                      <ArrowUpRight size={20} strokeWidth={2} />
-                    </a>
+                    <Button variant="outline" href="https://bricks.supernova-docs.io/latest/welcome-to-bricks/welcome-to-bricks-2mJr8rzI" external>View Live</Button>
                   </div>
 
                   <div className="h-12" />
-                  <ImageBlock label="Solution overview image" />
+                  <ImageBlock src="/images/bricks-components-overview.png" alt="Bricks Design System components overview page" caption="Components Overview Page" />
                   <div className="h-12" />
 
                   {/* Subsection: Show, don't tell */}
@@ -276,7 +270,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                       </div>
                     </TwoColumnSection>
                     <div className="h-12" />
-                    <ImageBlock label="Show don't tell image" />
+                    <ImageBlock src="/images/bricks-switch.png" alt="Switch component usage guidelines showing dos and don'ts for labeling" caption="Switch Dos & Don'ts Usage Guidelines" />
                   </div>
 
                   <div className="h-12 md:h-24" />
@@ -293,7 +287,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                       </p>
                     </TwoColumnSection>
                     <div className="h-12" />
-                    <ImageBlock label="Interactive embeds image" />
+                    <ImageBlock type="video" src="/images/tags-input-autocomplete.mov" caption="Tags Input component with autocomplete behavior" />
                   </div>
 
                   <div className="h-12 md:h-24" />
@@ -305,7 +299,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                     </h2>
                     <div className="flex flex-col md:flex-row gap-8 items-start">
                       <div className="flex-1 min-w-0">
-                        <ImageBlock label="Use cases image" />
+                        <ImageBlock src="/images/bricks-inputs-overview.png" alt="Text-based inputs overview showing component cards for Text Input, Text Area, Tags Input, Search Field, and Password Input" caption="Snapshot of Inputs Overview Page" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-body-big text-text-secondary">
@@ -331,7 +325,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                       </p>
                     </TwoColumnSection>
                     <div className="h-12" />
-                    <ImageBlock label="Side-by-side comparison image" />
+                    <ImageBlock src="/images/dropdown-v-caret-button.png" alt="Side-by-side comparison of Dropdown and Caret Button components" caption="Dropdown vs Caret Button Comparison" />
                   </div>
 
                   <div className="h-12 md:h-24" />
@@ -368,7 +362,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                       </p>
                     </div>
                     <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1 flex flex-col gap-4 justify-center">
-                      <p className="text-h2 font-medium text-primary">→</p>
+                      <ArrowDownRight size={48} strokeWidth={1.5} className="text-primary" />
                       <p className="text-body-big text-text-primary">
                         Fewer design system use-case questions posted to Slack
                       </p>
@@ -404,21 +398,23 @@ export default function BricksDesignSystemCaseStudyPage() {
         {/* end 3-col body */}
 
         {/* ── Next case studies ── */}
-        <div className="flex justify-center px-5 md:px-10 pt-12 pb-12 md:pb-24">
-          <div className="max-w-page w-full">
-            <Label>Next</Label>
-            <h2 className="text-h3 md:text-h2 font-medium text-text-primary leading-[1.3] mb-8">
-              I&apos;ve done other cool stuff too
-            </h2>
-            <div className="flex flex-col md:flex-row gap-8">
-              {nextStudies.map((study) => (
-                <div key={study.slug} className="flex-1 min-w-0">
-                  <CaseStudyCard study={study} />
-                </div>
-              ))}
+        <AnimateOnScroll>
+          <div className="flex justify-center px-5 md:px-10 pt-12 pb-12 md:pb-24">
+            <div className="max-w-page w-full">
+              <Label>Next</Label>
+              <h2 className="text-h3 md:text-h2 font-medium text-text-primary leading-[1.3] mb-8">
+                I&apos;ve done other cool stuff too
+              </h2>
+              <div className="flex flex-col md:flex-row gap-8">
+                {nextStudies.map((study) => (
+                  <div key={study.slug} className="flex-1 min-w-0">
+                    <CaseStudyCard study={study} />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </AnimateOnScroll>
 
       </main>
       <Footer />

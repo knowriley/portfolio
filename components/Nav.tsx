@@ -19,7 +19,10 @@ export default function Nav() {
           href="/"
           className="flex items-center gap-2.5 text-text-primary font-medium text-body-small"
         >
-          <span className="size-5 rounded-full bg-gradient-to-r from-gradient-red from-[22%] to-gradient-orange block shrink-0" />
+          <span className="relative shrink-0 flex items-center justify-center">
+            <span className="absolute size-4 rounded-full bg-accent blur-[10px] opacity-50" />
+            <span className="size-5 rounded-full bg-gradient-to-r from-gradient-red from-[22%] to-gradient-orange block" />
+          </span>
           Riley Knowles
         </Link>
 
@@ -34,8 +37,8 @@ export default function Nav() {
                   href={link.href}
                   className={`block text-body-small px-2.5 py-1.5 rounded-sm transition-colors ${
                     isActive
-                      ? 'bg-bg-secondary text-text-primary font-medium'
-                      : 'text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:font-medium'
+                      ? 'text-text-primary font-medium'
+                      : 'text-text-secondary hover:text-text-primary hover:font-medium'
                   }`}
                 >
                   {link.label}

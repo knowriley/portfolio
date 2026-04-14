@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { type CaseStudy } from '@/data/case-studies'
 
@@ -7,14 +8,24 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
   const content = (
     <>
       {/* Thumbnail */}
-      <div className="bg-bg-secondary rounded-2xl overflow-hidden aspect-video mb-5 shadow-xs transition-shadow group-hover:shadow-md">
-        <div className="w-full h-full bg-bg-tertiary flex items-center justify-center">
-          {study.comingSoon ? (
-            <span className="text-body-small text-text-tertiary tracking-wide uppercase">Coming soon</span>
-          ) : (
-            <span className="text-small text-text-tertiary">Image placeholder</span>
-          )}
-        </div>
+      <div className="relative bg-bg-secondary rounded-2xl overflow-hidden aspect-video mb-5 shadow-xs border border-border-subtle">
+        {study.thumbnail ? (
+          <Image
+            src={study.thumbnail}
+            alt={study.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        ) : (
+          <div className="w-full h-full bg-bg-tertiary flex items-center justify-center">
+            {study.comingSoon ? (
+              <span className="text-body-small text-text-tertiary tracking-wide uppercase">Coming soon</span>
+            ) : (
+              <span className="text-small text-text-tertiary">Image placeholder</span>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Meta */}
@@ -52,11 +63,11 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
   )
 
   if (study.comingSoon) {
-    return <div className="group">{content}</div>
+    return <div className="group pb-4">{content}</div>
   }
 
   return (
-    <Link href={`/work/${study.slug}`} className="group block">
+    <Link href={`/work/${study.slug}`} className="group block pb-4 transition-transform duration-200 hover:-translate-y-2.5">
       {content}
     </Link>
   )

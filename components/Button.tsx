@@ -1,49 +1,68 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 
 interface ButtonProps {
   children: React.ReactNode
+  /** Visual variant. Defaults to 'primary'. */
+  variant?: 'primary' | 'outline'
   /** Renders as a Next.js Link. Mutually exclusive with onClick. */
   href?: string
+  /** Opens in a new tab with rel="noopener noreferrer". Only applies when href is set. */
+  external?: boolean
   /** Renders as a <button>. Mutually exclusive with href. */
   onClick?: () => void
   className?: string
 }
 
-const base =
-  'inline-flex items-center gap-2 hover:gap-3 text-body-small font-semibold ' +
-  'bg-bg-inverse text-text-inverse rounded-sm px-6 py-3 ' +
-  'hover:bg-accent transition-all'
+const shared =
+  'inline-flex items-center gap-2 text-body-small font-semibold rounded-md px-6 py-3 transition-colors group'
+
+const variants = {
+  primary:
+    'bg-bg-inverse text-text-inverse hover:bg-neutral-800',
+  outline:
+    'bg-bg-secondary border border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary',
+}
 
 /**
- * Primary call-to-action button.
+ * Call-to-action button with primary and outline variants.
  *
- * Default: dark fill (#1A1612), white text, arrow icon at gap-2
- * Hover:   accent pink (#e40089) bg + gap-3 (arrow shifts right)
- *
- * Non-color diff: gap increase shifts the arrow visually.
- * Contrast: white on #1A1612 ≈ 18:1 · white on #e40089 ≈ 4.6:1 — both ✓ WCAG AA
+ * Primary: dark fill, white text, lightens on hover
+ * Outline: transparent bg, border, fills bg-tertiary on hover
  *
  * Usage:
  *   <Button href="/work">View Case Study</Button>
- *   <Button onClick={handleClick}>Submit</Button>
+ *   <Button variant="outline" onClick={fn}>Secondary</Button>
+ *   <Button href="https://example.com" external>External</Button>
  */
-export default function Button({ children, href, onClick, className = '' }: ButtonProps) {
+export default function Button({ children, variant = 'primary', href, external, onClick, className = '' }: ButtonProps) {
+  const cls = `${shared} ${variants[variant]} ${className}`
+  const arrow = <ArrowUpRight size={20} strokeWidth={2} className="transition-transform group-hover:rotate-45" />
+
+  if (href && external) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+        {children}
+        {arrow}
+      </a>
+    )
+  }
+
   if (href) {
     return (
-      <Link href={href} className={`${base} ${className}`}>
+      <Link href={href} className={cls}>
         {children}
-        <ArrowRight size={20} strokeWidth={2} />
+        {arrow}
       </Link>
     )
   }
 
   return (
-    <button type="button" onClick={onClick} className={`${base} ${className}`}>
+    <button type="button" onClick={onClick} className={cls}>
       {children}
-      <ArrowRight size={20} strokeWidth={2} />
+      {arrow}
     </button>
   )
 }

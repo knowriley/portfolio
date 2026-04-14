@@ -83,9 +83,9 @@ export default function Footer() {
                       href={link.href}
                       target={link.href.startsWith('http') ? '_blank' : undefined}
                       rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                      className="text-body-small text-text-secondary hover:text-text-primary flex items-center gap-1"
+                      className="group text-body-small text-text-secondary hover:text-text-primary flex items-center gap-1"
                     >
-                      <ArrowUpRight size={20} strokeWidth={2} className="shrink-0" />
+                      <ArrowUpRight size={20} strokeWidth={1.5} className="shrink-0 transition-transform group-hover:rotate-45" />
                       {link.label}
                     </a>
                   </li>

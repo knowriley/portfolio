@@ -8,10 +8,9 @@ interface IconButtonProps {
 }
 
 /**
- * Icon-only action button. Visual language matches filter pills:
- * bg-bg-secondary base, rounded-full, same border/hover token progression.
+ * Icon-only action button. Matches outline button variant states.
  *
- * Default: bg-bg border-border text-text-primary
+ * Default: bg-bg-secondary border-border text-text-primary
  * Hover:   bg-bg-tertiary border-border-strong text-text-primary
  *
  * Usage:
@@ -28,7 +27,7 @@ export default function IconButton({
       type="button"
       onClick={onClick}
       aria-label={ariaLabel}
-      className={`size-11 rounded-full border bg-bg border-border text-text-primary flex items-center justify-center hover:bg-bg-tertiary hover:border-border-strong transition-colors ${className}`}
+      className={`size-11 rounded-full bg-bg-secondary border border-border text-text-secondary flex items-center justify-center hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary transition-colors ${className}`}
     >
       {icon}
     </button>

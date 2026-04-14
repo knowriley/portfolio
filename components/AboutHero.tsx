@@ -37,7 +37,7 @@ export default function AboutHero() {
     <section className="flex justify-center px-5 md:px-10 md:h-[calc(100dvh-64px)]">
       <div className="max-w-page w-full flex flex-col">
         {/* Cover image — right-aligned; fills remaining space on desktop, fixed aspect on mobile */}
-        <div className="order-3 md:order-1 flex items-start justify-end pt-10 md:pt-16 md:flex-1 md:min-h-0">
+        <div className="order-3 md:order-1 flex items-start justify-end pt-10 md:pt-16 md:flex-1 md:min-h-0 animate-fade-in-right" style={{ animationDelay: '2.0s', animationDuration: '0.5s' }}>
           <div className="w-full md:w-[45%] aspect-[4/5] md:aspect-auto md:h-full bg-bg-secondary rounded-sm flex items-center justify-center">
             <span className="text-small text-text-tertiary">Cover image</span>
           </div>
@@ -51,11 +51,12 @@ export default function AboutHero() {
               key={a.label}
               type="button"
               onClick={() => setActive(i)}
-              className={`text-body-small px-4 py-2 rounded-full border transition-colors ${
+              className={`text-body-small px-4 py-2 rounded-full border transition-colors animate-fade-in-up ${
                 active === i
                   ? 'bg-bg-inverse text-text-inverse font-medium border-transparent'
                   : 'bg-bg-secondary border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary'
               }`}
+              style={{ animationDelay: `${0.3 + i * 0.18}s`, animationDuration: '0.6s' }}
             >
               {a.label}
             </button>

@@ -6,6 +6,8 @@ export interface CaseStudy {
   year: string
   industry: string
   comingSoon?: boolean
+  /** Path to the work grid card thumbnail, relative to /public (e.g. "/work/slug/thumbnail.png") */
+  thumbnail?: string
 }
 
 export const caseStudies: CaseStudy[] = [
@@ -17,6 +19,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ['Design Systems', 'Figma', 'Documentation'],
     year: 'Jun 2024 - Nov 2024',
     industry: 'B2B SEO',
+    thumbnail: '/images/bricks-cover.png',
   },
   {
     slug: 'coming-soon-1',

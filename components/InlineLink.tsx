@@ -7,11 +7,11 @@ import { ArrowUpRight } from 'lucide-react'
  * | Variant   | Color              | Icon | Use case                                         |
  * |-----------|--------------------|------|--------------------------------------------------|
  * | subtle    | text-secondary     | no   | Inline, internal, low emphasis (branded names)   |
- * | emphasis  | text-link (blue)   | no   | Inline, external, high emphasis                  |
- * | icon      | text-primary       | →    | Standalone, external, low emphasis / branded     |
- * | icon-emphasis | text-link (blue) | →  | Navigation, external, high emphasis, not branded |
+ * | emphasis  | text-secondary     | no   | Inline, external, high emphasis                  |
+ * | icon      | text-secondary     | ↗    | Standalone, external, low emphasis / branded     |
+ * | icon-emphasis | text-secondary | ↗   | Navigation, external, high emphasis, not branded |
  *
- * All variants: underline default → font-medium + no underline on hover.
+ * All variants: text-secondary + underline default → text-primary + no underline on hover.
  */
 
 type LinkVariant = 'subtle' | 'emphasis' | 'icon' | 'icon-emphasis'
@@ -31,9 +31,9 @@ const variantClasses: Record<LinkVariant, string> = {
   emphasis:
     'text-text-secondary underline underline-offset-2 decoration-1 hover:text-text-primary hover:no-underline transition-colors',
   icon:
-    'text-text-secondary underline underline-offset-2 decoration-1 hover:text-text-primary hover:no-underline transition-colors',
+    'group text-text-secondary underline underline-offset-2 decoration-1 hover:text-text-primary hover:no-underline transition-colors',
   'icon-emphasis':
-    'text-text-secondary underline underline-offset-2 decoration-1 hover:text-text-primary hover:no-underline transition-colors',
+    'group text-text-secondary underline underline-offset-2 decoration-1 hover:text-text-primary hover:no-underline transition-colors',
 }
 
 export default function InlineLink({
@@ -49,7 +49,7 @@ export default function InlineLink({
   const content = hasIcon ? (
     <span className="inline-flex items-center gap-1">
       {children}
-      <ArrowUpRight size={20} strokeWidth={2} className="shrink-0" />
+      <ArrowUpRight size={20} strokeWidth={1.5} className="shrink-0 transition-transform group-hover:rotate-45" />
     </span>
   ) : (
     children

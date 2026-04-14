@@ -31,6 +31,7 @@ No test suite exists yet.
 - `size={20} strokeWidth={2}` — UI icons at body-small scale (buttons, inputs, nav, inline links)
 - `size={24} strokeWidth={2}` — inline with body-small text, standalone icons
 - `size={32} strokeWidth={1.5}` — decorative / card icon
+- `size={48} strokeWidth={1.5}` — large decorative icon (stat cards, hero accents)
 
 **Case study pages** live at `app/work/[slug]/page.tsx`. The only published one is `design-system-documentation`. All case study metadata lives in `data/case-studies.ts` — add new entries there and create the matching page route.
 
@@ -85,6 +86,14 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 - `bg-bg` / `bg-bg-secondary` / `bg-bg-tertiary` — surface hierarchy
 - `border-border-subtle` / `border-border` / `border-border-strong` — border hierarchy
 
+**Image & video treatment:** All images and videos on the site must have `border border-border-subtle shadow-sm rounded-sm`. This applies to every `ImageBlock` variant (image, video, vimeo, placeholder), case study cover images, and any other inline images. The `CaseStudyCard` thumbnail is the one exception — it uses `shadow-xs` with `rounded-2xl` to match card styling. The card itself lifts on hover (`hover:-translate-y-1.5`) instead of changing shadow. Pass `bare` to `ImageBlock` to opt out of border/shadow for images that should bleed into the background.
+
+**Image & video sizing:** All images and videos must fill the full width of their container and maintain their original aspect ratio — never crop. Use `w-full` with no fixed aspect ratio. Never use `object-cover`, `object-fit`, `fill`, or `aspect-video` on image or video elements. Vimeo iframes are the only exception (they need `aspect-video` for the embed container).
+
+**Video play/pause:** All videos display a round play/pause `IconButton` overlay in the bottom-right corner (`absolute bottom-3 right-3`). Videos autoplay muted and loop. The button toggles between `Play` and `Pause` lucide icons. This is handled by the `VideoBlock` client component (`components/VideoBlock.tsx`), which `ImageBlock` delegates to for `type="video"`.
+
+**Image captions:** Every image and video should have a caption by default. Captions use `text-small text-text-tertiary mt-2 text-center` and are centered below the image. Always provide a `caption` prop when using `ImageBlock` — omitting it should be a deliberate exception, not the default.
+
 **Gradient system** (`gradient.*` tokens in `tailwind.config.ts`):
 
 Two named gradients used site-wide — always applied as `bg-clip-text text-transparent bg-gradient-to-r`:
@@ -134,7 +143,7 @@ gap-8, py-20
 
 - **Hero** (`pt-16 pb-12`): tags row → `h-8` spacer → `text-display font-normal` title, full `max-w-page` width. No metadata in the hero.
 - **Cover image** (`pb-16`): full-width `aspect-video bg-bg-secondary rounded-sm`.
-- **TOC** (left column, `sticky top-40`): plain `text-body-small text-text-secondary` links, no step numbers. `top-40` (160px) clears the 64px sticky nav with generous breathing room.
+- **TOC** (left column, `sticky top-32`): plain `text-body-small text-text-secondary` links, no step numbers. `top-32` (128px) clears the 64px sticky nav with generous breathing room.
 - **Notes** (right column): empty `w-[200px]` spacer — reserved for future annotations.
 
 **Section pattern inside the content column:**
@@ -177,36 +186,40 @@ bg-bg-secondary border border-border rounded-sm px-10 py-7
 
 | State | Key classes |
 |---|---|
-| Default | `size-11 rounded-full bg-bg border-border text-text-primary` |
+| Default | `size-11 rounded-full bg-bg-secondary border border-border text-text-primary` |
 | Hover | `hover:bg-bg-tertiary hover:border-border-strong` |
 
-White background with subtle border at rest; gray fill on hover. Always provide `aria-label`.
+Matches the outline button variant states. White fill at rest; gray fill on hover. Always provide `aria-label`.
 
-**Primary Button** — `components/Button.tsx` ('use client'):
+**Button** — `components/Button.tsx` ('use client'):
+
+Two variants: `primary` (default) and `outline`.
 
 ```tsx
-<Button href="/work">View Case Study</Button>   // renders as <Link>
-<Button onClick={fn}>Submit</Button>            // renders as <button>
+<Button href="/work">View Case Study</Button>              // primary, internal link
+<Button href="https://x.com" external>External</Button>    // primary, external link
+<Button variant="outline" onClick={fn}>Secondary</Button>  // outline
 ```
 
-| State | Key classes |
-|---|---|
-| Default | `bg-bg-inverse text-text-inverse font-semibold rounded-sm px-6 py-3 gap-2` |
-| Hover | `hover:bg-accent hover:gap-3` |
+| Variant | State | Key classes |
+|---|---|---|
+| Primary | Default | `bg-bg-inverse text-text-inverse font-semibold rounded-md px-6 py-3` |
+| Primary | Hover | `hover:bg-neutral-800`, arrow `group-hover:rotate-45` |
+| Outline | Default | `bg-bg-secondary border border-border text-text-primary font-semibold rounded-md px-6 py-3` |
+| Outline | Hover | `hover:bg-bg-tertiary hover:border-border-strong` |
 
-Non-color diff: `gap-2 → gap-3` shifts the arrow icon right. `transition-all` animates the gap.
-Contrast: white on `#1A1612` ≈ 18:1 · white on `#e40089` (accent) ≈ 4.6:1 — both ✓ AA.
+Non-color diff: ArrowUpRight icon rotates 45° on hover (↗ → →). This rotation convention applies site-wide to all interactive ArrowUpRight icons (buttons, InlineLink icon variants, footer links).
 
 **Navigation Link** — inline in `Nav.tsx`:
 
 | State | Key classes |
 |---|---|
 | Default | `text-body-small text-text-secondary px-2.5 py-1.5 rounded-sm` |
-| Hover | `hover:bg-bg-secondary hover:text-text-primary hover:font-medium` |
-| Active | `bg-bg-secondary text-text-primary font-medium` |
+| Hover | `hover:text-text-primary hover:font-medium` |
+| Active | `text-text-primary font-medium` |
 
-Same visual language as Table of Contents items. Non-color diff on hover: background fill appears and font weight shifts to medium.
-Contrast: `#5C5650` on white = 7.2:1 ✓ AA.
+No background fill on hover or active — text color and weight shift only.
+Contrast: `#525252` on white ≈ 7.8:1 ✓ AA.
 
 **Inline Link** — `components/InlineLink.tsx` (Server Component):
 
@@ -262,7 +275,7 @@ Sticky sidebar TOC with IntersectionObserver-based active section tracking. Used
 | Hover | `hover:bg-bg-secondary hover:text-text-primary hover:font-medium` |
 | Active | `bg-bg-secondary text-text-primary font-medium` |
 
-Each item gets a filled `bg-bg-secondary` background on hover and when active. `rounded-sm` on all items. Positioned `sticky top-24` (96px — clears the 64px nav with breathing room).
+Each item gets a filled `bg-bg-secondary` background on hover and when active. `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room).
 
 ## Documentation Workflow
 

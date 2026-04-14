@@ -39,6 +39,7 @@ const foundationsToc = [
   { label: 'Spacing',    id: 'spacing' },
   { label: 'Radius',     id: 'radius' },
   { label: 'Shadow',     id: 'shadow' },
+  { label: 'Media',      id: 'media' },
 ]
 
 const componentsToc = [
@@ -284,6 +285,7 @@ function FoundationsContent() {
             { size: 20, strokeWidth: 2,   label: 'size={20} strokeWidth={2}',   use: 'UI icons at body-small scale — buttons, inputs, nav, inline links' },
             { size: 24, strokeWidth: 2,   label: 'size={24} strokeWidth={2}',   use: 'Inline with body-small text, standalone icons' },
             { size: 32, strokeWidth: 1.5, label: 'size={32} strokeWidth={1.5}', use: 'Decorative / card icon' },
+            { size: 48, strokeWidth: 2, label: 'size={48} strokeWidth={2}', use: 'Large decorative icon — stat cards, hero accents' },
           ].map(({ size, strokeWidth, label, use }) => (
             <div key={size} className="flex items-center gap-8 py-5 border-b border-border-subtle">
               <div className="w-12 flex items-center justify-center shrink-0">
@@ -361,23 +363,23 @@ function FoundationsContent() {
         {/* ── Atomic: Neutral ── */}
         <SubLabel>Neutral Scale · Atomic</SubLabel>
         <p className="text-body-small text-text-secondary mb-6">
-          The warm neutral ramp underpins every semantic token. Referenced by semantic roles, never used directly in components.
+          The Tailwind CSS Neutral ramp underpins every semantic token. Referenced by semantic roles, never used directly in components.
         </p>
         <div>
           <RowDivider />
           {[
-            { label: 'neutral-000', hex: '#FFFFFF', mapped: 'bg, text-inverse' },
-            { label: 'neutral-050', hex: '#F7F6F4', mapped: 'bg-secondary' },
-            { label: 'neutral-100', hex: '#EEECEA', mapped: 'bg-tertiary, border-subtle' },
-            { label: 'neutral-200', hex: '#DDD9D5', mapped: 'border' },
-            { label: 'neutral-300', hex: '#C4BFB9', mapped: 'border-strong, text-placeholder' },
-            { label: 'neutral-400', hex: '#9E9890', mapped: 'text-tertiary' },
-            { label: 'neutral-500', hex: '#78726A', mapped: '—' },
-            { label: 'neutral-600', hex: '#5C5650', mapped: 'text-secondary' },
-            { label: 'neutral-700', hex: '#403B36', mapped: '—' },
-            { label: 'neutral-800', hex: '#2A2520', mapped: '—' },
-            { label: 'neutral-900', hex: '#1A1612', mapped: 'bg-inverse, text-primary' },
-            { label: 'neutral-950', hex: '#100D0A', mapped: '—' },
+            { label: 'neutral-000', hex: '#FFFFFF', mapped: 'bg-secondary, text-inverse' },
+            { label: 'neutral-050', hex: '#fafafa', mapped: 'bg' },
+            { label: 'neutral-100', hex: '#f5f5f5', mapped: 'bg-tertiary, border-subtle' },
+            { label: 'neutral-200', hex: '#e5e5e5', mapped: 'border' },
+            { label: 'neutral-300', hex: '#d4d4d4', mapped: 'border-strong, text-placeholder' },
+            { label: 'neutral-400', hex: '#a3a3a3', mapped: '—' },
+            { label: 'neutral-500', hex: '#737373', mapped: 'text-tertiary' },
+            { label: 'neutral-600', hex: '#525252', mapped: 'text-secondary' },
+            { label: 'neutral-700', hex: '#404040', mapped: '—' },
+            { label: 'neutral-800', hex: '#262626', mapped: '—' },
+            { label: 'neutral-900', hex: '#171717', mapped: 'bg-inverse, text-primary' },
+            { label: 'neutral-950', hex: '#0a0a0a', mapped: '—' },
           ].map(({ label, hex, mapped }) => (
             <div key={label} className="flex items-center gap-5 py-3 border-b border-border-subtle">
               <div
@@ -394,16 +396,16 @@ function FoundationsContent() {
         {/* ── Atomic: Primary ── */}
         <SubLabel>Primary · Atomic</SubLabel>
         <p className="text-body-small text-text-secondary mb-6">
-          Pink hue derived from the gradient-red token (#f02065). Reserved for future branded accents and interactive focus states. Not actively used in any component — available as design vocabulary.
+          Purple hue derived from the gradient-pink direction. Used for text highlights, numbered callouts, and interactive accents. WCAG AA compliant as text on page bg (6.50:1) and as button bg with white text (6.78:1).
         </p>
         <div>
           <RowDivider />
           {[
-            { label: 'primary',        hex: '#f02065', note: 'Base — reserved' },
-            { label: 'primary-hover',   hex: '#c91a54', note: 'Hover variant — reserved' },
-            { label: 'primary-active',  hex: '#a11443', note: 'Active variant — reserved' },
-            { label: 'primary-light',   hex: '#f4729a', note: 'Light variant — reserved' },
-            { label: 'primary-subtle',  hex: '#fef0f4', note: 'Subtle background — reserved' },
+            { label: 'primary',        hex: '#9220b5', note: 'Base — text highlights, callout numbers' },
+            { label: 'primary-hover',   hex: '#7a1b98', note: 'Hover variant — button hover bg' },
+            { label: 'primary-active',  hex: '#63167b', note: 'Active variant' },
+            { label: 'primary-light',   hex: '#c97ae0', note: 'Light variant' },
+            { label: 'primary-subtle',  hex: '#fbf5fe', note: 'Subtle background tint' },
           ].map(({ label, hex, note }) => (
             <div key={label} className="flex items-center gap-5 py-3 border-b border-border-subtle">
               <div className="size-8 rounded-sm shrink-0" style={{ backgroundColor: hex }} />
@@ -441,14 +443,14 @@ function FoundationsContent() {
         <div>
           <RowDivider />
           {[
-            { label: 'text-text-primary',     hex: '#1A1612', role: 'Body, headings, all primary content' },
-            { label: 'text-text-secondary',   hex: '#5C5650', role: 'Supporting prose, descriptions, metadata values' },
-            { label: 'text-text-tertiary',    hex: '#9E9890', role: 'Labels, captions, placeholder hints' },
-            { label: 'text-text-placeholder', hex: '#C4BFB9', role: 'Form input placeholders — reserved, not yet used' },
-            { label: 'text-text-disabled',    hex: '#C4BFB9', role: 'Disabled states — reserved, not yet used' },
+            { label: 'text-text-primary',     hex: '#171717', role: 'Body, headings, all primary content' },
+            { label: 'text-text-secondary',   hex: '#525252', role: 'Supporting prose, descriptions, metadata values' },
+            { label: 'text-text-tertiary',    hex: '#737373', role: 'Labels, captions, placeholder hints' },
+            { label: 'text-text-placeholder', hex: '#d4d4d4', role: 'Form input placeholders — reserved, not yet used' },
+            { label: 'text-text-disabled',    hex: '#d4d4d4', role: 'Disabled states — reserved, not yet used' },
             { label: 'text-text-inverse',     hex: '#FFFFFF', role: 'Text on dark/inverse surfaces', border: true },
-            { label: 'text-text-link',        hex: '#0a7acc', role: 'Reserved — not currently used (links use text-secondary instead)' },
-            { label: 'text-text-link-hover',  hex: '#085fa0', role: 'Reserved — not currently used' },
+            { label: 'text-text-link',        hex: '#085fa0', role: 'Reserved — not currently used (links use text-secondary instead)' },
+            { label: 'text-text-link-hover',  hex: '#064b7d', role: 'Reserved — not currently used' },
             { label: 'text-text-on-brand',    hex: '#FFFFFF', role: 'Text on brand-tinted surfaces — reserved, not yet used', border: true },
           ].map(({ label, hex, role, border }) => (
             <div key={label} className="flex items-center gap-5 py-4 border-b border-border-subtle">
@@ -469,10 +471,10 @@ function FoundationsContent() {
         <div>
           <RowDivider />
           {[
-            { label: 'bg-bg',           hex: '#FFFFFF', role: 'Page background, nav surface', border: true },
-            { label: 'bg-bg-secondary', hex: '#F7F6F4', role: 'Card surfaces, image placeholders, callout cards' },
-            { label: 'bg-bg-tertiary',  hex: '#EEECEA', role: 'Tag pills, subtle highlights' },
-            { label: 'bg-bg-inverse',   hex: '#1A1612', role: 'Dark / inverse surfaces' },
+            { label: 'bg-bg',           hex: '#fafafa', role: 'Page background, nav surface' },
+            { label: 'bg-bg-secondary', hex: '#FFFFFF', role: 'Card surfaces, image placeholders, callout cards', border: true },
+            { label: 'bg-bg-tertiary',  hex: '#f5f5f5', role: 'Tag pills, subtle highlights' },
+            { label: 'bg-bg-inverse',   hex: '#171717', role: 'Dark / inverse surfaces' },
             { label: 'bg-bg-brand',     hex: '#EAF4F4', role: 'Brand-tinted surface — reserved, not yet used' },
           ].map(({ label, hex, role, border }) => (
             <div key={label} className="flex items-center gap-5 py-4 border-b border-border-subtle">
@@ -493,9 +495,9 @@ function FoundationsContent() {
         <div>
           <RowDivider />
           {[
-            { label: 'border-border-subtle', hex: '#EEECEA', role: 'Dividers, section rules, subtle separators' },
-            { label: 'border-border',        hex: '#DDD9D5', role: 'Card outlines, callout card borders' },
-            { label: 'border-border-strong', hex: '#C4BFB9', role: 'Emphasized borders, form inputs' },
+            { label: 'border-border-subtle', hex: '#f5f5f5', role: 'Dividers, section rules, subtle separators' },
+            { label: 'border-border',        hex: '#e5e5e5', role: 'Card outlines, callout card borders' },
+            { label: 'border-border-strong', hex: '#d4d4d4', role: 'Emphasized borders, form inputs' },
             { label: 'border-border-focus',  hex: '#2B6B6B', role: 'Focus rings — reserved, not yet used' },
           ].map(({ label, hex, role }) => (
             <div key={label} className="flex items-center gap-5 py-4 border-b border-border-subtle">
@@ -519,11 +521,11 @@ function FoundationsContent() {
         <div>
           <RowDivider />
           <div className="flex items-center gap-5 py-4 border-b border-border-subtle">
-            <div className="size-10 rounded-sm shrink-0" style={{ backgroundColor: '#e40089' }} />
+            <div className="size-10 rounded-sm shrink-0" style={{ backgroundColor: '#f02065' }} />
             <div className="flex-1 min-w-0 flex items-baseline gap-4">
               <p className="font-mono text-body-small text-text-primary w-52 shrink-0">bg-accent</p>
-              <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">#e40089</p>
-              <p className="text-body-small text-text-secondary">Primary button hover background. Contrast: white on #e40089 ≈ 4.6:1 ✓ AA</p>
+              <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">#f02065</p>
+              <p className="text-body-small text-text-secondary">Accent pink — decorative uses. Not used as button hover.</p>
             </div>
           </div>
         </div>
@@ -691,7 +693,7 @@ function FoundationsContent() {
         <SectionHeading>Shadow</SectionHeading>
         <p className="text-body-small text-text-secondary mb-8">
           All shadows use the site&apos;s warm neutral base color (
-          <span className="font-mono">#1A1612</span>) at low opacity. Currently{' '}
+          <span className="font-mono">#171717</span>) at low opacity. Currently{' '}
           <span className="font-mono">shadow-xs</span> and{' '}
           <span className="font-mono">shadow-md</span> are used on CaseStudyCard. The rest are reserved for future use.
         </p>
@@ -702,13 +704,13 @@ function FoundationsContent() {
             <p className="font-mono text-body-small text-text-tertiary flex-1">Class</p>
           </div>
           {[
-            { cls: 'shadow-xs',    value: '0 1px 2px (5% opacity)' },
-            { cls: 'shadow-sm',    value: '0 1px 3px + 0 1px 2px (10% opacity)' },
-            { cls: 'shadow-md',    value: '0 4px 6px + 0 2px 4px (8% opacity)' },
-            { cls: 'shadow-lg',    value: '0 10px 15px + 0 4px 6px (8% opacity)' },
-            { cls: 'shadow-xl',    value: '0 20px 25px + 0 8px 10px (8% opacity)' },
-            { cls: 'shadow-2xl',   value: '0 25px 50px (25% opacity)' },
-            { cls: 'shadow-inner', value: 'inset 0 2px 4px (8% opacity)' },
+            { cls: 'shadow-xs',    value: '0 1px 3px (4% opacity)' },
+            { cls: 'shadow-sm',    value: '0 2px 6px + 0 1px 3px (6%/4% opacity)' },
+            { cls: 'shadow-md',    value: '0 6px 12px + 0 3px 6px (6%/4% opacity)' },
+            { cls: 'shadow-lg',    value: '0 12px 24px + 0 6px 10px (6%/4% opacity)' },
+            { cls: 'shadow-xl',    value: '0 24px 40px + 0 10px 16px (6%/4% opacity)' },
+            { cls: 'shadow-2xl',   value: '0 32px 64px (16% opacity)' },
+            { cls: 'shadow-inner', value: 'inset 0 2px 6px (6% opacity)' },
           ].map(({ cls, value }) => (
             <div key={cls} className="flex items-center gap-5 py-5 border-b border-border-subtle">
               <div className={`size-10 bg-bg rounded-sm shrink-0 ${cls}`} />
@@ -718,6 +720,85 @@ function FoundationsContent() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      {/* ──────────────────────────── MEDIA ──────────────────────── */}
+      <section id="media">
+        <SectionHeading>Media</SectionHeading>
+        <p className="text-body-small text-text-secondary mb-8">
+          Rules for all images and videos across the site. These ensure consistent presentation
+          and prevent cropping or distortion.
+        </p>
+
+        <SubLabel>Sizing</SubLabel>
+        <div>
+          <RowDivider />
+          {[
+            { rule: 'Full width', detail: 'All images and videos use w-full to fill their container' },
+            { rule: 'Natural aspect ratio', detail: 'Never constrain aspect ratio — no aspect-video, object-cover, object-fit, or fill on images or videos' },
+            { rule: 'No cropping', detail: 'Containers must never clip image or video content' },
+          ].map(({ rule, detail }) => (
+            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
+              <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <SubLabel>Chrome</SubLabel>
+        <div>
+          <RowDivider />
+          {[
+            { rule: 'Border', detail: 'border border-border-subtle — applied by default on all images and videos' },
+            { rule: 'Shadow', detail: 'shadow-sm — applied by default alongside the border' },
+            { rule: 'Radius', detail: 'rounded-sm — consistent rounding on all media' },
+            { rule: 'Bare mode', detail: 'Pass bare to ImageBlock to remove border and shadow (e.g. images that bleed into the background)' },
+          ].map(({ rule, detail }) => (
+            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
+              <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <SubLabel>Captions</SubLabel>
+        <div>
+          <RowDivider />
+          {[
+            { rule: 'Default on', detail: 'Every image and video should include a caption — omitting is the exception' },
+            { rule: 'Style', detail: 'text-small text-text-tertiary mt-2 text-center' },
+            { rule: 'Position', detail: 'Centered below the media element' },
+          ].map(({ rule, detail }) => (
+            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
+              <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <SubLabel>Video controls</SubLabel>
+        <div>
+          <RowDivider />
+          {[
+            { rule: 'Autoplay', detail: 'Videos autoplay muted and loop by default' },
+            { rule: 'Play/pause button', detail: 'Round IconButton overlay — absolute bottom-3 right-3, toggles between Play and Pause lucide icons' },
+          ].map(({ rule, detail }) => (
+            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
+              <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-small text-text-secondary">
+            The <span className="font-mono">ImageBlock</span> component handles all media rendering —
+            images, looping videos, Vimeo embeds, and placeholders. Videos delegate to the{' '}
+            <span className="font-mono">VideoBlock</span> client component for play/pause interactivity.
+          </p>
         </div>
       </section>
     </>
@@ -750,15 +831,15 @@ function ComponentsContent() {
           <div className="flex items-center gap-8 py-5 border-b border-border-subtle">
             <p className="text-body-small text-text-secondary w-36 shrink-0">Default</p>
             <div className="w-56 shrink-0 flex gap-2">
-              <span className="size-11 rounded-full border bg-bg border-border text-text-primary flex items-center justify-center">
+              <span className="size-11 rounded-full bg-bg-secondary border border-border text-text-primary flex items-center justify-center">
                 <ArrowLeft size={20} strokeWidth={2} />
               </span>
-              <span className="size-11 rounded-full border bg-bg border-border text-text-primary flex items-center justify-center">
+              <span className="size-11 rounded-full bg-bg-secondary border border-border text-text-primary flex items-center justify-center">
                 <ArrowRight size={20} strokeWidth={2} />
               </span>
             </div>
             <p className="font-mono text-body-small text-text-tertiary flex-1 min-w-0 leading-relaxed">
-              size-11 rounded-full bg-bg border-border text-text-primary
+              size-11 rounded-full bg-bg-secondary border border-border text-text-primary
             </p>
           </div>
           <div className="flex items-center gap-8 py-5 border-b border-border-subtle">
@@ -808,28 +889,71 @@ function ComponentsContent() {
               <Button href="#">View Case Study</Button>
             </div>
             <p className="font-mono text-body-small text-text-tertiary flex-1 min-w-0 leading-relaxed">
-              bg-bg-inverse text-text-inverse font-semibold rounded-sm px-6 py-3 gap-2
+              bg-bg-inverse text-text-inverse font-semibold rounded-md px-6 py-3 gap-2
             </p>
           </div>
           <div className="flex items-center gap-8 py-5 border-b border-border-subtle">
             <p className="text-body-small text-text-secondary w-36 shrink-0">Hover</p>
             <div className="w-56 shrink-0">
-              <span className="inline-flex items-center gap-3 text-body-small font-semibold bg-accent text-text-inverse rounded-sm px-6 py-3">
+              <span className="inline-flex items-center gap-3 text-body-small font-semibold bg-neutral-800 text-text-inverse rounded-md px-6 py-3">
                 View Case Study
-                <ArrowRight size={20} strokeWidth={2} />
+                <ArrowUpRight size={20} strokeWidth={2} />
               </span>
             </div>
             <p className="font-mono text-body-small text-text-tertiary flex-1 min-w-0 leading-relaxed">
-              hover:bg-accent hover:gap-3
+              hover:bg-neutral-800, arrow: group-hover:rotate-45
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-8">
+          <p className="text-body-small text-text-secondary">
+            Non-color diff: ArrowUpRight icon rotates 45° on hover (↗ → →).{' '}
+            Subtle lightening on hover (<span className="font-mono">#171717 → #262626</span>).{' '}
+            Contrast: white on <span className="font-mono">#262626</span> ≈ 15.4:1 ✓ WCAG AA.
+          </p>
+        </div>
+
+        <SubLabel>Outline Variant</SubLabel>
+        <p className="text-body-small text-text-secondary mb-8">
+          Secondary actions. Transparent background with border, fills on hover.
+          Same state styling as IconButton.
+        </p>
+
+        <div className="mb-6">
+          <div className="flex gap-8 py-3 border-b border-border-subtle">
+            <p className="text-body-small text-text-tertiary w-36 shrink-0">State</p>
+            <p className="text-body-small text-text-tertiary w-56 shrink-0">Specimen</p>
+            <p className="font-mono text-body-small text-text-tertiary flex-1">Key classes</p>
+          </div>
+          <div className="flex items-center gap-8 py-5 border-b border-border-subtle">
+            <p className="text-body-small text-text-secondary w-36 shrink-0">Default</p>
+            <div className="w-56 shrink-0">
+              <Button variant="outline" href="#">Secondary</Button>
+            </div>
+            <p className="font-mono text-body-small text-text-tertiary flex-1 min-w-0 leading-relaxed">
+              bg-bg-secondary border border-border text-text-primary rounded-md px-6 py-3
+            </p>
+          </div>
+          <div className="flex items-center gap-8 py-5 border-b border-border-subtle">
+            <p className="text-body-small text-text-secondary w-36 shrink-0">Hover</p>
+            <div className="w-56 shrink-0">
+              <span className="inline-flex items-center gap-2 text-body-small font-semibold bg-bg-tertiary text-text-primary border border-border-strong rounded-md px-6 py-3">
+                Secondary
+                <ArrowUpRight size={20} strokeWidth={2} />
+              </span>
+            </div>
+            <p className="font-mono text-body-small text-text-tertiary flex-1 min-w-0 leading-relaxed">
+              hover:bg-bg-tertiary hover:border-border-strong
             </p>
           </div>
         </div>
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Non-color diff: <span className="font-mono">gap-2 → gap-3</span> shifts the arrow right on hover.{' '}
-            Contrast: white on <span className="font-mono">#1A1612</span> ≈ 18:1 · white on{' '}
-            <span className="font-mono">#e40089</span> ≈ 4.6:1 — both ✓ WCAG AA.
+            Outline variant shares state styling with IconButton — both use{' '}
+            <span className="font-mono">bg-bg-secondary → bg-bg-tertiary</span> and{' '}
+            <span className="font-mono">border-border → border-border-strong</span> on hover.
           </p>
         </div>
       </section>
@@ -863,23 +987,23 @@ function ComponentsContent() {
           <div className="flex items-center gap-8 py-5 border-b border-border-subtle">
             <p className="text-body-small text-text-secondary w-36 shrink-0">Hover</p>
             <div className="w-56 shrink-0">
-              <span className="block text-body-small font-medium text-text-primary bg-bg-secondary px-2.5 py-1.5 rounded-sm">
+              <span className="block text-body-small font-medium text-text-primary px-2.5 py-1.5 rounded-sm">
                 work
               </span>
             </div>
             <p className="font-mono text-body-small text-text-tertiary flex-1 min-w-0 leading-relaxed">
-              hover:bg-bg-secondary hover:text-text-primary hover:font-medium
+              hover:text-text-primary hover:font-medium
             </p>
           </div>
           <div className="flex items-center gap-8 py-5 border-b border-border-subtle">
             <p className="text-body-small text-text-secondary w-36 shrink-0">Active</p>
             <div className="w-56 shrink-0">
-              <span className="block text-body-small font-medium text-text-primary bg-bg-secondary px-2.5 py-1.5 rounded-sm">
+              <span className="block text-body-small font-medium text-text-primary px-2.5 py-1.5 rounded-sm">
                 work
               </span>
             </div>
             <p className="font-mono text-body-small text-text-tertiary flex-1 min-w-0 leading-relaxed">
-              bg-bg-secondary text-text-primary font-medium
+              text-text-primary font-medium
             </p>
           </div>
         </div>
@@ -888,7 +1012,7 @@ function ComponentsContent() {
           <p className="text-body-small text-text-secondary">
             Non-color diff: background fill appears and font weight shifts to medium on hover.
             Active page retains the same styling. Matches Table of Contents item pattern.
-            Contrast: <span className="font-mono">#5C5650</span> on white = 7.2:1 ✓ WCAG AA.
+            Contrast: <span className="font-mono">#525252</span> on white ≈ 7.0:1 ✓ WCAG AA.
           </p>
         </div>
       </section>
@@ -1024,8 +1148,8 @@ function ComponentsContent() {
           <p className="text-body-small text-text-secondary">
             Non-color diff: unsel. hover shifts background, border, and text simultaneously.
             Selected adds <span className="font-mono">font-medium</span> as a weight signal.
-            Contrast: <span className="font-mono">#5C5650</span> on white = 7.2:1 · white on{' '}
-            <span className="font-mono">#1A1612</span> = 18:1 — both ✓ WCAG AA.
+            Contrast: <span className="font-mono">#525252</span> on white ≈ 7.0:1 · white on{' '}
+            <span className="font-mono">#171717</span> ≈ 17.6:1 — both ✓ WCAG AA.
           </p>
         </div>
       </section>
@@ -1085,7 +1209,7 @@ function ComponentsContent() {
           <p className="text-body-small text-text-secondary">
             Pass an array of <span className="font-mono">{'{ label, id }'}</span> items. The component
             uses IntersectionObserver to detect which <span className="font-mono">id</span> is in
-            view and highlights it. Positioned <span className="font-mono">sticky top-24</span> (96px)
+            view and highlights it. Positioned <span className="font-mono">sticky top-32</span> (128px)
             to clear the 64px nav. Hidden below <span className="font-mono">lg:</span> breakpoint.
           </p>
         </div>
