@@ -6,27 +6,31 @@ const audiences = [
   {
     label: 'Anyone',
     message:
-      'I am a product designer who turns complex problems into intuitive experiences. I bring systems thinking to every challenge.',
+      'I am a strategic designer who cares about crafting intentional experiences and being someone people genuinely enjoy working with.',
   },
   {
     label: 'Recruiters',
     message:
-      'I have 5+ years of product design experience across enterprise and consumer. I ship systems, not just screens.',
+      'I have 5+ years of experience designing, building and shipping experiences across insurance, B2B, education, and more for internal teams and consumer-facing experiences.',
   },
   {
     label: 'Designers',
+    message: 'I’m driven by creating craft that scales, learning from other designers, and advocating for user-centered, accessible design.',
+  },
+  {
+    label: 'Design Managers',
     message:
-      'I think in systems and components. I care about consistency, accessibility, and building design foundations that scale.',
+      'Integral to my work philosophy is being a community member - investing in shared standards, developing organizational design maturity and building design`s influence as a strategic partner.',
   },
   {
     label: 'Product Managers',
     message:
-      'I translate business goals into user-centered solutions. I prototype fast, validate early, and ship with confidence.',
+      'My favorite problems live at the intersection of user experience and business impact. I partner with PMs to unpack complexity early, and ensure we’re solving the problems that actually drive impact.',
   },
   {
     label: 'Engineers',
     message:
-      'I design with implementation in mind. I build and maintain design systems, write design tokens, and speak your language.',
+      'My first love in design was architecting codebases—creating order from complexity through systems, logic, and modular components.  I still design with an engineer’s mindest - grounded in patterns and what’s actually feasible to build.',
   },
 ]
 

@@ -158,7 +158,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                 {/* ────────────────────────────── PROBLEM ─────────────────────────────── */}
                 <section id="problem">
                   <Label>Problem</Label>
-                  <h2 className="text-h2 font-medium text-text-secondary leading-[1.3]">
+                  <h2 className="text-h2 font-normal text-text-secondary leading-[1.3]">
                     Incomplete design system documentation leads to workflow bottlenecks and
                     designer-developer miscommunication.
                   </h2>
@@ -243,7 +243,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                 <section id="solution">
                   <Label>Solution</Label>
                   <div className="flex items-end gap-3">
-                    <h2 className="text-h2 font-medium text-text-primary leading-[1.3] flex-1 min-w-0">
+                    <h2 className="text-h2 font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
                       A trusted, single-source of truth that aligns development and design teams.
                     </h2>
                     <Button variant="outline" href="https://bricks.supernova-docs.io/latest/welcome-to-bricks/welcome-to-bricks-2mJr8rzI" external>View Live</Button>
@@ -257,7 +257,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                   <div>
                     <TwoColumnSection heading="Show, don't tell">
                       <div className="flex flex-col gap-0">
-                        <p className="text-h3 font-medium text-text-secondary">
+                        <p className="text-h3 font-normal text-text-secondary">
                           Scannable dos &amp; don&apos;ts
                         </p>
                         <p className="text-body-big text-text-secondary mt-2">
@@ -294,7 +294,7 @@ export default function BricksDesignSystemCaseStudyPage() {
 
                   {/* Subsection: Surface use cases */}
                   <div>
-                    <h2 className="text-h2 font-medium text-text-primary leading-[1.3] mb-8">
+                    <h2 className="text-h2 font-normal text-text-primary leading-[1.3] mb-8">
                       Surface component use cases early for discoverability
                     </h2>
                     <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -348,7 +348,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                 {/* ────────────────────────────── IMPACT ──────────────────────────────── */}
                 <section id="impact">
                   <Label>Impact</Label>
-                  <h2 className="text-h2 font-medium text-text-primary leading-[1.3]">
+                  <h2 className="text-h2 font-normal text-text-primary leading-[1.3]">
                     No more bottlenecks
                   </h2>
 
@@ -356,7 +356,7 @@ export default function BricksDesignSystemCaseStudyPage() {
 
                   <div className="flex flex-col md:flex-row gap-8">
                     <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1 flex flex-col gap-4 justify-center">
-                      <p className="text-h2 font-medium text-primary">100%</p>
+                      <p className="text-h2 font-normal text-primary">100%</p>
                       <p className="text-body-big text-text-primary">
                         All 26 foundational components documented
                       </p>
@@ -402,7 +402,7 @@ export default function BricksDesignSystemCaseStudyPage() {
           <div className="flex justify-center px-5 md:px-10 pt-12 pb-12 md:pb-24">
             <div className="max-w-page w-full">
               <Label>Next</Label>
-              <h2 className="text-h3 md:text-h2 font-medium text-text-primary leading-[1.3] mb-8">
+              <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3] mb-8">
                 I&apos;ve done other cool stuff too
               </h2>
               <div className="flex flex-col md:flex-row gap-8">

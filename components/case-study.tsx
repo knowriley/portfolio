@@ -119,7 +119,7 @@ export function TwoColumnSection({
   return (
     <div className={`flex flex-col md:flex-row gap-8 items-${align}`}>
       <div className="flex-1 min-w-0">
-        <h2 className="text-h3 md:text-h2 font-medium text-text-primary leading-[1.3]">{heading}</h2>
+        <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">{heading}</h2>
       </div>
       <div className="flex-1 min-w-0">{children}</div>
     </div>

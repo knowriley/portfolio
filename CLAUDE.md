@@ -124,7 +124,7 @@ All text sizing uses the named type scale defined in `tailwind.config.ts` — do
 | `label` (style) | 0.833rem / 13.33px | 1 | Micro-labels: `text-small font-medium uppercase tracking-widest` |
 
 **Additional type conventions:**
-- All headings use `font-medium` (never `font-bold`)
+- All headings (h1–h3, display) use `font-normal` (never `font-medium` or `font-bold`)
 - **Section/content labels** (e.g. "Overview", "Problem", "Next") use `text-body-small text-text-tertiary font-normal` — no uppercase, no letter-spacing
 - **Micro-labels** (footer column headers, TOC "Contents" header, metadata grid field labels e.g. "Role", "Team") use one unified style: `text-small font-medium uppercase tracking-widest text-text-tertiary`
 - Step/index numbers use `font-mono text-small text-text-tertiary`
@@ -148,7 +148,7 @@ gap-8, py-20
 
 **Section pattern inside the content column:**
 - Label: `text-body-small text-text-tertiary mb-4`
-- Section heading: `text-h2 font-medium text-text-primary leading-[1.3]`
+- Section heading: `text-h2 font-normal text-text-primary leading-[1.3]`
 - Body prose: `text-body-big text-text-secondary`
 - Overview prose (first section): `text-body-biggest text-text-primary`
 - **Between major sections:** `<div className="h-24" />` + `<div className="border-t border-border-subtle" />` + `<div className="h-24" />`
@@ -219,7 +219,7 @@ Non-color diff: ArrowUpRight icon rotates 45° on hover (↗ → →). This rota
 | Active | `text-text-primary font-medium` |
 
 No background fill on hover or active — text color and weight shift only.
-Contrast: `#525252` on white ≈ 7.8:1 ✓ AA.
+Contrast: `#57534e` on white ≈ 7.8:1 ✓ AA.
 
 **Inline Link** — `components/InlineLink.tsx` (Server Component):
 
