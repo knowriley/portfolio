@@ -292,30 +292,31 @@ After completing any implementation change, evaluate whether it introduced or ch
    - Introduces a new semantic usage convention (e.g. a new spacing role, a new type hierarchy rule)
    - Adds a new shared component that belongs in the visual reference (e.g. a new callout pattern)
 
-3. **Figma file** (`QXoQt5JPBJapI2H4z1bP7T`) — add or revise if the change:
+3. **Figma file** (`https://www.figma.com/design/QXoQt5JPBJapI2H4z1bP7T/portfolio`) — **mandatory** for any design system change. Every time a change is made to the design system — tokens, typography, components, spacing, shadows, or any convention — the corresponding Figma file must be updated in the same session. This includes:
    - Adds, removes, or modifies a color, spacing, or radius token in `tailwind.config.ts` → update the corresponding Figma variable
-   - Adds or modifies a type scale entry → update the corresponding Figma text style
+   - Adds or modifies a type scale entry or font weight convention → update the corresponding Figma text style
    - Adds or modifies a shadow token → update the corresponding Figma effect style
    - Adds or modifies a shared component → update or create the corresponding Figma component with matching variants and states
+   - Changes any interactive state styling (hover, active, selected) → update the corresponding Figma component variant
    - Updates the documentation frame to reflect any new or changed tokens/components
 
-The design system page is the live rendered reference, the Figma file is the design reference — both must always reflect the actual state of `tailwind.config.ts` and the component conventions in use. **Code is the source of truth; Figma follows code.**
+The design system page is the live rendered reference, the Figma file is the design reference — both must always reflect the actual state of `tailwind.config.ts` and the component conventions in use. **Code is the source of truth; Figma follows code. Never skip the Figma update.**
 
 ## Figma Build Rules
 
 **File:** `QXoQt5JPBJapI2H4z1bP7T` — all design work happens here.
 
-When building or editing anything in Figma, always use variables — never hardcode values:
+**Never hardcode values when building in Figma.** Every property that has a corresponding variable, style, or component must use it — no exceptions. This means every fill, stroke, text color, padding, gap, radius, shadow, and font must be bound to a design system token. Hardcoded hex colors, bare pixel numbers, and manually set font properties are never acceptable when a matching variable or style exists.
 
-- **Colors** — use Color collection variables (e.g. `text/primary`, `bg/secondary`, `border/subtle`, `accent/default`) for all fills, strokes, and text colors. Never use raw hex values.
-- **Spacing** — use Spacing collection variables for all padding, gap (itemSpacing), and fixed spacer frame heights. Never use bare pixel numbers when a matching variable exists.
-- **Border radius** — use Border Radius collection variables. Never type radius values manually.
-- **Typography** — apply the named text styles (display, h1, h2, etc.) instead of setting font properties manually.
-- **Shadows** — apply the named effect styles (shadow/xs through shadow/2xl, shadow/inner) instead of creating manual drop shadows.
+- **Colors** — use `setBoundVariableForPaint` to bind Color collection variables (e.g. `text/primary`, `bg/secondary`, `border/subtle`, `accent/default`) to all fills, strokes, and text colors. When calling `setBoundVariableForPaint`, always pass the actual resolved color as the base paint (not `{r:0, g:0, b:0}`) so the fill renders correctly even before the variable resolves.
+- **Spacing** — use `setBoundVariable` to bind Spacing collection variables to all padding (`paddingTop`, `paddingBottom`, `paddingLeft`, `paddingRight`), gap (`itemSpacing`, `counterAxisSpacing`), and fixed spacer frame heights (`height`). Never use bare pixel numbers.
+- **Border radius** — use `setBoundVariable` to bind Border Radius collection variables to all corner radii (`topLeftRadius`, `topRightRadius`, `bottomLeftRadius`, `bottomRightRadius`). Never type radius values manually.
+- **Typography** — apply the named text styles (display, h1, h2, etc.) via `setTextStyleIdAsync` instead of setting font properties manually.
+- **Shadows** — apply the named effect styles (shadow/xs through shadow/2xl, shadow/inner) via `effectStyleId` instead of creating manual drop shadows.
 - **Components** — use instances of the Figma components (Button, IconButton, Filter Pill, Nav Link, TOC Item, Inline Link, Numbered Callout, Section Divider, Spacer) instead of rebuilding them from primitives.
 - **Spacer component** — when inserting vertical space between elements, always use an instance of the `Spacer` component set to the correct `size` variant. Never create raw frames named `sp` or `spacer`.
 
-**Sync rule:** If you change a token in `tailwind.config.ts`, you must update the corresponding Figma variable/style in the same session. If you add a new React component, create the corresponding Figma component. Code is the source of truth — Figma follows.
+**Sync rule:** Any design system change in code requires an immediate corresponding update to this Figma file in the same session — no exceptions. This includes token changes, component additions/modifications, typography weight changes, interactive state styling, and documentation frame updates. Code is the source of truth — Figma follows.
 
 ### Spacing variable mapping
 

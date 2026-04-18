@@ -22,6 +22,16 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: '/images/bricks-cover.png',
   },
   {
+    slug: 'conductor-website-redesign',
+    title: "Redesigning Conductor's website for their AI go-to-market launch",
+    description:
+      "Modernizing the visual identity, aligning stakeholders across UX and marketing, and launching a homepage that announced Conductor's next chapter.",
+    tags: ['Visual Design', 'Web Design', 'Cross-functional Collaboration'],
+    year: 'TODO: Date range (e.g. Jan 2025 - Apr 2025)',
+    industry: 'B2B SEO',
+    thumbnail: '/images/conductor-cover.webp',
+  },
+  {
     slug: 'coming-soon-1',
     title: 'Rapid prototyping in Claude Code for Evidence of Insurability',
     description: 'Coming soon',
