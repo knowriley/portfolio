@@ -94,6 +94,14 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 
 **Image captions:** Every image and video should have a caption by default. Captions use `text-small text-text-tertiary mt-2 text-center` and are centered below the image. Always provide a `caption` prop when using `ImageBlock` — omitting it should be a deliberate exception, not the default.
 
+**Image & video optimization:** Every image and video committed to `public/` — whether adding a new one or touching an existing one — must be optimized for web. Raw exports from Figma, ScreenFlow, QuickTime, or any other tool are never acceptable as-committed.
+
+- **Images** → WebP only (`.webp`). No `.png`, `.jpg`, `.jpeg` in `public/` (except `.gitkeep`-type markers). Quality 82, `effort: 6` is the default. Resize so the source's longest edge is no more than 2× the largest rendered width the image will ever have (e.g. a book cover rendered at 384px caps at 800px; a full-page-width case study image caps at 1800px).
+- **Videos** → MP4 H.264 only (`.mp4`). No `.mov`, `.webm`, or raw screen recordings. Encode with `libx264`, `-preset slow`, `-crf 28`, `-pix_fmt yuv420p`, `-movflags +faststart`, `-an` (strip audio — all site videos are silent autoplay loops). Cap width at 1600px.
+- **Tooling:** install `sharp` and `ffmpeg-static` as temporary dev-deps (`npm install --save-dev --no-save sharp ffmpeg-static`), run the conversion, then `npm remove sharp ffmpeg-static`. They should never land in `package.json`. See the commits that introduced the conductor and bricks assets for reference scripts.
+- **Code references** must match the file extension on disk — always `.webp` / `.mp4`, never the original format. The `VideoBlock` component emits `type="video/mp4"`, so any source extension other than `.mp4` breaks.
+- **Check before committing:** `du -sh public/images/` should stay under ~5MB total for the whole directory unless you're adding a genuinely long-form video. Single images over ~500KB or single videos over ~1MB should be treated as red flags and re-encoded.
+
 **Gradient system** (`gradient.*` tokens in `tailwind.config.ts`):
 
 Two named gradients used site-wide — always applied as `bg-clip-text text-transparent bg-gradient-to-r`:
@@ -327,7 +335,7 @@ Three distinct patterns for rendering images and videos, each chosen by context.
 
 **Rule:** if you're adding a video to a case study body, reach for `<ImageBlock type="video" src="..." caption="..." />`. The only sanctioned direct-`<video>` call site is `CaseStudyCard.tsx` for thumbnails.
 
-**File format:** `.mov` (H.264 inside a QuickTime container) is what the existing videos use — modern browsers play them via `<video><source type="video/mp4">`, which `VideoBlock` already emits. If a new video is `.mp4` or `.webm`, `ImageBlock type="video"` still works; no code changes needed.
+**File format:** `.mp4` (H.264) only — see the **Image & video optimization** rules above for encoding parameters. `VideoBlock` emits `<source type="video/mp4">`, so any other source extension breaks playback.
 
 ## Documentation Workflow
 
