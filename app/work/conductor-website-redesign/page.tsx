@@ -22,11 +22,13 @@ export const metadata = {
 }
 
 const tocItems = [
-  { label: 'Overview',  id: 'overview' },
-  { label: 'Problem',   id: 'problem' },
-  { label: 'Solution',  id: 'solution' },
-  { label: 'Impact',    id: 'impact' },
-  { label: 'Takeaways', id: 'takeaways' },
+  { label: 'Overview',   id: 'overview' },
+  { label: 'Problem',    id: 'problem' },
+  { label: 'Goals',      id: 'goals' },
+  { label: 'Challenges', id: 'challenges' },
+  { label: 'Solution',   id: 'solution' },
+  { label: 'Impact',     id: 'impact' },
+  { label: 'Takeaways',  id: 'takeaways' },
 ]
 
 const nextStudies: CaseStudy[] = [
@@ -82,11 +84,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
           {/* ── Cover image ── */}
           <div className="flex justify-center px-5 md:px-10 pb-10 md:pb-16">
             <div className="max-w-page w-full">
-              <img
-                src="/images/conductor-cover.webp"
-                alt="Redesigned Conductor homepage hero announcing the AI visibility optimization launch"
-                className="w-full rounded-sm border border-border-subtle shadow-sm"
-              />
+              <ImageBlock type="video" src="/images/product-overview-move-in-animation.mp4" />
             </div>
           </div>
         </div>
@@ -107,15 +105,15 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                   <div className="text-body-big md:text-body-biggest text-text-secondary">
                     <p>
                       <InlineLink href="https://www.conductor.com/" external variant="emphasis">Conductor</InlineLink>{' '}
-                      made its name as a trusted SEO platform for enterprise brands, and over time
-                      expanded into content creation and website performance — growing into an
-                      all-in-one optimization platform. When AI search engines like ChatGPT began
-                      reshaping how customers discovered information, Conductor was well-positioned
-                      to respond, rapidly developing and releasing a new frontier of the product:
-                      AI visibility optimization. But their homepage needed to announce it.
+                      had made its name as a trusted SEO platform for enterprise brands, and over
+                      time expanded into content creation and website performance — growing into an
+                      all-in-one optimization platform. When AI search engines began reshaping how
+                      customers discovered information, Conductor was well-positioned to respond,
+                      rapidly developing and releasing a new frontier of the product: AI visibility
+                      optimization. But their homepage needed to announce it.
                     </p>
                     <p className="mt-6">
-                      I led the website redesign to support their AI visibility optimization
+                      I led the website redesign to support their AI visibility optimization feature
                       go-to-market moment — modernizing the visual identity, collaborating across
                       UX and marketing, and building stakeholder alignment around a web experience
                       that launched this next chapter of Conductor&apos;s story.
@@ -127,11 +125,11 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                   <MetadataGrid items={[
                     {
                       label: 'Role',
-                      content: 'TODO: e.g. Lead Visual Designer, UX Design, Cross-functional collaboration',
+                      content: 'Lead UX Designer',
                     },
                     {
                       label: 'Team',
-                      content: 'TODO: Team members and titles (UX Design Manager, GTM Lead, Marketing Director, Graphic Design, etc.)',
+                      content: 'Marketing Director, Graphic Designer, GTM Lead, UX Design Manager, Product Manager',
                     },
                     {
                       label: 'For',
@@ -141,9 +139,9 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                     },
                     {
                       label: 'Tools',
-                      content: 'TODO: e.g. Figma',
+                      content: 'Figma',
                     },
-                    { label: 'Timeline', content: 'TODO: Timeline' },
+                    { label: 'Timeline', content: '4 months, Feb 2025 - May 2025' },
                     { label: 'Status',   content: 'Shipped' },
                   ]} />
                 </section>
@@ -171,7 +169,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                   <div className="h-12 md:h-24" />
 
                   {/* Subsection: Goals */}
-                  <div>
+                  <div id="goals">
                     <Label>Goals</Label>
                     <TwoColumnSection heading="Make the site feel modern and AI-forward — without making the rest of the site feel even more outdated.">
                       <div>
@@ -186,7 +184,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">1</span>
                           <p className="text-body-big text-text-primary">
-                            <span className="text-primary">Elevate brand perception</span> to match Conductor&apos;s position as a category leader.
+                            Elevate brand perception to match Conductor&apos;s position as a category leader.
                           </p>
                         </div>
                       </div>
@@ -194,7 +192,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">2</span>
                           <p className="text-body-big text-text-primary">
-                            Make the homepage <span className="text-primary">look and feel like an AI-native product</span>.
+                            Make the homepage look and feel like an AI-native product.
                           </p>
                         </div>
                       </div>
@@ -202,7 +200,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">3</span>
                           <p className="text-body-big text-text-primary">
-                            <span className="text-primary">Better target enterprise audiences</span> who expect a modern, confident brand.
+                            Better target enterprise audiences who expect a modern, confident brand.
                           </p>
                         </div>
                       </div>
@@ -211,25 +209,25 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
 
                   <div className="h-12 md:h-24" />
 
-                  {/* Subsection: Constraints */}
-                  <div>
-                    <Label>Constraints</Label>
+                  {/* Subsection: Challenges */}
+                  <div id="challenges">
+                    <Label>Challenges</Label>
                     <TwoColumnSection heading="Tight timeline and mixed-signal feedback loops.">
                       <div>
                         <p className="text-body-big text-text-secondary">
-                          Conductor was in a race to refresh its positioning and stay ahead of
-                          the competition. I advocated for a full design system update, but the
-                          timeline only allowed a homepage redesign — which meant{' '}
-                          <span className="text-primary">designing for the future with one foot stuck in the past</span>.
-                          How do we make something AI-forward without making the rest of the site
-                          look even more outdated, and how do we avoid creating a frankenstein website?
+                          Conductor was in a race to refresh its positioning and stay ahead of the
+                          competition. I advocated for a full design system update, but the timeline
+                          only allowed a homepage redesign — which meant designing for the future
+                          with one foot stuck in the past. How do we make something AI-forward
+                          without making the rest of the site look even more outdated, and how do we
+                          avoid creating a frankenstein website?
                         </p>
                         <p className="text-body-big text-text-secondary mt-6">
-                          Feedback loops added their own friction. I would review work with my UX
-                          design manager, incorporate her feedback, then receive contradictory
-                          feedback from marketing in a separate meeting she wasn&apos;t in. I ended up{' '}
-                          <span className="text-primary">mediating between stakeholders who each thought they had the final say</span>{' '}
-                          — without a clear decision owner on record.
+                          Mixed-signal feedback loops added their own friction. I would review work
+                          with my UX design manager, incorporate her feedback, then receive
+                          contradictory feedback from marketing in a separate meeting she
+                          wasn&apos;t in. I ended up mediating between stakeholders who each thought
+                          they had the final say — without a clear decision owner on record.
                         </p>
                       </div>
                     </TwoColumnSection>
@@ -355,7 +353,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                       </p>
                     </TwoColumnSection>
                     <div className="h-12" />
-                    <ImageBlock src="/images/conductor-scannable-items.webp" alt="Scannable section with custom illustrations mapped to body copy" caption="Custom illustrations, paired to the copy they support" />
+                    <ImageBlock type="video" src="/images/conductor-website-sub-menu-improved.mp4" caption="Custom illustrations, paired to the copy they support" />
                   </div>
 
                   <div className="h-12 md:h-24" />

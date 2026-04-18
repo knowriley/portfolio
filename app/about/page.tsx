@@ -1,6 +1,7 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import AboutHero from '@/components/AboutHero'
+import AboutBooks from '@/components/AboutBooks'
 
 export const metadata = {
   title: 'About — Riley Knowles',
@@ -121,6 +122,8 @@ export default function AboutPage() {
             ))}
           </div>
         </section>
+
+        <AboutBooks />
 
       </main>
       <Footer />

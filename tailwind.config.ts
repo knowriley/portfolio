@@ -123,6 +123,15 @@ const config: Config = {
         '2xl': '0 32px 64px -16px rgba(28,25,23,0.16)',
         inner: 'inset 0 2px 6px 0 rgba(28,25,23,0.06)',
       },
+      keyframes: {
+        'fade-in': {
+          '0%': { opacity: '0', transform: 'translateY(16px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'fade-in': 'fade-in 350ms ease-out',
+      },
     },
   },
   plugins: [],

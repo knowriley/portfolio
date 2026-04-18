@@ -10,7 +10,7 @@ export interface CaseStudy {
   thumbnail?: string
 }
 
-export const caseStudies: CaseStudy[] = [
+const rawCaseStudies: CaseStudy[] = [
   {
     slug: 'design-system-documentation',
     title: 'Creating a single source of truth for the Bricks Design System',
@@ -27,27 +27,27 @@ export const caseStudies: CaseStudy[] = [
     description:
       "Modernizing the visual identity, aligning stakeholders across UX and marketing, and launching a homepage that announced Conductor's next chapter.",
     tags: ['Visual Design', 'Web Design', 'Cross-functional Collaboration'],
-    year: 'TODO: Date range (e.g. Jan 2025 - Apr 2025)',
+    year: 'Feb 2025 - May 2025',
     industry: 'B2B SEO',
-    thumbnail: '/images/conductor-cover.webp',
+    thumbnail: '/images/product-overview-move-in-animation.mp4',
   },
   {
-    slug: 'coming-soon-1',
+    slug: 'evidence-of-insurability',
     title: 'Rapid prototyping in Claude Code for Evidence of Insurability',
-    description: 'Coming soon',
+    description:
+      'Proof-of-concept prototyping flow for an enterprise insurance Evidence of Insurability experience — built and iterated in Claude Code. NDA-protected; password required.',
     tags: ['AI Workflows', 'Rapid Prototyping', 'User Testing'],
     year: 'Mar 2026 - Present',
     industry: 'Insurance',
-    comingSoon: true,
   },
   {
-    slug: 'coming-soon-2',
+    slug: 'ai-claims-portal',
     title: '8 customer segments, 3 billing systems, 1 claims portal - accelerated with AI',
-    description: '',
+    description:
+      'Unifying eight customer segments and three billing systems into a single claims portal — shipped faster with AI-assisted design and engineering workflows. NDA-protected; password required.',
     tags: ['Figma Engineering for AI', 'Cross-functional Alignment'],
     year: 'Jan 2026 - Present',
     industry: 'Insurance',
-    comingSoon: true,
   },
   {
     slug: 'coming-soon-3',
@@ -59,3 +59,17 @@ export const caseStudies: CaseStudy[] = [
     comingSoon: true,
   },
 ]
+
+// Parse the start date from the `year` field. Accepts "Jun 2024",
+// "Feb 2025 - May 2025", "Mar 2026 - Present", or a bare "2023".
+// Falls back to 0 (oldest) when the value can't be parsed.
+function parseStartDate(year: string): number {
+  const start = year.split(/[–-]/)[0].trim()
+  const t = Date.parse(start)
+  return Number.isNaN(t) ? 0 : t
+}
+
+// Sorted by start date, most recent first. Keep source order for ties.
+export const caseStudies: CaseStudy[] = [...rawCaseStudies].sort(
+  (a, b) => parseStartDate(b.year) - parseStartDate(a.year),
+)

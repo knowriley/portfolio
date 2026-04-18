@@ -86,7 +86,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 - `bg-bg` / `bg-bg-secondary` / `bg-bg-tertiary` — surface hierarchy
 - `border-border-subtle` / `border-border` / `border-border-strong` — border hierarchy
 
-**Image & video treatment:** All images and videos on the site must have `border border-border-subtle shadow-sm rounded-sm`. This applies to every `ImageBlock` variant (image, video, vimeo, placeholder), case study cover images, and any other inline images. The `CaseStudyCard` thumbnail is the one exception — it uses `shadow-xs` with `rounded-2xl` to match card styling. The card itself lifts on hover (`hover:-translate-y-1.5`) instead of changing shadow. Pass `bare` to `ImageBlock` to opt out of border/shadow for images that should bleed into the background.
+**Image & video treatment:** All images and videos on the site must have `border border-border-subtle shadow-sm rounded-sm`. This applies to every `ImageBlock` variant (image, video, vimeo, placeholder), case study cover images, and any other inline images. The `CaseStudyCard` thumbnail is the one exception — it uses `shadow-xs` with `rounded-2xl` to match card styling. The card itself lifts on hover (`hover:-translate-y-2.5`) instead of changing shadow. Pass `bare` to `ImageBlock` to opt out of border/shadow for images that should bleed into the background.
 
 **Image & video sizing:** All images and videos must fill the full width of their container and maintain their original aspect ratio — never crop. Use `w-full` with no fixed aspect ratio. Never use `object-cover`, `object-fit`, `fill`, or `aspect-video` on image or video elements. Vimeo iframes are the only exception (they need `aspect-video` for the embed container).
 
@@ -170,7 +170,11 @@ bg-bg-secondary border border-border rounded-sm px-10 py-7
 - Numbered: `flex gap-4 items-center` | number `text-body-biggest` | body `text-body-big text-text-primary`
 - Stat: large value `text-display font-normal text-text-primary` + caption `text-body-big text-text-primary`
 
-**Metadata grid** (Overview section): `flex flex-wrap gap-8`, each item `flex flex-col gap-1.5 min-w-[250px]`, label `text-small font-medium uppercase tracking-widest text-text-tertiary pb-2`, value `text-body-small text-text-secondary`.
+**Metadata grid** (Overview section) — responsive CSS grid: `grid grid-cols-2 md:grid-cols-3 gap-8 pt-8`. Six metadata fields (Role, Team, For, Tools, Timeline, Status) reflow from 3 rows × 2 cols on mobile to 2 rows × 3 cols on tablet+. Each cell is `flex flex-col gap-1.5` — label `text-small font-medium uppercase tracking-widest text-text-tertiary pb-2`, value `text-body-small text-text-secondary`. Add new metadata fields in multiples that divide cleanly into both column counts (6 works; 4 or 5 produce a ragged tail on desktop).
+
+**NDA / paywalled case study pages** — two intentional deviations from the standard case study shell:
+- **Hero has no `View Live` button.** The flex row wrapping `<h1>` + `<Button>` is omitted; the `<h1>` renders bare. Pages: `app/work/evidence-of-insurability/page.tsx`, `app/work/ai-claims-portal/page.tsx`. When NDA restrictions lift, add the Button back and wrap in `<div className="flex items-end gap-8">` to match Bricks/Conductor.
+- **Paywall spacer** before `<CaseStudyPaywall>` uses `<div className="h-16 md:h-24" />` — not `<SectionDivider>`. The paywall fades into the content (via its own `from-transparent to-bg` gradient at `-top-40`), so a hard rule would fight the fade. The `h-16 md:h-24` (64px → 96px) matches the rhythm of major section spacing without introducing a visible divider.
 
 **Figma file:** `https://www.figma.com/design/QXoQt5JPBJapI2H4z1bP7T/portfolio` — contains all variables, text styles, effect styles, and components. This is the single Figma source that must stay synced with `tailwind.config.ts`.
 
@@ -186,10 +190,10 @@ bg-bg-secondary border border-border rounded-sm px-10 py-7
 
 | State | Key classes |
 |---|---|
-| Default | `size-11 rounded-full bg-bg-secondary border border-border text-text-primary` |
-| Hover | `hover:bg-bg-tertiary hover:border-border-strong` |
+| Default | `size-11 rounded-full bg-bg-secondary border border-border text-text-secondary` |
+| Hover | `hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary` |
 
-Matches the outline button variant states. White fill at rest; gray fill on hover. Always provide `aria-label`.
+Matches the outline button variant states. White fill at rest; gray fill on hover. Hover also shifts text from secondary → primary for added emphasis. Always provide `aria-label`.
 
 **Button** — `components/Button.tsx` ('use client'):
 
@@ -272,10 +276,58 @@ Sticky sidebar TOC with IntersectionObserver-based active section tracking. Used
 | State | Key classes |
 |---|---|
 | Default | `text-body-small text-text-secondary px-2.5 py-1.5 rounded-sm` |
-| Hover | `hover:bg-bg-secondary hover:text-text-primary hover:font-medium` |
+| Hover | `bg-bg-secondary text-text-primary font-medium` (on `hover:` variant) |
 | Active | `bg-bg-secondary text-text-primary font-medium` |
 
-Each item gets a filled `bg-bg-secondary` background on hover and when active. `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room).
+Each item gets a filled `bg-bg-secondary` background on hover and when active (hover and active share the same visual treatment — the background fill is the non-color diff on hover, not just color). `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room).
+
+## Motion & Transitions
+
+All motion tokens live in `app/globals.css` (fade-in keyframes) or are applied as Tailwind utilities directly. The site has two distinct kinds of motion — **page-entry animations** (fire once when a page or section appears) and **interaction transitions** (fire on hover/focus/state changes). They use different duration budgets by design.
+
+**Fade-in keyframes** — page-entry animations:
+
+| Utility | Duration | Used on |
+|---|---|---|
+| `animate-fade-in-up` | `0.55s ease-out` | Home Hero h1; case study hero wrappers; `AnimateOnScroll` (Next sections, below-fold content); About Hero filter pills |
+| `animate-fade-in-left` | `0.55s ease-out` | Home Hero only — MapPin location line and bio line |
+| `animate-fade-in-right` | `0.7s ease-out` | About Hero cover image only |
+
+`fade-in-right` is intentionally ~27% slower than the other two. It's reserved for About's cover image, which has a longer overall stagger (2.0s delay) — the slower duration keeps the final entrance feeling weighty rather than rushed. Don't normalize the three durations to one value without rechecking the About hero sequence.
+
+**Hero stagger delays are hand-tuned, not formulaic.** The home Hero staggers at `0` / `0.8s` / `1.6s`; About Hero staggers the filter pills at `0.3 + i * 0.18s`. These numbers were picked by eye for each page's vibe, not derived from a scale. Treat them as page-specific design decisions — adjust in place, don't extract a shared rhythm.
+
+**`AnimateOnScroll` contract** — `components/AnimateOnScroll.tsx` (client component):
+
+```tsx
+<AnimateOnScroll>{children}</AnimateOnScroll>
+```
+
+Wraps children in a div that starts at `opacity-0` and swaps to `animate-fade-in-up` the first time the element is at least 10% visible (`IntersectionObserver` with `threshold: 0.1`). The observer disconnects after the first intersection — this is a one-shot "reveal on scroll," not a continuous effect. Used site-wide for the "Next" section on case study pages and any block that should fade in when scrolled into view.
+
+**Interaction transition durations:**
+
+| Kind | Duration | Where |
+|---|---|---|
+| Color / background / border | `150ms` (Tailwind default via `transition-colors`) | All hover-color swaps — Nav links, InlineLink, Button fills, Filter pills, TOC items |
+| Transform (position, scale, rotate) | `200ms` (`duration-200`) | `CaseStudyCard` hover lift, `AboutBooks` book card lift, any other card that translates on hover |
+| Arrow rotation | Tailwind default (150ms) via `transition-transform` | `ArrowUpRight` icons in Button, InlineLink (icon variants), Footer links — all rotate 45° on `group-hover` |
+
+The 150ms / 200ms split is intentional: color changes feel snappiest when they're fast and definite; transform changes feel more intentional with a slightly longer duration that makes the movement legible. When adding a new hover interaction, match this convention — color: leave `transition-colors` default; transform: add `duration-200`.
+
+## Media delivery
+
+Three distinct patterns for rendering images and videos, each chosen by context. Use them consistently:
+
+| Context | Component | Why |
+|---|---|---|
+| **Any image or video in a case study body** (hero cover, inline section media, in-body demos) | `<ImageBlock>` — with `type="image"` (default), `type="video"`, `type="vimeo"`, or no props for placeholder | Single abstraction. Automatically applies the `border border-border-subtle shadow-sm rounded-sm` chrome, handles optional captions via `<figcaption>`, and delegates video rendering to `VideoBlock` internally (play/pause IconButton in bottom-right). |
+| **Work grid card thumbnail** — `components/CaseStudyCard.tsx` | Raw `<Image>` for stills, raw `<video autoPlay loop muted playsInline>` for `.mov` / `.mp4` / `.webm` thumbnails | Card context is different: the thumbnail is a clickable preview (no controls, no caption, `object-cover` + `aspect-video` framing). Wrapping in `ImageBlock` would fight the card's layout. `CaseStudyCard` is the one place where raw `<video>` is acceptable. |
+| **Anywhere else** | `<ImageBlock>` | Do **not** import `VideoBlock` directly into a page. It's an internal implementation detail of `ImageBlock`. One entry point keeps chrome, captions, and play/pause behavior consistent. |
+
+**Rule:** if you're adding a video to a case study body, reach for `<ImageBlock type="video" src="..." caption="..." />`. The only sanctioned direct-`<video>` call site is `CaseStudyCard.tsx` for thumbnails.
+
+**File format:** `.mov` (H.264 inside a QuickTime container) is what the existing videos use — modern browsers play them via `<video><source type="video/mp4">`, which `VideoBlock` already emits. If a new video is `.mp4` or `.webm`, `ImageBlock type="video"` still works; no code changes needed.
 
 ## Documentation Workflow
 

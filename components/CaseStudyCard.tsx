@@ -5,18 +5,31 @@ import { type CaseStudy } from '@/data/case-studies'
 export type { CaseStudy }
 
 export default function CaseStudyCard({ study }: { study: CaseStudy }) {
+  const isVideo = !!study.thumbnail && /\.(mov|mp4|webm)$/i.test(study.thumbnail)
   const content = (
     <>
       {/* Thumbnail */}
       <div className="relative bg-bg-secondary rounded-2xl overflow-hidden aspect-video mb-5 shadow-xs border border-border-subtle">
         {study.thumbnail ? (
-          <Image
-            src={study.thumbnail}
-            alt={study.title}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-          />
+          isVideo ? (
+            <video
+              src={study.thumbnail}
+              autoPlay
+              loop
+              muted
+              playsInline
+              aria-label={study.title}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          ) : (
+            <Image
+              src={study.thumbnail}
+              alt={study.title}
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          )
         ) : (
           <div className="w-full h-full bg-bg-tertiary flex items-center justify-center">
             {study.comingSoon ? (
