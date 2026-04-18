@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import AboutHero from '@/components/AboutHero'
@@ -48,6 +49,22 @@ export default function AboutPage() {
       <Nav />
       <main>
         <AboutHero />
+
+        {/* ── Portrait ── mobile: full-width stack; md: 2/3 viewport stack; lg: 33vw, right-aligned, peeks 15% into the hero above */}
+        <section className="flex justify-center px-5 md:px-10 lg:-mt-[4.95vw]">
+          <div className="max-w-page w-full flex justify-end">
+            <Image
+              src="/images/riley-headshot.webp"
+              alt="Riley Knowles"
+              width={1600}
+              height={1600}
+              priority
+              className="w-full md:w-[66vw] lg:w-[33vw] h-auto border border-border-subtle shadow-sm rounded-sm animate-fade-in-up"
+              style={{ animationDelay: '1.5s', animationDuration: '0.55s' }}
+            />
+          </div>
+        </section>
+
         {/* ── Experience ── */}
         <section className="flex justify-center px-5 md:px-10 py-12 md:py-20">
           <div className="max-w-page w-full">

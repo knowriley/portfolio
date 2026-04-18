@@ -38,17 +38,10 @@ export default function AboutHero() {
   const [active, setActive] = useState(0)
 
   return (
-    <section className="flex justify-center px-5 md:px-10 md:h-[calc(100dvh-64px)]">
+    <section className="flex justify-center px-5 md:px-10 lg:h-[calc(100dvh-64px)]">
       <div className="max-w-page w-full flex flex-col">
-        {/* Cover image — right-aligned; fills remaining space on desktop, fixed aspect on mobile */}
-        <div className="order-3 md:order-1 flex items-start justify-end pt-10 md:pt-16 md:flex-1 md:min-h-0 animate-fade-in-right" style={{ animationDelay: '2.0s', animationDuration: '0.5s' }}>
-          <div className="w-full md:w-[45%] aspect-[4/5] md:aspect-auto md:h-full bg-bg-secondary rounded-sm flex items-center justify-center">
-            <span className="text-small text-text-tertiary">Cover image</span>
-          </div>
-        </div>
-
-        {/* Filter row */}
-        <div className="order-1 md:order-2 flex flex-wrap items-center gap-2 mb-4 pt-10 md:pt-0 md:mt-8">
+        {/* Filter row — at md+ stacks normally at the top; at lg+ drops to the bottom directly above the h1 */}
+        <div className="flex flex-wrap items-center gap-2 mb-4 lg:mt-auto pt-10 lg:pt-0">
           <span className="text-body-big text-text-primary mr-1">About Riley, for</span>
           {audiences.map((a, i) => (
             <button
@@ -67,8 +60,8 @@ export default function AboutHero() {
           ))}
         </div>
 
-        {/* Display message */}
-        <h1 className="order-2 md:order-3 text-h1 md:text-display font-normal text-text-primary pb-10 md:pb-16">
+        {/* Display message — at lg+, lifted by exactly the image peek height (4.95vw = 15% of 33vw) so the two can never overlap */}
+        <h1 className="text-h1 md:text-display font-normal text-text-primary pb-10 lg:pb-[4.95vw]">
           {audiences[active].message}
         </h1>
       </div>
