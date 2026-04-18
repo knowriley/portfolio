@@ -14,7 +14,7 @@ type Book = {
 const books: Book[] = [
   {
     title: 'Designing Your Life',
-    cover: { src: '/images/books/book-designing-your-life.jpg', alt: 'Designing Your Life cover' },
+    cover: { src: '/images/books/book-designing-your-life.webp', alt: 'Designing Your Life cover' },
     description: (
       <>
         Written by the founders of{' '}
@@ -30,21 +30,21 @@ const books: Book[] = [
   },
   {
     title: 'Bird by Bird',
-    cover: { src: '/images/books/book-bird-by-bird.jpg', alt: 'Bird by Bird cover' },
+    cover: { src: '/images/books/book-bird-by-bird.webp', alt: 'Bird by Bird cover' },
     description:
       'The newest addition to this list, this book is a neurotic and for me, deeply relatable storytelling of exceptional advice that came at the exact time I needed it. For those who recognize themself in the pages, reading this book feels like a long hug.',
     buyUrl: 'https://bookshop.org/p/books/bird-by-bird-some-instructions-on-writing-and-life-anne-lamott/8649952',
   },
   {
     title: 'Your Survival Instinct is Killing You',
-    cover: { src: '/images/books/book-your-survival-instinct-is-killing-you.jpg', alt: 'Your Survival Instinct is Killing You cover' },
+    cover: { src: '/images/books/book-your-survival-instinct-is-killing-you.webp', alt: 'Your Survival Instinct is Killing You cover' },
     description:
       'An unpleasant and jarring look in the mirror. One I return to begrudgingly when I\u2019m frustrated that I can\u2019t accomplish everything all at once perfectly.',
     buyUrl: 'https://bookshop.org/p/books/your-survival-instinct-is-killing-you-retrain-your-brain-to-conquer-fear-and-build-resilience-marc-schoen/16629515',
   },
   {
     title: 'Letters to a Young Poet',
-    cover: { src: '/images/books/letters-to-a-young-poet.jpg', alt: 'Letters to a Young Poet cover' },
+    cover: { src: '/images/books/letters-to-a-young-poet.webp', alt: 'Letters to a Young Poet cover' },
     description:
       'This book resets my nervous system. I read it every few years. Apparently it\u2019s popular in the architect community, though I really couldn\u2019t tell you why.',
     buyUrl: 'https://bookshop.org/p/books/letters-to-a-young-poet-rainer-maria-rilke/c68a68aa622d7cb2?ean=9780393310399',

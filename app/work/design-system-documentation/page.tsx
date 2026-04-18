@@ -83,7 +83,7 @@ export default function BricksDesignSystemCaseStudyPage() {
           <div className="flex justify-center px-5 md:px-10 pb-10 md:pb-16">
             <div className="max-w-page w-full">
               <img
-                src="/images/bricks-cover.png"
+                src="/images/bricks-cover.webp"
                 alt="Bricks Design System documentation site showing the welcome page"
                 className="w-full rounded-sm border border-border-subtle shadow-sm"
               />
@@ -165,7 +165,7 @@ export default function BricksDesignSystemCaseStudyPage() {
 
                   <div className="h-12" />
                   <img
-                    src="/images/bricks-unorganized-files.png"
+                    src="/images/bricks-unorganized-files.webp"
                     alt="Scattered Figma files showing disorganized design system documentation"
                     className="w-full"
                   />
@@ -250,7 +250,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                   </div>
 
                   <div className="h-12" />
-                  <ImageBlock src="/images/bricks-components-overview.png" alt="Bricks Design System components overview page" caption="Components Overview Page" />
+                  <ImageBlock src="/images/bricks-components-overview.webp" alt="Bricks Design System components overview page" caption="Components Overview Page" />
                   <div className="h-12" />
 
                   {/* Subsection: Show, don't tell */}
@@ -270,7 +270,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                       </div>
                     </TwoColumnSection>
                     <div className="h-12" />
-                    <ImageBlock src="/images/bricks-switch.png" alt="Switch component usage guidelines showing dos and don'ts for labeling" caption="Switch Dos & Don'ts Usage Guidelines" />
+                    <ImageBlock src="/images/bricks-switch.webp" alt="Switch component usage guidelines showing dos and don'ts for labeling" caption="Switch Dos & Don'ts Usage Guidelines" />
                   </div>
 
                   <div className="h-12 md:h-24" />
@@ -287,7 +287,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                       </p>
                     </TwoColumnSection>
                     <div className="h-12" />
-                    <ImageBlock type="video" src="/images/tags-input-autocomplete.mov" caption="Tags Input component with autocomplete behavior" />
+                    <ImageBlock type="video" src="/images/tags-input-autocomplete.mp4" caption="Tags Input component with autocomplete behavior" />
                   </div>
 
                   <div className="h-12 md:h-24" />
@@ -299,7 +299,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                     </h2>
                     <div className="flex flex-col md:flex-row gap-8 items-start">
                       <div className="flex-1 min-w-0">
-                        <ImageBlock src="/images/bricks-inputs-overview.png" alt="Text-based inputs overview showing component cards for Text Input, Text Area, Tags Input, Search Field, and Password Input" caption="Snapshot of Inputs Overview Page" />
+                        <ImageBlock src="/images/bricks-inputs-overview.webp" alt="Text-based inputs overview showing component cards for Text Input, Text Area, Tags Input, Search Field, and Password Input" caption="Snapshot of Inputs Overview Page" />
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-body-big text-text-secondary">
@@ -325,7 +325,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                       </p>
                     </TwoColumnSection>
                     <div className="h-12" />
-                    <ImageBlock src="/images/dropdown-v-caret-button.png" alt="Side-by-side comparison of Dropdown and Caret Button components" caption="Dropdown vs Caret Button Comparison" />
+                    <ImageBlock src="/images/dropdown-v-caret-button.webp" alt="Side-by-side comparison of Dropdown and Caret Button components" caption="Dropdown vs Caret Button Comparison" />
                   </div>
 
                   <div className="h-12 md:h-24" />

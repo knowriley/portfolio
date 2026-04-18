@@ -19,7 +19,7 @@ const rawCaseStudies: CaseStudy[] = [
     tags: ['Design Systems', 'Figma', 'Documentation'],
     year: 'Jun 2024 - Nov 2024',
     industry: 'B2B SEO',
-    thumbnail: '/images/bricks-cover.png',
+    thumbnail: '/images/bricks-cover.webp',
   },
   {
     slug: 'conductor-website-redesign',
