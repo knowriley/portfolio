@@ -3,45 +3,11 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import AboutHero from '@/components/AboutHero'
 import AboutBooks from '@/components/AboutBooks'
+import InlineLink from '@/components/InlineLink'
 
 export const metadata = {
   title: 'About — Riley Knowles',
 }
-
-const experience = [
-  {
-    employer: 'Chubb',
-    role: 'UX Designer',
-    description:
-      'Designing claims experiences for enterprise insurance platforms.',
-    time: '2025 — Present',
-  },
-  {
-    employer: 'Conductor',
-    role: 'UX Design Consultant',
-    description:
-      'Led UX strategy and design for client engagements across healthcare, fintech, and SaaS.',
-    time: '2024 — 2025',
-  },
-]
-
-const education = [
-  {
-    employer: 'Pratt Institute',
-    role: 'MS Information Experience Design',
-    description:
-      'Graduate research in systems thinking, service design, and human-computer interaction.',
-    time: '2024 — 2026',
-  },
-  {
-    employer: 'University of British Columbia',
-    role: 'BS Computer Science',
-    description:
-      'Concentration in UX design and information systems.',
-    time: '2017 — 2022',
-  },
-]
-
 
 export default function AboutPage() {
   return (
@@ -53,90 +19,72 @@ export default function AboutPage() {
         {/* ── Portrait ── mobile: full-width stack; md: 2/3 viewport stack; lg: 33vw, right-aligned, peeks 15% into the hero above */}
         <section className="flex justify-center px-5 md:px-10 lg:-mt-[4.95vw]">
           <div className="max-w-page w-full flex justify-end">
-            <Image
-              src="/images/riley-headshot.webp"
-              alt="Riley Knowles"
-              width={1600}
-              height={1600}
-              priority
-              className="w-full md:w-[66vw] lg:w-[33vw] h-auto border border-border-subtle shadow-sm rounded-sm animate-fade-in-up"
-              style={{ animationDelay: '1.5s', animationDuration: '0.55s' }}
-            />
+            <div className="relative w-full md:w-[66vw] lg:w-[33vw]">
+              <div
+                aria-hidden
+                className="absolute -inset-2 animate-fade-in-up"
+                style={{ animationDelay: '1.5s', animationDuration: '0.55s' }}
+              >
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-gradient-red from-[22%] to-gradient-orange blur-2xl opacity-20" />
+              </div>
+              <Image
+                src="/images/riley-headshot.webp"
+                alt="Riley Knowles"
+                width={802}
+                height={802}
+                priority
+                className="relative w-full h-auto border border-border-subtle shadow-sm rounded-sm animate-fade-in-up"
+                style={{ animationDelay: '1.5s', animationDuration: '0.55s' }}
+              />
+            </div>
           </div>
         </section>
 
-        {/* ── Experience ── */}
+        {/* ── Narrative ── */}
         <section className="flex justify-center px-5 md:px-10 py-12 md:py-20">
           <div className="max-w-page w-full">
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-8 md:mb-12">
-              Experience
-            </p>
-
-            {experience.map((entry, i) => (
-              <div key={entry.employer}>
-                {i > 0 && <div className="border-t border-border-subtle" />}
-                <div className="flex flex-col md:flex-row gap-4 md:gap-8 py-8 md:py-12">
-                  {/* Employer */}
-                  <div className="md:w-[280px] shrink-0">
-                    <p className="text-body-big md:text-body-biggest font-medium text-text-primary">
-                      {entry.employer}
-                    </p>
-                    <p className="text-body-small text-text-secondary mt-1">
-                      {entry.role}
-                    </p>
-                  </div>
-
-                  {/* Description */}
-                  <div className="flex-1 min-w-0">
-                    <p className="text-body-big text-text-secondary">
-                      {entry.description}
-                    </p>
-                  </div>
-
-                  {/* Time */}
-                  <div className="md:w-[140px] shrink-0 md:text-right">
-                    <p className="text-body-small text-text-tertiary">
-                      {entry.time}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* ── Education ── */}
-        <section className="flex justify-center px-5 md:px-10 py-12 md:py-20">
-          <div className="max-w-page w-full">
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-8 md:mb-12">
-              Education
-            </p>
-
-            {education.map((entry, i) => (
-              <div key={entry.employer}>
-                {i > 0 && <div className="border-t border-border-subtle" />}
-                <div className="flex flex-col md:flex-row gap-4 md:gap-8 py-8 md:py-12">
-                  <div className="md:w-[280px] shrink-0">
-                    <p className="text-body-big md:text-body-biggest font-medium text-text-primary">
-                      {entry.employer}
-                    </p>
-                    <p className="text-body-small text-text-secondary mt-1">
-                      {entry.role}
-                    </p>
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-body-big text-text-secondary">
-                      {entry.description}
-                    </p>
-                  </div>
-                  <div className="md:w-[140px] shrink-0 md:text-right">
-                    <p className="text-body-small text-text-tertiary">
-                      {entry.time}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
+            <div className="lg:max-w-[696px]">
+              <p className="text-body-big text-text-secondary">
+                Currently,{' '}
+                <span className="text-primary [&_a]:text-inherit">
+                  I&rsquo;m driving user-centered design practices end-to-end
+                  at{' '}
+                  <InlineLink href="https://www.chubb.com/us-en/" external>
+                    Chubb
+                  </InlineLink>
+                  , through discovery workshops down to accelerated prototyping
+                  and testing with Claude Code.
+                </span>{' '}
+                I am the lead designer on the Chubb Benefits consumer claims
+                portal and additionally support the design and testing of
+                multiple agents&rsquo; quoting experiences.
+              </p>
+              <p className="text-body-big text-text-secondary mt-6">
+                Previously, I contributed to major web, product and design
+                system initiatives at{' '}
+                <InlineLink href="https://www.conductor.com/" external>
+                  Conductor
+                </InlineLink>{' '}
+                on highly collaborative cross-functional teams. I&rsquo;ve also
+                led freelance UX research and design projects across education,
+                nonprofits, and the arts.
+              </p>
+              <p className="text-body-big text-text-secondary mt-6">
+                Additionally, I am completing a MS in Information Experience
+                Design from{' '}
+                <InlineLink
+                  href="https://www.pratt.edu/information/information-experience-design/"
+                  external
+                >
+                  Pratt Institute
+                </InlineLink>{' '}
+                and hold a BS in Computer Science from{' '}
+                <InlineLink href="https://www.cs.ubc.ca/" external>
+                  The University of British Columbia
+                </InlineLink>
+                .
+              </p>
+            </div>
           </div>
         </section>
 

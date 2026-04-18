@@ -4,14 +4,14 @@ import { ArrowUpRight } from 'lucide-react'
 /**
  * 4 inline link variants based on context:
  *
- * | Variant   | Color              | Icon | Use case                                         |
- * |-----------|--------------------|------|--------------------------------------------------|
- * | subtle    | text-secondary     | no   | Inline, internal, low emphasis (branded names)   |
- * | emphasis  | text-secondary     | no   | Inline, external, high emphasis                  |
- * | icon      | text-secondary     | ↗    | Standalone, external, low emphasis / branded     |
- * | icon-emphasis | text-secondary | ↗   | Navigation, external, high emphasis, not branded |
+ * | Variant       | Color        | Icon | Use case                                         |
+ * |---------------|--------------|------|--------------------------------------------------|
+ * | subtle        | text-primary | no   | Inline, internal, low emphasis (branded names)   |
+ * | emphasis      | text-primary | no   | Inline, external, high emphasis                  |
+ * | icon          | text-primary | ↗    | Standalone, external, low emphasis / branded     |
+ * | icon-emphasis | text-primary | ↗    | Navigation, external, high emphasis, not branded |
  *
- * All variants: text-secondary + underline default → text-primary + no underline on hover.
+ * All variants: text-primary + underline default → text-primary + no underline on hover.
  */
 
 type LinkVariant = 'subtle' | 'emphasis' | 'icon' | 'icon-emphasis'
@@ -27,13 +27,13 @@ interface InlineLinkProps {
 
 const variantClasses: Record<LinkVariant, string> = {
   subtle:
-    'text-text-secondary underline underline-offset-2 decoration-1 hover:text-text-primary hover:no-underline transition-colors',
+    'text-text-primary underline underline-offset-2 decoration-1 hover:no-underline transition-colors',
   emphasis:
-    'text-text-secondary underline underline-offset-2 decoration-1 hover:text-text-primary hover:no-underline transition-colors',
+    'text-text-primary underline underline-offset-2 decoration-1 hover:no-underline transition-colors',
   icon:
-    'group text-text-secondary underline underline-offset-2 decoration-1 hover:text-text-primary hover:no-underline transition-colors',
+    'group text-text-primary underline underline-offset-2 decoration-1 hover:no-underline transition-colors',
   'icon-emphasis':
-    'group text-text-secondary underline underline-offset-2 decoration-1 hover:text-text-primary hover:no-underline transition-colors',
+    'group text-text-primary underline underline-offset-2 decoration-1 hover:no-underline transition-colors',
 }
 
 export default function InlineLink({

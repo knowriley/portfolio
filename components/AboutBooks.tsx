@@ -100,7 +100,7 @@ export default function AboutBooks() {
           </div>
 
           {/* Right — book list (accordion: click to reveal description) */}
-          <div className="lg:w-[340px] lg:shrink-0">
+          <div className="lg:w-[400px] lg:shrink-0">
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-4">
               Books
             </p>

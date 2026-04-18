@@ -86,7 +86,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 - `bg-bg` / `bg-bg-secondary` / `bg-bg-tertiary` — surface hierarchy
 - `border-border-subtle` / `border-border` / `border-border-strong` — border hierarchy
 
-**Image & video treatment:** All images and videos on the site must have `border border-border-subtle shadow-sm rounded-sm`. This applies to every `ImageBlock` variant (image, video, vimeo, placeholder), case study cover images, and any other inline images. The `CaseStudyCard` thumbnail is the one exception — it uses `shadow-xs` with `rounded-2xl` to match card styling. The card itself lifts on hover (`hover:-translate-y-2.5`) instead of changing shadow. Pass `bare` to `ImageBlock` to opt out of border/shadow for images that should bleed into the background.
+**Image & video treatment:** All images and videos on the site must have `border border-border-subtle shadow-sm rounded-sm`. This applies to every `ImageBlock` variant (image, video, vimeo, placeholder), case study cover images, `CaseStudyCard` thumbnails, and any other inline images. The `CaseStudyCard` thumbnail uses `shadow-xs` instead of `shadow-sm` (the card itself lifts on hover via `hover:-translate-y-2.5`, so the thumbnail's shadow stays subtle). Pass `bare` to `ImageBlock` to opt out of border/shadow for images that should bleed into the background.
 
 **Image & video sizing:** All images and videos must fill the full width of their container and maintain their original aspect ratio — never crop. Use `w-full` with no fixed aspect ratio. Never use `object-cover`, `object-fit`, `fill`, or `aspect-video` on image or video elements. Vimeo iframes are the only exception (they need `aspect-video` for the embed container).
 
@@ -102,14 +102,18 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 - **Code references** must match the file extension on disk — always `.webp` / `.mp4`, never the original format. The `VideoBlock` component emits `type="video/mp4"`, so any source extension other than `.mp4` breaks.
 - **Check before committing:** `du -sh public/images/` should stay under ~5MB total for the whole directory unless you're adding a genuinely long-form video. Single images over ~500KB or single videos over ~1MB should be treated as red flags and re-encoded.
 
+**Inline text highlights** — when a span of prose inside a `text-text-secondary` paragraph needs to be visually emphasized, default to wrapping it in `<span className="text-text-primary [&_a]:text-inherit">`. Primary-color highlight on a secondary-color paragraph is the standard emphasis treatment across the site. Only use the gradient highlights below when the user specifically requests a gradient.
+
+**The highlight always wins over link color.** Any `InlineLink` that sits inside a highlight span must inherit the highlight's color instead of rendering in its own default `text-text-primary`. Use the Tailwind arbitrary variant `[&_a]:text-inherit` on the highlight span to propagate the color down to any child anchor. This is especially important for gradient highlights, where a child link with its own solid color would break the gradient visually.
+
 **Gradient system** (`gradient.*` tokens in `tailwind.config.ts`):
 
-Two named gradients used site-wide — always applied as `bg-clip-text text-transparent bg-gradient-to-r`:
+Two named gradients available — always applied as `bg-clip-text text-transparent bg-gradient-to-r [&_a]:text-inherit`. Use only when explicitly requested:
 
 | Name | Classes | Tokens | Use |
 |---|---|---|---|
-| Red-pink | `from-gradient-red to-gradient-pink` | `#f02065 → #d5189b` | Inline text highlights (hero, testimonials) |
-| Pink-orange | `from-gradient-red from-[22%] to-gradient-orange` | `#f02065 → #ff7700` | Large text highlights (h2 and larger) and decorative items |
+| Red-pink | `from-gradient-red to-gradient-pink` | `#f02065 → #d5189b` | Inline text highlights (hero, testimonials) — on request |
+| Pink-orange | `from-gradient-red from-[22%] to-gradient-orange` | `#f02065 → #ff7700` | Large text highlights (h2 and larger) and decorative items — on request |
 
 Never use raw hex values for these — always use the `gradient-*` token classes.
 
@@ -251,7 +255,7 @@ Contrast: `#57534e` on white ≈ 7.8:1 ✓ AA.
 | `icon` | ↗ | Standalone external, low emphasis or branded |
 | `icon-emphasis` | ↗ | Navigation external, high emphasis, not branded |
 
-All variants share the same visual treatment: `text-text-secondary underline` default → `text-text-primary no-underline` on hover. No blue, no bold. The only difference between variants is the presence of the arrow icon. WCAG 1.4.1 satisfied by underline presence (not relying on color alone).
+All variants share the same visual treatment: `text-text-primary underline` default → `text-text-primary no-underline` on hover. No blue, no bold. The only difference between variants is the presence of the arrow icon. WCAG 1.4.1 satisfied by underline presence (not relying on color alone) — the underline-to-no-underline transition is the hover affordance.
 
 **Filter Pill** — inline in `WorkGrid.tsx`:
 

@@ -9,7 +9,7 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
   const content = (
     <>
       {/* Thumbnail */}
-      <div className="relative bg-bg-secondary rounded-2xl overflow-hidden aspect-video mb-5 shadow-xs border border-border-subtle">
+      <div className="relative bg-bg-secondary rounded-sm overflow-hidden aspect-video mb-5 shadow-xs border border-border-subtle">
         {study.thumbnail ? (
           isVideo ? (
             <video
