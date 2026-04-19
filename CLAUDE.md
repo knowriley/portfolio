@@ -226,6 +226,8 @@ Two variants: `primary` (default) and `outline`.
 
 Non-color diff: ArrowUpRight icon rotates 45° on hover (↗ → →). This rotation convention applies site-wide to all interactive ArrowUpRight icons (buttons, InlineLink icon variants, footer links).
 
+**Form-submit / dense layouts** — Button supports four extra props for non-link uses: `type="submit"` (forms), `disabled` (renders at `opacity-60` + `cursor-not-allowed` on both variants), `fullWidth` (adds `w-full justify-center`), and `noIcon` (suppresses the trailing arrow). All are off by default so existing call sites are unaffected. Used by `CaseStudyPaywall`'s submit button — reach for these props instead of hand-rolling another button-styled element.
+
 **Navigation Link** — inline in `Nav.tsx`:
 
 | State | Key classes |

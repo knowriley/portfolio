@@ -2,6 +2,7 @@
 
 import { useFormState, useFormStatus } from 'react-dom'
 import { Lock } from 'lucide-react'
+import Button from '@/components/Button'
 import {
   unlockCaseStudy,
   type UnlockState,
@@ -12,13 +13,9 @@ const initialState: UnlockState = {}
 function SubmitButton() {
   const { pending } = useFormStatus()
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="group w-full inline-flex items-center justify-center gap-2 bg-bg-inverse text-text-inverse font-semibold rounded-md px-6 py-3 hover:bg-neutral-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-    >
+    <Button type="submit" disabled={pending} fullWidth noIcon>
       {pending ? 'Checking…' : 'Continue reading'}
-    </button>
+    </Button>
   )
 }
 
