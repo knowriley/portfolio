@@ -24,8 +24,8 @@ No test suite exists yet.
 **Pages** follow a consistent shell pattern: `<Nav /> + <main> + <Footer />`. Each page imports these from `components/`.
 
 **Components** split by interactivity:
-- Server: `Hero`, `CaseStudyCard` — no hooks, pure markup
-- Client: `Nav` (active link state), `WorkGrid` (tag filter), `TestimonialCarousel` (carousel state), `Footer` (live clock), `TableOfContents` (active section tracking)
+- Server: `Hero`, `WorkGrid`, `CaseStudyCard` — no hooks, pure markup
+- Client: `Nav` (active link state), `TestimonialCarousel` (carousel state), `Footer` (live clock), `TableOfContents` (active section tracking)
 
 **Icons** come from `lucide-react` — import named icons directly, works in both Server and Client Components. Use `size` for dimensions and `strokeWidth` for weight; color is always set via `className` using text token classes (never hardcoded). When an icon sits next to text (e.g. contact links, inline labels), omit the icon's color class so it inherits from the parent — icon and adjacent text must always match color. Conventional sizes:
 - `size={20} strokeWidth={2}` — UI icons at body-small scale (buttons, inputs, nav, inline links)
@@ -184,8 +184,9 @@ bg-bg-secondary border border-border rounded-sm px-10 py-7
 
 **Metadata grid** (Overview section) — responsive CSS grid: `grid grid-cols-2 md:grid-cols-3 gap-8 pt-8`. Six metadata fields (Role, Team, For, Tools, Timeline, Status) reflow from 3 rows × 2 cols on mobile to 2 rows × 3 cols on tablet+. Each cell is `flex flex-col gap-1.5` — label `text-small font-medium uppercase tracking-widest text-text-tertiary pb-2`, value `text-body-small text-text-secondary`. Add new metadata fields in multiples that divide cleanly into both column counts (6 works; 4 or 5 produce a ragged tail on desktop).
 
-**NDA / paywalled case study pages** — two intentional deviations from the standard case study shell:
-- **Hero has no `View Live` button.** The flex row wrapping `<h1>` + `<Button>` is omitted; the `<h1>` renders bare. Pages: `app/work/evidence-of-insurability/page.tsx`, `app/work/ai-claims-portal/page.tsx`. When NDA restrictions lift, add the Button back and wrap in `<div className="flex items-end gap-8">` to match Bricks/Conductor.
+**Password-protected case study pages** — three intentional deviations from the standard case study shell:
+- **Hero has no `View Live` button.** The flex row wrapping `<h1>` + `<Button>` is omitted; the `<h1>` renders bare. Pages: `app/work/evidence-of-insurability/page.tsx`, `app/work/ai-claims-portal/page.tsx`. When the password gate is lifted, add the Button back and wrap in `<div className="flex items-end gap-8">` to match Bricks/Conductor.
+- **TOC is gated behind the unlock state, but its column is preserved.** When `unlocked === false`, swap the `<TableOfContents>` for an empty `<div aria-hidden className="hidden lg:block w-[180px] shrink-0" />` instead of removing it. This hides the sidebar (a locked page only shows the Overview teaser + paywall, so advertising unreachable structure is wrong) while keeping the content column visually centered between the left spacer and the right `w-[200px]` notes column. Removing the TOC entirely shifts content left and breaks the rhythm.
 - **Paywall spacer** before `<CaseStudyPaywall>` uses `<div className="h-16 md:h-24" />` — not `<SectionDivider>`. The paywall fades into the content (via its own `from-transparent to-bg` gradient at `-top-40`), so a hard rule would fight the fade. The `h-16 md:h-24` (64px → 96px) matches the rhythm of major section spacing without introducing a visible divider.
 
 **Figma file:** `https://www.figma.com/design/QXoQt5JPBJapI2H4z1bP7T/portfolio` — contains all variables, text styles, effect styles, and components. This is the single Figma source that must stay synced with `tailwind.config.ts`.
@@ -259,7 +260,7 @@ Contrast: `#57534e` on white ≈ 7.8:1 ✓ AA.
 
 All variants share the same visual treatment: `text-text-primary underline` default → `text-text-primary no-underline` on hover. No blue, no bold. The only difference between variants is the presence of the arrow icon. WCAG 1.4.1 satisfied by underline presence (not relying on color alone) — the underline-to-no-underline transition is the hover affordance.
 
-**Filter Pill** — inline in `WorkGrid.tsx`:
+**Filter Pill** — design system pattern (currently unused in production code; see `/design-system` for the live reference):
 
 ```tsx
 <button

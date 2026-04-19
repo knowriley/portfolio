@@ -17,7 +17,7 @@ export default function AboutPage() {
         <AboutHero />
 
         {/* ── Portrait ── mobile: full-width stack; md: 2/3 viewport stack; lg: 33vw, right-aligned, peeks 15% into the hero above */}
-        <section className="flex justify-center px-5 md:px-10 lg:-mt-[4.95vw]">
+        <section className="flex justify-center px-5 md:px-10 lg:-mt-[calc(4.95vw-40px)]">
           <div className="max-w-page w-full flex justify-end">
             <div className="relative w-full md:w-[66vw] lg:w-[33vw]">
               <div
@@ -52,7 +52,7 @@ export default function AboutPage() {
                   <InlineLink href="https://www.chubb.com/us-en/" external>
                     Chubb
                   </InlineLink>
-                  , through discovery workshops down to accelerated prototyping
+                  , from discovery workshops down to accelerated prototyping
                   and testing with Claude Code.
                 </span>{' '}
                 I am the lead designer on the Chubb Benefits consumer claims

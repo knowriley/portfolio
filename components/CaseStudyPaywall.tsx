@@ -1,6 +1,7 @@
 'use client'
 
-import { useFormState, useFormStatus } from 'react-dom'
+import { useActionState } from 'react'
+import { useFormStatus } from 'react-dom'
 import { Lock } from 'lucide-react'
 import InlineLink from '@/components/InlineLink'
 import Button from '@/components/Button'
@@ -21,7 +22,7 @@ function SubmitButton() {
 }
 
 export default function CaseStudyPaywall({ pathname }: { pathname: string }) {
-  const [state, formAction] = useFormState(unlockCaseStudy, initialState)
+  const [state, formAction] = useActionState(unlockCaseStudy, initialState)
 
   return (
     <div className="relative">

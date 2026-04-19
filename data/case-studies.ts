@@ -35,18 +35,18 @@ const rawCaseStudies: CaseStudy[] = [
     slug: 'evidence-of-insurability',
     title: 'Rapid prototyping in Claude Code for Evidence of Insurability',
     description:
-      'Proof-of-concept prototyping flow for an enterprise insurance Evidence of Insurability experience — built and iterated in Claude Code. NDA-protected; password required.',
+      'Proof-of-concept prototyping flow for an enterprise insurance Evidence of Insurability experience — built and iterated in Claude Code. Password-protected; details available on request.',
     tags: ['AI Workflows', 'Rapid Prototyping', 'User Testing'],
     year: 'Mar 2026 - Present',
     industry: 'Insurance',
   },
   {
     slug: 'ai-claims-portal',
-    title: '8 customer segments, 3 billing systems, 1 claims portal - accelerated with AI',
+    title: 'Converging 2 websites and 8 customer segments into 1 unified portal experience at Chubb Benefits',
     description:
-      'Unifying eight customer segments and three billing systems into a single claims portal — shipped faster with AI-assisted design and engineering workflows. NDA-protected; password required.',
+      'Unifying eight customer segments and three billing systems into a single claims portal — shipped faster with AI-assisted design and engineering workflows. Password-protected; details available on request.',
     tags: ['Figma Engineering for AI', 'Cross-functional Alignment'],
-    year: 'Jan 2026 - Present',
+    year: 'Mar 2026 - Present',
     industry: 'Insurance',
   },
 ]
