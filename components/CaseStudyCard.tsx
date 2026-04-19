@@ -55,10 +55,8 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
         </div>
 
         <h3
-          className={`text-body-biggest font-medium transition-colors ${
-            study.comingSoon
-              ? 'text-text-tertiary'
-              : 'text-text-primary group-hover:text-primary'
+          className={`text-body-biggest font-medium ${
+            study.comingSoon ? 'text-text-tertiary' : 'text-text-primary'
           }`}
         >
           {study.title}

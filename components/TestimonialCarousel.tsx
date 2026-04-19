@@ -80,7 +80,7 @@ export default function TestimonialCarousel() {
     <section className="flex justify-center px-5 md:px-10 py-12 md:py-20">
       <div className="max-w-page w-full flex flex-col gap-12">
         {/* Quote */}
-        <p className="font-normal text-text-primary text-h2 lg:text-h1">
+        <p className="font-normal text-text-primary text-h2 lg:text-display">
           {t.segments.map((seg, i) =>
             seg.highlight ? (
               <span key={i} className="bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">

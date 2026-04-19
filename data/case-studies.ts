@@ -49,15 +49,6 @@ const rawCaseStudies: CaseStudy[] = [
     year: 'Jan 2026 - Present',
     industry: 'Insurance',
   },
-  {
-    slug: 'coming-soon-3',
-    title: 'Case Study — Coming Soon',
-    description: '',
-    tags: ['UX Research', 'Figma'],
-    year: '2023',
-    industry: 'UX Designer',
-    comingSoon: true,
-  },
 ]
 
 // Parse the start date from the `year` field. Accepts "Jun 2024",
