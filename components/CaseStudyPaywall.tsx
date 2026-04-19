@@ -2,6 +2,7 @@
 
 import { useFormState, useFormStatus } from 'react-dom'
 import { Lock } from 'lucide-react'
+import InlineLink from '@/components/InlineLink'
 import Button from '@/components/Button'
 import {
   unlockCaseStudy,
@@ -42,12 +43,9 @@ export default function CaseStudyPaywall({ pathname }: { pathname: string }) {
 
           <p className="text-body-small text-text-secondary mb-6">
             Done under NDA. Drop me a line at{' '}
-            <a
-              href="mailto:knowles.riley@gmail.com"
-              className="text-text-secondary underline hover:text-text-primary hover:no-underline"
-            >
+            <InlineLink href="mailto:knowles.riley@gmail.com">
               knowles.riley@gmail.com
-            </a>{' '}
+            </InlineLink>{' '}
             if you&apos;d like access.
           </p>
 
