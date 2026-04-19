@@ -166,6 +166,9 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                     We are GTM and the website needs a facelift.&rdquo;</span>
                   </p>
 
+                  <div className="h-12" />
+                  <ImageBlock type="video" src="/images/conductor-website-before.mp4" caption="Conductor&rsquo;s homepage before the redesign" />
+
                   <div className="h-12 md:h-24" />
 
                   {/* Subsection: Goals */}

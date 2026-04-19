@@ -1,83 +1,37 @@
 'use client'
 
-import { ReactNode, useState } from 'react'
+import { useState } from 'react'
 
-const highlight = 'bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink'
-
-const audiences: { label: string; message: ReactNode }[] = [
+const audiences = [
   {
     label: 'Anyone',
-    message: (
-      <>
-        I am a strategic designer who cares about crafting intentional
-        experiences and{' '}
-        <span className={highlight}>
-          being someone people genuinely enjoy working with.
-        </span>
-      </>
-    ),
+    message:
+      'I am a strategic designer who cares about crafting intentional experiences and being someone people genuinely enjoy working with.',
   },
   {
     label: 'Recruiters',
-    message: (
-      <>
-        I have 3+ years of experience designing, building and shipping across
-        insurance, B2B, education, and more — for internal teams and
-        consumer-facing experiences.
-      </>
-    ),
+    message:
+      'I have 3+ years of experience designing, building and shipping across insurance, B2B, education, and more \u2014 for internal teams and consumer-facing experiences.',
   },
   {
     label: 'Designers',
-    message: (
-      <>
-        I&rsquo;m driven by creating craft that scales, learning from other
-        designers, and{' '}
-        <span className={highlight}>
-          advocating for user-centered, accessible design
-        </span>
-        .
-      </>
-    ),
+    message:
+      'I\u2019m driven by creating craft that scales, learning from other designers, and advocating for user-centered, accessible design.',
   },
   {
     label: 'Design Managers',
-    message: (
-      <>
-        <span className={highlight}>
-          Integral to my work philosophy is being a community member
-        </span>{' '}
-        - investing in shared standards, developing organizational design
-        maturity and building design&rsquo;s influence as a strategic partner.
-      </>
-    ),
+    message:
+      'Integral to my work philosophy is being a community member - investing in shared standards, developing organizational design maturity and building design\u2019s influence as a strategic partner.',
   },
   {
     label: 'Product Managers',
-    message: (
-      <>
-        My favorite problems live at the intersection of user experience and
-        business goals.{' '}
-        <span className={highlight}>
-          I partner with PMs to unpack complexity early
-        </span>
-        , and ensure we&rsquo;re solving real problems that actually drive
-        impact.
-      </>
-    ),
+    message:
+      'My favorite problems live at the intersection of user experience and business goals. I partner with PMs to unpack complexity early, and ensure we\u2019re solving real problems that actually drive impact.',
   },
   {
     label: 'Engineers',
-    message: (
-      <>
-        My first love in design was architecting codebases—creating order from
-        complexity through systems, logic, and modular components.{' '}
-        <span className={highlight}>
-          I still design with an engineer&rsquo;s mindset
-        </span>{' '}
-        - grounded in patterns and what&rsquo;s actually feasible to build.
-      </>
-    ),
+    message:
+      'My first love in design was architecting codebases—creating order from complexity through systems, logic, and modular components. I still design with an engineer\u2019s mindset - grounded in patterns and what\u2019s actually feasible to build.',
   },
 ]
 
