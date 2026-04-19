@@ -21,9 +21,9 @@ const audiences: { label: string; message: ReactNode }[] = [
     label: 'Recruiters',
     message: (
       <>
-        I&rsquo;ve designed, built and ship experiences across insurance, B2B,
-        education, and more for internal teams and consumer-facing
-        experiences.
+        I have 3+ years of experience designing, building and shipping across
+        insurance, B2B, education, and more — for internal teams and
+        consumer-facing experiences.
       </>
     ),
   },

@@ -10,6 +10,7 @@ import {
   ImageBlock,
   MetadataGrid,
 } from '@/components/case-study'
+import InlineLink from '@/components/InlineLink'
 import { caseStudies, type CaseStudy } from '@/data/case-studies'
 import { isUnlocked } from '@/lib/case-study-lock'
 
@@ -88,7 +89,11 @@ export default async function AiClaimsPortalCaseStudyPage() {
           <div className="max-w-page w-full">
             <div className="flex gap-8 items-start py-12 md:py-20">
 
-              <TableOfContents items={tocItems} />
+              {unlocked ? (
+                <TableOfContents items={tocItems} />
+              ) : (
+                <div aria-hidden className="hidden lg:block w-[180px] shrink-0" />
+              )}
 
               {/* ── Content column ── */}
               <div className="flex-1 min-w-0">
@@ -112,12 +117,19 @@ export default async function AiClaimsPortalCaseStudyPage() {
                   <div className="h-12" />
 
                   <MetadataGrid items={[
-                    { label: 'Role',     content: 'TODO: Role' },
-                    { label: 'Team',     content: 'TODO: Team members and titles' },
-                    { label: 'For',      content: 'Enterprise insurance client (under NDA)' },
-                    { label: 'Tools',    content: 'TODO: Tools (Figma, Claude Code, etc.)' },
-                    { label: 'Timeline', content: 'Jan 2026 – Present' },
-                    { label: 'Status',   content: 'In progress' },
+                    { label: 'Role',     content: 'Experience Designer' },
+                    { label: 'Team',     content: 'Myself, 3 Product Owners, 2 Claims Business Analysts, 1 Technical Business Analyst, 1 Project Manager, 1 Principal Engineer, 1 Testing Lead, 8 Offshore Developers' },
+                    { label: 'For',      content: 'Chubb' },
+                    { label: 'Tools',    content: (
+                      <>
+                        Figma,{' '}
+                        <InlineLink href="https://www.fullstory.com/" external>
+                          FullStory
+                        </InlineLink>
+                      </>
+                    ) },
+                    { label: 'Timeline', content: 'Mar 2026 – Present' },
+                    { label: 'Status',   content: 'In testing' },
                   ]} />
                 </section>
 
@@ -127,7 +139,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
                     <SectionDivider />
 
                     <section id="case-study">
-                      <Label>Behind the NDA</Label>
+                      <Label>Case Study</Label>
                       <h2 className="text-h2 font-normal text-text-primary leading-[1.3]">
                         TODO: Full case study content goes here.
                       </h2>

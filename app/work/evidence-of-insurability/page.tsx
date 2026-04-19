@@ -4,6 +4,7 @@ import CaseStudyCard from '@/components/CaseStudyCard'
 import TableOfContents from '@/components/TableOfContents'
 import AnimateOnScroll from '@/components/AnimateOnScroll'
 import CaseStudyPaywall from '@/components/CaseStudyPaywall'
+import InlineLink from '@/components/InlineLink'
 import {
   Label,
   SectionDivider,
@@ -88,7 +89,11 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
           <div className="max-w-page w-full">
             <div className="flex gap-8 items-start py-12 md:py-20">
 
-              <TableOfContents items={tocItems} />
+              {unlocked ? (
+                <TableOfContents items={tocItems} />
+              ) : (
+                <div aria-hidden className="hidden lg:block w-[180px] shrink-0" />
+              )}
 
               {/* ── Content column ── */}
               <div className="flex-1 min-w-0">
@@ -98,24 +103,43 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                   <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-4">Overview</p>
                   <div className="text-body-big md:text-body-biggest text-text-secondary">
                     <p>
-                      TODO: Teaser paragraph 1 — set up the project (enterprise insurance
-                      Evidence of Insurability flow) and why rapid prototyping in Claude Code
-                      was the right fit.
+                      I&apos;m redesigning portions of an Evidence of Insurability flow that
+                      consumers move through to qualify for extended health insurance products.
+                      The team was on a tight deadline to enable five new products, which made
+                      it the right moment to run a guinea-pig test of Claude Code prototyping
+                      in place of a traditional Figma handoff.
                     </p>
                     <p className="mt-6">
-                      TODO: Teaser paragraph 2 — what made this worth writing up (the design +
-                      engineering loop, what shipped, what got validated). Keep it teaser-level;
-                      real detail lives behind the paywall.
+                      I got onto a custom MCP wired into our web component kit, iterated in
+                      Claude Code with git branches for each design variant, pulled UX action
+                      items directly from Jira requirements, and published testable prototypes
+                      through Surge into UserZoom and UserTesting studies. The loop produced
+                      richer handoffs than Figma alone — real interactions and state behavior,
+                      not just screens.
                     </p>
                   </div>
 
                   <div className="h-12" />
 
                   <MetadataGrid items={[
-                    { label: 'Role',     content: 'TODO: Role' },
-                    { label: 'Team',     content: 'TODO: Team members and titles' },
-                    { label: 'For',      content: 'Enterprise insurance client (under NDA)' },
-                    { label: 'Tools',    content: 'TODO: Tools (Claude Code, Figma, etc.)' },
+                    { label: 'Role',     content: 'Lead UX Designer' },
+                    { label: 'Team',     content: 'Myself, Product Owner, Design System Team' },
+                    {
+                      label: 'For',
+                      content: (
+                        <InlineLink href="https://www.chubb.com/" external variant="icon">Chubb</InlineLink>
+                      ),
+                    },
+                    {
+                      label: 'Tools',
+                      content: (
+                        <>
+                          Claude Code, Figma MCP, VS Code, Git,{' '}
+                          <InlineLink href="https://www.usertesting.com/platform/userzoom" external>UserZoom</InlineLink>,{' '}
+                          <InlineLink href="https://surge.sh/" external>Surge</InlineLink>
+                        </>
+                      ),
+                    },
                     { label: 'Timeline', content: 'Mar 2026 – Present' },
                     { label: 'Status',   content: 'In progress' },
                   ]} />
@@ -127,7 +151,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                     <SectionDivider />
 
                     <section id="case-study">
-                      <Label>Behind the NDA</Label>
+                      <Label>Case Study</Label>
                       <h2 className="text-h2 font-normal text-text-primary leading-[1.3]">
                         TODO: Full case study content goes here.
                       </h2>

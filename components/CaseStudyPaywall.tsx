@@ -1,6 +1,7 @@
 'use client'
 
-import { useFormState, useFormStatus } from 'react-dom'
+import { useActionState } from 'react'
+import { useFormStatus } from 'react-dom'
 import { Lock } from 'lucide-react'
 import {
   unlockCaseStudy,
@@ -23,7 +24,7 @@ function SubmitButton() {
 }
 
 export default function CaseStudyPaywall({ pathname }: { pathname: string }) {
-  const [state, formAction] = useFormState(unlockCaseStudy, initialState)
+  const [state, formAction] = useActionState(unlockCaseStudy, initialState)
 
   return (
     <div className="relative">
@@ -44,7 +45,7 @@ export default function CaseStudyPaywall({ pathname }: { pathname: string }) {
           </h2>
 
           <p className="text-body-small text-text-secondary mb-6">
-            Done under NDA. Drop me a line at{' '}
+            The details of this case study are password-protected. Drop me a line at{' '}
             <a
               href="mailto:knowles.riley@gmail.com"
               className="text-text-secondary underline hover:text-text-primary hover:no-underline"
