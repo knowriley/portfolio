@@ -13,11 +13,19 @@ interface ButtonProps {
   external?: boolean
   /** Renders as a <button>. Mutually exclusive with href. */
   onClick?: () => void
+  /** Native button type. Only applies when rendering as a <button>. Defaults to 'button'. */
+  type?: 'button' | 'submit'
+  /** Disables the button. Only applies when rendering as a <button>. */
+  disabled?: boolean
+  /** Stretches the button to fill its container and centers the label. */
+  fullWidth?: boolean
+  /** Suppresses the trailing ArrowUpRight icon. */
+  noIcon?: boolean
   className?: string
 }
 
 const shared =
-  'inline-flex items-center gap-2 text-body-small font-semibold rounded-md px-6 py-3 transition-colors group'
+  'inline-flex items-center gap-2 text-body-small font-semibold rounded-md px-6 py-3 transition-colors group disabled:opacity-60 disabled:cursor-not-allowed'
 
 const variants = {
   primary:
@@ -36,10 +44,25 @@ const variants = {
  *   <Button href="/work">View Case Study</Button>
  *   <Button variant="outline" onClick={fn}>Secondary</Button>
  *   <Button href="https://example.com" external>External</Button>
+ *   <Button type="submit" disabled={pending} fullWidth noIcon>Submit</Button>
  */
-export default function Button({ children, variant = 'primary', href, external, onClick, className = '' }: ButtonProps) {
-  const cls = `${shared} ${variants[variant]} ${className}`
-  const arrow = <ArrowUpRight size={20} strokeWidth={2} className="transition-transform group-hover:rotate-45" />
+export default function Button({
+  children,
+  variant = 'primary',
+  href,
+  external,
+  onClick,
+  type = 'button',
+  disabled,
+  fullWidth,
+  noIcon,
+  className = '',
+}: ButtonProps) {
+  const widthCls = fullWidth ? 'w-full justify-center' : ''
+  const cls = `${shared} ${variants[variant]} ${widthCls} ${className}`
+  const arrow = noIcon ? null : (
+    <ArrowUpRight size={20} strokeWidth={2} className="transition-transform group-hover:rotate-45" />
+  )
 
   if (href && external) {
     return (
@@ -60,7 +83,7 @@ export default function Button({ children, variant = 'primary', href, external, 
   }
 
   return (
-    <button type="button" onClick={onClick} className={cls}>
+    <button type={type} onClick={onClick} disabled={disabled} className={cls}>
       {children}
       {arrow}
     </button>
