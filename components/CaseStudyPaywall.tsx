@@ -3,6 +3,8 @@
 import { useActionState } from 'react'
 import { useFormStatus } from 'react-dom'
 import { Lock } from 'lucide-react'
+import InlineLink from '@/components/InlineLink'
+import Button from '@/components/Button'
 import {
   unlockCaseStudy,
   type UnlockState,
@@ -13,13 +15,9 @@ const initialState: UnlockState = {}
 function SubmitButton() {
   const { pending } = useFormStatus()
   return (
-    <button
-      type="submit"
-      disabled={pending}
-      className="group w-full inline-flex items-center justify-center gap-2 bg-bg-inverse text-text-inverse font-semibold rounded-md px-6 py-3 hover:bg-neutral-800 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-    >
+    <Button type="submit" disabled={pending} fullWidth noIcon>
       {pending ? 'Checking…' : 'Continue reading'}
-    </button>
+    </Button>
   )
 }
 
@@ -45,13 +43,10 @@ export default function CaseStudyPaywall({ pathname }: { pathname: string }) {
           </h2>
 
           <p className="text-body-small text-text-secondary mb-6">
-            The details of this case study are password-protected. Drop me a line at{' '}
-            <a
-              href="mailto:knowles.riley@gmail.com"
-              className="text-text-secondary underline hover:text-text-primary hover:no-underline"
-            >
+            Done under NDA. Drop me a line at{' '}
+            <InlineLink href="mailto:knowles.riley@gmail.com">
               knowles.riley@gmail.com
-            </a>{' '}
+            </InlineLink>{' '}
             if you&apos;d like access.
           </p>
 
