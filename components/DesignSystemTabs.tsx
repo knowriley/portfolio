@@ -75,7 +75,7 @@ function FoundationsContent() {
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1">
               <p className="font-mono text-body-small text-text-primary">text-display</p>
-              <p className="text-body-small text-text-tertiary">56px · lh 1.3</p>
+              <p className="text-body-small text-text-tertiary">3.5rem / 56px · lh 1.3</p>
               <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Hero headlines only</p>
             </div>
@@ -87,7 +87,7 @@ function FoundationsContent() {
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1">
               <p className="font-mono text-body-small text-text-primary">text-h1</p>
-              <p className="text-body-small text-text-tertiary">39.81px · lh 1.3</p>
+              <p className="text-body-small text-text-tertiary">2.488rem / 39.81px · lh 1.3</p>
               <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Page-level headings</p>
             </div>
@@ -99,7 +99,7 @@ function FoundationsContent() {
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1">
               <p className="font-mono text-body-small text-text-primary">text-h2</p>
-              <p className="text-body-small text-text-tertiary">33.18px · lh 1.3</p>
+              <p className="text-body-small text-text-tertiary">2.074rem / 33.18px · lh 1.3</p>
               <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Section headings, pull quotes, stats</p>
             </div>
@@ -111,7 +111,7 @@ function FoundationsContent() {
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1">
               <p className="font-mono text-body-small text-text-primary">text-h3</p>
-              <p className="text-body-small text-text-tertiary">27.65px · lh 1.3</p>
+              <p className="text-body-small text-text-tertiary">1.728rem / 27.65px · lh 1.3</p>
               <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Sub-section headings within a section</p>
             </div>
@@ -123,7 +123,7 @@ function FoundationsContent() {
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1">
               <p className="font-mono text-body-small text-text-primary">text-body-biggest</p>
-              <p className="text-body-small text-text-tertiary">23.04px · lh 1.5</p>
+              <p className="text-body-small text-text-tertiary">1.44rem / 23.04px · lh 1.5</p>
               <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Card titles, sub-headings, overview prose</p>
             </div>
@@ -135,7 +135,7 @@ function FoundationsContent() {
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1">
               <p className="font-mono text-body-small text-text-primary">text-body-big</p>
-              <p className="text-body-small text-text-tertiary">19.2px · lh 1.5</p>
+              <p className="text-body-small text-text-tertiary">1.2rem / 19.2px · lh 1.5</p>
               <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Primary prose, bio copy</p>
             </div>
@@ -147,7 +147,7 @@ function FoundationsContent() {
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1">
               <p className="font-mono text-body-small text-text-primary">text-body-small</p>
-              <p className="text-body-small text-text-tertiary">16px · lh 1.5</p>
+              <p className="text-body-small text-text-tertiary">1rem / 16px · lh 1.5</p>
               <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Secondary prose, links, nav, badges</p>
             </div>
@@ -159,7 +159,7 @@ function FoundationsContent() {
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1">
               <p className="font-mono text-body-small text-text-primary">text-small</p>
-              <p className="text-body-small text-text-tertiary">13.33px · lh 1</p>
+              <p className="text-body-small text-text-tertiary">0.833rem / 13.33px · lh 1</p>
               <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Captions only</p>
             </div>
@@ -171,7 +171,7 @@ function FoundationsContent() {
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1">
               <p className="font-mono text-body-small text-text-primary">label</p>
-              <p className="text-body-small text-text-tertiary">13.33px · lh 1</p>
+              <p className="text-body-small text-text-tertiary">0.833rem / 13.33px · lh 1</p>
               <p className="text-body-small text-text-tertiary">font-medium · uppercase · widest</p>
               <p className="text-body-small text-text-tertiary mt-1">Footer headers, TOC title, metadata field labels</p>
             </div>
@@ -179,6 +179,191 @@ function FoundationsContent() {
               Role · Team · Local Time
             </p>
           </div>
+        </div>
+
+        <SubLabel>Responsive Mapping</SubLabel>
+        <p className="text-body-small text-text-secondary mb-8">
+          Role tokens resolve to the same value at every breakpoint. The responsive shift happens
+          at the usage site (e.g. <span className="font-mono">text-h1 md:text-display</span>).
+          This table documents the site-wide convention — rows where the mobile size differs from
+          desktop are emphasized; rows that stay fixed are muted.
+        </p>
+
+        <div>
+          <div className="flex items-stretch py-3 border-b border-border-subtle">
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-44 shrink-0 pr-4">Role</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1 min-w-0 border-l border-border-subtle pl-4">Mobile · &lt;768px</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1 min-w-0 border-l border-border-subtle pl-4">md: · ≥768px</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1 min-w-0 border-l border-border-subtle pl-4">lg: · ≥1024px</p>
+          </div>
+          {[
+            { role: 'text-display',      base: 'text-h1',         baseRem: '2.488rem', basePx: '39.81px', md: 'text-display',      mdRem: '3.5rem',   mdPx: '56px',    lg: 'text-display',      lgRem: '3.5rem',   lgPx: '56px' },
+            { role: 'text-h1',           base: 'text-h2',         baseRem: '2.074rem', basePx: '33.18px', md: 'text-h1',           mdRem: '2.488rem', mdPx: '39.81px', lg: 'text-h1',           lgRem: '2.488rem', lgPx: '39.81px' },
+            { role: 'text-h2',           base: 'text-h3',         baseRem: '1.728rem', basePx: '27.65px', md: 'text-h2',           mdRem: '2.074rem', mdPx: '33.18px', lg: 'text-h2',           lgRem: '2.074rem', lgPx: '33.18px' },
+            { role: 'text-h3',           base: 'text-h3',         baseRem: '1.728rem', basePx: '27.65px', md: 'text-h3',           mdRem: '1.728rem', mdPx: '27.65px', lg: 'text-h3',           lgRem: '1.728rem', lgPx: '27.65px' },
+            { role: 'text-body-biggest', base: 'text-body-big',   baseRem: '1.2rem',   basePx: '19.2px',  md: 'text-body-biggest', mdRem: '1.44rem',  mdPx: '23.04px', lg: 'text-body-biggest', lgRem: '1.44rem',  lgPx: '23.04px' },
+            { role: 'text-body-big',     base: 'text-body-big',   baseRem: '1.2rem',   basePx: '19.2px',  md: 'text-body-big',     mdRem: '1.2rem',   mdPx: '19.2px',  lg: 'text-body-big',     lgRem: '1.2rem',   lgPx: '19.2px' },
+            { role: 'text-body-small',   base: 'text-body-small', baseRem: '1rem',     basePx: '16px',    md: 'text-body-small',   mdRem: '1rem',     mdPx: '16px',    lg: 'text-body-small',   lgRem: '1rem',     lgPx: '16px' },
+            { role: 'text-small',        base: 'text-small',      baseRem: '0.833rem', basePx: '13.33px', md: 'text-small',        mdRem: '0.833rem', mdPx: '13.33px', lg: 'text-small',        lgRem: '0.833rem', lgPx: '13.33px' },
+          ].map(({ role, base, baseRem, basePx, md, mdRem, mdPx, lg, lgRem, lgPx }) => {
+            const scales = base !== md
+            const nameCls = scales ? 'text-text-primary' : 'text-text-tertiary'
+            return (
+              <div key={role} className="flex items-stretch py-4 border-b border-border-subtle">
+                <p className={`font-mono text-body-small ${nameCls} w-44 shrink-0 pr-4`}>{role}</p>
+                <div className="flex-1 min-w-0 border-l border-border-subtle pl-4">
+                  <p className={`font-mono text-body-small ${nameCls}`}>{base}</p>
+                  <p className="text-body-small text-text-tertiary mt-0.5">{baseRem} / {basePx}</p>
+                </div>
+                <div className="flex-1 min-w-0 border-l border-border-subtle pl-4">
+                  <p className={`font-mono text-body-small ${nameCls}`}>{md}</p>
+                  <p className="text-body-small text-text-tertiary mt-0.5">{mdRem} / {mdPx}</p>
+                </div>
+                <div className="flex-1 min-w-0 border-l border-border-subtle pl-4">
+                  <p className={`font-mono text-body-small ${nameCls}`}>{lg}</p>
+                  <p className="text-body-small text-text-tertiary mt-0.5">{lgRem} / {lgPx}</p>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+
+        <SubLabel>Breakpoint Samples</SubLabel>
+        <p className="text-body-small text-text-secondary mb-8">
+          The same compressed case study rendered at three fixed viewport widths. Type sizes
+          inside each frame are hardcoded to the values that would resolve at that breakpoint —
+          so the differences are visible without resizing the window. Frames wider than the
+          page scroll horizontally.
+        </p>
+
+        <div className="flex flex-col gap-10">
+
+          {/* MOBILE FRAME · 375px */}
+          <div>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-3">Mobile · 375px</p>
+            <div className="overflow-x-auto bg-bg-tertiary rounded-sm border border-border-subtle p-4">
+              <div className="w-[375px] bg-bg rounded-sm border border-border p-5">
+                <div className="flex flex-col gap-4">
+                  <div className="flex gap-1.5 flex-wrap">
+                    <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">Design Systems</span>
+                    <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">2024</span>
+                  </div>
+                  <p className="text-h1 font-normal text-text-primary leading-[1.3]">Sample Case Study</p>
+                  <div className="aspect-video bg-bg-secondary rounded-sm border border-border" />
+                  <div>
+                    <p className="text-body-small text-text-tertiary mb-2">Overview</p>
+                    <p className="text-body-big text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 pt-2">
+                    {[
+                      { label: 'Role',     value: 'Lead Designer' },
+                      { label: 'Team',     value: 'Design Systems' },
+                      { label: 'Timeline', value: '6 months' },
+                      { label: 'Status',   value: 'Shipped' },
+                    ].map(({ label, value }) => (
+                      <div key={label}>
+                        <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-1">{label}</p>
+                        <p className="text-body-small text-text-secondary">{value}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="border-t border-border-subtle pt-4">
+                    <p className="text-body-small text-text-tertiary mb-2">Problem</p>
+                    <p className="text-h3 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
+                    <p className="text-body-big text-text-secondary">Body prose stays a comfortable size at every breakpoint — <span className="font-mono">text-body-big</span> doesn&apos;t shift.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* TABLET FRAME · 768px */}
+          <div>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-3">Tablet · 768px</p>
+            <div className="overflow-x-auto bg-bg-tertiary rounded-sm border border-border-subtle p-4">
+              <div className="w-[768px] bg-bg rounded-sm border border-border p-6">
+                <div className="flex flex-col gap-5">
+                  <div className="flex gap-1.5 flex-wrap">
+                    <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">Design Systems</span>
+                    <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">2024</span>
+                  </div>
+                  <p className="text-display font-normal text-text-primary leading-[1.3]">Sample Case Study</p>
+                  <div className="aspect-video bg-bg-secondary rounded-sm border border-border" />
+                  <div>
+                    <p className="text-body-small text-text-tertiary mb-2">Overview</p>
+                    <p className="text-body-biggest text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
+                  </div>
+                  <div className="grid grid-cols-3 gap-6 pt-2">
+                    {[
+                      { label: 'Role',     value: 'Lead Designer' },
+                      { label: 'Team',     value: 'Design Systems' },
+                      { label: 'Timeline', value: '6 months' },
+                      { label: 'Status',   value: 'Shipped' },
+                    ].map(({ label, value }) => (
+                      <div key={label}>
+                        <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-1">{label}</p>
+                        <p className="text-body-small text-text-secondary">{value}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="border-t border-border-subtle pt-5">
+                    <p className="text-body-small text-text-tertiary mb-2">Problem</p>
+                    <p className="text-h2 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
+                    <p className="text-body-big text-text-secondary">Body prose stays a comfortable size at every breakpoint — <span className="font-mono">text-body-big</span> doesn&apos;t shift.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* DESKTOP FRAME · 1024px */}
+          <div>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-3">Desktop · 1024px</p>
+            <div className="overflow-x-auto bg-bg-tertiary rounded-sm border border-border-subtle p-4">
+              <div className="w-[1024px] bg-bg rounded-sm border border-border p-6">
+                <div className="flex gap-6">
+                  <div className="w-[140px] shrink-0 flex flex-col gap-1">
+                    <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-2">Contents</p>
+                    <span className="block text-body-small text-text-secondary px-2 py-1">Overview</span>
+                    <span className="block text-body-small font-medium text-text-primary bg-bg-secondary px-2 py-1 rounded-sm">Problem</span>
+                    <span className="block text-body-small text-text-secondary px-2 py-1">Solution</span>
+                  </div>
+                  <div className="flex-1 min-w-0 flex flex-col gap-5">
+                    <div className="flex gap-1.5 flex-wrap">
+                      <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">Design Systems</span>
+                      <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">2024</span>
+                    </div>
+                    <p className="text-display font-normal text-text-primary leading-[1.3]">Sample Case Study</p>
+                    <div className="aspect-video bg-bg-secondary rounded-sm border border-border" />
+                    <div>
+                      <p className="text-body-small text-text-tertiary mb-2">Overview</p>
+                      <p className="text-body-biggest text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
+                    </div>
+                    <div className="grid grid-cols-3 gap-6 pt-2">
+                      {[
+                        { label: 'Role',     value: 'Lead Designer' },
+                        { label: 'Team',     value: 'Design Systems' },
+                        { label: 'Timeline', value: '6 months' },
+                        { label: 'Status',   value: 'Shipped' },
+                      ].map(({ label, value }) => (
+                        <div key={label}>
+                          <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-1">{label}</p>
+                          <p className="text-body-small text-text-secondary">{value}</p>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="border-t border-border-subtle pt-5">
+                      <p className="text-body-small text-text-tertiary mb-2">Problem</p>
+                      <p className="text-h2 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
+                      <p className="text-body-big text-text-secondary">Body prose stays a comfortable size at every breakpoint — <span className="font-mono">text-body-big</span> doesn&apos;t shift.</p>
+                    </div>
+                  </div>
+                  <div className="w-[160px] shrink-0" />
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <SubLabel>Font Families</SubLabel>
@@ -646,6 +831,52 @@ function FoundationsContent() {
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{role}</p>
             </div>
           ))}
+        </div>
+
+        <SubLabel>Responsive Mapping</SubLabel>
+        <p className="text-body-small text-text-secondary mb-8">
+          Spacing tokens themselves don&apos;t change at breakpoints — the swap happens at the usage
+          site (e.g. <span className="font-mono">px-5 md:px-10</span>). These are the recurring
+          site-wide patterns. Values not listed here stay fixed across all breakpoints.
+        </p>
+
+        <div>
+          <div className="flex items-stretch py-3 border-b border-border-subtle">
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-56 shrink-0 pr-4">Usage</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1 min-w-0 border-l border-border-subtle pl-4">Mobile · &lt;768px</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1 min-w-0 border-l border-border-subtle pl-4">md: · ≥768px</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1 min-w-0 border-l border-border-subtle pl-4">lg: · ≥1024px</p>
+          </div>
+          {[
+            { usage: 'Horizontal page padding',        base: 'px-5',  baseRem: '1.25rem', basePx: '20px', md: 'px-10', mdRem: '2.5rem', mdPx: '40px', lg: 'px-10', lgRem: '2.5rem', lgPx: '40px' },
+            { usage: 'Section vertical padding',       base: 'py-12', baseRem: '3rem',    basePx: '48px', md: 'py-20', mdRem: '5rem',   mdPx: '80px', lg: 'py-20', lgRem: '5rem',   lgPx: '80px' },
+            { usage: 'Case study hero top',            base: 'pt-10', baseRem: '2.5rem',  basePx: '40px', md: 'pt-16', mdRem: '4rem',   mdPx: '64px', lg: 'pt-16', lgRem: '4rem',   lgPx: '64px' },
+            { usage: 'Case study hero bottom',         base: 'pb-8',  baseRem: '2rem',    basePx: '32px', md: 'pb-12', mdRem: '3rem',   mdPx: '48px', lg: 'pb-12', lgRem: '3rem',   lgPx: '48px' },
+            { usage: 'Cover image bottom',             base: 'pb-10', baseRem: '2.5rem',  basePx: '40px', md: 'pb-16', mdRem: '4rem',   mdPx: '64px', lg: 'pb-16', lgRem: '4rem',   lgPx: '64px' },
+            { usage: 'Subsection spacer',              base: 'h-12',  baseRem: '3rem',    basePx: '48px', md: 'h-24',  mdRem: '6rem',   mdPx: '96px', lg: 'h-24',  lgRem: '6rem',   lgPx: '96px' },
+            { usage: 'Paywall spacer',                 base: 'h-16',  baseRem: '4rem',    basePx: '64px', md: 'h-24',  mdRem: '6rem',   mdPx: '96px', lg: 'h-24',  lgRem: '6rem',   lgPx: '96px' },
+            { usage: 'Next section bottom',            base: 'pb-12', baseRem: '3rem',    basePx: '48px', md: 'pb-24', mdRem: '6rem',   mdPx: '96px', lg: 'pb-24', lgRem: '6rem',   lgPx: '96px' },
+          ].map(({ usage, base, baseRem, basePx, md, mdRem, mdPx, lg, lgRem, lgPx }) => {
+            const scales = base !== md
+            const nameCls = scales ? 'text-text-primary' : 'text-text-tertiary'
+            return (
+              <div key={usage} className="flex items-stretch py-4 border-b border-border-subtle">
+                <p className={`text-body-small ${nameCls} w-56 shrink-0 pr-4`}>{usage}</p>
+                <div className="flex-1 min-w-0 border-l border-border-subtle pl-4">
+                  <p className={`font-mono text-body-small ${nameCls}`}>{base}</p>
+                  <p className="text-body-small text-text-tertiary mt-0.5">{baseRem} / {basePx}</p>
+                </div>
+                <div className="flex-1 min-w-0 border-l border-border-subtle pl-4">
+                  <p className={`font-mono text-body-small ${nameCls}`}>{md}</p>
+                  <p className="text-body-small text-text-tertiary mt-0.5">{mdRem} / {mdPx}</p>
+                </div>
+                <div className="flex-1 min-w-0 border-l border-border-subtle pl-4">
+                  <p className={`font-mono text-body-small ${nameCls}`}>{lg}</p>
+                  <p className="text-body-small text-text-tertiary mt-0.5">{lgRem} / {lgPx}</p>
+                </div>
+              </div>
+            )
+          })}
         </div>
       </section>
 
