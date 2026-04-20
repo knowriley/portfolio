@@ -33,7 +33,7 @@ export default function AboutPage() {
                 width={802}
                 height={802}
                 priority
-                className="relative w-full h-auto border border-border-subtle shadow-sm rounded-sm animate-fade-in-up"
+                className="relative w-full h-auto border border-border shadow-sm rounded-sm animate-fade-in-up"
                 style={{ animationDelay: '1.5s', animationDuration: '0.55s' }}
               />
             </div>
