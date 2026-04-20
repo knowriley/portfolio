@@ -85,7 +85,7 @@ export default function BricksDesignSystemCaseStudyPage() {
               <img
                 src="/images/bricks-cover.webp"
                 alt="Bricks Design System documentation site showing the welcome page"
-                className="w-full rounded-sm border border-border-subtle shadow-sm"
+                className="w-full rounded-sm border border-border shadow-sm"
               />
             </div>
           </div>

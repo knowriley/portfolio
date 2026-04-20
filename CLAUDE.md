@@ -86,7 +86,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 - `bg-bg` / `bg-bg-secondary` / `bg-bg-tertiary` — surface hierarchy
 - `border-border-subtle` / `border-border` / `border-border-strong` — border hierarchy
 
-**Image & video treatment:** All images and videos on the site must have `border border-border-subtle shadow-sm rounded-sm`. This applies to every `ImageBlock` variant (image, video, vimeo, placeholder), case study cover images, `CaseStudyCard` thumbnails, and any other inline images. The `CaseStudyCard` thumbnail uses `shadow-xs` instead of `shadow-sm` (the card itself lifts on hover via `hover:-translate-y-2.5`, so the thumbnail's shadow stays subtle). Pass `bare` to `ImageBlock` to opt out of border/shadow for images that should bleed into the background.
+**Image & video treatment:** All images and videos on the site must have `border border-border shadow-sm rounded-sm`. This applies to every `ImageBlock` variant (image, video, vimeo, placeholder), case study cover images, `CaseStudyCard` thumbnails, and any other inline images. The `CaseStudyCard` thumbnail uses `shadow-xs` instead of `shadow-sm` (the card itself lifts on hover via `hover:-translate-y-2.5`, so the thumbnail's shadow stays subtle). Pass `bare` to `ImageBlock` to opt out of border/shadow for images that should bleed into the background.
 
 **Image & video sizing:** All images and videos must fill the full width of their container and maintain their original aspect ratio — never crop. Use `w-full` with no fixed aspect ratio. Never use `object-cover`, `object-fit`, `fill`, or `aspect-video` on image or video elements. Vimeo iframes are the only exception (they need `aspect-video` for the embed container).
 
@@ -334,7 +334,7 @@ Three distinct patterns for rendering images and videos, each chosen by context.
 
 | Context | Component | Why |
 |---|---|---|
-| **Any image or video in a case study body** (hero cover, inline section media, in-body demos) | `<ImageBlock>` — with `type="image"` (default), `type="video"`, `type="vimeo"`, or no props for placeholder | Single abstraction. Automatically applies the `border border-border-subtle shadow-sm rounded-sm` chrome, handles optional captions via `<figcaption>`, and delegates video rendering to `VideoBlock` internally (play/pause IconButton in bottom-right). |
+| **Any image or video in a case study body** (hero cover, inline section media, in-body demos) | `<ImageBlock>` — with `type="image"` (default), `type="video"`, `type="vimeo"`, or no props for placeholder | Single abstraction. Automatically applies the `border border-border shadow-sm rounded-sm` chrome, handles optional captions via `<figcaption>`, and delegates video rendering to `VideoBlock` internally (play/pause IconButton in bottom-right). |
 | **Work grid card thumbnail** — `components/CaseStudyCard.tsx` | Raw `<Image>` for stills, raw `<video autoPlay loop muted playsInline>` for `.mov` / `.mp4` / `.webm` thumbnails | Card context is different: the thumbnail is a clickable preview (no controls, no caption, `object-cover` + `aspect-video` framing). Wrapping in `ImageBlock` would fight the card's layout. `CaseStudyCard` is the one place where raw `<video>` is acceptable. |
 | **Anywhere else** | `<ImageBlock>` | Do **not** import `VideoBlock` directly into a page. It's an internal implementation detail of `ImageBlock`. One entry point keeps chrome, captions, and play/pause behavior consistent. |
 

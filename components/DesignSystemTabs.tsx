@@ -753,7 +753,7 @@ function FoundationsContent() {
         <div>
           <RowDivider />
           {[
-            { rule: 'Border', detail: 'border border-border-subtle — applied by default on all images and videos' },
+            { rule: 'Border', detail: 'border border-border — applied by default on all images and videos' },
             { rule: 'Shadow', detail: 'shadow-sm — applied by default alongside the border' },
             { rule: 'Radius', detail: 'rounded-sm — consistent rounding on all media' },
             { rule: 'Bare mode', detail: 'Pass bare to ImageBlock to remove border and shadow (e.g. images that bleed into the background)' },

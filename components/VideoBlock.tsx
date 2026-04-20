@@ -27,7 +27,7 @@ export default function VideoBlock({
     }
   }
 
-  const chrome = bare ? '' : ' border border-border-subtle shadow-sm'
+  const chrome = bare ? '' : ' border border-border shadow-sm'
 
   return (
     <figure>

@@ -40,7 +40,7 @@ type ImageBlockProps =
   | (ImageBlockBase & { type?: never; label?: string })
 
 export function ImageBlock(props: ImageBlockProps) {
-  const chrome = props.bare ? '' : ' border border-border-subtle shadow-sm'
+  const chrome = props.bare ? '' : ' border border-border shadow-sm'
   if ('type' in props && props.type === 'video') {
     return <VideoBlock src={props.src} caption={props.caption} bare={props.bare} />
   }
