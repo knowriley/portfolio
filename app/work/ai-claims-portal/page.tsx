@@ -101,7 +101,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
                 {/* ────────────────────────────── OVERVIEW ────────────────────────────── */}
                 <section id="overview">
                   <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-4">Overview</p>
-                  <div className="text-body-big md:text-body-biggest text-text-secondary">
+                  <div className="text-body-small md:text-body-big lg:text-body-biggest text-text-secondary">
                     <p>
                       TODO: Teaser paragraph 1 — frame the problem (8 customer segments,
                       3 billing systems fragmenting the claims experience) and why a unified
@@ -140,11 +140,11 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                     <section id="case-study">
                       <Label>Case Study</Label>
-                      <h2 className="text-h2 font-normal text-text-primary leading-[1.3]">
+                      <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
                         TODO: Full case study content goes here.
                       </h2>
                       <div className="h-8" />
-                      <p className="text-body-big text-text-secondary">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
                         TODO: Build out Problem / Goals / Challenges / Solution / Impact /
                         Takeaways sections mirroring the pattern used in the Bricks and
                         Conductor case studies. The paywall plumbing above is independent of

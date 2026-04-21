@@ -43,7 +43,7 @@ export default function AboutHero() {
       <div className="max-w-page w-full flex flex-col">
         {/* Filter row — at md+ stacks normally at the top; at lg+ drops to the bottom directly above the h1 */}
         <div className="flex flex-wrap items-center gap-2 mb-4 lg:mt-auto pt-10 lg:pt-0">
-          <span className="text-body-big text-text-primary mr-1">About Riley, for</span>
+          <span className="text-body-small md:text-body-big text-text-primary mr-1">About Riley, for</span>
           {audiences.map((a, i) => (
             <button
               key={a.label}
@@ -62,7 +62,7 @@ export default function AboutHero() {
         </div>
 
         {/* Display message — at lg+, lifted by exactly the image peek height (4.95vw = 15% of 33vw) so the two can never overlap */}
-        <h1 className="text-h1 md:text-display font-normal text-text-primary pb-10 lg:pb-[4.95vw]">
+        <h1 className="text-h3 md:text-h2 lg:text-display font-normal text-text-primary pb-10 lg:pb-[4.95vw]">
           {audiences[active].message}
         </h1>
       </div>

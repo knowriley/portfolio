@@ -15,7 +15,7 @@ import {
 
 function SectionHeading({ children }: { children: React.ReactNode }) {
   return (
-    <h2 className="text-h2 font-normal text-text-primary mb-6">{children}</h2>
+    <h2 className="text-h3 md:text-h2 font-normal text-text-primary mb-6">{children}</h2>
   )
 }
 
@@ -122,6 +122,18 @@ function FoundationsContent() {
 
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1">
+              <p className="font-mono text-body-small text-text-primary">text-h4</p>
+              <p className="text-body-small text-text-tertiary">1.44rem / 23.04px · lh 1.3</p>
+              <p className="text-body-small text-text-tertiary">font-normal</p>
+              <p className="text-body-small text-text-tertiary mt-1">Mobile-only — step-down pair for text-h3</p>
+            </div>
+            <p className="text-h4 font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
+              Content dictates form
+            </p>
+          </div>
+
+          <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
+            <div className="w-52 shrink-0 flex flex-col gap-1">
               <p className="font-mono text-body-small text-text-primary">text-body-biggest</p>
               <p className="text-body-small text-text-tertiary">1.44rem / 23.04px · lh 1.5</p>
               <p className="text-body-small text-text-tertiary">font-normal</p>
@@ -200,9 +212,9 @@ function FoundationsContent() {
             { role: 'text-display',      base: 'text-h1',         baseRem: '2.488rem', basePx: '39.81px', md: 'text-display',      mdRem: '3.5rem',   mdPx: '56px',    lg: 'text-display',      lgRem: '3.5rem',   lgPx: '56px' },
             { role: 'text-h1',           base: 'text-h2',         baseRem: '2.074rem', basePx: '33.18px', md: 'text-h1',           mdRem: '2.488rem', mdPx: '39.81px', lg: 'text-h1',           lgRem: '2.488rem', lgPx: '39.81px' },
             { role: 'text-h2',           base: 'text-h3',         baseRem: '1.728rem', basePx: '27.65px', md: 'text-h2',           mdRem: '2.074rem', mdPx: '33.18px', lg: 'text-h2',           lgRem: '2.074rem', lgPx: '33.18px' },
-            { role: 'text-h3',           base: 'text-h3',         baseRem: '1.728rem', basePx: '27.65px', md: 'text-h3',           mdRem: '1.728rem', mdPx: '27.65px', lg: 'text-h3',           lgRem: '1.728rem', lgPx: '27.65px' },
-            { role: 'text-body-biggest', base: 'text-body-big',   baseRem: '1.2rem',   basePx: '19.2px',  md: 'text-body-biggest', mdRem: '1.44rem',  mdPx: '23.04px', lg: 'text-body-biggest', lgRem: '1.44rem',  lgPx: '23.04px' },
-            { role: 'text-body-big',     base: 'text-body-big',   baseRem: '1.2rem',   basePx: '19.2px',  md: 'text-body-big',     mdRem: '1.2rem',   mdPx: '19.2px',  lg: 'text-body-big',     lgRem: '1.2rem',   lgPx: '19.2px' },
+            { role: 'text-h3',           base: 'text-h4',         baseRem: '1.44rem',  basePx: '23.04px', md: 'text-h3',           mdRem: '1.728rem', mdPx: '27.65px', lg: 'text-h3',           lgRem: '1.728rem', lgPx: '27.65px' },
+            { role: 'text-body-biggest', base: 'text-body-small', baseRem: '1rem',     basePx: '16px',    md: 'text-body-big',     mdRem: '1.2rem',   mdPx: '19.2px',  lg: 'text-body-biggest', lgRem: '1.44rem',  lgPx: '23.04px' },
+            { role: 'text-body-big',     base: 'text-body-small', baseRem: '1rem',     basePx: '16px',    md: 'text-body-big',     mdRem: '1.2rem',   mdPx: '19.2px',  lg: 'text-body-big',     lgRem: '1.2rem',   lgPx: '19.2px' },
             { role: 'text-body-small',   base: 'text-body-small', baseRem: '1rem',     basePx: '16px',    md: 'text-body-small',   mdRem: '1rem',     mdPx: '16px',    lg: 'text-body-small',   lgRem: '1rem',     lgPx: '16px' },
             { role: 'text-small',        base: 'text-small',      baseRem: '0.833rem', basePx: '13.33px', md: 'text-small',        mdRem: '0.833rem', mdPx: '13.33px', lg: 'text-small',        lgRem: '0.833rem', lgPx: '13.33px' },
           ].map(({ role, base, baseRem, basePx, md, mdRem, mdPx, lg, lgRem, lgPx }) => {
@@ -252,7 +264,7 @@ function FoundationsContent() {
                   <div className="aspect-video bg-bg-secondary rounded-sm border border-border" />
                   <div>
                     <p className="text-body-small text-text-tertiary mb-2">Overview</p>
-                    <p className="text-body-big text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
+                    <p className="text-body-small text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
                   </div>
                   <div className="grid grid-cols-2 gap-4 pt-2">
                     {[
@@ -269,8 +281,8 @@ function FoundationsContent() {
                   </div>
                   <div className="border-t border-border-subtle pt-4">
                     <p className="text-body-small text-text-tertiary mb-2">Problem</p>
-                    <p className="text-h3 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
-                    <p className="text-body-big text-text-secondary">Body prose stays a comfortable size at every breakpoint — <span className="font-mono">text-body-big</span> doesn&apos;t shift.</p>
+                    <p className="text-h4 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
+                    <p className="text-body-small text-text-secondary">Body prose steps down to <span className="font-mono">text-body-small</span> on mobile for comfortable reading, then up to <span className="font-mono">text-body-big</span> from tablet up.</p>
                   </div>
                 </div>
               </div>
@@ -291,7 +303,7 @@ function FoundationsContent() {
                   <div className="aspect-video bg-bg-secondary rounded-sm border border-border" />
                   <div>
                     <p className="text-body-small text-text-tertiary mb-2">Overview</p>
-                    <p className="text-body-biggest text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
+                    <p className="text-body-big text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
                   </div>
                   <div className="grid grid-cols-3 gap-6 pt-2">
                     {[
@@ -309,7 +321,7 @@ function FoundationsContent() {
                   <div className="border-t border-border-subtle pt-5">
                     <p className="text-body-small text-text-tertiary mb-2">Problem</p>
                     <p className="text-h2 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
-                    <p className="text-body-big text-text-secondary">Body prose stays a comfortable size at every breakpoint — <span className="font-mono">text-body-big</span> doesn&apos;t shift.</p>
+                    <p className="text-body-big text-text-secondary">From tablet up, body prose renders at <span className="font-mono">text-body-big</span>.</p>
                   </div>
                 </div>
               </div>
@@ -355,7 +367,7 @@ function FoundationsContent() {
                     <div className="border-t border-border-subtle pt-5">
                       <p className="text-body-small text-text-tertiary mb-2">Problem</p>
                       <p className="text-h2 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
-                      <p className="text-body-big text-text-secondary">Body prose stays a comfortable size at every breakpoint — <span className="font-mono">text-body-big</span> doesn&apos;t shift.</p>
+                      <p className="text-body-big text-text-secondary">From tablet up, body prose renders at <span className="font-mono">text-body-big</span>.</p>
                     </div>
                   </div>
                   <div className="w-[160px] shrink-0" />

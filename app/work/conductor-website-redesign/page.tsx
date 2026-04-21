@@ -72,8 +72,8 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                 ))}
               </div>
               <div className="h-8" />
-              <div className="flex items-end gap-8">
-                <h1 className="text-h1 md:text-display font-normal text-text-primary flex-1 min-w-0">
+              <div className="flex flex-col md:flex-row items-start md:items-end gap-4 md:gap-8">
+                <h1 className="text-h1 md:text-display font-normal text-text-primary md:flex-1 md:min-w-0">
                   {study.title}
                 </h1>
                 <Button href="https://www.conductor.com/" external>View Live</Button>
@@ -102,7 +102,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                 {/* ────────────────────────────── OVERVIEW ────────────────────────────── */}
                 <section id="overview">
                   <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-4">Overview</p>
-                  <div className="text-body-big md:text-body-biggest text-text-secondary">
+                  <div className="text-body-small md:text-body-big lg:text-body-biggest text-text-secondary">
                     <p>
                       <InlineLink href="https://www.conductor.com/" external variant="emphasis">Conductor</InlineLink>{' '}
                       had made its name as a trusted SEO platform for enterprise brands, and over
@@ -151,14 +151,14 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                 {/* ────────────────────────────── PROBLEM ─────────────────────────────── */}
                 <section id="problem">
                   <Label>Problem</Label>
-                  <h2 className="text-h2 font-normal text-text-secondary leading-[1.3]">
+                  <h2 className="text-h3 md:text-h2 font-normal text-text-secondary leading-[1.3]">
                     Conductor&apos;s website didn&apos;t reflect its forward-thinking culture
                     or the new AI-forward product story it needed to tell.
                   </h2>
 
                   <div className="h-12" />
 
-                  <p className="text-body-big text-text-secondary">
+                  <p className="text-body-small md:text-body-big text-text-secondary">
                     The existing site felt dated and disconnected from the company&apos;s
                     forward-thinking culture and its defining product offering. Internally,
                     the message was blunt:{' '}
@@ -176,7 +176,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                     <Label>Goals</Label>
                     <TwoColumnSection heading="Make the site feel modern and AI-forward — without making the rest of the site feel even more outdated.">
                       <div>
-                        <p className="text-body-big text-text-secondary">
+                        <p className="text-body-small md:text-body-big text-text-secondary">
                           Three priorities shaped the redesign brief:
                         </p>
                       </div>
@@ -186,7 +186,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">1</span>
-                          <p className="text-body-big text-text-primary">
+                          <p className="text-body-small md:text-body-big text-text-primary">
                             Elevate brand perception to match Conductor&apos;s position as a category leader.
                           </p>
                         </div>
@@ -194,7 +194,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">2</span>
-                          <p className="text-body-big text-text-primary">
+                          <p className="text-body-small md:text-body-big text-text-primary">
                             Make the homepage look and feel like an AI-native product.
                           </p>
                         </div>
@@ -202,7 +202,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">3</span>
-                          <p className="text-body-big text-text-primary">
+                          <p className="text-body-small md:text-body-big text-text-primary">
                             Better target enterprise audiences who expect a modern, confident brand.
                           </p>
                         </div>
@@ -217,7 +217,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                     <Label>Challenges</Label>
                     <TwoColumnSection heading="Tight timeline and mixed-signal feedback loops.">
                       <div>
-                        <p className="text-body-big text-text-secondary">
+                        <p className="text-body-small md:text-body-big text-text-secondary">
                           Conductor was in a race to refresh its positioning and stay ahead of the
                           competition. I advocated for a full design system update, but the timeline
                           only allowed a homepage redesign — which meant designing for the future
@@ -225,7 +225,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                           without making the rest of the site look even more outdated, and how do we
                           avoid creating a frankenstein website?
                         </p>
-                        <p className="text-body-big text-text-secondary mt-6">
+                        <p className="text-body-small md:text-body-big text-text-secondary mt-6">
                           Mixed-signal feedback loops added their own friction. I would review work
                           with my UX design manager, incorporate her feedback, then receive
                           contradictory feedback from marketing in a separate meeting she
@@ -242,8 +242,8 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                 {/* ────────────────────────────── SOLUTION ────────────────────────────── */}
                 <section id="solution">
                   <Label>Solution</Label>
-                  <div className="flex items-end gap-3">
-                    <h2 className="text-h2 font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
+                  <div className="flex flex-col md:flex-row items-start md:items-end gap-4 md:gap-3">
+                    <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3] md:flex-1 md:min-w-0">
                       A cutting-edge homepage that signals AI-driven innovation while staying
                       unmistakably on-brand.
                     </h2>
@@ -258,7 +258,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                   <div>
                     <TwoColumnSection heading="First impressions — a hero that earns a double-take">
                       <div>
-                        <p className="text-body-big text-text-secondary">
+                        <p className="text-body-small md:text-body-big text-text-secondary">
                           Getting the hero right was the most involved part of the process.
                           It was originally scoped to graphic design, but she was at capacity on
                           day-to-day needs, so I picked it up. I produced{' '}
@@ -278,7 +278,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">1</span>
-                          <p className="text-body-big text-text-primary">
+                          <p className="text-body-small md:text-body-big text-text-primary">
                             <span className="text-primary">Ownership was ambiguous</span> — was graphic design responsible, or UX?
                           </p>
                         </div>
@@ -286,7 +286,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">2</span>
-                          <p className="text-body-big text-text-primary">
+                          <p className="text-body-small md:text-body-big text-text-primary">
                             <span className="text-primary">The end state was hard to define</span> — Marketing Director, GTM Lead, or my manager as final say?
                           </p>
                         </div>
@@ -294,7 +294,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">3</span>
-                          <p className="text-body-big text-text-primary">
+                          <p className="text-body-small md:text-body-big text-text-primary">
                             The CEO wouldn&apos;t accept <span className="text-primary">a dark website</span>, so every direction had to work on light.
                           </p>
                         </div>
@@ -302,7 +302,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">4</span>
-                          <p className="text-body-big text-text-primary">
+                          <p className="text-body-small md:text-body-big text-text-primary">
                             Meeting <span className="text-primary">color-contrast accessibility across gradients, responsive breakpoints, and Conductor&apos;s challenging green brand color</span>.
                           </p>
                         </div>
@@ -315,7 +315,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                   {/* Subsection: Simplified product visuals */}
                   <div>
                     <TwoColumnSection heading="Simplified product visuals that tease the functionality and stay future-proof.">
-                      <p className="text-body-big text-text-secondary">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
                         Rather than screenshot the current UI, I built{' '}
                         <span className="text-primary">abstracted product visuals</span> that
                         communicate the product&apos;s value without locking the site to any
@@ -331,7 +331,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                   {/* Subsection: New product icons */}
                   <div>
                     <TwoColumnSection heading="A new product icon set with cross-team buy-in.">
-                      <p className="text-body-big text-text-secondary">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
                         I designed the icon set anchored on{' '}
                         <span className="text-primary">color associations from one department</span>,
                         then refined it with the broader design team. The final set earned
@@ -348,7 +348,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                   {/* Subsection: Scannable sections */}
                   <div>
                     <TwoColumnSection heading="Scannable sections with custom, copy-driven illustrations.">
-                      <p className="text-body-big text-text-secondary">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
                         A net-new pattern: <span className="text-primary">hyper-simple custom illustrations</span>{' '}
                         that are visually cohesive and help tell the story of the copy. The copy{' '}
                         <span className="text-primary">directly</span> informed what I made — each
@@ -364,7 +364,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                   {/* Subsection: Summary visual */}
                   <div>
                     <TwoColumnSection heading="The rest of the page, pulled together.">
-                      <p className="text-body-big text-text-secondary">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
                         TODO: Expand on how the remaining sections tie back to the hero system — shared
                         shape language, motion, and color ways — so the whole homepage reads as
                         one cohesive moment rather than a stack of one-offs.
@@ -380,7 +380,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                 {/* ────────────────────────────── IMPACT ──────────────────────────────── */}
                 <section id="impact">
                   <Label>Impact</Label>
-                  <h2 className="text-h2 font-normal text-text-primary leading-[1.3]">
+                  <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
                     TODO: Impact headline (e.g. &ldquo;Launched on time, on-brand, and on-message&rdquo;)
                   </h2>
 
@@ -388,14 +388,14 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
 
                   <div className="flex flex-col md:flex-row gap-8">
                     <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1 flex flex-col gap-4 justify-center">
-                      <p className="text-h2 font-normal text-primary">TODO: metric</p>
-                      <p className="text-body-big text-text-primary">
+                      <p className="text-h3 md:text-h2 font-normal text-primary">TODO: metric</p>
+                      <p className="text-body-small md:text-body-big text-text-primary">
                         TODO: Quantitative impact (e.g. traffic lift, engagement, enterprise leads)
                       </p>
                     </div>
                     <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1 flex flex-col gap-4 justify-center">
                       <ArrowUpRight size={48} strokeWidth={1.5} className="text-primary" />
-                      <p className="text-body-big text-text-primary">
+                      <p className="text-body-small md:text-body-big text-text-primary">
                         TODO: Qualitative impact (e.g. stakeholder feedback, brand perception shift)
                       </p>
                     </div>
@@ -409,14 +409,14 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                   <Label>Takeaways</Label>
                   <TwoColumnSection heading="TODO: Takeaway headline">
                     <div>
-                      <p className="text-body-big text-text-secondary">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
                         The homepage now sets a visual bar the rest of the site can grow into.
                         The clear next step is to{' '}
                         <span className="text-primary">formalize this work as a design system</span>{' '}
                         and roll it through the remaining pages as quickly as possible — because
                         the homepage now diverges meaningfully from everything behind it.
                       </p>
-                      <p className="text-body-big text-text-secondary mt-6">
+                      <p className="text-body-small md:text-body-big text-text-secondary mt-6">
                         TODO: Personal takeaway — what you learned about leading a cross-functional
                         redesign under ambiguous decision ownership, and what you&apos;d do
                         differently next time.

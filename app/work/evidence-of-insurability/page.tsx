@@ -101,7 +101,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                 {/* ────────────────────────────── OVERVIEW ────────────────────────────── */}
                 <section id="overview">
                   <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-4">Overview</p>
-                  <div className="text-body-big md:text-body-biggest text-text-secondary">
+                  <div className="text-body-small md:text-body-big lg:text-body-biggest text-text-secondary">
                     <p>
                       I&apos;m redesigning portions of an Evidence of Insurability flow that
                       consumers move through to qualify for extended health insurance products.
@@ -152,11 +152,11 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
 
                     <section id="case-study">
                       <Label>Case Study</Label>
-                      <h2 className="text-h2 font-normal text-text-primary leading-[1.3]">
+                      <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
                         TODO: Full case study content goes here.
                       </h2>
                       <div className="h-8" />
-                      <p className="text-body-big text-text-secondary">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
                         TODO: Build out Problem / Goals / Challenges / Solution / Impact /
                         Takeaways sections mirroring the pattern used in the Bricks and
                         Conductor case studies. The paywall plumbing above is independent of

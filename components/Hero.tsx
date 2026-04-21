@@ -13,13 +13,13 @@ export default function Hero() {
           Brooklyn, New York
         </p>
 
-        <h1 className="font-normal text-text-primary mb-4 text-h2 lg:text-display animate-fade-in-up">
+        <h1 className="font-normal text-text-primary mb-4 text-h3 md:text-h2 lg:text-display animate-fade-in-up">
           UX Strategist & Product Designer solving complex problems with{' '}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">human-centered design</span> and{' '}
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">systems thinking.</span>
         </h1>
 
-        <p className="text-body-big text-text-secondary pb-12 md:pb-16 animate-fade-in-left" style={{ animationDelay: '0.8s' }}>
+        <p className="text-body-small md:text-body-big text-text-secondary pb-12 md:pb-16 animate-fade-in-left" style={{ animationDelay: '0.8s' }}>
           Currently designing claims experiences @{' '}
           <InlineLink href="https://chubb.com" external variant="subtle">Chubb</InlineLink>{' '}
           and pursuing a MS in Information Experience Design @{' '}
