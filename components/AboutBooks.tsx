@@ -61,12 +61,12 @@ export default function AboutBooks() {
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-10 lg:items-start lg:min-h-[648px]">
           {/* Left — prose */}
           <div className="lg:flex-1 lg:min-w-0">
-            <p className="text-body-big text-text-secondary">
+            <p className="text-body-small md:text-body-big text-text-secondary">
               Outside of design you can find me at the yoga studio, seeing the
               latest campy horror movie, and eating through the pastry cases of
               Brooklyn cafés.
             </p>
-            <p className="text-body-big text-text-secondary mt-6">
+            <p className="text-body-small md:text-body-big text-text-secondary mt-6">
               I also read on occasion, and have four books that I consider to
               have changed my life.
             </p>

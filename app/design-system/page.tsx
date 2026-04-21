@@ -17,7 +17,7 @@ export default function DesignSystemPage() {
           <div className="max-w-page w-full">
             <div className="h-8" />
             <h1 className="text-h1 md:text-display font-normal text-text-primary">Design System</h1>
-            <p className="text-body-big text-text-secondary mt-4">
+            <p className="text-body-small md:text-body-big text-text-secondary mt-4">
               Semantic tokens, type scale, and spacing for this portfolio — mirrored 1:1 in Figma.
             </p>
           </div>

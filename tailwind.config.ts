@@ -91,6 +91,7 @@ const config: Config = {
         'h1':           ['2.488rem', { lineHeight: '1.3' }],
         'h2':           ['2.074rem', { lineHeight: '1.3' }],
         'h3':           ['1.728rem', { lineHeight: '1.3' }],
+        'h4':           ['1.44rem',  { lineHeight: '1.3' }],
         'body-biggest': ['1.44rem',  { lineHeight: '1.5' }],
         'body-big':     ['1.2rem',   { lineHeight: '1.5' }],
         'body-small':   ['1rem',     { lineHeight: '1.5' }],

@@ -70,8 +70,8 @@ export default function BricksDesignSystemCaseStudyPage() {
                 ))}
               </div>
               <div className="h-8" />
-              <div className="flex items-end gap-8">
-                <h1 className="text-h1 md:text-display font-normal text-text-primary flex-1 min-w-0">
+              <div className="flex flex-col md:flex-row items-start md:items-end gap-4 md:gap-8">
+                <h1 className="text-h1 md:text-display font-normal text-text-primary md:flex-1 md:min-w-0">
                   {study.title}
                 </h1>
                 <Button href="https://bricks.supernova-docs.io/latest/welcome-to-bricks/welcome-to-bricks-2mJr8rzI" external>View Live</Button>
@@ -104,7 +104,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                 {/* ────────────────────────────── OVERVIEW ────────────────────────────── */}
                 <section id="overview">
                   <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-4">Overview</p>
-                  <div className="text-body-big md:text-body-biggest text-text-secondary">
+                  <div className="text-body-small md:text-body-big lg:text-body-biggest text-text-secondary">
                     <p>
                       The Bricks Design System (&ldquo;Bricks&rdquo;) supports the development of{' '}
                       <InlineLink href="https://www.conductor.com/" external variant="emphasis">Conductor Intelligence</InlineLink>
@@ -158,7 +158,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                 {/* ────────────────────────────── PROBLEM ─────────────────────────────── */}
                 <section id="problem">
                   <Label>Problem</Label>
-                  <h2 className="text-h2 font-normal text-text-secondary leading-[1.3]">
+                  <h2 className="text-h3 md:text-h2 font-normal text-text-secondary leading-[1.3]">
                     Incomplete design system documentation leads to workflow bottlenecks and
                     designer-developer miscommunication.
                   </h2>
@@ -176,15 +176,15 @@ export default function BricksDesignSystemCaseStudyPage() {
                     <Label>Designers&apos; Pain Points</Label>
                     <TwoColumnSection heading="Incomplete documentation = workflow bottlenecks and decision re-hash">
                       <div>
-                        <p className="text-body-big text-text-secondary">
+                        <p className="text-body-small md:text-body-big text-text-secondary">
                           To best understand the current processes surrounding the Bricks Design System,
                           I interviewed 3 designers and 3 engineers. It became clear that,
                         </p>
-                        <p className="text-body-big text-primary mt-6">
+                        <p className="text-body-small md:text-body-big text-primary mt-6">
                           Designers do not trust the existing design system documentation because it is
                           incomplete and outdated.
                         </p>
-                        <p className="text-body-big text-text-secondary mt-6">
+                        <p className="text-body-small md:text-body-big text-text-secondary mt-6">
                           This leads designers to answer their design system related questions in one of
                           three ways:
                         </p>
@@ -195,7 +195,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">1</span>
-                          <p className="text-body-big text-text-primary">
+                          <p className="text-body-small md:text-body-big text-text-primary">
                             <span className="text-primary">Ask the design systems lead</span>, creating a workflow bottleneck.
                           </p>
                         </div>
@@ -203,7 +203,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">2</span>
-                          <p className="text-body-big text-text-primary">
+                          <p className="text-body-small md:text-body-big text-text-primary">
                             <span className="text-primary">Search past design files</span> to mimic previous applications of certain components.
                           </p>
                         </div>
@@ -211,7 +211,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">3</span>
-                          <p className="text-body-big text-text-primary">
+                          <p className="text-body-small md:text-body-big text-text-primary">
                             Post their question to Slack where the{' '}
                             <span className="text-primary">design team collectively rehashes design
                             decisions that were already made</span>{' '}
@@ -228,7 +228,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                   <div>
                     <Label>Developers&apos; Pain Points</Label>
                     <TwoColumnSection heading="Storybook components don't match Figma representations">
-                      <p className="text-body-big text-text-secondary">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
                         The capabilities of the built Bricks components in Storybook were much broader
                         than the more constrained Figma representations, creating{' '}
                         <span className="text-primary">confusion at designer-developer handoff</span>.
@@ -242,8 +242,8 @@ export default function BricksDesignSystemCaseStudyPage() {
                 {/* ────────────────────────────── SOLUTION ────────────────────────────── */}
                 <section id="solution">
                   <Label>Solution</Label>
-                  <div className="flex items-end gap-3">
-                    <h2 className="text-h2 font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
+                  <div className="flex flex-col md:flex-row items-start md:items-end gap-4 md:gap-3">
+                    <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3] md:flex-1 md:min-w-0">
                       A trusted, single-source of truth that aligns development and design teams.
                     </h2>
                     <Button variant="outline" href="https://bricks.supernova-docs.io/latest/welcome-to-bricks/welcome-to-bricks-2mJr8rzI" external>View Live</Button>
@@ -257,10 +257,10 @@ export default function BricksDesignSystemCaseStudyPage() {
                   <div>
                     <TwoColumnSection heading="Show, don't tell">
                       <div className="flex flex-col gap-0">
-                        <p className="text-h3 font-normal text-text-secondary">
+                        <p className="text-h4 md:text-h3 font-normal text-text-secondary">
                           Scannable dos &amp; don&apos;ts
                         </p>
-                        <p className="text-body-big text-text-secondary mt-2">
+                        <p className="text-body-small md:text-body-big text-text-secondary mt-2">
                           Top design system documentation sites like{' '}
                           <InlineLink href="https://carbondesignsystem.com/components/checkbox/usage/#when-not-to-use" external variant="emphasis">IBM Carbon</InlineLink>{' '}
                           list dos and don&apos;ts for their components in a quickly scannable and digestible
@@ -278,7 +278,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                   {/* Subsection: Interactive embeds */}
                   <div>
                     <TwoColumnSection heading="Interactive Storybook embeds communicate expected behavior">
-                      <p className="text-body-big text-text-secondary">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
                         Instead of describing expected component behavior, I relied on interactive Storybook
                         embeds.{' '}
                         <span className="text-primary">This provides designers with a richer, visual-first understanding of expected
@@ -294,7 +294,7 @@ export default function BricksDesignSystemCaseStudyPage() {
 
                   {/* Subsection: Surface use cases */}
                   <div>
-                    <h2 className="text-h2 font-normal text-text-primary leading-[1.3] mb-8">
+                    <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3] mb-8">
                       Surface component use cases early for discoverability
                     </h2>
                     <div className="flex flex-col md:flex-row gap-8 items-start">
@@ -302,7 +302,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                         <ImageBlock src="/images/bricks-inputs-overview.webp" alt="Text-based inputs overview showing component cards for Text Input, Text Area, Tags Input, Search Field, and Password Input" caption="Snapshot of Inputs Overview Page" />
                       </div>
                       <div className="flex-1 min-w-0">
-                        <p className="text-body-big text-text-secondary">
+                        <p className="text-body-small md:text-body-big text-text-secondary">
                           After feedback on V1 from the design team, I iterated to create landing pages for
                           each grouping of components that{' '}
                           <span className="text-primary">surfaces their targeted use cases for better
@@ -317,7 +317,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                   {/* Subsection: Side-by-side comparisons */}
                   <div>
                     <TwoColumnSection heading="Side-by-side comparisons differentiate similar components.">
-                      <p className="text-body-big text-text-secondary">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
                         Most design systems questions sent to the Slack channel followed the form &ldquo;Should
                         I use X component or Y component in this situation?&rdquo; To meet the unique needs of
                         Conductor&apos;s specific design team, I included documentation sections that{' '}
@@ -334,7 +334,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                   <div>
                     <Label>Behind the Scenes</Label>
                     <TwoColumnSection heading="Repeatable and maintainable process supporting long-term quality and scale.">
-                      <p className="text-body-big text-text-secondary">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
                         When new components do need to be added to the documentation site,{' '}
                         <span className="text-primary">I built slot-component Figma templates to quickly and easily update the documentation and
                         maintain visual consistency.</span>
@@ -348,7 +348,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                 {/* ────────────────────────────── IMPACT ──────────────────────────────── */}
                 <section id="impact">
                   <Label>Impact</Label>
-                  <h2 className="text-h2 font-normal text-text-primary leading-[1.3]">
+                  <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
                     No more bottlenecks
                   </h2>
 
@@ -356,14 +356,14 @@ export default function BricksDesignSystemCaseStudyPage() {
 
                   <div className="flex flex-col md:flex-row gap-8">
                     <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1 flex flex-col gap-4 justify-center">
-                      <p className="text-h2 font-normal text-primary">100%</p>
-                      <p className="text-body-big text-text-primary">
+                      <p className="text-h3 md:text-h2 font-normal text-primary">100%</p>
+                      <p className="text-body-small md:text-body-big text-text-primary">
                         All 26 foundational components documented
                       </p>
                     </div>
                     <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1 flex flex-col gap-4 justify-center">
                       <ArrowDownRight size={48} strokeWidth={1.5} className="text-primary" />
-                      <p className="text-body-big text-text-primary">
+                      <p className="text-body-small md:text-body-big text-text-primary">
                         Fewer design system use-case questions posted to Slack
                       </p>
                     </div>
@@ -376,7 +376,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                 <section id="takeaways">
                   <Label>Takeaways</Label>
                   <TwoColumnSection heading="Done is better than perfect">
-                    <p className="text-body-big text-text-secondary">
+                    <p className="text-body-small md:text-body-big text-text-secondary">
                       Striving for flawless results can lead to overthinking, procrastination, and
                       unnecessary delays. When something is finished, even if it&apos;s not perfect, it
                       allows room for growth and improvement. That was the entire goal of this project —

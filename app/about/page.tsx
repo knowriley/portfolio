@@ -44,7 +44,7 @@ export default function AboutPage() {
         <section className="flex justify-center px-5 md:px-10 py-12 md:py-20">
           <div className="max-w-page w-full">
             <div className="lg:max-w-[696px]">
-              <p className="text-body-big text-text-secondary">
+              <p className="text-body-small md:text-body-big text-text-secondary">
                 Currently,{' '}
                 <span className="text-primary [&_a]:text-inherit">
                   I&rsquo;m driving user-centered design practices end-to-end
@@ -59,7 +59,7 @@ export default function AboutPage() {
                 portal and additionally support the design and testing of
                 multiple agents&rsquo; quoting experiences.
               </p>
-              <p className="text-body-big text-text-secondary mt-6">
+              <p className="text-body-small md:text-body-big text-text-secondary mt-6">
                 Previously, I contributed to major web, product and design
                 system initiatives at{' '}
                 <InlineLink href="https://www.conductor.com/" external>
@@ -69,7 +69,7 @@ export default function AboutPage() {
                 led freelance UX research and design projects across education,
                 nonprofits, and the arts.
               </p>
-              <p className="text-body-big text-text-secondary mt-6">
+              <p className="text-body-small md:text-body-big text-text-secondary mt-6">
                 Additionally, I am completing a MS in Information Experience
                 Design from{' '}
                 <InlineLink

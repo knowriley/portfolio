@@ -99,7 +99,7 @@ export function NumberedCallout({
     <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
       <div className="flex gap-4 items-center">
         <span className="text-body-biggest text-text-primary shrink-0">{number}</span>
-        <p className="text-body-big text-text-primary">{children}</p>
+        <p className="text-body-small md:text-body-big text-text-primary">{children}</p>
       </div>
     </div>
   )

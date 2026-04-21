@@ -49,12 +49,18 @@ The site uses Tailwind's default breakpoints with three active tiers:
 
 **Horizontal padding:** Every full-width section shell uses `px-5 md:px-10` (20px mobile → 40px desktop). The nav inner container uses `px-5 md:px-0`.
 
-**Typography scaling:** Large headings step down one notch on mobile:
+**Typography scaling:** Every heading and every size above `body-small` steps down one notch on mobile:
 - `text-display` → `text-h1 md:text-display`
 - `text-h1` → `text-h2 md:text-h1`
-- `text-h2` → `text-h3 md:text-h2` (in TwoColumnSection)
-- `text-body-biggest` → `text-body-big md:text-body-biggest` (overview prose)
-- `text-body-big` and below stay fixed — already comfortable at mobile widths
+- `text-h2` → `text-h3 md:text-h2`
+- `text-h3` → `text-h4 md:text-h3`
+- `text-body-biggest` → `text-body-small md:text-body-big lg:text-body-biggest` (overview prose — 3-tier, since body-biggest's desktop value sits two notches above body-small)
+- `text-body-big` → `text-body-small md:text-body-big` (all primary prose, bio copy, labels)
+- `text-body-small` and below stay fixed — already at the comfortable floor for mobile
+
+**The only exception:** `text-body-biggest` used as a *card title or step-number indicator* (`CaseStudyCard` thumbnail title, `NumberedCallout` number, `CaseStudyPaywall` heading, `WorkGrid` "Featured Work") stays at `text-body-biggest` across all breakpoints — these are compact visual anchors, not long-form prose, and stepping them down would make the card/callout hierarchy collapse on mobile.
+
+`text-h4` exists solely as the mobile-side value for `text-h3` — never use it as a standalone role on desktop. Same font-size as `text-body-biggest` (1.44rem / 23.04px) but with heading line-height (1.3 vs 1.5).
 
 **Vertical spacing:** Large spacing scales down on mobile:
 - `py-20` → `py-12 md:py-20`
@@ -75,7 +81,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 - **Spacing** (28 vars) — `spacing/0` through `spacing/384`, scoped to GAP and WIDTH_HEIGHT
 - **Border Radius** (10 vars) — `radius/none` through `radius/full`, scoped to CORNER_RADIUS
 
-**Figma text styles** (9) mirror the role-based type scale: display, h1, h2, h3, body-biggest, body-big, body-small, small, label — all using Inter.
+**Figma text styles** (10) mirror the role-based type scale: display, h1, h2, h3, h4, body-biggest, body-big, body-small, small, label — all using Inter. `h4` is mobile-only — exists as the step-down pair for `h3`.
 
 **Figma effect styles** (7) mirror `boxShadow` tokens: shadow/xs through shadow/2xl + shadow/inner.
 
@@ -129,6 +135,7 @@ All text sizing uses the named type scale defined in `tailwind.config.ts` — do
 | `text-h1` | 2.488rem / 39.81px | 1.3 | Page-level headings |
 | `text-h2` | 2.074rem / 33.18px | 1.3 | Section headings, pull quotes, metric values |
 | `text-h3` | 1.728rem / 27.65px | 1.3 | Sub-section headings within a section |
+| `text-h4` | 1.44rem / 23.04px | 1.3 | Mobile-only — auto-paired with `text-h3` as `text-h4 md:text-h3` |
 | `text-body-biggest` | 1.44rem / 23.04px | 1.5 | Card titles, sub-headings |
 | `text-body-big` | 1.2rem / 19.2px | 1.5 | Primary prose, bio copy |
 | `text-body-small` | 1rem / 16px | 1.5 | Secondary prose, links, nav, badges |
@@ -142,7 +149,7 @@ All text sizing uses the named type scale defined in `tailwind.config.ts` — do
 - Step/index numbers use `font-mono text-small text-text-tertiary`
 - The footer wordmark uses `text-[56px] md:text-[80px] lg:text-[120px]` — decorative, intentionally outside the scale
 
-These classes mirror the Figma text styles (`display`, `h1`, `h2`, `body-biggest`, `body-big`, `body-small`, `small`) exactly.
+These classes mirror the Figma text styles (`display`, `h1`, `h2`, `h3`, `h4`, `body-biggest`, `body-big`, `body-small`, `small`) exactly.
 
 **Case study page layout:**
 
@@ -153,16 +160,16 @@ Pages follow a 3-column flex layout inside the standard `flex justify-center px-
 gap-8, py-20
 ```
 
-- **Hero** (`pt-16 pb-12`): tags row → `h-8` spacer → `text-display font-normal` title, full `max-w-page` width. No metadata in the hero.
+- **Hero** (`pt-16 pb-12`): tags row → `h-8` spacer → `text-h1 md:text-display font-normal` title, full `max-w-page` width. No metadata in the hero.
 - **Cover image** (`pb-16`): full-width `aspect-video bg-bg-secondary rounded-sm`.
 - **TOC** (left column, `sticky top-32`): plain `text-body-small text-text-secondary` links, no step numbers. `top-32` (128px) clears the 64px sticky nav with generous breathing room.
 - **Notes** (right column): empty `w-[200px]` spacer — reserved for future annotations.
 
 **Section pattern inside the content column:**
 - Label: `text-body-small text-text-tertiary mb-4`
-- Section heading: `text-h2 font-normal text-text-primary leading-[1.3]`
-- Body prose: `text-body-big text-text-secondary`
-- Overview prose (first section): `text-body-biggest text-text-primary`
+- Section heading: `text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]`
+- Body prose: `text-body-small md:text-body-big text-text-secondary`
+- Overview prose (first section): `text-body-small md:text-body-big lg:text-body-biggest text-text-primary`
 - **Between major sections:** `<div className="h-24" />` + `<div className="border-t border-border-subtle" />` + `<div className="h-24" />`
 - **Between subsections within a section:** `<div className="h-24" />`
 - **Before images within a subsection:** `<div className="h-12" />`
@@ -179,13 +186,13 @@ gap-8, py-20
 ```
 bg-bg-secondary border border-border rounded-sm px-10 py-7
 ```
-- Numbered: `flex gap-4 items-center` | number `text-body-biggest` | body `text-body-big text-text-primary`
+- Numbered: `flex gap-4 items-center` | number `text-body-biggest` (fixed, does not step down) | body `text-body-small md:text-body-big text-text-primary`
 - Stat: large value `text-display font-normal text-text-primary` + caption `text-body-big text-text-primary`
 
 **Metadata grid** (Overview section) — responsive CSS grid: `grid grid-cols-2 md:grid-cols-3 gap-8 pt-8`. Six metadata fields (Role, Team, For, Tools, Timeline, Status) reflow from 3 rows × 2 cols on mobile to 2 rows × 3 cols on tablet+. Each cell is `flex flex-col gap-1.5` — label `text-small font-medium uppercase tracking-widest text-text-tertiary pb-2`, value `text-body-small text-text-secondary`. Add new metadata fields in multiples that divide cleanly into both column counts (6 works; 4 or 5 produce a ragged tail on desktop).
 
 **Password-protected case study pages** — three intentional deviations from the standard case study shell:
-- **Hero has no `View Live` button.** The flex row wrapping `<h1>` + `<Button>` is omitted; the `<h1>` renders bare. Pages: `app/work/evidence-of-insurability/page.tsx`, `app/work/ai-claims-portal/page.tsx`. When the password gate is lifted, add the Button back and wrap in `<div className="flex items-end gap-8">` to match Bricks/Conductor.
+- **Hero has no `View Live` button.** The flex wrapper around `<h1>` + `<Button>` is omitted; the `<h1>` renders bare. Pages: `app/work/evidence-of-insurability/page.tsx`, `app/work/ai-claims-portal/page.tsx`. When the password gate is lifted, add the Button back and wrap in `<div className="flex flex-col md:flex-row items-start md:items-end gap-4 md:gap-8">` to match Bricks/Conductor — the heading + button stack vertically (button left-aligned) on mobile and sit side-by-side with the button bottom-aligned at md+.
 - **TOC is gated behind the unlock state, but its column is preserved.** When `unlocked === false`, swap the `<TableOfContents>` for an empty `<div aria-hidden className="hidden lg:block w-[180px] shrink-0" />` instead of removing it. This hides the sidebar (a locked page only shows the Overview teaser + paywall, so advertising unreachable structure is wrong) while keeping the content column visually centered between the left spacer and the right `w-[200px]` notes column. Removing the TOC entirely shifts content left and breaks the rhythm.
 - **Paywall spacer** before `<CaseStudyPaywall>` uses `<div className="h-16 md:h-24" />` — not `<SectionDivider>`. The paywall fades into the content (via its own `from-transparent to-bg` gradient at `-top-40`), so a hard rule would fight the fade. The `h-16 md:h-24` (64px → 96px) matches the rhythm of major section spacing without introducing a visible divider.
 
