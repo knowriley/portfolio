@@ -79,7 +79,10 @@ export default async function AiClaimsPortalCaseStudyPage() {
           {/* ── Cover image ── */}
           <div className="flex justify-center px-5 md:px-10 pb-10 md:pb-16">
             <div className="max-w-page w-full">
-              <ImageBlock label="TODO: Cover image for AI Claims Portal" />
+              <ImageBlock
+                src="/images/chubb-cover-unified-experience.webp"
+                alt="Unified Chubb Benefits portal case study cover"
+              />
             </div>
           </div>
         </div>

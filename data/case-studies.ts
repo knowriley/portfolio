@@ -39,6 +39,7 @@ const rawCaseStudies: CaseStudy[] = [
     tags: ['AI Workflows', 'Rapid Prototyping', 'User Testing'],
     year: 'Mar 2026 - Present',
     industry: 'Insurance',
+    thumbnail: '/images/chubb-cover-eoi.webp',
   },
   {
     slug: 'ai-claims-portal',
@@ -48,6 +49,7 @@ const rawCaseStudies: CaseStudy[] = [
     tags: ['Figma Engineering for AI', 'Cross-functional Alignment'],
     year: 'Mar 2026 - Present',
     industry: 'Insurance',
+    thumbnail: '/images/chubb-cover-unified-experience.webp',
   },
 ]
 
