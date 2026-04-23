@@ -79,7 +79,10 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
           {/* ── Cover image ── */}
           <div className="flex justify-center px-5 md:px-10 pb-10 md:pb-16">
             <div className="max-w-page w-full">
-              <ImageBlock label="TODO: Cover image for Evidence of Insurability" />
+              <ImageBlock
+                src="/images/chubb-cover-eoi.webp"
+                alt="Evidence of Insurability case study cover"
+              />
             </div>
           </div>
         </div>
