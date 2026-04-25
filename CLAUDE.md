@@ -206,7 +206,7 @@ gap-8, py-20
 - Section heading: `text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]`
 - Body prose: `text-body-small md:text-body-big text-text-secondary`
 - Overview prose (first section): `text-body-small md:text-body-big lg:text-body-biggest text-text-primary`
-- **Between major sections:** `<div className="h-24" />` + `<div className="border-t border-border-subtle" />` + `<div className="h-24" />`
+- **Between major sections:** use the `<SectionDivider />` component from `components/case-study.tsx`. Renders `h-12 md:h-24` spacer + a `border-t border-border` rule constrained to the `max-w-page` content shell + matching bottom spacer.
 - **Between subsections within a section:** `<div className="h-24" />`
 - **Before images within a subsection:** `<div className="h-12" />`
 

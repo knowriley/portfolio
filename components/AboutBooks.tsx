@@ -32,14 +32,14 @@ const books: Book[] = [
     title: 'Bird by Bird',
     cover: { src: '/images/books/book-bird-by-bird.webp', alt: 'Bird by Bird cover' },
     description:
-      'The newest addition to this list, this book is a neurotic and for me, deeply relatable storytelling of exceptional advice that came at the exact time I needed it. For those who recognize themself in the pages, reading this book feels like a long hug.',
+      'The newest addition to this list, this book is a hilarious, neurotic and deeply relatable storytelling of exceptional advice that came at the exact time I needed it. For those who recognize themself in the pages, reading this book feels like a long hug.',
     buyUrl: 'https://bookshop.org/p/books/bird-by-bird-some-instructions-on-writing-and-life-anne-lamott/8649952',
   },
   {
     title: 'Your Survival Instinct is Killing You',
     cover: { src: '/images/books/book-your-survival-instinct-is-killing-you.webp', alt: 'Your Survival Instinct is Killing You cover' },
     description:
-      'An unpleasant and jarring look in the mirror. One I return to begrudgingly when I\u2019m frustrated that I can\u2019t accomplish everything all at once perfectly.',
+      'This book taught me how to use discomfort as a tool for growth. Being resilient is really core to my identity, and this book is to thank.',
     buyUrl: 'https://bookshop.org/p/books/your-survival-instinct-is-killing-you-retrain-your-brain-to-conquer-fear-and-build-resilience-marc-schoen/16629515',
   },
   {
