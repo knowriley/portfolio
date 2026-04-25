@@ -79,17 +79,19 @@ export default function TestimonialCarousel() {
   return (
     <section className="flex justify-center px-5 md:px-10 py-12 md:py-20">
       <div className="max-w-page w-full flex flex-col gap-12">
-        {/* Quote */}
-        <p className="font-normal text-text-primary text-h3 md:text-h2 lg:text-display">
-          {t.segments.map((seg, i) =>
-            seg.highlight ? (
-              <span key={i} className="bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">
-                {seg.text}
-              </span>
-            ) : (
-              <span key={i}>{seg.text}</span>
-            )
-          )}
+        {/*
+          Gradient is applied to the parent <p> (bg-clip:text + text-transparent), so the
+          red→pink wash spans the whole quote as one continuous image. Non-highlighted segments
+          override `color` with `text-text-primary` to render solid; highlighted segments inherit
+          the parent's transparent fill, revealing the slice of gradient at their position.
+          See CLAUDE.md → Gradient system for the canonical pattern.
+        */}
+        <p className="font-normal text-h3 md:text-h2 lg:text-display bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">
+          {t.segments.map((seg, i) => (
+            <span key={i} className={seg.highlight ? undefined : 'text-text-primary'}>
+              {seg.text}
+            </span>
+          ))}
         </p>
 
         {/* Dots */}

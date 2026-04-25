@@ -128,7 +128,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 
 **Gradient system** (`gradient.*` tokens in `tailwind.config.ts`):
 
-Two named gradients available — always applied as `bg-clip-text text-transparent bg-gradient-to-r [&_a]:text-inherit`. Use only when explicitly requested:
+Two named gradients available — always applied via the parent-element pattern below. Use only when explicitly requested:
 
 | Name | Classes | Tokens | Use |
 |---|---|---|---|
@@ -136,6 +136,28 @@ Two named gradients available — always applied as `bg-clip-text text-transpare
 | Pink-orange | `from-gradient-red from-[22%] to-gradient-orange` | `#f02065 → #ff7700` | Large text highlights (h2 and larger) and decorative items — on request |
 
 Never use raw hex values for these — always use the `gradient-*` token classes.
+
+**Apply the gradient to the parent element, not per highlighted phrase.** When a heading or paragraph has multiple highlighted segments, wrapping each segment in its own `bg-clip-text bg-gradient-to-r ...` span makes each phrase render its own narrow, independent gradient — the result reads as several disconnected color washes rather than one continuous one. Instead, paint the gradient on the parent element and selectively suppress it on non-highlighted text:
+
+```tsx
+<h1 className="text-h3 md:text-h2 lg:text-display bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">
+  <span className="text-text-primary">Riley is an </span>
+  experience strategist
+  <span className="text-text-primary">, </span>
+  interaction designer
+  <span className="text-text-primary"> and </span>
+  designer engineer
+  <span className="text-text-primary"> based in Brooklyn, NY.</span>
+</h1>
+```
+
+How it works: `bg-clip-text` on the parent restricts the gradient image to the area of text glyphs. `text-transparent` makes glyphs see-through so the clipped gradient shows. Child spans with `text-text-primary` paint solid text on top, hiding the gradient under those segments. The result: every highlighted phrase reveals the slice of gradient at its position, so the entire heading reads as one continuous wash.
+
+**The highlight color always wins over link color** still applies — any `InlineLink` inside a highlighted region of a parent gradient should be wrapped so its anchor inherits the parent's transparent fill (use `[&_a]:text-inherit` on the gradient parent, not on each child span).
+
+Reference implementations:
+- `components/Hero.tsx` — final-state h1 with three highlighted phrases
+- `components/TestimonialCarousel.tsx` — testimonial quotes with one or more highlighted segments per testimonial
 
 **Layout:** `flex justify-center px-10` + inner `max-w-page w-full` is the standard section container (1560px max, 40px horizontal padding). `max-w-page` is defined in `tailwind.config.ts`. The nav uses `max-w-page mx-auto` with no horizontal padding — logo and links sit flush with the container edges.
 
