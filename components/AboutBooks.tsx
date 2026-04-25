@@ -72,8 +72,8 @@ export default function AboutBooks() {
             </p>
           </div>
 
-          {/* Center — book cover (empty until a book is selected) */}
-          <div className="lg:w-96 lg:shrink-0">
+          {/* Center — book cover (empty until a book is selected). Mobile slots it last (order-4) so the description sits directly above it; desktop reverts to source order. */}
+          <div className="order-4 lg:order-none lg:w-96 lg:shrink-0">
             {active && (
               <div key={activeIndex} className="animate-fade-in">
                 {active.buyUrl ? (
@@ -99,8 +99,27 @@ export default function AboutBooks() {
             )}
           </div>
 
-          {/* Right — book list (accordion: click to reveal description) */}
-          <div className="lg:w-[400px] lg:shrink-0">
+          {/* Mobile-only — active book's description, sits between list and cover */}
+          {active?.description && (
+            <div
+              key={`desc-${activeIndex}`}
+              className="order-3 lg:hidden animate-fade-in"
+            >
+              <div className="px-2.5 text-body-small text-text-secondary">
+                {active.description}
+                {active.buyUrl && (
+                  <div className="mt-4">
+                    <InlineLink href={active.buyUrl} external variant="icon-emphasis">
+                      Read {active.title}
+                    </InlineLink>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Right — book list (accordion: click to reveal description). Mobile orders this just after the prose; desktop reverts to source order. */}
+          <div className="order-2 lg:order-none lg:w-[400px] lg:shrink-0">
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-4">
               Books
             </p>
@@ -123,7 +142,7 @@ export default function AboutBooks() {
                     </button>
                     {book.description && (
                       <div
-                        className={`grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out ${
+                        className={`hidden lg:grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out ${
                           isActive ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
                         }`}
                       >
