@@ -9,12 +9,14 @@ export function Label({ children }: { children: ReactNode }) {
   return <p className="text-body-small text-text-tertiary mb-4">{children}</p>
 }
 
-// Major section divider: 96px gap → rule → 96px gap (scales down on mobile)
+// Major section divider: 96px gap → rule → 96px gap (scales down on mobile).
+// The rule fills the full width of whatever parent it's rendered into — case study pages drop
+// it inside the 3-column content column so it matches the metadata grid / prose width.
 export function SectionDivider() {
   return (
     <>
       <div className="h-12 md:h-24" />
-      <div className="border-t border-border-subtle" />
+      <div className="border-t border-border" />
       <div className="h-12 md:h-24" />
     </>
   )

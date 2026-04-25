@@ -1,7 +1,5 @@
-'use client'
-
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import NavLink from './NavLink'
 
 const links = [
   { href: '/', label: 'work' },
@@ -10,8 +8,6 @@ const links = [
 ]
 
 export default function Nav() {
-  const pathname = usePathname()
-
   return (
     <nav className="sticky top-0 z-50 bg-bg border-b border-border-subtle px-5 md:px-10">
       <div className="max-w-page mx-auto h-16 flex items-center justify-between w-full">
@@ -27,25 +23,11 @@ export default function Nav() {
         </Link>
 
         <ul className="flex items-center gap-2">
-          {links.map((link) => {
-            const isActive =
-              pathname === link.href ||
-              (link.href !== '/' && pathname.startsWith(link.href))
-            return (
-              <li key={link.href}>
-                <Link
-                  href={link.href}
-                  className={`block text-body-small px-2.5 py-1.5 rounded-sm transition-colors ${
-                    isActive
-                      ? 'text-text-primary font-medium'
-                      : 'text-text-secondary hover:text-text-primary hover:font-medium'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              </li>
-            )
-          })}
+          {links.map((link) => (
+            <li key={link.href}>
+              <NavLink href={link.href}>{link.label}</NavLink>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>

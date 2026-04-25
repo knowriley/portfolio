@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import FilterPill from './FilterPill'
 
 const audiences = [
   {
@@ -11,27 +12,27 @@ const audiences = [
   {
     label: 'Recruiters',
     message:
-      'I have 3+ years of experience designing, building and shipping across insurance, B2B, education, and more \u2014 for internal teams and consumer-facing experiences.',
+      'I have 3+ years of experience designing, building and shipping across insurance, B2B, education, and more — for internal teams and consumer-facing experiences.',
   },
   {
     label: 'Designers',
     message:
-      'I\u2019m driven by creating craft that scales, learning from other designers, and advocating for user-centered, accessible design.',
+      'I’m driven by creating craft that scales, learning from other designers, and advocating for user-centered, accessible design.',
   },
   {
     label: 'Design Managers',
     message:
-      'Integral to my work philosophy is being a community member - investing in shared standards, developing organizational design maturity and building design\u2019s influence as a strategic partner.',
+      'Integral to my work philosophy is being a community member - investing in shared standards, developing organizational design maturity and building design’s influence as a strategic partner.',
   },
   {
     label: 'Product Managers',
     message:
-      'My favorite problems live at the intersection of user experience and business goals. I partner with PMs to unpack complexity early, and ensure we\u2019re solving real problems that actually drive impact.',
+      'My favorite problems live at the intersection of user experience and business goals. I partner with PMs to unpack complexity early, and ensure we’re solving real problems that actually drive impact.',
   },
   {
     label: 'Engineers',
     message:
-      'My first love in design was architecting codebases—creating order from complexity through systems, logic, and modular components. I still design with an engineer\u2019s mindset - grounded in patterns and what\u2019s actually feasible to build.',
+      'My first love in design was architecting codebases—creating order from complexity through systems, logic, and modular components. I still design with an engineer’s mindset - grounded in patterns and what’s actually feasible to build.',
   },
 ]
 
@@ -45,19 +46,15 @@ export default function AboutHero() {
         <div className="flex flex-wrap items-center gap-2 mb-4 lg:mt-auto pt-10 lg:pt-0">
           <span className="text-body-small md:text-body-big text-text-primary mr-1">About Riley, for</span>
           {audiences.map((a, i) => (
-            <button
+            <FilterPill
               key={a.label}
-              type="button"
+              label={a.label}
+              selected={active === i}
               onClick={() => setActive(i)}
-              className={`text-body-small px-4 py-2 rounded-full border transition-colors animate-fade-in-up ${
-                active === i
-                  ? 'bg-bg-inverse text-text-inverse font-medium border-transparent'
-                  : 'bg-bg-secondary border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary'
-              }`}
+              size="small"
+              className="md:px-4 md:py-2 animate-fade-in-up"
               style={{ animationDelay: `${0.3 + i * 0.18}s`, animationDuration: '0.6s' }}
-            >
-              {a.label}
-            </button>
+            />
           ))}
         </div>
 

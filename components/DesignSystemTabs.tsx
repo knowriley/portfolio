@@ -49,6 +49,9 @@ const componentsToc = [
   { label: 'Navigation Link',    id: 'nav-link' },
   { label: 'Inline Link',        id: 'inline-link' },
   { label: 'Filter Pill',        id: 'filter-pill' },
+  { label: 'Tag',                id: 'tag' },
+  { label: 'Tab',                id: 'tab' },
+  { label: 'Carousel Dot',       id: 'carousel-dot' },
   { label: 'Table of Contents',  id: 'table-of-contents' },
 ]
 
@@ -1194,17 +1197,48 @@ function ComponentsContent() {
       <section id="filter-pill">
         <SubLabel>Filter Pill</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Inline in <span className="font-mono">components/WorkGrid.tsx</span>. Three states — no
-          selected-hover state by design.
+          Inline in <span className="font-mono">components/AboutHero.tsx</span>. Two sizes (default,
+          small) × three states — no selected-hover state by design. AboutHero auto-swaps default →
+          small below <span className="font-mono">md:</span> via responsive classes.
         </p>
 
-        <div className="mb-8 flex gap-2">
-          <button type="button" className="text-body-small px-4 py-2 rounded-full border bg-bg-secondary border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary transition-colors">
-            Design Systems
-          </button>
-          <button type="button" className="text-body-small font-medium px-4 py-2 rounded-full border bg-bg-inverse text-text-inverse border-transparent">
-            Selected
-          </button>
+        <div className="mb-8 flex flex-col gap-4">
+          <div className="flex items-center gap-4">
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-16 shrink-0">Default</p>
+            <button type="button" className="text-body-small px-4 py-2 rounded-full border bg-bg-secondary border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary transition-colors">
+              Design Systems
+            </button>
+            <button type="button" className="text-body-small font-medium px-4 py-2 rounded-full border bg-bg-inverse text-text-inverse border-transparent">
+              Selected
+            </button>
+          </div>
+          <div className="flex items-center gap-4">
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-16 shrink-0">Small</p>
+            <button type="button" className="text-body-small px-3 py-1.5 rounded-full border bg-bg-secondary border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary transition-colors">
+              Design Systems
+            </button>
+            <button type="button" className="text-body-small font-medium px-3 py-1.5 rounded-full border bg-bg-inverse text-text-inverse border-transparent">
+              Selected
+            </button>
+          </div>
+        </div>
+
+        <div className="mb-6">
+          <div className="flex gap-8 py-3 border-b border-border-subtle">
+            <p className="text-body-small text-text-tertiary w-24 shrink-0">Size</p>
+            <p className="text-body-small text-text-tertiary flex-1">Classes</p>
+            <p className="text-body-small text-text-tertiary flex-1">Use</p>
+          </div>
+          {[
+            { size: 'default', classes: 'text-body-small px-4 py-2', use: 'Tablet and up, desktop layouts' },
+            { size: 'small', classes: 'text-body-small px-3 py-1.5', use: 'Mobile, dense layouts' },
+          ].map(({ size, classes, use }) => (
+            <div key={size} className="flex items-center gap-8 py-4 border-b border-border-subtle">
+              <p className="font-mono text-body-small text-text-primary w-24 shrink-0">{size}</p>
+              <p className="font-mono text-body-small text-text-secondary flex-1 min-w-0">{classes}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
+            </div>
+          ))}
         </div>
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7">
@@ -1213,6 +1247,91 @@ function ComponentsContent() {
             Selected adds <span className="font-mono">font-medium</span> as a weight signal.
             Contrast: <span className="font-mono">#57534e</span> on white ≈ 7.0:1 · white on{' '}
             <span className="font-mono">#1c1917</span> ≈ 17.6:1 — both ✓ WCAG AA.
+          </p>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section id="tag">
+        <SubLabel>Tag</SubLabel>
+        <p className="text-body-small text-text-secondary mb-8">
+          Component: <span className="font-mono">components/CaseStudyTag.tsx</span>. Single visual
+          treatment, no variants. Used for the tag row in case study heroes and inside{' '}
+          <span className="font-mono">CaseStudyCard</span>. Visually mirrors the TOC active state but
+          with a pill shape.
+        </p>
+
+        <div className="mb-8 flex gap-2">
+          <span className="text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5">
+            Insurance
+          </span>
+          <span className="text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5">
+            B2B
+          </span>
+          <span className="text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5">
+            Design Systems
+          </span>
+        </div>
+
+        <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
+          <p className="text-body-small text-text-secondary">
+            Same `bg-bg-secondary` + `border-border-subtle` treatment as the TOC active item, but
+            `rounded-full` instead of `rounded-sm`. Padding `px-2.5 py-1.5` matches the TOC active
+            padding so tags and active TOC items have equal vertical weight.
+          </p>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section id="tab">
+        <SubLabel>Tab</SubLabel>
+        <p className="text-body-small text-text-secondary mb-8">
+          Inline pattern in <span className="font-mono">components/DesignSystemTabs.tsx</span>{' '}
+          (Foundations / Components header). Two states — Active and Inactive.
+        </p>
+
+        <div className="mb-8 flex gap-2">
+          <button type="button" className="text-body-small font-medium px-3 py-1.5 rounded-sm bg-bg-inverse text-text-inverse">
+            Active
+          </button>
+          <button type="button" className="text-body-small px-3 py-1.5 rounded-sm bg-bg-secondary border border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary transition-colors">
+            Inactive
+          </button>
+        </div>
+
+        <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
+          <p className="text-body-small text-text-secondary">
+            Active uses <span className="font-mono">bg-bg-inverse</span> + white text + medium
+            weight; inactive matches the Filter Pill unselected treatment. No selected-hover state
+            by design — once a tab is active, hovering it is a no-op.
+          </p>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section id="carousel-dot">
+        <SubLabel>Carousel Dot</SubLabel>
+        <p className="text-body-small text-text-secondary mb-8">
+          Inline pattern in <span className="font-mono">components/TestimonialCarousel.tsx</span>.
+          Small circular indicator buttons; two states — Active and Inactive.
+        </p>
+
+        <div className="mb-8 flex items-center gap-2">
+          <span className="size-2 rounded-full bg-text-primary inline-block" />
+          <span className="size-2 rounded-full bg-border-strong inline-block" />
+          <span className="size-2 rounded-full bg-border-strong inline-block" />
+          <span className="size-2 rounded-full bg-border-strong inline-block" />
+        </div>
+
+        <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
+          <p className="text-body-small text-text-secondary">
+            Active dot uses <span className="font-mono">bg-text-primary</span>; inactive dots use{' '}
+            <span className="font-mono">bg-border-strong</span> with{' '}
+            <span className="font-mono">hover:bg-text-tertiary</span>. <span className="font-mono">size-2</span>{' '}
+            (8px) circles, full radius.
           </p>
         </div>
       </section>
@@ -1228,10 +1347,10 @@ function ComponentsContent() {
         </p>
 
         <div className="mb-8 flex flex-col gap-1 w-fit">
-          <a href="#" className="block text-body-small text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:font-medium px-2.5 py-1.5 rounded-sm transition-colors">
+          <a href="#" className="block text-body-small text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:font-medium px-2.5 py-1.5 rounded-sm border border-transparent transition-colors">
             Overview
           </a>
-          <a href="#" className="block text-body-small font-medium text-text-primary bg-bg-secondary px-2.5 py-1.5 rounded-sm">
+          <a href="#" className="block text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle px-2.5 py-1.5 rounded-sm">
             Problem (active)
           </a>
         </div>
@@ -1240,7 +1359,11 @@ function ComponentsContent() {
           <p className="text-body-small text-text-secondary">
             Pass an array of <span className="font-mono">{'{ label, id }'}</span> items. The component
             uses IntersectionObserver to detect which <span className="font-mono">id</span> is in
-            view and highlights it. Positioned <span className="font-mono">sticky top-32</span> (128px)
+            view and highlights it. Active adds a{' '}
+            <span className="font-mono">border-border-subtle</span> outline on top of the filled
+            background to distinguish it from hover. Inactive items carry a{' '}
+            <span className="font-mono">border-transparent</span> placeholder so the active border
+            doesn't nudge layout. Positioned <span className="font-mono">sticky top-32</span> (128px)
             to clear the 64px nav. Hidden below <span className="font-mono">lg:</span> breakpoint.
           </p>
         </div>
