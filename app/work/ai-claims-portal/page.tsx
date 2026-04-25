@@ -1,6 +1,7 @@
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import CaseStudyCard from '@/components/CaseStudyCard'
+import CaseStudyTag from '@/components/CaseStudyTag'
 import TableOfContents from '@/components/TableOfContents'
 import AnimateOnScroll from '@/components/AnimateOnScroll'
 import CaseStudyPaywall from '@/components/CaseStudyPaywall'
@@ -64,9 +65,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
             <div className="max-w-page w-full">
               <div className="flex flex-wrap gap-2">
                 {study.tags.map((tag) => (
-                  <span key={tag} className="text-body-small text-text-secondary bg-bg-tertiary rounded-full px-3 py-1">
-                    {tag}
-                  </span>
+                  <CaseStudyTag key={tag}>{tag}</CaseStudyTag>
                 ))}
               </div>
               <div className="h-8" />

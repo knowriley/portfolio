@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { type CaseStudy } from '@/data/case-studies'
+import CaseStudyTag from './CaseStudyTag'
 
 export type { CaseStudy }
 
@@ -45,12 +46,7 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
       <div className="space-y-2.5">
         <div className="flex flex-wrap gap-1.5">
           {study.tags.map((tag) => (
-            <span
-              key={tag}
-              className="text-body-small text-text-secondary bg-bg-tertiary rounded-full px-3 py-1"
-            >
-              {tag}
-            </span>
+            <CaseStudyTag key={tag}>{tag}</CaseStudyTag>
           ))}
         </div>
 

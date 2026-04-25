@@ -78,14 +78,28 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 
 **Figma variable collections:**
 - **Color** (43 vars) — atomic (neutral, primary, secondary, gradient, accent) + semantic (bg, border, text)
-- **Spacing** (28 vars) — `spacing/0` through `spacing/384`, scoped to GAP and WIDTH_HEIGHT
+- **Spacing** (29 vars) — `spacing/0` through `spacing/384`, scoped to GAP and WIDTH_HEIGHT (includes `spacing/6` for `py-1.5` use cases)
 - **Border Radius** (10 vars) — `radius/none` through `radius/full`, scoped to CORNER_RADIUS
 
 **Figma text styles** (10) mirror the role-based type scale: display, h1, h2, h3, h4, body-biggest, body-big, body-small, small, label — all using Inter. `h4` is mobile-only — exists as the step-down pair for `h3`.
 
 **Figma effect styles** (7) mirror `boxShadow` tokens: shadow/xs through shadow/2xl + shadow/inner.
 
-**Figma components** (9) mirror React components: Button, IconButton, Filter Pill, Nav Link, TOC Item, Inline Link, Spacer, Numbered Callout, Section Divider — each with matching variants and states.
+**Figma components** (12) mirror React components — each with matching variants, states, and (where appropriate) text properties:
+- **Button** — `Variant` (Primary | Outline) × `State` (Default | Hover | Disabled), `Show Icon` boolean
+- **IconButton** — `State` (Default | Hover)
+- **Filter Pill** — `Size` (Default | Small) × `State` (Unselected | Hover | Selected), `Label` text
+- **Nav Link** — `State` (Default | Hover | Active)
+- **TOC Item** — `State` (Default | Hover | Active)
+- **Inline Link** — `Variant` (Subtle | Emphasis | Icon | Icon-emphasis) × `State` (Default | Hover)
+- **Numbered Callout** — `Number` text, `Body` text
+- **Section Divider** — single component, no variants
+- **Spacer** — `size` (4, 8, 12, 16, 20, 24, 32, 48, 64, 96)
+- **Tag** — single component, `Label` text (matches `components/CaseStudyTag.tsx`)
+- **Tab** — `State` (Active | Inactive), `Label` text (Foundations / Components header in DesignSystemTabs)
+- **Carousel Dot** — `State` (Active | Inactive) (TestimonialCarousel)
+
+**Code Connect status:** Not used. Code Connect requires a Developer seat on an Org/Enterprise Figma plan and isn't worth the upgrade for this single-file design system. The component catalog above (with React file paths, variants, and props) is the canonical mapping — keep it in sync with the Figma file when components or variants change. For designer-facing component-to-source linkage, each Figma component carries a `description` and `documentationLinks` pointing back at its React file (see `.figma/components.md` for the full mapping table).
 
 **Color roles to know:**
 - `text-text-primary` / `text-text-secondary` / `text-text-tertiary` — main text hierarchy
@@ -236,7 +250,7 @@ Non-color diff: ArrowUpRight icon rotates 45° on hover (↗ → →). This rota
 
 **Form-submit / dense layouts** — Button supports four extra props for non-link uses: `type="submit"` (forms), `disabled` (renders at `opacity-60` + `cursor-not-allowed` on both variants), `fullWidth` (adds `w-full justify-center`), and `noIcon` (suppresses the trailing arrow). All are off by default so existing call sites are unaffected. Used by `CaseStudyPaywall`'s submit button — reach for these props instead of hand-rolling another button-styled element.
 
-**Navigation Link** — inline in `Nav.tsx`:
+**Navigation Link** — `components/NavLink.tsx` ('use client'):
 
 | State | Key classes |
 |---|---|
@@ -267,7 +281,7 @@ Contrast: `#57534e` on white ≈ 7.8:1 ✓ AA.
 
 All variants share the same visual treatment: `text-text-primary underline` default → `text-text-primary no-underline` on hover. No blue, no bold. The only difference between variants is the presence of the arrow icon. WCAG 1.4.1 satisfied by underline presence (not relying on color alone) — the underline-to-no-underline transition is the hover affordance.
 
-**Filter Pill** — design system pattern (currently unused in production code; see `/design-system` for the live reference):
+**Filter Pill** — `components/FilterPill.tsx` ('use client'):
 
 ```tsx
 <button
@@ -285,7 +299,22 @@ All variants share the same visual treatment: `text-text-primary underline` defa
 | Unselected hover | `hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary` |
 | Selected | `bg-bg-inverse text-text-inverse font-medium border-transparent` |
 
+| Size | Key classes | Use |
+|---|---|---|
+| `default` | `text-body-small px-4 py-2` | Tablet and up, desktop layouts |
+| `small` | `text-body-small px-3 py-1.5` | Mobile, dense layouts |
+
+`AboutHero` passes `size="small"` and adds `className="md:px-4 md:py-2"` to upgrade padding at the `md:` breakpoint — text size stays at `text-body-small` across both sizes (only padding changes). Use small in dense mobile contexts; default elsewhere.
+
 No selected-hover state by design. Non-color diff on hover: bg, border, and text all shift simultaneously. Selected adds `font-medium`.
+
+**Tag** — `components/CaseStudyTag.tsx` (Server Component):
+
+```tsx
+<CaseStudyTag>Insurance</CaseStudyTag>
+```
+
+Single visual treatment, no variants: `text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5`. Used for the tag row in case study heroes (4 case study pages) and inside `CaseStudyCard`. Visually identical to the TOC active state — same `bg-bg-secondary` + `border-border-subtle` treatment, but pill-shaped instead of `rounded-sm`.
 
 **Table of Contents** — `components/TableOfContents.tsx` ('use client'):
 
@@ -297,11 +326,11 @@ Sticky sidebar TOC with IntersectionObserver-based active section tracking. Used
 
 | State | Key classes |
 |---|---|
-| Default | `text-body-small text-text-secondary px-2.5 py-1.5 rounded-sm` |
+| Default | `text-body-small text-text-secondary px-2.5 py-1.5 rounded-sm border border-transparent` |
 | Hover | `bg-bg-secondary text-text-primary font-medium` (on `hover:` variant) |
-| Active | `bg-bg-secondary text-text-primary font-medium` |
+| Active | `bg-bg-secondary border-border-subtle text-text-primary font-medium` |
 
-Each item gets a filled `bg-bg-secondary` background on hover and when active (hover and active share the same visual treatment — the background fill is the non-color diff on hover, not just color). `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room).
+Each item gets a filled `bg-bg-secondary` background on hover and when active. The active state adds a very light `border-border-subtle` outline on top of the background to distinguish itself from hover — hover and active no longer share identical styling. All items carry a placeholder `border border-transparent` in the default state so the active border doesn't shift surrounding items by 1px. `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room).
 
 ## Motion & Transitions
 
@@ -353,11 +382,12 @@ Three distinct patterns for rendering images and videos, each chosen by context.
 
 ## Documentation Workflow
 
-After completing any implementation change, evaluate whether it introduced or changed a pattern that belongs in any of these three places — and update them if so:
+After completing any implementation change, evaluate whether it introduced or changed a pattern that belongs in any of these four places — and update them if so:
 
 1. **`CLAUDE.md`** — add or revise if the change:
    - Establishes a new layout pattern, component convention, or spacing rule
-   - Introduces a new shared component (add it to the Components section)
+   - Introduces a new shared component (add it to the Interactive Elements section AND the Figma components catalog at the top of this file)
+   - Adds or removes a React prop, variant, or state on an existing component
    - Changes a token, type scale entry, or color role
    - Creates a new page type with its own shell or structural rules
 
@@ -373,8 +403,27 @@ After completing any implementation change, evaluate whether it introduced or ch
    - Adds or modifies a shared component → update or create the corresponding Figma component with matching variants and states
    - Changes any interactive state styling (hover, active, selected) → update the corresponding Figma component variant
    - Updates the documentation frame to reflect any new or changed tokens/components
+   - **Component metadata** — when a component is added, renamed, or its source moves: update its Figma `description` (React file path + usage snippet + variant notes) and `documentationLinks` (GitHub URL). Set both via `mcp__plugin_figma_figma__use_figma`. This is the manual replacement for Code Connect — see the Figma↔React Mapping section below.
 
-The design system page is the live rendered reference, the Figma file is the design reference — both must always reflect the actual state of `tailwind.config.ts` and the component conventions in use. **Code is the source of truth; Figma follows code. Never skip the Figma update.**
+4. **`.figma/components.md`** — the canonical React↔Figma mapping table. Update if the change:
+   - Adds, removes, or renames a Figma component (update the rows + node IDs)
+   - Adds, removes, or renames a Figma component property/variant (update the property mapping table)
+   - Changes which React file or component name a Figma node maps to
+   - Extracts an inline pattern into a discrete React component (move the row from "inline" to a real file path)
+
+The design system page is the live rendered reference, the Figma file is the design reference, `.figma/components.md` is the structural mapping — all must reflect the actual state of `tailwind.config.ts`, the component conventions in use, and the Figma component library. **Code is the source of truth; everything else follows code. Never skip any of these updates.**
+
+## Figma ↔ React Mapping (replacement for Code Connect)
+
+This project does not use Figma Code Connect (it requires a Figma Developer seat on Org/Enterprise; this file lives on a Pro-tier team). Instead, the mapping lives in three coordinated places that all stay in sync:
+
+| Surface | Audience | Source of truth role |
+|---|---|---|
+| `CLAUDE.md` Interactive Elements section | AI agents / engineers | React prop API, classNames, states, examples |
+| `.figma/components.md` | Anyone (engineers, designers reading the repo) | Node-ID-level Figma↔React table; Figma property↔React prop conventions; sync workflow |
+| Figma component `description` + `documentationLinks` | Designers inside Figma | React file path, usage snippet, variant notes — visible in the Figma right panel when a component or instance is selected |
+
+**When a component changes**, update all three. The order is: React first (source of truth) → CLAUDE.md → Figma component (variants/properties) → Figma component description/documentationLinks → `.figma/components.md` row. If you skip any surface, the mapping drifts and the next contributor (human or AI) will have to reconcile it from the code.
 
 ## Figma Build Rules
 
@@ -387,7 +436,7 @@ The design system page is the live rendered reference, the Figma file is the des
 - **Border radius** — use `setBoundVariable` to bind Border Radius collection variables to all corner radii (`topLeftRadius`, `topRightRadius`, `bottomLeftRadius`, `bottomRightRadius`). Never type radius values manually.
 - **Typography** — apply the named text styles (display, h1, h2, etc.) via `setTextStyleIdAsync` instead of setting font properties manually.
 - **Shadows** — apply the named effect styles (shadow/xs through shadow/2xl, shadow/inner) via `effectStyleId` instead of creating manual drop shadows.
-- **Components** — use instances of the Figma components (Button, IconButton, Filter Pill, Nav Link, TOC Item, Inline Link, Numbered Callout, Section Divider, Spacer) instead of rebuilding them from primitives.
+- **Components** — use instances of the Figma components (Button, IconButton, Filter Pill, Nav Link, TOC Item, Inline Link, Numbered Callout, Section Divider, Spacer, Tag, Tab, Carousel Dot) instead of rebuilding them from primitives.
 - **Spacer component** — when inserting vertical space between elements, always use an instance of the `Spacer` component set to the correct `size` variant. Never create raw frames named `sp` or `spacer`.
 
 **Sync rule:** Any design system change in code requires an immediate corresponding update to this Figma file in the same session — no exceptions. This includes token changes, component additions/modifications, typography weight changes, interactive state styling, and documentation frame updates. Code is the source of truth — Figma follows.
@@ -401,6 +450,7 @@ Figma spacing variables are named by **pixel value**. Tailwind classes use the *
 | `spacing/0` | 0px | 0 | `p-0` `m-0` `gap-0` |
 | `spacing/1` | 1px | px | `p-px` |
 | `spacing/4` | 4px | 1 | `p-1` `m-1` `gap-1` |
+| `spacing/6` | 6px | 1.5 | `p-1.5` `m-1.5` `gap-1.5` |
 | `spacing/8` | 8px | 2 | `p-2` `m-2` `gap-2` |
 | `spacing/12` | 12px | 3 | `p-3` `m-3` `gap-3` |
 | `spacing/16` | 16px | 4 | `p-4` `m-4` `gap-4` |
