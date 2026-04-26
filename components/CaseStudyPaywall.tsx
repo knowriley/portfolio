@@ -33,21 +33,23 @@ export default function CaseStudyPaywall({ pathname }: { pathname: string }) {
       />
 
       <div className="relative flex justify-center pt-8 pb-4">
-        <div className="w-full max-w-[480px] bg-bg border border-border rounded-sm shadow-md px-8 py-10 text-center">
-          <div className="flex justify-center mb-5 text-text-primary">
-            <Lock size={32} strokeWidth={1.5} />
+        <div className="w-full max-w-[480px] bg-bg-tertiary border border-border rounded-sm shadow-md px-8 py-12 text-center">
+          <div className="flex justify-center mb-5 text-gradient-pink">
+            <Lock size={48} strokeWidth={1.5} />
           </div>
 
-          <h2 className="text-body-biggest text-text-primary mb-3">
-            This case study is password-protected
+          <h2 className="text-h4 md:text-h3 font-normal text-text-primary mb-3">
+            Password please
           </h2>
 
           <p className="text-body-small text-text-secondary mb-6">
-            Done under NDA. Drop me a line at{' '}
-            <InlineLink href="mailto:knowles.riley@gmail.com">
-              knowles.riley@gmail.com
-            </InlineLink>{' '}
-            if you&apos;d like access.
+            Don&apos;t have it? Send me an email at{' '}
+            <span className="text-gradient-pink [&_a]:text-inherit">
+              <InlineLink href="mailto:knowles.riley@gmail.com">
+                knowles.riley@gmail.com
+              </InlineLink>
+            </span>
+            , I&apos;d be happy to share.
           </p>
 
           <form action={formAction} className="flex flex-col gap-3">
@@ -59,7 +61,7 @@ export default function CaseStudyPaywall({ pathname }: { pathname: string }) {
               required
               placeholder="Password"
               aria-label="Password"
-              className="w-full text-body-small text-text-primary placeholder:text-text-tertiary bg-bg-secondary border border-border rounded-sm px-3 py-2.5 focus:border-border-strong focus:bg-bg outline-none transition-colors"
+              className="w-full text-body-small text-text-primary placeholder:text-text-tertiary bg-bg-secondary border border-border rounded-sm p-3 focus:border-border-strong outline-none transition-colors"
             />
             <SubmitButton />
           </form>
