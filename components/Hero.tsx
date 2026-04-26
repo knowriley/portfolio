@@ -8,7 +8,7 @@ import InlineLink from './InlineLink'
 // `animate-fade-in-up`) actually move the text — `transform` is a no-op on inline elements.
 const PHRASES = [
   { words: ['Hey,'], delay: 0 },
-  { words: ["I'm", 'Riley,'], delay: 1.2 },
+  { words: ["I'm", 'Riley'], delay: 1.2 },
   // Phrase 3 follows phrase 2 with a shorter beat (0.7s) than phrase 2 follows phrase 1 (1.2s).
   { words: ['and', "I'm", 'really', 'glad', "you're", 'here.'], delay: 1.9 },
 ]
@@ -104,8 +104,7 @@ export default function Hero() {
               }`}
             >
               <span className="text-text-primary">Riley is an </span>
-              experience strategist
-              <span className="text-text-primary">, </span>
+              experience strategist,{' '}
               interaction designer
               <span className="text-text-primary"> and </span>
               designer engineer

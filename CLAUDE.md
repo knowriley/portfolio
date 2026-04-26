@@ -349,10 +349,10 @@ Sticky sidebar TOC with IntersectionObserver-based active section tracking. Used
 | State | Key classes |
 |---|---|
 | Default | `text-body-small text-text-secondary px-2.5 py-1.5 rounded-sm border border-transparent` |
-| Hover | `bg-bg-secondary text-text-primary font-medium` (on `hover:` variant) |
+| Hover | `bg-bg-secondary border-border-subtle text-text-primary font-medium` (on `hover:` variant) |
 | Active | `bg-bg-secondary border-border-subtle text-text-primary font-medium` |
 
-Each item gets a filled `bg-bg-secondary` background on hover and when active. The active state adds a very light `border-border-subtle` outline on top of the background to distinguish itself from hover — hover and active no longer share identical styling. All items carry a placeholder `border border-transparent` in the default state so the active border doesn't shift surrounding items by 1px. `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room).
+Each item gets a filled `bg-bg-secondary` background plus a `border-border-subtle` outline on hover and when active — hover and active are intentionally identical so any item the cursor lands on previews exactly how the active state will look. All items carry a placeholder `border border-transparent` in the default state so the bordered states don't shift surrounding items by 1px. `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room). The same hover-and-active border treatment is applied to the `AboutBooks` accordion list (`components/AboutBooks.tsx`) — both lists share this convention.
 
 ## Motion & Transitions
 

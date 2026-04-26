@@ -51,7 +51,7 @@ export default function TableOfContents({ items, className }: { items: TocItem[]
                 className={`block text-body-small px-2.5 py-1.5 rounded-sm border transition-colors ${
                   isActive
                     ? 'bg-bg-secondary border-border-subtle text-text-primary font-medium'
-                    : 'border-transparent text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:font-medium'
+                    : 'border-transparent text-text-secondary hover:bg-bg-secondary hover:border-border-subtle hover:text-text-primary hover:font-medium'
                 }`}
               >
                 {label}
