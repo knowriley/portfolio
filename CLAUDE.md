@@ -99,7 +99,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 - **Tab** — `State` (Active | Inactive), `Label` text (Foundations / Components header in DesignSystemTabs)
 - **Carousel Dot** — `State` (Active | Inactive) (TestimonialCarousel)
 
-**Code Connect status:** Not used. Code Connect requires a Developer seat on an Org/Enterprise Figma plan and isn't worth the upgrade for this single-file design system. The component catalog above (with React file paths, variants, and props) is the canonical mapping — keep it in sync with the Figma file when components or variants change. For designer-facing component-to-source linkage, each Figma component carries a `description` and `documentationLinks` pointing back at its React file (see `.figma/components.md` for the full mapping table).
+**Code Connect status:** Not used. The manual mapping lives in `.figma/components.md`. Each Figma component carries a `description` (React file path + usage snippet) and `documentationLinks` (GitHub URL) — set both via `mcp__plugin_figma_figma__use_figma`.
 
 **Color roles to know:**
 - `text-text-primary` / `text-text-secondary` / `text-text-tertiary` — main text hierarchy
@@ -114,13 +114,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 
 **Image captions:** Every image and video should have a caption by default. Captions use `text-small text-text-tertiary mt-2 text-center` and are centered below the image. Always provide a `caption` prop when using `ImageBlock` — omitting it should be a deliberate exception, not the default.
 
-**Image & video optimization:** Every image and video committed to `public/` — whether adding a new one or touching an existing one — must be optimized for web. Raw exports from Figma, ScreenFlow, QuickTime, or any other tool are never acceptable as-committed.
-
-- **Images** → WebP only (`.webp`). No `.png`, `.jpg`, `.jpeg` in `public/` (except `.gitkeep`-type markers). Quality 82, `effort: 6` is the default. Resize so the source's longest edge is no more than 2× the largest rendered width the image will ever have (e.g. a book cover rendered at 384px caps at 800px; a full-page-width case study image caps at 1800px).
-- **Videos** → MP4 H.264 only (`.mp4`). No `.mov`, `.webm`, or raw screen recordings. Encode with `libx264`, `-preset slow`, `-crf 28`, `-pix_fmt yuv420p`, `-movflags +faststart`, `-an` (strip audio — all site videos are silent autoplay loops). Cap width at 1600px.
-- **Tooling:** install `sharp` and `ffmpeg-static` as temporary dev-deps (`npm install --save-dev --no-save sharp ffmpeg-static`), run the conversion, then `npm remove sharp ffmpeg-static`. They should never land in `package.json`. See the commits that introduced the conductor and bricks assets for reference scripts.
-- **Code references** must match the file extension on disk — always `.webp` / `.mp4`, never the original format. The `VideoBlock` component emits `type="video/mp4"`, so any source extension other than `.mp4` breaks.
-- **Check before committing:** `du -sh public/images/` should stay under ~5MB total for the whole directory unless you're adding a genuinely long-form video. Single images over ~500KB or single videos over ~1MB should be treated as red flags and re-encoded.
+**Image & video optimization:** Optimize all `public/` assets per the user-scoped web asset defaults — WebP for images, MP4 H.264 for videos. `VideoBlock` emits `<source type="video/mp4">` so any non-`.mp4` source breaks playback. See `~/.claude/CLAUDE.md` for encoding parameters and the `sharp` / `ffmpeg-static` workflow.
 
 **Inline text highlights** — when a span of prose inside a `text-text-secondary` paragraph needs to be visually emphasized, default to wrapping it in `<span className="text-text-primary [&_a]:text-inherit">`. Primary-color highlight on a secondary-color paragraph is the standard emphasis treatment across the site. Only use the gradient highlights below when the user specifically requests a gradient.
 
@@ -151,9 +145,7 @@ Never use raw hex values for these — always use the `gradient-*` token classes
 </h1>
 ```
 
-How it works: `bg-clip-text` on the parent restricts the gradient image to the area of text glyphs. `text-transparent` makes glyphs see-through so the clipped gradient shows. Child spans with `text-text-primary` paint solid text on top, hiding the gradient under those segments. The result: every highlighted phrase reveals the slice of gradient at its position, so the entire heading reads as one continuous wash.
-
-**The highlight color always wins over link color** still applies — any `InlineLink` inside a highlighted region of a parent gradient should be wrapped so its anchor inherits the parent's transparent fill (use `[&_a]:text-inherit` on the gradient parent, not on each child span).
+How it works: `bg-clip-text` on the parent restricts the gradient image to the area of text glyphs. `text-transparent` makes glyphs see-through so the clipped gradient shows. Child spans with `text-text-primary` paint solid text on top, hiding the gradient under those segments. The result: every highlighted phrase reveals the slice of gradient at its position, so the entire heading reads as one continuous wash. The highlight-wins-over-link-color rule still applies here — apply `[&_a]:text-inherit` on the gradient parent (not each child span) so anchors inherit the transparent fill.
 
 Reference implementations:
 - `components/Hero.tsx` — final-state h1 with three highlighted phrases
@@ -238,28 +230,16 @@ bg-bg-secondary border border-border rounded-sm px-10 py-7
 
 > Rule: all interactive elements must pass WCAG AA (≥ 4.5:1 text, ≥ 3:1 UI) and differentiate hover by more than color alone.
 
-**Icon Button** — `components/IconButton.tsx` ('use client'):
-
-```tsx
-<IconButton icon={<ArrowLeft size={20} strokeWidth={2} />} onClick={prev} aria-label="Previous" />
-```
+**Icon Button** — `components/IconButton.tsx` ('use client'). Usage: `<IconButton icon={<ArrowLeft size={20} strokeWidth={2} />} onClick={fn} aria-label="..." />`. Always provide `aria-label`.
 
 | State | Key classes |
 |---|---|
 | Default | `size-11 rounded-full bg-bg-secondary border border-border text-text-secondary` |
 | Hover | `hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary` |
 
-Matches the outline button variant states. White fill at rest; gray fill on hover. Hover also shifts text from secondary → primary for added emphasis. Always provide `aria-label`.
+Matches the outline button variant states. White fill at rest; gray fill on hover. Hover also shifts text from secondary → primary for added emphasis.
 
-**Button** — `components/Button.tsx` ('use client'):
-
-Two variants: `primary` (default) and `outline`.
-
-```tsx
-<Button href="/work">View Case Study</Button>              // primary, internal link
-<Button href="https://x.com" external>External</Button>    // primary, external link
-<Button variant="outline" onClick={fn}>Secondary</Button>  // outline
-```
+**Button** — `components/Button.tsx` ('use client'). Two variants: `primary` (default) and `outline`. Usage: `<Button href="/work">…</Button>` (internal), `<Button href="https://…" external>…</Button>`, `<Button variant="outline" onClick={fn}>…</Button>`.
 
 | Variant | State | Key classes |
 |---|---|---|
@@ -283,16 +263,7 @@ Non-color diff: ArrowUpRight icon rotates 45° on hover (↗ → →). This rota
 No background fill on hover or active — text color and weight shift only.
 Contrast: `#57534e` on white ≈ 7.8:1 ✓ AA.
 
-**Inline Link** — `components/InlineLink.tsx` (Server Component):
-
-4 variants controlled by the `variant` prop. Defaults to `subtle` for internal, `emphasis` for external.
-
-```tsx
-<InlineLink href="/work">internal link</InlineLink>
-<InlineLink href="https://example.com" external>external link</InlineLink>
-<InlineLink href="https://example.com" external variant="icon">branded link</InlineLink>
-<InlineLink href="https://example.com" external variant="icon-emphasis">nav link</InlineLink>
-```
+**Inline Link** — `components/InlineLink.tsx` (Server Component). 4 variants controlled by the `variant` prop. Defaults to `subtle` for internal, `emphasis` for external. Usage: `<InlineLink href="..." external? variant="subtle|emphasis|icon|icon-emphasis">…</InlineLink>`.
 
 | Variant | Icon | Use case |
 |---|---|---|
@@ -303,17 +274,7 @@ Contrast: `#57534e` on white ≈ 7.8:1 ✓ AA.
 
 All variants share the same visual treatment: `text-text-primary underline` default → `text-text-primary no-underline` on hover. No blue, no bold. The only difference between variants is the presence of the arrow icon. WCAG 1.4.1 satisfied by underline presence (not relying on color alone) — the underline-to-no-underline transition is the hover affordance.
 
-**Filter Pill** — `components/FilterPill.tsx` ('use client'):
-
-```tsx
-<button
-  className={`text-body-small px-4 py-2 rounded-full border transition-colors ${
-    isActive
-      ? 'bg-bg-inverse text-text-inverse font-medium border-transparent'
-      : 'bg-bg-secondary border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary'
-  }`}
->
-```
+**Filter Pill** — `components/FilterPill.tsx` ('use client'). Usage: `<FilterPill active={…} onClick={…} size="default|small">Label</FilterPill>`.
 
 | State | Key classes |
 |---|---|
@@ -330,21 +291,9 @@ All variants share the same visual treatment: `text-text-primary underline` defa
 
 No selected-hover state by design. Non-color diff on hover: bg, border, and text all shift simultaneously. Selected adds `font-medium`.
 
-**Tag** — `components/CaseStudyTag.tsx` (Server Component):
+**Tag** — `components/CaseStudyTag.tsx` (Server Component). Usage: `<CaseStudyTag>Insurance</CaseStudyTag>`. Single visual treatment, no variants: `text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5`. Used for the tag row in case study heroes and inside `CaseStudyCard`. Visually identical to the TOC active state — same `bg-bg-secondary` + `border-border-subtle` treatment, but pill-shaped instead of `rounded-sm`.
 
-```tsx
-<CaseStudyTag>Insurance</CaseStudyTag>
-```
-
-Single visual treatment, no variants: `text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5`. Used for the tag row in case study heroes (4 case study pages) and inside `CaseStudyCard`. Visually identical to the TOC active state — same `bg-bg-secondary` + `border-border-subtle` treatment, but pill-shaped instead of `rounded-sm`.
-
-**Table of Contents** — `components/TableOfContents.tsx` ('use client'):
-
-```tsx
-<TableOfContents items={[{ label: 'Overview', id: 'overview' }, ...]} />
-```
-
-Sticky sidebar TOC with IntersectionObserver-based active section tracking. Used in case study pages and the design system page. Hidden below `lg:` breakpoint.
+**Table of Contents** — `components/TableOfContents.tsx` ('use client'). Usage: `<TableOfContents items={[{ label, id }, ...]} />`. Sticky sidebar TOC with IntersectionObserver-based active section tracking. Used in case study pages and the design system page. Hidden below `lg:` breakpoint.
 
 | State | Key classes |
 |---|---|
@@ -394,7 +343,7 @@ Three distinct patterns for rendering images and videos, each chosen by context.
 
 | Context | Component | Why |
 |---|---|---|
-| **Any image or video in a case study body** (hero cover, inline section media, in-body demos) | `<ImageBlock>` — with `type="image"` (default), `type="video"`, `type="vimeo"`, or no props for placeholder | Single abstraction. Automatically applies the `border border-border shadow-sm rounded-sm` chrome, handles optional captions via `<figcaption>`, and delegates video rendering to `VideoBlock` internally (play/pause IconButton in bottom-right). |
+| **Any image or video in a case study body** (hero cover, inline section media, in-body demos) | `<ImageBlock>` — with `type="image"` (default), `type="video"`, `type="vimeo"`, or no props for placeholder | Single abstraction. Applies the standard image chrome (see "Image & video treatment" above), handles optional captions via `<figcaption>`, and delegates video rendering to `VideoBlock` internally (play/pause IconButton in bottom-right). |
 | **Work grid card thumbnail** — `components/CaseStudyCard.tsx` | Raw `<Image>` for stills, raw `<video autoPlay loop muted playsInline>` for `.mov` / `.mp4` / `.webm` thumbnails | Card context is different: the thumbnail is a clickable preview (no controls, no caption, `object-cover` + `aspect-video` framing). Wrapping in `ImageBlock` would fight the card's layout. `CaseStudyCard` is the one place where raw `<video>` is acceptable. |
 | **Anywhere else** | `<ImageBlock>` | Do **not** import `VideoBlock` directly into a page. It's an internal implementation detail of `ImageBlock`. One entry point keeps chrome, captions, and play/pause behavior consistent. |
 
@@ -402,101 +351,47 @@ Three distinct patterns for rendering images and videos, each chosen by context.
 
 **File format:** `.mp4` (H.264) only — see the **Image & video optimization** rules above for encoding parameters. `VideoBlock` emits `<source type="video/mp4">`, so any other source extension breaks playback.
 
-## Documentation Workflow
+## Documentation & Figma sync
 
-After completing any implementation change, evaluate whether it introduced or changed a pattern that belongs in any of these four places — and update them if so:
+Code is the source of truth. After any implementation change that touches a token, component, layout pattern, or convention, propagate to the four downstream surfaces below in order: **React → CLAUDE.md → Figma component (variants/properties) → Figma component `description` + `documentationLinks` → `.figma/components.md`**.
 
-1. **`CLAUDE.md`** — add or revise if the change:
-   - Establishes a new layout pattern, component convention, or spacing rule
-   - Introduces a new shared component (add it to the Interactive Elements section AND the Figma components catalog at the top of this file)
-   - Adds or removes a React prop, variant, or state on an existing component
-   - Changes a token, type scale entry, or color role
-   - Creates a new page type with its own shell or structural rules
-
-2. **`app/design-system/page.tsx`** — add or revise if the change:
-   - Adds or modifies a token (color, type, spacing, radius, shadow) in `tailwind.config.ts`
-   - Introduces a new semantic usage convention (e.g. a new spacing role, a new type hierarchy rule)
-   - Adds a new shared component that belongs in the visual reference (e.g. a new callout pattern)
-
-3. **Figma file** (`https://www.figma.com/design/QXoQt5JPBJapI2H4z1bP7T/portfolio`) — **mandatory** for any design system change. Every time a change is made to the design system — tokens, typography, components, spacing, shadows, or any convention — the corresponding Figma file must be updated in the same session. This includes:
-   - Adds, removes, or modifies a color, spacing, or radius token in `tailwind.config.ts` → update the corresponding Figma variable
-   - Adds or modifies a type scale entry or font weight convention → update the corresponding Figma text style
-   - Adds or modifies a shadow token → update the corresponding Figma effect style
-   - Adds or modifies a shared component → update or create the corresponding Figma component with matching variants and states
-   - Changes any interactive state styling (hover, active, selected) → update the corresponding Figma component variant
-   - Updates the documentation frame to reflect any new or changed tokens/components
-   - **Component metadata** — when a component is added, renamed, or its source moves: update its Figma `description` (React file path + usage snippet + variant notes) and `documentationLinks` (GitHub URL). Set both via `mcp__plugin_figma_figma__use_figma`. This is the manual replacement for Code Connect — see the Figma↔React Mapping section below.
-
-4. **`.figma/components.md`** — the canonical React↔Figma mapping table. Update if the change:
-   - Adds, removes, or renames a Figma component (update the rows + node IDs)
-   - Adds, removes, or renames a Figma component property/variant (update the property mapping table)
-   - Changes which React file or component name a Figma node maps to
-   - Extracts an inline pattern into a discrete React component (move the row from "inline" to a real file path)
-
-The design system page is the live rendered reference, the Figma file is the design reference, `.figma/components.md` is the structural mapping — all must reflect the actual state of `tailwind.config.ts`, the component conventions in use, and the Figma component library. **Code is the source of truth; everything else follows code. Never skip any of these updates.**
-
-## Figma ↔ React Mapping (replacement for Code Connect)
-
-This project does not use Figma Code Connect (it requires a Figma Developer seat on Org/Enterprise; this file lives on a Pro-tier team). Instead, the mapping lives in three coordinated places that all stay in sync:
-
-| Surface | Audience | Source of truth role |
+| Surface | Update when | What goes there |
 |---|---|---|
-| `CLAUDE.md` Interactive Elements section | AI agents / engineers | React prop API, classNames, states, examples |
-| `.figma/components.md` | Anyone (engineers, designers reading the repo) | Node-ID-level Figma↔React table; Figma property↔React prop conventions; sync workflow |
-| Figma component `description` + `documentationLinks` | Designers inside Figma | React file path, usage snippet, variant notes — visible in the Figma right panel when a component or instance is selected |
+| `CLAUDE.md` (this file) | New layout pattern / shared component / prop / variant / state / token / type scale entry / color role / page type | Rule statement, state classes, usage. Add new components to both Interactive Elements AND the Figma components catalog. |
+| `app/design-system/page.tsx` | New token in `tailwind.config.ts` / new semantic usage convention / new shared component | Live rendered reference of the design system. |
+| Figma file (`QXoQt5JPBJapI2H4z1bP7T`) | Any design system change — token, typography, shadow, component, variant, interactive state | Matching variable / text style / effect style / component with variants. **Mandatory same-session update.** |
+| `.figma/components.md` | New / renamed / removed Figma component, property, or variant; React file path moves; inline pattern extracted to a component | Node-ID-level Figma↔React mapping table. |
 
-**When a component changes**, update all three. The order is: React first (source of truth) → CLAUDE.md → Figma component (variants/properties) → Figma component description/documentationLinks → `.figma/components.md` row. If you skip any surface, the mapping drifts and the next contributor (human or AI) will have to reconcile it from the code.
+**Component metadata in Figma** — when a component is added, renamed, or its source moves: update the Figma `description` (React file path + usage snippet + variant notes) and `documentationLinks` (GitHub URL) via `mcp__plugin_figma_figma__use_figma`. This is the manual replacement for Code Connect.
 
 ## Figma Build Rules
 
 **File:** `QXoQt5JPBJapI2H4z1bP7T` — all design work happens here.
 
-**Never hardcode values when building in Figma.** Every property that has a corresponding variable, style, or component must use it — no exceptions. This means every fill, stroke, text color, padding, gap, radius, shadow, and font must be bound to a design system token. Hardcoded hex colors, bare pixel numbers, and manually set font properties are never acceptable when a matching variable or style exists.
+**Never hardcode values when building in Figma.** Every property that has a matching variable, style, or component must use it — no exceptions. Bind via the right API for each token type:
 
-- **Colors** — use `setBoundVariableForPaint` to bind Color collection variables (e.g. `text/primary`, `bg/secondary`, `border/subtle`, `accent/default`) to all fills, strokes, and text colors. When calling `setBoundVariableForPaint`, always pass the actual resolved color as the base paint (not `{r:0, g:0, b:0}`) so the fill renders correctly even before the variable resolves.
-- **Spacing** — use `setBoundVariable` to bind Spacing collection variables to all padding (`paddingTop`, `paddingBottom`, `paddingLeft`, `paddingRight`), gap (`itemSpacing`, `counterAxisSpacing`), and fixed spacer frame heights (`height`). Never use bare pixel numbers.
-- **Border radius** — use `setBoundVariable` to bind Border Radius collection variables to all corner radii (`topLeftRadius`, `topRightRadius`, `bottomLeftRadius`, `bottomRightRadius`). Never type radius values manually.
-- **Typography** — apply the named text styles (display, h1, h2, etc.) via `setTextStyleIdAsync` instead of setting font properties manually.
-- **Shadows** — apply the named effect styles (shadow/xs through shadow/2xl, shadow/inner) via `effectStyleId` instead of creating manual drop shadows.
-- **Components** — use instances of the Figma components (Button, IconButton, Filter Pill, Nav Link, TOC Item, Inline Link, Numbered Callout, Section Divider, Spacer, Tag, Tab, Carousel Dot) instead of rebuilding them from primitives.
-- **Spacer component** — when inserting vertical space between elements, always use an instance of the `Spacer` component set to the correct `size` variant. Never create raw frames named `sp` or `spacer`.
+- Colors (fills, strokes, text) → `setBoundVariableForPaint` with Color collection variables
+- Spacing (`padding*`, `itemSpacing`, `counterAxisSpacing`, fixed frame `height`) → `setBoundVariable` with Spacing
+- Border radius (`topLeftRadius` etc.) → `setBoundVariable` with Border Radius
+- Typography → `setTextStyleIdAsync` with named text styles (display, h1, etc.)
+- Shadows → `effectStyleId` with named effect styles (shadow/xs through shadow/2xl, shadow/inner)
+- Components → instances of the 12 Figma components in the catalog above, not primitives
 
-**Sync rule:** Any design system change in code requires an immediate corresponding update to this Figma file in the same session — no exceptions. This includes token changes, component additions/modifications, typography weight changes, interactive state styling, and documentation frame updates. Code is the source of truth — Figma follows.
+**Two footguns:**
+- When calling `setBoundVariableForPaint`, always pass the actual resolved color as the base paint (not `{r:0, g:0, b:0}`) so the fill renders correctly even before the variable resolves.
+- For vertical space between elements, always use an instance of the `Spacer` component set to the correct `size` variant. Never create raw frames named `sp` or `spacer`.
+
+**Sync rule:** Any design system change in code requires an immediate corresponding update to this Figma file in the same session — no exceptions. This includes token changes, component additions/modifications, typography weight changes, interactive state styling, and documentation frame updates. (See "Documentation & Figma sync" above for the full propagation order.)
 
 ### Spacing variable mapping
 
-Figma spacing variables are named by **pixel value**. Tailwind classes use the **scale number** (÷4). Use this table to translate between them:
+Figma spacing variables are named by **pixel value**; Tailwind classes use the **scale number**. Conversion is `Tailwind scale = px ÷ 4` (the only special case is `spacing/1` → `p-px`). Sample rows:
 
-| Figma variable | px value | Tailwind scale | Example classes |
+| Figma variable | px | Tailwind scale | Example |
 |---|---|---|---|
-| `spacing/0` | 0px | 0 | `p-0` `m-0` `gap-0` |
-| `spacing/1` | 1px | px | `p-px` |
-| `spacing/4` | 4px | 1 | `p-1` `m-1` `gap-1` |
-| `spacing/6` | 6px | 1.5 | `p-1.5` `m-1.5` `gap-1.5` |
-| `spacing/8` | 8px | 2 | `p-2` `m-2` `gap-2` |
-| `spacing/12` | 12px | 3 | `p-3` `m-3` `gap-3` |
-| `spacing/16` | 16px | 4 | `p-4` `m-4` `gap-4` |
-| `spacing/20` | 20px | 5 | `p-5` `m-5` `gap-5` |
-| `spacing/24` | 24px | 6 | `p-6` `m-6` `gap-6` |
-| `spacing/28` | 28px | 7 | `p-7` `m-7` `gap-7` |
-| `spacing/32` | 32px | 8 | `p-8` `m-8` `gap-8` |
-| `spacing/36` | 36px | 9 | `p-9` `m-9` `gap-9` |
-| `spacing/40` | 40px | 10 | `p-10` `m-10` `gap-10` |
-| `spacing/44` | 44px | 11 | `p-11` `m-11` `gap-11` |
-| `spacing/48` | 48px | 12 | `p-12` `m-12` `gap-12` |
-| `spacing/56` | 56px | 14 | `p-14` `m-14` `gap-14` |
-| `spacing/64` | 64px | 16 | `p-16` `m-16` `gap-16` |
-| `spacing/80` | 80px | 20 | `p-20` `m-20` `gap-20` |
-| `spacing/96` | 96px | 24 | `p-24` `m-24` `gap-24` |
-| `spacing/112` | 112px | 28 | `p-28` `m-28` `gap-28` |
-| `spacing/128` | 128px | 32 | `p-32` `m-32` `gap-32` |
-| `spacing/144` | 144px | 36 | `p-36` `m-36` `gap-36` |
-| `spacing/160` | 160px | 40 | `p-40` `m-40` `gap-40` |
-| `spacing/192` | 192px | 48 | `p-48` `m-48` `gap-48` |
-| `spacing/224` | 224px | 56 | `p-56` `m-56` `gap-56` |
-| `spacing/256` | 256px | 64 | `p-64` `m-64` `gap-64` |
-| `spacing/288` | 288px | 72 | `p-72` `m-72` `gap-72` |
-| `spacing/320` | 320px | 80 | `p-80` `m-80` `gap-80` |
-| `spacing/384` | 384px | 96 | `p-96` `m-96` `gap-96` |
+| `spacing/4` | 4 | 1 | `p-1` `gap-1` |
+| `spacing/16` | 16 | 4 | `p-4` `gap-4` |
+| `spacing/40` | 40 | 10 | `p-10` `gap-10` |
+| `spacing/96` | 96 | 24 | `p-24` `gap-24` |
 
-The `Spacer` component `size` variant uses the same pixel label as the variable (e.g. `size=96` → `spacing/96` → `p-24` in Tailwind).
+The full Figma collection (`spacing/0` through `spacing/384`) mirrors Tailwind's default scale defined in `tailwind.config.ts`. The `Spacer` component `size` variant uses the same pixel label as the variable (e.g. `size=96` → `spacing/96` → `p-24`).
