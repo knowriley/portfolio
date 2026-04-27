@@ -77,7 +77,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 **Naming convention:** Figma uses `/` separators that map one-to-one to Tailwind config keys (e.g. Figma `text/primary` → Tailwind `text.primary` → class `text-text-primary`).
 
 **Figma variable collections:**
-- **Color** (43 vars) — atomic (neutral, primary, secondary, gradient, accent) + semantic (bg, border, text)
+- **Color** (39 vars) — atomic (neutral, primary, gradient, accent) + semantic (bg, border, text)
 - **Spacing** (29 vars) — `spacing/0` through `spacing/384`, scoped to GAP and WIDTH_HEIGHT (includes `spacing/6` for `py-1.5` use cases)
 - **Border Radius** (10 vars) — `radius/none` through `radius/full`, scoped to CORNER_RADIUS
 

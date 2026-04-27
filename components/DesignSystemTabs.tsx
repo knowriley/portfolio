@@ -597,38 +597,16 @@ function FoundationsContent() {
         {/* ── Atomic: Primary ── */}
         <SubLabel>Primary · Atomic</SubLabel>
         <p className="text-body-small text-text-secondary mb-6">
-          Purple hue derived from the gradient-pink direction. Used for text highlights, numbered callouts, and interactive accents. WCAG AA compliant as text on page bg (6.50:1) and as button bg with white text (6.78:1).
+          Magenta hue aligned with the gradient-pink direction. Used for text highlights, numbered callouts, and interactive accents. WCAG AA compliant as text on page bg (4.71:1) and as button bg with white text (4.91:1).
         </p>
         <div>
           <RowDivider />
           {[
-            { label: 'primary',        hex: '#9220b5', note: 'Base — text highlights, callout numbers' },
-            { label: 'primary-hover',   hex: '#7a1b98', note: 'Hover variant — button hover bg' },
-            { label: 'primary-active',  hex: '#63167b', note: 'Active variant' },
-            { label: 'primary-light',   hex: '#c97ae0', note: 'Light variant' },
-            { label: 'primary-subtle',  hex: '#fbf5fe', note: 'Subtle background tint' },
-          ].map(({ label, hex, note }) => (
-            <div key={label} className="flex items-center gap-5 py-3 border-b border-border-subtle">
-              <div className="size-8 rounded-sm shrink-0" style={{ backgroundColor: hex }} />
-              <p className="font-mono text-body-small text-text-primary w-32 shrink-0">{label}</p>
-              <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
-              <p className="text-body-small text-text-tertiary flex-1 min-w-0">{note}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* ── Atomic: Secondary ── */}
-        <SubLabel>Secondary · Atomic</SubLabel>
-        <p className="text-body-small text-text-secondary mb-6">
-          Gold hue reserved for future use (badges, highlights, status). Not actively used in any component.
-        </p>
-        <div>
-          <RowDivider />
-          {[
-            { label: 'secondary',        hex: '#E8B84B', note: 'Base — reserved' },
-            { label: 'secondary-hover',   hex: '#CF9E32', note: 'Hover variant — reserved' },
-            { label: 'secondary-light',   hex: '#F0CC7A', note: 'Light variant — reserved' },
-            { label: 'secondary-subtle',  hex: '#FDF5DC', note: 'Subtle background — reserved' },
+            { label: 'primary',        hex: '#DA007B', note: 'Base — text highlights, callout numbers' },
+            { label: 'primary-hover',   hex: '#B80068', note: 'Hover variant — button hover bg' },
+            { label: 'primary-active',  hex: '#940054', note: 'Active variant' },
+            { label: 'primary-light',   hex: '#E279B4', note: 'Light variant' },
+            { label: 'primary-subtle',  hex: '#FEF6FA', note: 'Subtle background tint' },
           ].map(({ label, hex, note }) => (
             <div key={label} className="flex items-center gap-5 py-3 border-b border-border-subtle">
               <div className="size-8 rounded-sm shrink-0" style={{ backgroundColor: hex }} />
