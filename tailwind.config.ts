@@ -23,17 +23,11 @@ const config: Config = {
           950: '#0c0a09',
         },
         primary: {
-          DEFAULT: '#9220b5',
-          hover: '#7a1b98',
-          active: '#63167b',
-          light: '#c97ae0',
-          subtle: '#fbf5fe',
-        },
-        secondary: {
-          DEFAULT: '#d5189b',
-          hover: '#b01482',
-          light: '#e87cc4',
-          subtle: '#fdf0f9',
+          DEFAULT: '#DA007B',
+          hover: '#B80068',
+          active: '#940054',
+          light: '#E279B4',
+          subtle: '#FEF6FA',
         },
         gradient: {
           red: '#f02065',    // shared gradient start (highlight + wordmark)
