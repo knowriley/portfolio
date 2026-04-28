@@ -2,7 +2,6 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import Button from '@/components/Button'
 import CaseStudyCard from '@/components/CaseStudyCard'
-import CaseStudyTag from '@/components/CaseStudyTag'
 import TableOfContents from '@/components/TableOfContents'
 import InlineLink from '@/components/InlineLink'
 import AnimateOnScroll from '@/components/AnimateOnScroll'
@@ -63,12 +62,6 @@ export default function BricksDesignSystemCaseStudyPage() {
         <div className="animate-fade-in-up">
           <section className="flex justify-center px-5 md:px-10 pt-10 md:pt-16 pb-8 md:pb-12">
             <div className="max-w-page w-full">
-              <div className="flex flex-wrap gap-2">
-                {study.tags.map((tag) => (
-                  <CaseStudyTag key={tag}>{tag}</CaseStudyTag>
-                ))}
-              </div>
-              <div className="h-8" />
               <div className="flex flex-col md:flex-row items-start md:items-end gap-4 md:gap-8">
                 <h1 className="text-h1 md:text-display font-normal text-text-primary md:flex-1 md:min-w-0">
                   {study.title}

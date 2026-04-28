@@ -189,7 +189,7 @@ Pages follow a 3-column flex layout inside the standard `flex justify-center px-
 gap-8, py-20
 ```
 
-- **Hero** (`pt-16 pb-12`): tags row → `h-8` spacer → `text-h1 md:text-display font-normal` title, full `max-w-page` width. No metadata in the hero.
+- **Hero** (`pt-16 pb-12`): `text-h1 md:text-display font-normal` title, full `max-w-page` width. No metadata in the hero.
 - **Cover image** (`pb-16`): full-width `aspect-video bg-bg-secondary rounded-sm`.
 - **TOC** (left column, `sticky top-32`): plain `text-body-small text-text-secondary` links, no step numbers. `top-32` (128px) clears the 64px sticky nav with generous breathing room.
 - **Notes** (right column): empty `w-[120px]` spacer — reserved for future annotations.
@@ -235,10 +235,10 @@ bg-bg-secondary border border-border rounded-sm px-10 py-7
 
 | State | Key classes |
 |---|---|
-| Default | `size-11 rounded-full bg-bg-secondary border border-border text-text-secondary` |
-| Hover | `hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary` |
+| Default | `size-11 rounded-full bg-bg-inverse text-text-inverse` |
+| Hover | `hover:bg-neutral-800` |
 
-Matches the outline button variant states. White fill at rest; gray fill on hover. Hover also shifts text from secondary → primary for added emphasis.
+Matches the primary button color. Dark fill at rest; lightens on hover. `VideoBlock`'s play/pause overlay reuses this component (passes `className="absolute bottom-3 right-3"`) so the two stay in sync.
 
 **Button** — `components/Button.tsx` ('use client'). Two variants: `primary` (default) and `outline`. Usage: `<Button href="/work">…</Button>` (internal), `<Button href="https://…" external>…</Button>`, `<Button variant="outline" onClick={fn}>…</Button>`.
 

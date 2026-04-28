@@ -1011,7 +1011,9 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Pass any Lucide icon as the <span className="font-mono">icon</span> prop at{' '}
+            Matches the primary button color: <span className="font-mono">bg-bg-inverse</span> →{' '}
+            <span className="font-mono">bg-neutral-800</span> on hover. Pass any Lucide icon as the{' '}
+            <span className="font-mono">icon</span> prop at{' '}
             <span className="font-mono">size={'{20}'} strokeWidth={'{2}'}</span> (UI icon tier).
             Always provide a descriptive <span className="font-mono">aria-label</span>.
           </p>
@@ -1043,7 +1045,6 @@ function ComponentsContent() {
         <SubLabel>Outline Variant</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
           Secondary actions. Transparent background with border, fills on hover.
-          Same state styling as IconButton.
         </p>
 
         <div className="mb-8">
@@ -1052,9 +1053,9 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Outline variant shares state styling with IconButton — both use{' '}
-            <span className="font-mono">bg-bg-secondary → bg-bg-tertiary</span> and{' '}
-            <span className="font-mono">border-border → border-border-strong</span> on hover.
+            Hover transitions <span className="font-mono">bg-bg-secondary → bg-bg-tertiary</span>,{' '}
+            <span className="font-mono">border-border → border-border-strong</span>, and{' '}
+            <span className="font-mono">text-text-secondary → text-text-primary</span>.
           </p>
         </div>
       </section>

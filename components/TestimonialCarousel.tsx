@@ -50,7 +50,7 @@ const testimonials: Testimonial[] = [
   {
     segments: [
       { text: 'I can confidently say that she is an outstanding UX Designer.' },
-      { text: 'Riley’s attention to detail, thoughtfulness, and courteous demeanor truly set her apart.', highlight: true }
+      { text: ' Riley’s attention to detail, thoughtfulness, and courteous demeanor truly set her apart.', highlight: true }
     ],
     
     author: 'Nolan Braman',
@@ -60,7 +60,7 @@ const testimonials: Testimonial[] = [
   {
     segments: [
       { text: 'I have been so impressed by your thoughtfulness and proactiveness! You’ve been a lifesaver with the website work,' },
-      { text: 'literally and obviously wouldn’t have been able to do it without you.', highlight: true }
+      { text: ' literally and obviously wouldn’t have been able to do it without you.', highlight: true }
     ],
     author: 'Jenny Li',
     title: 'Director of Product Marketing @ Conductor',
@@ -86,7 +86,7 @@ export default function TestimonialCarousel() {
           the parent's transparent fill, revealing the slice of gradient at their position.
           See CLAUDE.md → Gradient system for the canonical pattern.
         */}
-        <p className="font-normal text-h3 md:text-h2 lg:text-display bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">
+        <p className="font-normal text-h3 md:text-h2 lg:text-h1 bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">
           {t.segments.map((seg, i) => (
             <span key={i} className={seg.highlight ? undefined : 'text-text-primary'}>
               {seg.text}
