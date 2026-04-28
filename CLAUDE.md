@@ -184,14 +184,14 @@ These classes mirror the Figma text styles (`display`, `h1`, `h2`, `h3`, `h4`, `
 Pages follow a 3-column flex layout inside the standard `flex justify-center px-10 → max-w-page w-full` shell:
 
 ```
-[220px TOC] [flex-1 content] [200px notes (empty)]
+[220px TOC] [flex-1 content] [120px notes (empty)]
 gap-8, py-20
 ```
 
 - **Hero** (`pt-16 pb-12`): tags row → `h-8` spacer → `text-h1 md:text-display font-normal` title, full `max-w-page` width. No metadata in the hero.
 - **Cover image** (`pb-16`): full-width `aspect-video bg-bg-secondary rounded-sm`.
 - **TOC** (left column, `sticky top-32`): plain `text-body-small text-text-secondary` links, no step numbers. `top-32` (128px) clears the 64px sticky nav with generous breathing room.
-- **Notes** (right column): empty `w-[200px]` spacer — reserved for future annotations.
+- **Notes** (right column): empty `w-[120px]` spacer — reserved for future annotations.
 
 **Section pattern inside the content column:**
 - Label: `text-body-small text-text-tertiary mb-4`
@@ -221,7 +221,7 @@ bg-bg-secondary border border-border rounded-sm px-10 py-7
 
 **Password-protected case study pages** — three intentional deviations from the standard case study shell:
 - **Hero has no `View Live` button.** The flex wrapper around `<h1>` + `<Button>` is omitted; the `<h1>` renders bare. Pages: `app/work/evidence-of-insurability/page.tsx`, `app/work/ai-claims-portal/page.tsx`. When the password gate is lifted, add the Button back and wrap in `<div className="flex flex-col md:flex-row items-start md:items-end gap-4 md:gap-8">` to match Bricks/Conductor — the heading + button stack vertically (button left-aligned) on mobile and sit side-by-side with the button bottom-aligned at md+.
-- **TOC is gated behind the unlock state, but its column is preserved.** When `unlocked === false`, swap the `<TableOfContents>` for an empty `<div aria-hidden className="hidden lg:block w-[220px] shrink-0" />` instead of removing it. This hides the sidebar (a locked page only shows the Overview teaser + paywall, so advertising unreachable structure is wrong) while keeping the content column visually centered between the left spacer and the right `w-[200px]` notes column. Removing the TOC entirely shifts content left and breaks the rhythm.
+- **TOC is gated behind the unlock state, but its column is preserved.** When `unlocked === false`, swap the `<TableOfContents>` for an empty `<div aria-hidden className="hidden lg:block w-[220px] shrink-0" />` instead of removing it. This hides the sidebar (a locked page only shows the Overview teaser + paywall, so advertising unreachable structure is wrong) while keeping the content column visually centered between the left spacer and the right `w-[120px]` notes column. Removing the TOC entirely shifts content left and breaks the rhythm.
 - **Paywall spacer** before `<CaseStudyPaywall>` uses `<div className="h-16 md:h-24" />` — not `<SectionDivider>`. The paywall fades into the content (via its own `from-transparent to-bg` gradient at `-top-40`), so a hard rule would fight the fade. The `h-16 md:h-24` (64px → 96px) matches the rhythm of major section spacing without introducing a visible divider.
 
 **Figma file:** `https://www.figma.com/design/QXoQt5JPBJapI2H4z1bP7T/portfolio` — contains all variables, text styles, effect styles, and components. This is the single Figma source that must stay synced with `tailwind.config.ts`.
@@ -291,7 +291,7 @@ All variants share the same visual treatment: `text-text-primary underline` defa
 
 No selected-hover state by design. Non-color diff on hover: bg, border, and text all shift simultaneously. Selected adds `font-medium`.
 
-**Tag** — `components/CaseStudyTag.tsx` (Server Component). Usage: `<CaseStudyTag>Insurance</CaseStudyTag>`. Single visual treatment, no variants: `text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5`. Used for the tag row in case study heroes and inside `CaseStudyCard`. Visually identical to the TOC active state — same `bg-bg-secondary` + `border-border-subtle` treatment, but pill-shaped instead of `rounded-sm`.
+**Tag** — `components/CaseStudyTag.tsx` (Server Component). Usage: `<CaseStudyTag>Insurance</CaseStudyTag>`. Single visual treatment, no variants: `text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5`. Used for the tag row in case study heroes and inside `CaseStudyCard`. Higher-contrast surface than the TOC active state (`bg-bg-tertiary` + `border-border-strong`, vs TOC's `bg-bg-secondary` + `border-border-subtle`) so the pills read as discrete chips rather than blending into the page surface.
 
 **Table of Contents** — `components/TableOfContents.tsx` ('use client'). Usage: `<TableOfContents items={[{ label, id }, ...]} />`. Sticky sidebar TOC with IntersectionObserver-based active section tracking. Used in case study pages and the design system page. Hidden below `lg:` breakpoint.
 

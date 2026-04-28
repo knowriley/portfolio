@@ -427,8 +427,8 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
               </div>
               {/* end content column */}
 
-              {/* Notes column — empty per Figma (200px placeholder), hidden on mobile */}
-              <div className="hidden lg:block w-[200px] shrink-0" />
+              {/* Notes column — empty per Figma (120px placeholder), hidden on mobile */}
+              <div className="hidden lg:block w-[120px] shrink-0" />
 
             </div>
           </div>

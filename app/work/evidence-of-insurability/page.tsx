@@ -55,6 +55,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
         { label: 'Opportunity',               id: 'opportunity' },
         { label: 'Initial Designs & Testing', id: 'initial-designs-testing' },
         { label: 'Redesign & Test Strategy',  id: 'redesign-test-strategy' },
+        { label: 'Bonus Insights',            id: 'bonus-insights' },
         { label: 'Solution',                  id: 'solution' },
         { label: 'Impact',                    id: 'impact' },
         { label: 'Takeaways',                 id: 'takeaways' },
@@ -212,14 +213,15 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                       </h2>
                       <div className="h-4" />
                       <p className="text-body-small md:text-body-big text-text-secondary">
-                        For the initial design, I leaned on our global design system&apos;s
-                        guidelines, presenting products as a set of clickable tiles.
+                        For the initial design I asked Claude to build a first iteration based on
+                        the requirements, then refined it to more closely follow our global design
+                        system&apos;s guidelines, presenting products as a set of clickable tiles.
                       </p>
 
                       <div className="h-16" />
                       <ImageBlock
-                        type="video"
-                        src="/images/eoi-first-iteration.mp4"
+                        src="/images/eoi-first-iteration.webp"
+                        alt="First-iteration prototype — clickable product tiles"
                         caption="First-iteration prototype — clickable product tiles"
                       />
 
@@ -233,15 +235,20 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                       </p>
 
                       <div className="h-16" />
-                      <ImageBlock label="Test recording" />
+                      <ImageBlock
+                        type="video"
+                        src="/images/eoi-test-recording.mp4"
+                        caption="Test recording"
+                      />
 
                       <div className="h-16" />
+                      <Label>First Round Results</Label>
                       <TwoColumnSection heading="Nearly half of test participants selected only one of two products">
                         <p className="text-body-small md:text-body-big text-text-secondary">
                           Even being told explicitly which product selections to make, and throwing
                           out tests taken by &lsquo;professional testers&rsquo; - nearly half of
-                          participants, 5 out of the viable 11 tests, forgot or inadvertently did
-                          not select one of the two products they were meant to include.
+                          participants, 5 out of the viable 11 tests did not select one of the two
+                          products they were meant to include.
                         </p>
                       </TwoColumnSection>
                     </section>
@@ -269,7 +276,11 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                         Defaulted drop downs to encourage cognitive engagement without increasing physical interaction cost
                       </h3>
                       <div className="h-8" />
-                      <ImageBlock label="Variant A — defaulted dropdowns" />
+                      <ImageBlock
+                        src="/images/eoi-variant-a-dropdowns.webp"
+                        alt="Variant A — defaulted dropdowns"
+                        caption="Variant A — defaulted dropdowns"
+                      />
                       <div className="h-8" />
                       <p className="text-body-small md:text-body-big text-text-secondary">
                         Defaulted &ldquo;I don&apos;t need an EOI for this product&rdquo; reduces
@@ -287,18 +298,28 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                       </h3>
                       <div className="h-8" />
                       <ImageBlock
-                        type="video"
-                        src="/images/eoi-winner-product-selection.mp4"
+                        src="/images/eoi-variant-b-yes-no.webp"
+                        alt="Variant B — explicit Yes/No per product"
                         caption="Variant B — explicit Yes/No per product"
                       />
                       <div className="h-8" />
                       <p className="text-body-small md:text-body-big text-text-secondary">
-                        Additionally decided to adjust question proximity to product. Usually I
-                        wouldn&apos;t fix something that wasn&apos;t broken, but because we were
-                        collecting speak-aloud feedback, I wanted to create more variance between
-                        the options just for the opportunity to see if anyone called out liking one
-                        specific thing over another.
+                        I additionally adjusted the proximity of follow-up questions to associated
+                        products. Usually I wouldn&apos;t fix something that wasn&apos;t broken,
+                        but{' '}
+                        <span className="text-primary [&_a]:text-inherit">
+                          because we were collecting speak-aloud feedback, I used the opportunity
+                          to introduce greater variation between design options to observe whether
+                          participants expressed clear preferences for specific approaches.
+                        </span>
                       </p>
+
+                      <div className="h-8" />
+                      <ImageBlock
+                        src="/images/eoi-variant-a-contextual-product.webp"
+                        alt="Contextual product placement"
+                        caption="Contextual product placement"
+                      />
 
                       <SectionDivider />
 
@@ -338,15 +359,24 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
 
                     <SectionDivider />
 
-                    {/* ────────────────────── SOLUTION ────────────────────── */}
-                    <section id="solution">
-                      <Label>Solution</Label>
+                    {/* ────────────────────── BONUS INSIGHTS ────────────────────── */}
+                    <section id="bonus-insights">
+                      <Label>Bonus Insights</Label>
+                      <TwoColumnSection heading="Jargon strikes again">
+                        <p className="text-body-small md:text-body-big text-text-secondary">
+                          Users did use the helper text and drawer, and most of the time were able
+                          piece together what was being asked, but still expressed frustration with
+                          insurance jargon and were not confident they had completed the form
+                          correctly.
+                        </p>
+                      </TwoColumnSection>
+
+                      <div className="h-24" />
+
                       <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                        Yes/No Variant just edged out the Dropdowns
+                        Defaults dropdowns were not the right interaction model
                       </h2>
                       <div className="h-8" />
-                      <ImageBlock label="Final solution iteration" />
-                      <div className="h-12" />
 
                       <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="flex-1 min-w-0">
@@ -385,6 +415,22 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
 
                     <SectionDivider />
 
+                    {/* ────────────────────── SOLUTION ────────────────────── */}
+                    <section id="solution">
+                      <Label>Solution</Label>
+                      <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                        Yes/No Variant just edged out the Dropdowns
+                      </h2>
+                      <div className="h-8" />
+                      <ImageBlock label="Final solution iteration" />
+                      <div className="h-12" />
+                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                        with jargon-free, legal-approved language
+                      </h3>
+                    </section>
+
+                    <SectionDivider />
+
                     {/* ────────────────────── IMPACT ────────────────────── */}
                     <section id="impact">
                       <Label>Impact</Label>
@@ -393,11 +439,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                       </h2>
                       <div className="h-8" />
                       <div className="text-body-small md:text-body-big text-text-secondary space-y-6">
-                        <p>
-                          The final design—requiring a yes/no decision per product—improves
-                          selection accuracy and reduces downstream underwriting effort.
-                        </p>
-                        <p>By preventing passive omission, it reduces the risk of:</p>
+                        <p>By preventing passive product omission, it reduces the risk of:</p>
                         <ul className="list-disc pl-6 space-y-1">
                           <li>Users missing products they actually want (lost coverage + lost revenue)</li>
                           <li>Users over-selecting due to confusion (unnecessary underwriting work)</li>
@@ -408,11 +450,6 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                           <li>Less manual review and rework for underwriting teams</li>
                           <li>More efficient processing of valid, high-intent requests</li>
                         </ul>
-                        <p>
-                          Overall, testing ensured we selected a solution that improves user
-                          accuracy while protecting underwriting capacity, enabling business growth
-                          without increasing operational workload.
-                        </p>
                       </div>
                     </section>
 
@@ -435,7 +472,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
 
                       <TwoColumnSection heading="I want to ship frontend code">
                         <p className="text-body-small md:text-body-big text-text-secondary">
-                          What if the future was designers owning the frontend?
+                          I worked almost entirely in Claude Code to build this prototype.
                         </p>
                       </TwoColumnSection>
                     </section>
@@ -449,8 +486,8 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
               </div>
               {/* end content column */}
 
-              {/* Notes column — empty per Figma (200px placeholder), hidden on mobile */}
-              <div className="hidden lg:block w-[200px] shrink-0" />
+              {/* Notes column — empty per Figma (120px placeholder), hidden on mobile */}
+              <div className="hidden lg:block w-[120px] shrink-0" />
 
             </div>
           </div>
