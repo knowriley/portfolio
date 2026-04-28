@@ -39,14 +39,14 @@ const books: Book[] = [
     title: 'Your Survival Instinct is Killing You',
     cover: { src: '/images/books/book-your-survival-instinct-is-killing-you.webp', alt: 'Your Survival Instinct is Killing You cover' },
     description:
-      'This book taught me how to use discomfort as a tool for growth. Being resilient is really core to my identity, and this book is to thank.',
+      'This book transformed the way I view discomfort, teaching me to use it as a tool for growth. Ultimately, it played a pivotal role in shaping my resilience—now a defining part of who I am.',
     buyUrl: 'https://bookshop.org/p/books/your-survival-instinct-is-killing-you-retrain-your-brain-to-conquer-fear-and-build-resilience-marc-schoen/16629515',
   },
   {
     title: 'Letters to a Young Poet',
     cover: { src: '/images/books/letters-to-a-young-poet.webp', alt: 'Letters to a Young Poet cover' },
     description:
-      'This book resets my nervous system. I read it every few years. Apparently it\u2019s popular in the architect community, though I really couldn\u2019t tell you why.',
+      'This book resets my nervous system and is one I re-read every few years. Apparently it\u2019s popular in the architect community, though I really couldn\u2019t tell you why.',
     buyUrl: 'https://bookshop.org/p/books/letters-to-a-young-poet-rainer-maria-rilke/c68a68aa622d7cb2?ean=9780393310399',
   },
 ]
