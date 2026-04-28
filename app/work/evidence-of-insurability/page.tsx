@@ -55,7 +55,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
         { label: 'Opportunity',               id: 'opportunity' },
         { label: 'Initial Designs & Testing', id: 'initial-designs-testing' },
         { label: 'Redesign & Test Strategy',  id: 'redesign-test-strategy' },
-        { label: 'Bonus Insights',            id: 'bonus-insights' },
+        { label: 'Results',                   id: 'results' },
         { label: 'Solution',                  id: 'solution' },
         { label: 'Impact',                    id: 'impact' },
         { label: 'Takeaways',                 id: 'takeaways' },
@@ -273,34 +273,13 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                       {/* Variant A */}
                       <Label>Variant A</Label>
                       <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
-                        Defaulted drop downs to encourage cognitive engagement without increasing physical interaction cost
-                      </h3>
-                      <div className="h-8" />
-                      <ImageBlock
-                        src="/images/eoi-variant-a-dropdowns.webp"
-                        alt="Variant A — defaulted dropdowns"
-                        caption="Variant A — defaulted dropdowns"
-                      />
-                      <div className="h-8" />
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        Defaulted &ldquo;I don&apos;t need an EOI for this product&rdquo; reduces
-                        users&apos; physical interaction cost, while the list layout leverages
-                        users&apos; natural scanning behavior to ensure they cognitively acknowledge
-                        each product.
-                      </p>
-
-                      <div className="h-16" />
-
-                      {/* Variant B */}
-                      <Label>Variant B</Label>
-                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
                         Explicit Yes / No answer for every product
                       </h3>
                       <div className="h-8" />
                       <ImageBlock
-                        src="/images/eoi-variant-b-yes-no.webp"
-                        alt="Variant B — explicit Yes/No per product"
-                        caption="Variant B — explicit Yes/No per product"
+                        src="/images/eoi-variant-a-yes-no.webp"
+                        alt="Variant A — explicit Yes/No per product"
+                        caption="Variant A — explicit Yes/No per product"
                       />
                       <div className="h-8" />
                       <p className="text-body-small md:text-body-big text-text-secondary">
@@ -321,9 +300,32 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                         caption="Contextual product placement"
                       />
 
-                      <SectionDivider />
+                      <div className="h-16" />
 
-                      {/* Results subsection */}
+                      {/* Variant B */}
+                      <Label>Variant B</Label>
+                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                        Defaulted drop downs to encourage cognitive engagement without increasing physical interaction cost
+                      </h3>
+                      <div className="h-8" />
+                      <ImageBlock
+                        src="/images/eoi-variant-b-dropdowns.webp"
+                        alt="Variant B — defaulted dropdowns"
+                        caption="Variant B — defaulted dropdowns"
+                      />
+                      <div className="h-8" />
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        Defaulted &ldquo;I don&apos;t need an EOI for this product&rdquo; reduces
+                        users&apos; physical interaction cost, while the list layout leverages
+                        users&apos; natural scanning behavior to ensure they cognitively acknowledge
+                        each product.
+                      </p>
+                    </section>
+
+                    <SectionDivider />
+
+                    {/* ────────────────────── RESULTS ────────────────────── */}
+                    <section id="results">
                       <Label>Results</Label>
                       <TwoColumnSection heading="Intentional friction can create better experience outcomes">
                         <p className="text-body-small md:text-body-big text-text-secondary">
@@ -355,12 +357,10 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                           product.
                         </p>
                       </div>
-                    </section>
 
-                    <SectionDivider />
+                      <div className="h-24" />
 
-                    {/* ────────────────────── BONUS INSIGHTS ────────────────────── */}
-                    <section id="bonus-insights">
+                      {/* Bonus Insights subsection */}
                       <Label>Bonus Insights</Label>
                       <TwoColumnSection heading="Jargon strikes again">
                         <p className="text-body-small md:text-body-big text-text-secondary">
@@ -374,7 +374,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                       <div className="h-24" />
 
                       <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                        Defaults dropdowns were not the right interaction model
+                        Defaulted dropdowns were not the right inputs
                       </h2>
                       <div className="h-8" />
 
@@ -383,8 +383,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                           <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
                             Default option misinterpreted as recommendation
                           </h3>
-                        </div>
-                        <div className="flex-1 min-w-0">
+                          <div className="h-4" />
                           <p className="text-body-small md:text-body-big text-text-secondary">
                             In the dropdown variant, the default &ldquo;I don&apos;t
                             need&hellip;&rdquo; option caused confusion, with some users
@@ -393,17 +392,11 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                             lower confidence after selection than with the yes/no variant.
                           </p>
                         </div>
-                      </div>
-
-                      <div className="h-12" />
-
-                      <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="flex-1 min-w-0">
                           <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
                             Lower-friction dropdown drives overselection
                           </h3>
-                        </div>
-                        <div className="flex-1 min-w-0">
+                          <div className="h-4" />
                           <p className="text-body-small md:text-body-big text-text-secondary">
                             In the dropdown variant, users more often selected multiple products
                             when unsure. I suspect the low-friction interaction made choices feel
@@ -427,6 +420,15 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                       <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
                         with jargon-free, legal-approved language
                       </h3>
+                      <div className="h-8" />
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock label="Before" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock label="After" />
+                        </div>
+                      </div>
                     </section>
 
                     <SectionDivider />
