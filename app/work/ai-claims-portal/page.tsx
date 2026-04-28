@@ -94,7 +94,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
               {unlocked ? (
                 <TableOfContents items={tocItems} />
               ) : (
-                <div aria-hidden className="hidden lg:block w-[180px] shrink-0" />
+                <div aria-hidden className="hidden lg:block w-[220px] shrink-0" />
               )}
 
               {/* ── Content column ── */}

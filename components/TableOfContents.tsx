@@ -37,7 +37,7 @@ export default function TableOfContents({ items, className }: { items: TocItem[]
   }, [items])
 
   return (
-    <aside className={`hidden lg:block w-[180px] shrink-0 sticky ${className ?? 'top-32'}`}>
+    <aside className={`hidden lg:block w-[220px] shrink-0 sticky ${className ?? 'top-32'}`}>
       <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-4">
         Contents
       </p>
