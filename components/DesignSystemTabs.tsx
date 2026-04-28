@@ -814,7 +814,7 @@ function FoundationsContent() {
             },
             {
               token: '3-column body',
-              value: '180px + flex-1 + 200px',
+              value: '220px + flex-1 + 120px',
               role: 'TOC (sticky) + content + empty notes column; gap-8 between columns',
             },
           ].map(({ token, value, role }) => (
@@ -1388,7 +1388,7 @@ export default function DesignSystemTabs() {
           </div>
 
           {/* Notes column — reserved, hidden on mobile */}
-          <div className="hidden lg:block w-[200px] shrink-0" />
+          <div className="hidden lg:block w-[120px] shrink-0" />
 
         </div>
       </div>

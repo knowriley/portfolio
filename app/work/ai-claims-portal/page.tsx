@@ -94,7 +94,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
               {unlocked ? (
                 <TableOfContents items={tocItems} />
               ) : (
-                <div aria-hidden className="hidden lg:block w-[180px] shrink-0" />
+                <div aria-hidden className="hidden lg:block w-[220px] shrink-0" />
               )}
 
               {/* ── Content column ── */}
@@ -163,8 +163,8 @@ export default async function AiClaimsPortalCaseStudyPage() {
               </div>
               {/* end content column */}
 
-              {/* Notes column — empty per Figma (200px placeholder), hidden on mobile */}
-              <div className="hidden lg:block w-[200px] shrink-0" />
+              {/* Notes column — empty per Figma (120px placeholder), hidden on mobile */}
+              <div className="hidden lg:block w-[120px] shrink-0" />
 
             </div>
           </div>
