@@ -85,7 +85,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 
 **Figma effect styles** (7) mirror `boxShadow` tokens: shadow/xs through shadow/2xl + shadow/inner.
 
-**Figma components** (12) mirror React components — each with matching variants, states, and (where appropriate) text properties:
+**Figma components** (14) mirror React components — each with matching variants, states, and (where appropriate) text properties:
 - **Button** — `Variant` (Primary | Outline) × `State` (Default | Hover | Disabled), `Show Icon` boolean
 - **IconButton** — `State` (Default | Hover)
 - **Filter Pill** — `Size` (Default | Small) × `State` (Unselected | Hover | Selected), `Label` text
@@ -98,6 +98,8 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 - **Tag** — single component, `Label` text (matches `components/CaseStudyTag.tsx`)
 - **Tab** — `State` (Active | Inactive), `Label` text (Foundations / Components header in DesignSystemTabs)
 - **Carousel Dot** — `State` (Active | Inactive) (TestimonialCarousel)
+- **Token** — single component, `Label` text (matches `components/Token.tsx`)
+- **Segmented Control** — `State` (Default | Active), `Label` text (matches `components/SegmentedControl.tsx`)
 
 **Code Connect status:** Not used. The manual mapping lives in `.figma/components.md`. Each Figma component carries a `description` (React file path + usage snippet) and `documentationLinks` (GitHub URL) — set both via `mcp__plugin_figma_figma__use_figma`.
 
@@ -174,8 +176,7 @@ All text sizing uses the named type scale defined in `tailwind.config.ts` — do
 - All headings (h1–h3, display) use `font-normal` (never `font-medium` or `font-bold`)
 - **Section/content labels** (e.g. "Overview", "Problem", "Next") use `text-body-small text-text-tertiary font-normal` — no uppercase, no letter-spacing
 - **Micro-labels** (footer column headers, TOC "Contents" header, metadata grid field labels e.g. "Role", "Team") use one unified style: `text-small font-medium uppercase tracking-widest text-text-tertiary`
-- Step/index numbers use `font-mono text-small text-text-tertiary`
-- The footer wordmark uses `text-[56px] md:text-[80px] lg:text-[120px]` — decorative, intentionally outside the scale
+- The footer wordmark uses `text-[56px] md:text-[80px] lg:text-[120px]` — decorative one-off, intentionally outside the type scale. Do not refactor into a role token or "normalize" into `text-display`
 
 These classes mirror the Figma text styles (`display`, `h1`, `h2`, `h3`, `h4`, `body-biggest`, `body-big`, `body-small`, `small`) exactly.
 
@@ -292,6 +293,15 @@ All variants share the same visual treatment: `text-text-primary underline` defa
 No selected-hover state by design. Non-color diff on hover: bg, border, and text all shift simultaneously. Selected adds `font-medium`.
 
 **Tag** — `components/CaseStudyTag.tsx` (Server Component). Usage: `<CaseStudyTag>Insurance</CaseStudyTag>`. Single visual treatment, no variants: `text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5`. Used for the tag row in case study heroes and inside `CaseStudyCard`. Visually identical to the TOC active state — same `bg-bg-secondary` + `border-border-subtle` treatment, but pill-shaped instead of `rounded-sm`.
+
+**Token** — `components/Token.tsx` (Server Component). Usage: `<Token>text-display</Token>`. Single visual treatment, no variants: `inline-flex items-center justify-center whitespace-nowrap bg-neutral-100 border border-border-strong rounded-full px-2 py-1 font-mono text-body-small text-text-primary`. Optional `className` prop passes through for layout overrides. Used on the design system page to display every token name (color tokens, type roles, spacing values, radius classes, shadow classes, component variants). Visually distinct from `CaseStudyTag` — Token is monospace + neutral fill + strong border, while Tag is sans + secondary fill + subtle border.
+
+**Segmented Control** — `components/SegmentedControl.tsx` ('use client'). Usage: `<SegmentedControl options={[{label, value}, ...]} value={value} onChange={setValue} ariaLabel="…" />`. Generic over the option `value` type (string-literal union). Two visual states per segment: active (`bg-bg-inverse text-text-inverse font-medium`) and inactive (`text-text-secondary hover:text-text-primary`). Container is `inline-flex items-center gap-1 p-1 bg-bg-tertiary border border-border rounded-md`. Use for switching between mutually-exclusive views in place (e.g. the breakpoint switcher in `/design-system`). Distinct from the inline `Tab` pattern, which has no container and uses outlined inactive buttons.
+
+| State | Key classes |
+|---|---|
+| Inactive | `text-body-small px-3 py-1.5 rounded-sm text-text-secondary hover:text-text-primary` |
+| Active | `text-body-small font-medium px-3 py-1.5 rounded-sm bg-bg-inverse text-text-inverse` |
 
 **Table of Contents** — `components/TableOfContents.tsx` ('use client'). Usage: `<TableOfContents items={[{ label, id }, ...]} />`. Sticky sidebar TOC with IntersectionObserver-based active section tracking. Used in case study pages and the design system page. Hidden below `lg:` breakpoint.
 

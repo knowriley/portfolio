@@ -5,6 +5,8 @@ import Button from './Button'
 import IconButton from './IconButton'
 import InlineLink from './InlineLink'
 import TableOfContents from './TableOfContents'
+import SegmentedControl from './SegmentedControl'
+import Token from './Token'
 import { SectionDivider } from './case-study'
 import {
   ArrowUpRight, ExternalLink, ArrowRight, ArrowLeft,
@@ -29,6 +31,22 @@ function RowDivider() {
   return <div className="border-b border-border-subtle" />
 }
 
+function SegmentedControlDemo() {
+  const [value, setValue] = useState<'list' | 'grid' | 'detail'>('list')
+  return (
+    <SegmentedControl
+      options={[
+        { label: 'List',   value: 'list'   },
+        { label: 'Grid',   value: 'grid'   },
+        { label: 'Detail', value: 'detail' },
+      ]}
+      value={value}
+      onChange={setValue}
+      ariaLabel="Demo view"
+    />
+  )
+}
+
 // ── TOC data ──────────────────────────────────────────────────────────────────
 
 type Tab = 'Foundations' | 'Components'
@@ -50,14 +68,19 @@ const componentsToc = [
   { label: 'Inline Link',        id: 'inline-link' },
   { label: 'Filter Pill',        id: 'filter-pill' },
   { label: 'Tag',                id: 'tag' },
+  { label: 'Token',              id: 'token' },
   { label: 'Tab',                id: 'tab' },
+  { label: 'Segmented Control',  id: 'segmented-control' },
   { label: 'Carousel Dot',       id: 'carousel-dot' },
   { label: 'Table of Contents',  id: 'table-of-contents' },
 ]
 
 // ── Foundations content ───────────────────────────────────────────────────────
 
+type Breakpoint = 'mobile' | 'tablet' | 'desktop'
+
 function FoundationsContent() {
+  const [breakpoint, setBreakpoint] = useState<Breakpoint>('mobile')
   return (
     <>
       {/* ──────────────────────────── TYPOGRAPHY ──────────────────────── */}
@@ -66,7 +89,9 @@ function FoundationsContent() {
 
         <SubLabel>Type Scale</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          All readable text uses one of these seven roles. Raw Tailwind sizes (
+          All readable text uses one of these roles. Every role is{' '}
+          <span className="font-mono">font-normal</span> except{' '}
+          <span className="font-mono">label</span>, which sets its own weight. Raw Tailwind sizes (
           <span className="font-mono">text-sm</span>,{' '}
           <span className="font-mono">text-lg</span>, etc.) and arbitrary pixel values
           are not used for body or UI text.
@@ -76,10 +101,9 @@ function FoundationsContent() {
           <RowDivider />
 
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">text-display</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>text-display</Token>
               <p className="text-body-small text-text-tertiary">3.5rem / 56px · lh 1.3</p>
-              <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Hero headlines only</p>
             </div>
             <p className="text-display font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
@@ -88,10 +112,9 @@ function FoundationsContent() {
           </div>
 
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">text-h1</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>text-h1</Token>
               <p className="text-body-small text-text-tertiary">2.488rem / 39.81px · lh 1.3</p>
-              <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Page-level headings</p>
             </div>
             <p className="text-h1 font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
@@ -100,10 +123,9 @@ function FoundationsContent() {
           </div>
 
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">text-h2</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>text-h2</Token>
               <p className="text-body-small text-text-tertiary">2.074rem / 33.18px · lh 1.3</p>
-              <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Section headings, pull quotes, stats</p>
             </div>
             <p className="text-h2 font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
@@ -112,10 +134,9 @@ function FoundationsContent() {
           </div>
 
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">text-h3</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>text-h3</Token>
               <p className="text-body-small text-text-tertiary">1.728rem / 27.65px · lh 1.3</p>
-              <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Sub-section headings within a section</p>
             </div>
             <p className="text-h3 font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
@@ -124,10 +145,9 @@ function FoundationsContent() {
           </div>
 
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">text-h4</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>text-h4</Token>
               <p className="text-body-small text-text-tertiary">1.44rem / 23.04px · lh 1.3</p>
-              <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Mobile-only — step-down pair for text-h3</p>
             </div>
             <p className="text-h4 font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
@@ -136,10 +156,9 @@ function FoundationsContent() {
           </div>
 
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">text-body-biggest</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>text-body-biggest</Token>
               <p className="text-body-small text-text-tertiary">1.44rem / 23.04px · lh 1.5</p>
-              <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Card titles, sub-headings, overview prose</p>
             </div>
             <p className="text-body-biggest text-text-primary flex-1 min-w-0">
@@ -148,10 +167,9 @@ function FoundationsContent() {
           </div>
 
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">text-body-big</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>text-body-big</Token>
               <p className="text-body-small text-text-tertiary">1.2rem / 19.2px · lh 1.5</p>
-              <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Primary prose, bio copy</p>
             </div>
             <p className="text-body-big text-text-secondary flex-1 min-w-0">
@@ -160,10 +178,9 @@ function FoundationsContent() {
           </div>
 
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">text-body-small</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>text-body-small</Token>
               <p className="text-body-small text-text-tertiary">1rem / 16px · lh 1.5</p>
-              <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Secondary prose, links, nav, badges</p>
             </div>
             <p className="text-body-small text-text-secondary flex-1 min-w-0">
@@ -172,10 +189,9 @@ function FoundationsContent() {
           </div>
 
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">text-small</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>text-small</Token>
               <p className="text-body-small text-text-tertiary">0.833rem / 13.33px · lh 1</p>
-              <p className="text-body-small text-text-tertiary">font-normal</p>
               <p className="text-body-small text-text-tertiary mt-1">Captions only</p>
             </div>
             <p className="text-small text-text-tertiary flex-1 min-w-0">
@@ -184,8 +200,8 @@ function FoundationsContent() {
           </div>
 
           <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">label</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>label</Token>
               <p className="text-body-small text-text-tertiary">0.833rem / 13.33px · lh 1</p>
               <p className="text-body-small text-text-tertiary">font-medium · uppercase · widest</p>
               <p className="text-body-small text-text-tertiary mt-1">Footer headers, TOC title, metadata field labels</p>
@@ -200,8 +216,7 @@ function FoundationsContent() {
         <p className="text-body-small text-text-secondary mb-8">
           Role tokens resolve to the same value at every breakpoint. The responsive shift happens
           at the usage site (e.g. <span className="font-mono">text-h1 md:text-display</span>).
-          This table documents the site-wide convention — rows where the mobile size differs from
-          desktop are emphasized; rows that stay fixed are muted.
+          This table documents the site-wide convention.
         </p>
 
         <div>
@@ -220,84 +235,127 @@ function FoundationsContent() {
             { role: 'text-body-big',     base: 'text-body-small', baseRem: '1rem',     basePx: '16px',    md: 'text-body-big',     mdRem: '1.2rem',   mdPx: '19.2px',  lg: 'text-body-big',     lgRem: '1.2rem',   lgPx: '19.2px' },
             { role: 'text-body-small',   base: 'text-body-small', baseRem: '1rem',     basePx: '16px',    md: 'text-body-small',   mdRem: '1rem',     mdPx: '16px',    lg: 'text-body-small',   lgRem: '1rem',     lgPx: '16px' },
             { role: 'text-small',        base: 'text-small',      baseRem: '0.833rem', basePx: '13.33px', md: 'text-small',        mdRem: '0.833rem', mdPx: '13.33px', lg: 'text-small',        lgRem: '0.833rem', lgPx: '13.33px' },
-          ].map(({ role, base, baseRem, basePx, md, mdRem, mdPx, lg, lgRem, lgPx }) => {
-            const scales = base !== md
-            const nameCls = scales ? 'text-text-primary' : 'text-text-tertiary'
-            return (
-              <div key={role} className="flex items-stretch py-4 border-b border-border-subtle">
-                <p className={`font-mono text-body-small ${nameCls} w-44 shrink-0 pr-4`}>{role}</p>
-                <div className="flex-1 min-w-0 border-l border-border-subtle pl-4">
-                  <p className={`font-mono text-body-small ${nameCls}`}>{base}</p>
-                  <p className="text-body-small text-text-tertiary mt-0.5">{baseRem} / {basePx}</p>
-                </div>
-                <div className="flex-1 min-w-0 border-l border-border-subtle pl-4">
-                  <p className={`font-mono text-body-small ${nameCls}`}>{md}</p>
-                  <p className="text-body-small text-text-tertiary mt-0.5">{mdRem} / {mdPx}</p>
-                </div>
-                <div className="flex-1 min-w-0 border-l border-border-subtle pl-4">
-                  <p className={`font-mono text-body-small ${nameCls}`}>{lg}</p>
-                  <p className="text-body-small text-text-tertiary mt-0.5">{lgRem} / {lgPx}</p>
-                </div>
+          ].map(({ role, base, baseRem, basePx, md, mdRem, mdPx, lg, lgRem, lgPx }) => (
+            <div key={role} className="flex items-start py-4 border-b border-border-subtle">
+              <div className="min-w-[11rem] shrink-0 pr-4"><Token>{role}</Token></div>
+              <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
+                <Token>{base}</Token>
+                <p className="text-body-small text-text-tertiary">{baseRem} / {basePx}</p>
               </div>
-            )
-          })}
+              <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
+                <Token>{md}</Token>
+                <p className="text-body-small text-text-tertiary">{mdRem} / {mdPx}</p>
+              </div>
+              <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
+                <Token>{lg}</Token>
+                <p className="text-body-small text-text-tertiary">{lgRem} / {lgPx}</p>
+              </div>
+            </div>
+          ))}
         </div>
 
         <SubLabel>Breakpoint Samples</SubLabel>
-        <p className="text-body-small text-text-secondary mb-8">
-          The same compressed case study rendered at three fixed viewport widths. Type sizes
-          inside each frame are hardcoded to the values that would resolve at that breakpoint —
-          so the differences are visible without resizing the window. Frames wider than the
-          page scroll horizontally.
+        <p className="text-body-small text-text-secondary mb-6">
+          The same compressed case study rendered at the selected breakpoint. Type sizes inside
+          the frame are hardcoded to the values that would resolve at that breakpoint — so the
+          differences are visible without resizing the window. Frames wider than the page scroll
+          horizontally.
         </p>
 
-        <div className="flex flex-col gap-10">
+        <div className="mb-4">
+          <SegmentedControl
+            options={[
+              { label: 'Mobile · 375px',  value: 'mobile'  },
+              { label: 'Tablet · 768px',  value: 'tablet'  },
+              { label: 'Desktop · 1024px', value: 'desktop' },
+            ]}
+            value={breakpoint}
+            onChange={setBreakpoint}
+            ariaLabel="Preview breakpoint"
+          />
+        </div>
 
-          {/* MOBILE FRAME · 375px */}
-          <div>
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-3">Mobile · 375px</p>
-            <div className="overflow-x-auto bg-bg-tertiary rounded-sm border border-border-subtle p-4">
-              <div className="w-[375px] bg-bg rounded-sm border border-border p-5">
-                <div className="flex flex-col gap-4">
-                  <div className="flex gap-1.5 flex-wrap">
-                    <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">Design Systems</span>
-                    <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">2024</span>
-                  </div>
-                  <p className="text-h1 font-normal text-text-primary leading-[1.3]">Sample Case Study</p>
-                  <div className="aspect-video bg-bg-secondary rounded-sm border border-border" />
-                  <div>
-                    <p className="text-body-small text-text-tertiary mb-2">Overview</p>
-                    <p className="text-body-small text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4 pt-2">
-                    {[
-                      { label: 'Role',     value: 'Lead Designer' },
-                      { label: 'Team',     value: 'Design Systems' },
-                      { label: 'Timeline', value: '6 months' },
-                      { label: 'Status',   value: 'Shipped' },
-                    ].map(({ label, value }) => (
-                      <div key={label}>
-                        <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-1">{label}</p>
-                        <p className="text-body-small text-text-secondary">{value}</p>
-                      </div>
-                    ))}
-                  </div>
-                  <div className="border-t border-border-subtle pt-4">
-                    <p className="text-body-small text-text-tertiary mb-2">Problem</p>
-                    <p className="text-h4 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
-                    <p className="text-body-small text-text-secondary">Body prose steps down to <span className="font-mono">text-body-small</span> on mobile for comfortable reading, then up to <span className="font-mono">text-body-big</span> from tablet up.</p>
-                  </div>
+        <div className="overflow-x-auto bg-bg-tertiary rounded-sm border border-border-subtle p-4">
+          {breakpoint === 'mobile' && (
+            <div className="w-[375px] bg-bg rounded-sm border border-border p-5">
+              <div className="flex flex-col gap-4">
+                <div className="flex gap-1.5 flex-wrap">
+                  <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">Design Systems</span>
+                  <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">2024</span>
+                </div>
+                <p className="text-h1 font-normal text-text-primary leading-[1.3]">Sample Case Study</p>
+                <div className="aspect-video bg-bg-secondary rounded-sm border border-border" />
+                <div>
+                  <p className="text-body-small text-text-tertiary mb-2">Overview</p>
+                  <p className="text-body-small text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
+                </div>
+                <div className="grid grid-cols-2 gap-4 pt-2">
+                  {[
+                    { label: 'Role',     value: 'Lead Designer' },
+                    { label: 'Team',     value: 'Design Systems' },
+                    { label: 'Timeline', value: '6 months' },
+                    { label: 'Status',   value: 'Shipped' },
+                  ].map(({ label, value }) => (
+                    <div key={label}>
+                      <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-1">{label}</p>
+                      <p className="text-body-small text-text-secondary">{value}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="border-t border-border-subtle pt-4">
+                  <p className="text-body-small text-text-tertiary mb-2">Problem</p>
+                  <p className="text-h4 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
+                  <p className="text-body-small text-text-secondary">Body prose steps down to <span className="font-mono">text-body-small</span> on mobile for comfortable reading, then up to <span className="font-mono">text-body-big</span> from tablet up.</p>
                 </div>
               </div>
             </div>
-          </div>
+          )}
 
-          {/* TABLET FRAME · 768px */}
-          <div>
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-3">Tablet · 768px</p>
-            <div className="overflow-x-auto bg-bg-tertiary rounded-sm border border-border-subtle p-4">
-              <div className="w-[768px] bg-bg rounded-sm border border-border p-6">
-                <div className="flex flex-col gap-5">
+          {breakpoint === 'tablet' && (
+            <div className="w-[768px] bg-bg rounded-sm border border-border p-6">
+              <div className="flex flex-col gap-5">
+                <div className="flex gap-1.5 flex-wrap">
+                  <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">Design Systems</span>
+                  <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">2024</span>
+                </div>
+                <p className="text-display font-normal text-text-primary leading-[1.3]">Sample Case Study</p>
+                <div className="aspect-video bg-bg-secondary rounded-sm border border-border" />
+                <div>
+                  <p className="text-body-small text-text-tertiary mb-2">Overview</p>
+                  <p className="text-body-big text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
+                </div>
+                <div className="grid grid-cols-3 gap-6 pt-2">
+                  {[
+                    { label: 'Role',     value: 'Lead Designer' },
+                    { label: 'Team',     value: 'Design Systems' },
+                    { label: 'Timeline', value: '6 months' },
+                    { label: 'Status',   value: 'Shipped' },
+                  ].map(({ label, value }) => (
+                    <div key={label}>
+                      <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-1">{label}</p>
+                      <p className="text-body-small text-text-secondary">{value}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="border-t border-border-subtle pt-5">
+                  <p className="text-body-small text-text-tertiary mb-2">Problem</p>
+                  <p className="text-h2 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
+                  <p className="text-body-big text-text-secondary">From tablet up, body prose renders at <span className="font-mono">text-body-big</span>.</p>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {breakpoint === 'desktop' && (
+            <div className="w-[1024px] bg-bg rounded-sm border border-border p-6">
+              <div className="flex gap-6">
+                <div className="w-[140px] shrink-0 flex flex-col gap-1">
+                  <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-2">Contents</p>
+                  <span className="block text-body-small text-text-secondary px-2 py-1">Overview</span>
+                  <span className="block text-body-small font-medium text-text-primary bg-bg-secondary px-2 py-1 rounded-sm">Problem</span>
+                  <span className="block text-body-small text-text-secondary px-2 py-1">Solution</span>
+                </div>
+                <div className="flex-1 min-w-0 flex flex-col gap-5">
                   <div className="flex gap-1.5 flex-wrap">
                     <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">Design Systems</span>
                     <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">2024</span>
@@ -306,7 +364,7 @@ function FoundationsContent() {
                   <div className="aspect-video bg-bg-secondary rounded-sm border border-border" />
                   <div>
                     <p className="text-body-small text-text-tertiary mb-2">Overview</p>
-                    <p className="text-body-big text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
+                    <p className="text-body-biggest text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
                   </div>
                   <div className="grid grid-cols-3 gap-6 pt-2">
                     {[
@@ -327,58 +385,10 @@ function FoundationsContent() {
                     <p className="text-body-big text-text-secondary">From tablet up, body prose renders at <span className="font-mono">text-body-big</span>.</p>
                   </div>
                 </div>
+                <div className="w-[160px] shrink-0" />
               </div>
             </div>
-          </div>
-
-          {/* DESKTOP FRAME · 1024px */}
-          <div>
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-3">Desktop · 1024px</p>
-            <div className="overflow-x-auto bg-bg-tertiary rounded-sm border border-border-subtle p-4">
-              <div className="w-[1024px] bg-bg rounded-sm border border-border p-6">
-                <div className="flex gap-6">
-                  <div className="w-[140px] shrink-0 flex flex-col gap-1">
-                    <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-2">Contents</p>
-                    <span className="block text-body-small text-text-secondary px-2 py-1">Overview</span>
-                    <span className="block text-body-small font-medium text-text-primary bg-bg-secondary px-2 py-1 rounded-sm">Problem</span>
-                    <span className="block text-body-small text-text-secondary px-2 py-1">Solution</span>
-                  </div>
-                  <div className="flex-1 min-w-0 flex flex-col gap-5">
-                    <div className="flex gap-1.5 flex-wrap">
-                      <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">Design Systems</span>
-                      <span className="text-small text-text-tertiary px-2 py-0.5 rounded-full bg-bg-tertiary">2024</span>
-                    </div>
-                    <p className="text-display font-normal text-text-primary leading-[1.3]">Sample Case Study</p>
-                    <div className="aspect-video bg-bg-secondary rounded-sm border border-border" />
-                    <div>
-                      <p className="text-body-small text-text-tertiary mb-2">Overview</p>
-                      <p className="text-body-biggest text-text-primary">Redesigning the case study template so typography reads well at every breakpoint.</p>
-                    </div>
-                    <div className="grid grid-cols-3 gap-6 pt-2">
-                      {[
-                        { label: 'Role',     value: 'Lead Designer' },
-                        { label: 'Team',     value: 'Design Systems' },
-                        { label: 'Timeline', value: '6 months' },
-                        { label: 'Status',   value: 'Shipped' },
-                      ].map(({ label, value }) => (
-                        <div key={label}>
-                          <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-1">{label}</p>
-                          <p className="text-body-small text-text-secondary">{value}</p>
-                        </div>
-                      ))}
-                    </div>
-                    <div className="border-t border-border-subtle pt-5">
-                      <p className="text-body-small text-text-tertiary mb-2">Problem</p>
-                      <p className="text-h2 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
-                      <p className="text-body-big text-text-secondary">From tablet up, body prose renders at <span className="font-mono">text-body-big</span>.</p>
-                    </div>
-                  </div>
-                  <div className="w-[160px] shrink-0" />
-                </div>
-              </div>
-            </div>
-          </div>
-
+          )}
         </div>
 
         <SubLabel>Font Families</SubLabel>
@@ -386,8 +396,8 @@ function FoundationsContent() {
           <RowDivider />
 
           <div className="py-6 flex items-center gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">font-sans</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>font-sans</Token>
               <p className="text-body-small text-text-tertiary">Inter</p>
               <p className="text-body-small text-text-tertiary mt-1">All UI text</p>
             </div>
@@ -397,8 +407,8 @@ function FoundationsContent() {
           </div>
 
           <div className="py-6 flex items-center gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">font-serif</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>font-serif</Token>
               <p className="text-body-small text-text-tertiary">Lora</p>
               <p className="text-body-small text-text-tertiary mt-1">Available; not in active use</p>
             </div>
@@ -408,8 +418,8 @@ function FoundationsContent() {
           </div>
 
           <div className="py-6 flex items-center gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1">
-              <p className="font-mono text-body-small text-text-primary">font-mono</p>
+            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
+              <Token>font-mono</Token>
               <p className="text-body-small text-text-tertiary">JetBrains Mono</p>
               <p className="text-body-small text-text-tertiary mt-1">Step numbers, code, token names</p>
             </div>
@@ -419,51 +429,6 @@ function FoundationsContent() {
           </div>
         </div>
 
-        <SubLabel>Micro-labels</SubLabel>
-        <p className="text-body-small text-text-secondary mb-8">
-          One unified style for all structural UI labels — footer column headers, TOC title, and metadata field labels.
-        </p>
-        <div>
-          <RowDivider />
-          <div className="py-5 flex items-center gap-8 border-b border-border-subtle">
-            <div className="w-40 shrink-0">
-              <p className="text-small font-medium uppercase tracking-widest text-text-tertiary">Role</p>
-            </div>
-            <p className="font-mono text-body-small text-text-tertiary w-72 shrink-0">text-small font-medium uppercase tracking-widest</p>
-            <p className="text-body-small text-text-secondary flex-1 min-w-0">Footer headers, TOC title, MetadataGrid field labels</p>
-          </div>
-        </div>
-
-        <SubLabel>Conventions</SubLabel>
-        <div className="flex flex-col gap-4">
-          {[
-            {
-              rule: 'Headings always use font-medium — never font-bold or font-normal.',
-              applies: 'h1, h2 elements',
-            },
-            {
-              rule: 'Section and content labels (e.g. "Overview", "Problem", "Next") use text-body-small text-text-tertiary with no uppercase or letter-spacing.',
-              applies: 'Label component',
-            },
-            {
-              rule: 'Micro-labels (footer column headers, TOC title, metadata grid field labels) use a single unified style: text-small font-medium uppercase tracking-widest text-text-tertiary.',
-              applies: 'Footer, TOC, MetadataGrid',
-            },
-            {
-              rule: 'Step or index numbers use font-mono text-body-small text-text-tertiary.',
-              applies: 'Numbered callouts',
-            },
-            {
-              rule: 'The footer wordmark uses text-[56px] md:text-[80px] lg:text-[120px] — decorative, intentionally outside the scale.',
-              applies: 'Footer wordmark',
-            },
-          ].map(({ rule, applies }) => (
-            <div key={applies} className="flex gap-8 py-4 border-b border-border-subtle">
-              <p className="text-body-small text-text-primary flex-1 min-w-0">{rule}</p>
-              <p className="text-body-small text-text-tertiary w-40 shrink-0 pt-0.5">{applies}</p>
-            </div>
-          ))}
-        </div>
       </section>
 
       <SectionDivider />
@@ -492,7 +457,7 @@ function FoundationsContent() {
               <div className="w-12 flex items-center justify-center shrink-0">
                 <ArrowUpRight size={size} strokeWidth={strokeWidth} className="text-text-primary" />
               </div>
-              <p className="font-mono text-body-small text-text-primary w-56 shrink-0">{label}</p>
+              <div className="min-w-[14rem] shrink-0"><Token>{label}</Token></div>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
             </div>
           ))}
@@ -508,7 +473,7 @@ function FoundationsContent() {
           ].map(({ cls, icon, label, use }) => (
             <div key={label} className={`flex items-center gap-8 py-5 border-b border-border-subtle ${cls}`}>
               <div className="w-12 flex items-center justify-center shrink-0">{icon}</div>
-              <p className="font-mono text-body-small text-text-primary w-56 shrink-0">{label}</p>
+              <div className="min-w-[14rem] shrink-0"><Token>{label}</Token></div>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
             </div>
           ))}
@@ -587,7 +552,7 @@ function FoundationsContent() {
                 className={`size-8 rounded-sm shrink-0 ${hex === '#FFFFFF' ? 'border border-border' : ''}`}
                 style={{ backgroundColor: hex }}
               />
-              <p className="font-mono text-body-small text-text-primary w-32 shrink-0">{label}</p>
+              <div className="min-w-[8rem] shrink-0"><Token>{label}</Token></div>
               <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
               <p className="text-body-small text-text-tertiary flex-1 min-w-0">→ {mapped}</p>
             </div>
@@ -610,7 +575,7 @@ function FoundationsContent() {
           ].map(({ label, hex, note }) => (
             <div key={label} className="flex items-center gap-5 py-3 border-b border-border-subtle">
               <div className="size-8 rounded-sm shrink-0" style={{ backgroundColor: hex }} />
-              <p className="font-mono text-body-small text-text-primary w-32 shrink-0">{label}</p>
+              <div className="min-w-[8rem] shrink-0"><Token>{label}</Token></div>
               <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
               <p className="text-body-small text-text-tertiary flex-1 min-w-0">{note}</p>
             </div>
@@ -637,8 +602,8 @@ function FoundationsContent() {
                 className={`size-10 rounded-sm shrink-0 ${border ? 'border border-border' : ''}`}
                 style={{ backgroundColor: hex }}
               />
-              <div className="flex-1 min-w-0 flex items-baseline gap-4">
-                <p className="font-mono text-body-small text-text-primary w-52 shrink-0">{label}</p>
+              <div className="flex-1 min-w-0 flex items-center gap-4">
+                <div className="min-w-[13rem] shrink-0"><Token>{label}</Token></div>
                 <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
                 <p className="text-body-small text-text-secondary">{role}</p>
               </div>
@@ -661,8 +626,8 @@ function FoundationsContent() {
                 className={`size-10 rounded-sm shrink-0 ${border ? 'border border-border' : ''}`}
                 style={{ backgroundColor: hex }}
               />
-              <div className="flex-1 min-w-0 flex items-baseline gap-4">
-                <p className="font-mono text-body-small text-text-primary w-52 shrink-0">{label}</p>
+              <div className="flex-1 min-w-0 flex items-center gap-4">
+                <div className="min-w-[13rem] shrink-0"><Token>{label}</Token></div>
                 <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
                 <p className="text-body-small text-text-secondary">{role}</p>
               </div>
@@ -684,8 +649,8 @@ function FoundationsContent() {
                 className="size-10 rounded-sm shrink-0 border-2"
                 style={{ borderColor: hex, backgroundColor: 'transparent' }}
               />
-              <div className="flex-1 min-w-0 flex items-baseline gap-4">
-                <p className="font-mono text-body-small text-text-primary w-52 shrink-0">{label}</p>
+              <div className="flex-1 min-w-0 flex items-center gap-4">
+                <div className="min-w-[13rem] shrink-0"><Token>{label}</Token></div>
                 <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
                 <p className="text-body-small text-text-secondary">{role}</p>
               </div>
@@ -701,8 +666,8 @@ function FoundationsContent() {
           <RowDivider />
           <div className="flex items-center gap-5 py-4 border-b border-border-subtle">
             <div className="size-10 rounded-sm shrink-0" style={{ backgroundColor: '#f02065' }} />
-            <div className="flex-1 min-w-0 flex items-baseline gap-4">
-              <p className="font-mono text-body-small text-text-primary w-52 shrink-0">bg-accent</p>
+            <div className="flex-1 min-w-0 flex items-center gap-4">
+              <div className="min-w-[13rem] shrink-0"><Token>bg-accent</Token></div>
               <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">#f02065</p>
               <p className="text-body-small text-text-secondary">Accent pink — decorative uses. Not used as button hover.</p>
             </div>
@@ -723,9 +688,7 @@ function FoundationsContent() {
               style={{ background: 'linear-gradient(to right, #f02065, #d5189b)' }}
             />
             <div className="flex-1 min-w-0">
-              <p className="font-mono text-body-small text-text-primary mb-1">
-                from-gradient-red to-gradient-pink
-              </p>
+              <div className="mb-1"><Token>from-gradient-red to-gradient-pink</Token></div>
               <p className="text-body-small text-text-tertiary mb-3">#f02065 → #d5189b</p>
               <p className="text-body-big bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">
                 Inline text highlights
@@ -742,9 +705,7 @@ function FoundationsContent() {
               style={{ background: 'linear-gradient(to right, #f02065 22%, #ff7700)' }}
             />
             <div className="flex-1 min-w-0">
-              <p className="font-mono text-body-small text-text-primary mb-1">
-                from-gradient-red from-[22%] to-gradient-orange
-              </p>
+              <div className="mb-1"><Token>from-gradient-red from-[22%] to-gradient-orange</Token></div>
               <p className="text-body-small text-text-tertiary mb-3">#f02065 → #ff7700 · Pink-orange</p>
               <p className="text-h2 font-normal bg-clip-text text-transparent bg-gradient-to-r from-gradient-red from-[22%] to-gradient-orange">
                 Content dictates form
@@ -789,7 +750,7 @@ function FoundationsContent() {
             { scale: '24',   px: '96px',  role: 'Between subsections (h-24); next section bottom padding (pb-24)' },
           ].map(({ scale, px, role }) => (
             <div key={scale} className="flex items-center gap-4 py-3 border-b border-border-subtle">
-              <p className="font-mono text-body-small text-text-primary w-16 shrink-0">{scale}</p>
+              <div className="min-w-[4rem] shrink-0"><Token>{scale}</Token></div>
               <p className="font-mono text-body-small text-text-tertiary w-16 shrink-0">{px}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{role}</p>
             </div>
@@ -818,9 +779,9 @@ function FoundationsContent() {
               role: 'TOC (sticky) + content + empty notes column; gap-8 between columns',
             },
           ].map(({ token, value, role }) => (
-            <div key={token} className="flex items-start gap-8 py-4 border-b border-border-subtle">
-              <p className="font-mono text-body-small text-text-primary w-44 shrink-0 pt-0.5">{token}</p>
-              <p className="font-mono text-body-small text-text-tertiary w-40 shrink-0 pt-0.5">{value}</p>
+            <div key={token} className="flex items-center gap-8 py-4 border-b border-border-subtle">
+              <div className="min-w-[11rem] shrink-0"><Token>{token}</Token></div>
+              <p className="font-mono text-body-small text-text-tertiary w-40 shrink-0">{value}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{role}</p>
             </div>
           ))}
@@ -830,7 +791,7 @@ function FoundationsContent() {
         <p className="text-body-small text-text-secondary mb-8">
           Spacing tokens themselves don&apos;t change at breakpoints — the swap happens at the usage
           site (e.g. <span className="font-mono">px-5 md:px-10</span>). These are the recurring
-          site-wide patterns. Values not listed here stay fixed across all breakpoints.
+          site-wide patterns.
         </p>
 
         <div>
@@ -849,27 +810,23 @@ function FoundationsContent() {
             { usage: 'Subsection spacer',              base: 'h-12',  baseRem: '3rem',    basePx: '48px', md: 'h-24',  mdRem: '6rem',   mdPx: '96px', lg: 'h-24',  lgRem: '6rem',   lgPx: '96px' },
             { usage: 'Paywall spacer',                 base: 'h-16',  baseRem: '4rem',    basePx: '64px', md: 'h-24',  mdRem: '6rem',   mdPx: '96px', lg: 'h-24',  lgRem: '6rem',   lgPx: '96px' },
             { usage: 'Next section bottom',            base: 'pb-12', baseRem: '3rem',    basePx: '48px', md: 'pb-24', mdRem: '6rem',   mdPx: '96px', lg: 'pb-24', lgRem: '6rem',   lgPx: '96px' },
-          ].map(({ usage, base, baseRem, basePx, md, mdRem, mdPx, lg, lgRem, lgPx }) => {
-            const scales = base !== md
-            const nameCls = scales ? 'text-text-primary' : 'text-text-tertiary'
-            return (
-              <div key={usage} className="flex items-stretch py-4 border-b border-border-subtle">
-                <p className={`text-body-small ${nameCls} w-56 shrink-0 pr-4`}>{usage}</p>
-                <div className="flex-1 min-w-0 border-l border-border-subtle pl-4">
-                  <p className={`font-mono text-body-small ${nameCls}`}>{base}</p>
-                  <p className="text-body-small text-text-tertiary mt-0.5">{baseRem} / {basePx}</p>
-                </div>
-                <div className="flex-1 min-w-0 border-l border-border-subtle pl-4">
-                  <p className={`font-mono text-body-small ${nameCls}`}>{md}</p>
-                  <p className="text-body-small text-text-tertiary mt-0.5">{mdRem} / {mdPx}</p>
-                </div>
-                <div className="flex-1 min-w-0 border-l border-border-subtle pl-4">
-                  <p className={`font-mono text-body-small ${nameCls}`}>{lg}</p>
-                  <p className="text-body-small text-text-tertiary mt-0.5">{lgRem} / {lgPx}</p>
-                </div>
+          ].map(({ usage, base, baseRem, basePx, md, mdRem, mdPx, lg, lgRem, lgPx }) => (
+            <div key={usage} className="flex items-start py-4 border-b border-border-subtle">
+              <p className="text-body-small text-text-secondary w-56 shrink-0 pr-4">{usage}</p>
+              <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
+                <Token>{base}</Token>
+                <p className="text-body-small text-text-tertiary">{baseRem} / {basePx}</p>
               </div>
-            )
-          })}
+              <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
+                <Token>{md}</Token>
+                <p className="text-body-small text-text-tertiary">{mdRem} / {mdPx}</p>
+              </div>
+              <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
+                <Token>{lg}</Token>
+                <p className="text-body-small text-text-tertiary">{lgRem} / {lgPx}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
@@ -903,7 +860,7 @@ function FoundationsContent() {
                 className="size-10 bg-bg-tertiary shrink-0 border border-border"
                 style={{ borderRadius: value }}
               />
-              <p className="font-mono text-body-small text-text-primary w-24 shrink-0">{cls}</p>
+              <div className="min-w-[6rem] shrink-0"><Token>{cls}</Token></div>
               <p className="font-mono text-body-small text-text-tertiary w-16 shrink-0">{value}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
             </div>
@@ -939,9 +896,9 @@ function FoundationsContent() {
           ].map(({ cls, value }) => (
             <div key={cls} className="flex items-center gap-5 py-5 border-b border-border-subtle">
               <div className={`size-10 bg-bg rounded-sm shrink-0 ${cls}`} />
-              <div className="flex-1 min-w-0">
-                <p className="font-mono text-body-small text-text-primary">{cls}</p>
-                <p className="text-body-small text-text-tertiary mt-1">{value}</p>
+              <div className="flex-1 min-w-0 flex flex-col gap-1 items-start">
+                <Token>{cls}</Token>
+                <p className="text-body-small text-text-tertiary">{value}</p>
               </div>
             </div>
           ))}
@@ -1154,7 +1111,7 @@ function ComponentsContent() {
             { variant: 'icon-emphasis', icon: '↗', use: 'Navigation external, high emphasis, not branded' },
           ].map(({ variant, icon, use }) => (
             <div key={variant} className="flex items-center gap-8 py-4 border-b border-border-subtle">
-              <p className="font-mono text-body-small text-text-primary w-36 shrink-0">{variant}</p>
+              <div className="min-w-[9rem] shrink-0"><Token>{variant}</Token></div>
               <p className="text-body-small text-text-tertiary w-16 shrink-0">{icon}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
             </div>
@@ -1212,7 +1169,7 @@ function ComponentsContent() {
             { size: 'small', classes: 'text-body-small px-3 py-1.5', use: 'Mobile, dense layouts' },
           ].map(({ size, classes, use }) => (
             <div key={size} className="flex items-center gap-8 py-4 border-b border-border-subtle">
-              <p className="font-mono text-body-small text-text-primary w-24 shrink-0">{size}</p>
+              <div className="min-w-[6rem] shrink-0"><Token>{size}</Token></div>
               <p className="font-mono text-body-small text-text-secondary flex-1 min-w-0">{classes}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
             </div>
@@ -1263,6 +1220,34 @@ function ComponentsContent() {
 
       <SectionDivider />
 
+      <section id="token">
+        <SubLabel>Token</SubLabel>
+        <p className="text-body-small text-text-secondary mb-8">
+          Component: <span className="font-mono">components/Token.tsx</span>. A monospace pill chip
+          used to display every design token name on this page — color tokens, type roles, spacing
+          values, radius classes, shadow classes, and component variants. Single visual treatment,
+          no variants. Pass the token name as children.
+        </p>
+
+        <div className="mb-8 flex flex-wrap items-center gap-2">
+          <Token>text-display</Token>
+          <Token>neutral-100</Token>
+          <Token>spacing/16</Token>
+          <Token>rounded-full</Token>
+          <Token>shadow-md</Token>
+        </div>
+
+        <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
+          <p className="text-body-small text-text-secondary">
+            <span className="font-mono">bg-neutral-100</span> + <span className="font-mono">border-border-strong</span> + <span className="font-mono">rounded-full</span> + <span className="font-mono">px-2 py-1</span>.
+            Inline-flex with <span className="font-mono">whitespace-nowrap</span> so it sits cleanly
+            beside surrounding text and never wraps. Mirrors the Figma Token component (no variants).
+          </p>
+        </div>
+      </section>
+
+      <SectionDivider />
+
       <section id="tab">
         <SubLabel>Tab</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
@@ -1284,6 +1269,36 @@ function ComponentsContent() {
             Active uses <span className="font-mono">bg-bg-inverse</span> + white text + medium
             weight; inactive matches the Filter Pill unselected treatment. No selected-hover state
             by design — once a tab is active, hovering it is a no-op.
+          </p>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section id="segmented-control">
+        <SubLabel>Segmented Control</SubLabel>
+        <p className="text-body-small text-text-secondary mb-8">
+          Component: <span className="font-mono">components/SegmentedControl.tsx</span>. A grouped
+          set of buttons where exactly one is selected — used to switch between mutually-exclusive
+          views in place. Currently powers the breakpoint switcher in Foundations → Type Scale →
+          Breakpoint Samples.
+        </p>
+
+        <div className="mb-8">
+          <SegmentedControlDemo />
+        </div>
+
+        <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
+          <p className="text-body-small text-text-secondary">
+            Generic in its option type — pass any string-literal union as <span className="font-mono">value</span>{' '}
+            and the matching <span className="font-mono">options[]</span>. Active uses{' '}
+            <span className="font-mono">bg-bg-inverse</span> + white text + medium weight; inactive
+            shifts text from <span className="font-mono">text-text-secondary</span> →{' '}
+            <span className="font-mono">text-text-primary</span> on hover. Container uses{' '}
+            <span className="font-mono">bg-bg-tertiary</span> + <span className="font-mono">border-border</span> +{' '}
+            <span className="font-mono">rounded-md</span> +{' '}
+            <span className="font-mono">p-1</span> — visually distinct from the Tab pattern (no
+            container, individual outlined inactive buttons).
           </p>
         </div>
       </section>
