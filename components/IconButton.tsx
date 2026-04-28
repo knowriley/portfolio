@@ -8,10 +8,10 @@ interface IconButtonProps {
 }
 
 /**
- * Icon-only action button. Matches outline button variant states.
+ * Icon-only action button. Matches primary button color.
  *
- * Default: bg-bg-secondary border-border text-text-primary
- * Hover:   bg-bg-tertiary border-border-strong text-text-primary
+ * Default: bg-bg-inverse text-text-inverse
+ * Hover:   bg-neutral-800
  *
  * Usage:
  *   <IconButton icon={<ArrowLeft size={20} strokeWidth={2} />} onClick={prev} aria-label="Previous" />
@@ -27,7 +27,7 @@ export default function IconButton({
       type="button"
       onClick={onClick}
       aria-label={ariaLabel}
-      className={`size-11 rounded-full bg-bg-secondary border border-border text-text-secondary flex items-center justify-center hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary transition-colors ${className}`}
+      className={`size-11 rounded-full bg-bg-inverse text-text-inverse flex items-center justify-center hover:bg-neutral-800 transition-colors ${className}`}
     >
       {icon}
     </button>

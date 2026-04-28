@@ -6,6 +6,8 @@ export interface CaseStudy {
   year: string
   industry: string
   comingSoon?: boolean
+  /** When true, omit from public listings (WorkGrid, etc.). The page route should also notFound(). */
+  hidden?: boolean
   /** Path to the work grid card thumbnail, relative to /public (e.g. "/work/slug/thumbnail.png") */
   thumbnail?: string
 }
@@ -30,6 +32,7 @@ const rawCaseStudies: CaseStudy[] = [
     year: 'Feb 2025 - May 2025',
     industry: 'B2B SEO',
     thumbnail: '/images/product-overview-move-in-animation.mp4',
+    hidden: true,
   },
   {
     slug: 'evidence-of-insurability',

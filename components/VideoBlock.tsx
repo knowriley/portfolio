@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react'
 import { Pause, Play } from 'lucide-react'
+import IconButton from './IconButton'
 
 export default function VideoBlock({
   src,
@@ -42,18 +43,12 @@ export default function VideoBlock({
         >
           <source src={src} type="video/mp4" />
         </video>
-        <button
-          type="button"
+        <IconButton
+          icon={playing ? <Pause size={20} strokeWidth={2} /> : <Play size={20} strokeWidth={2} />}
           onClick={toggle}
           aria-label={playing ? 'Pause video' : 'Play video'}
-          className="absolute bottom-3 right-3 size-11 rounded-full bg-bg-secondary border border-border text-text-secondary flex items-center justify-center hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary transition-colors"
-        >
-          {playing ? (
-            <Pause size={20} strokeWidth={2} />
-          ) : (
-            <Play size={20} strokeWidth={2} />
-          )}
-        </button>
+          className="absolute bottom-3 right-3"
+        />
       </div>
       {caption && (
         <figcaption className="text-small text-text-tertiary mt-2 text-center">{caption}</figcaption>
