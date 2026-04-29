@@ -320,81 +320,50 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                     {/* ────────────────────── RESULTS ────────────────────── */}
                     <section id="results">
                       <Label>Results</Label>
-                      <TwoColumnSection heading="Intentional friction can create better experience outcomes">
+                      <TwoColumnSection heading="62% improvement in product selection, but jargon is still an obstacle">
                         <p className="text-body-small md:text-body-big text-text-secondary">
                           In an A/B test of 54 participants,{' '}
                           <span className="text-primary [&_a]:text-inherit">
-                            both variants dramatically outperformed the original design.
+                            task success for selecting both products was 88% and 89% for variants
+                            A &amp; B respectively
                           </span>
+                          , a 62% increase from the 55% success of the original design.
                         </p>
                       </TwoColumnSection>
 
                       <div className="h-12" />
 
-                      <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex flex-col gap-4 w-full">
-                        <p className="text-h3 md:text-h2 font-normal text-primary leading-[1.3]">62% improvement</p>
-                        <p className="text-body-small md:text-body-big text-text-secondary">
-                          Task success for selecting both products was 88% and 89% for variants A
-                          &amp; B respectively. Requiring explicit per-product engagement nearly
-                          eliminated the passive omission pattern observed in the first test.
-                        </p>
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock label="Helper text usage in Yes / No variants" />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-body-small md:text-body-big text-text-primary">
+                            In the Yes / No variants, participants used the new helper text when
+                            they needed help, though the internal content wasn&apos;t helpful.
+                          </p>
+                        </div>
                       </div>
 
-                      <div className="h-8" />
-
-                      <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex flex-col gap-4 w-full">
-                        <p className="text-h3 md:text-h2 font-normal text-primary leading-[1.3]">Zero</p>
-                        <p className="text-body-small md:text-body-big text-text-secondary">
-                          Despite the higher interaction demand of both experiences, not one
-                          participant mentioned or showed frustration with providing input for each
-                          product.
-                        </p>
-                      </div>
-
-                      <div className="h-24" />
-
-                      {/* Bonus Insights subsection */}
-                      <Label>Bonus Insights</Label>
-                      <TwoColumnSection heading="Jargon strikes again">
-                        <p className="text-body-small md:text-body-big text-text-secondary">
-                          Users did use the helper text and drawer, and most of the time were able
-                          piece together what was being asked, but still expressed frustration with
-                          insurance jargon and were not confident they had completed the form
-                          correctly.
-                        </p>
-                      </TwoColumnSection>
-
-                      <div className="h-24" />
-
-                      <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                        Defaulted dropdowns were not the right inputs
-                      </h2>
-                      <div className="h-8" />
+                      <div className="h-12" />
 
                       <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
-                            Default option misinterpreted as recommendation
-                          </h3>
-                          <div className="h-4" />
-                          <p className="text-body-small md:text-body-big text-text-secondary">
-                            In the dropdown variant, the default &ldquo;I don&apos;t
-                            need&hellip;&rdquo; option caused confusion, with some users
-                            interpreting it as a system recommendation and attempting to proceed
-                            without a selection. Although most recovered, participants reported
-                            lower confidence after selection than with the yes/no variant.
-                          </p>
+                          <ImageBlock label="Defaulted dropdown over-selection" />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
-                            Lower-friction dropdown drives overselection
-                          </h3>
-                          <div className="h-4" />
-                          <p className="text-body-small md:text-body-big text-text-secondary">
-                            In the dropdown variant, users more often selected multiple products
-                            when unsure. I suspect the low-friction interaction made choices feel
-                            low-stakes, leading to less deliberate decisions.
-                          </p>
+                          <div className="text-body-small md:text-body-big text-text-primary space-y-6">
+                            <p>
+                              Defaulted dropdowns were misinterpreted as a recommendation, and
+                              the lower-friction input seemed to drive over-selection when
+                              participants were confused.
+                            </p>
+                            <p>
+                              This was a key insight, because shipping an experience that
+                              encouraged over-selection would have negative downstream impacts
+                              to the underwriting team.
+                            </p>
+                          </div>
                         </div>
                       </div>
                     </section>
