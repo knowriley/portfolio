@@ -10,7 +10,7 @@ export const metadata = {
 export default function DesignSystemPage() {
   return (
     <>
-      <Nav />
+      <Nav variant="white" />
       <main>
 
         {/* ── Hero ── */}

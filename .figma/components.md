@@ -16,7 +16,7 @@ This file replaces the Code Connect workflow. Code Connect requires a Figma Deve
 | `10:10` | Section Divider | `components/case-study.tsx` | `SectionDivider` |
 | `10:24` | Spacer | (inline `<div className="h-X">`) | n/a — see `CLAUDE.md` spacing scale |
 | `324:24` | Tag | `components/CaseStudyTag.tsx` | `CaseStudyTag` |
-| `417:1261` | Token | `components/Token.tsx` | `Token` |
+| `417:1261` | InlineCode | `components/InlineCode.tsx` | `InlineCode` |
 | `448:51` | Segmented Control | `components/SegmentedControl.tsx` | `SegmentedControl` |
 | `324:30` | Tab | inline in `components/DesignSystemTabs.tsx` | n/a — extract if reused outside design-system page |
 | `324:33` | Carousel Dot | inline in `components/TestimonialCarousel.tsx` | n/a — extract if reused outside testimonial carousel |
@@ -41,7 +41,7 @@ For the components with multiple Figma variants/properties, the React prop names
 | Numbered Callout | `Number` (text) | `number` |
 | Numbered Callout | `Body` (text) | `children` |
 | Tag | `Label` (text) | `children` |
-| Token | `Label` (text) | `children` |
+| InlineCode | `Label` (text) | `children` |
 | Segmented Control | `State` (Default \| Active) | (CSS-only — driven by `value === option.value` in React) |
 | Segmented Control | `Label` (text) | `option.label` |
 | Tab | `State` (Active \| Inactive) | (currently inline; see DesignSystemTabs) |

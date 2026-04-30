@@ -6,8 +6,8 @@ import IconButton from './IconButton'
 import InlineLink from './InlineLink'
 import TableOfContents from './TableOfContents'
 import SegmentedControl from './SegmentedControl'
-import Token from './Token'
 import InlineCode from './InlineCode'
+import CaseStudyTag from './CaseStudyTag'
 import { SectionDivider } from './case-study'
 import {
   ArrowUpRight, ExternalLink, ArrowRight, ArrowLeft,
@@ -32,6 +32,13 @@ function RowDivider() {
   return <div className="border-b border-border-subtle" />
 }
 
+// Wrap parenthetical class refs in InlineCode chips: "padding (py-1)" → "padding (<chip>py-1</chip>)"
+function renderWithParenChips(text: string): React.ReactNode[] {
+  return text.split(/\(([^)]+)\)/g).map((p, i) =>
+    i % 2 === 1 ? <span key={i}>(<InlineCode>{p}</InlineCode>)</span> : p
+  )
+}
+
 function SegmentedControlDemo() {
   const [value, setValue] = useState<'list' | 'grid' | 'detail'>('list')
   return (
@@ -50,7 +57,7 @@ function SegmentedControlDemo() {
 
 // ── TOC data ──────────────────────────────────────────────────────────────────
 
-type Tab = 'Foundations' | 'Components'
+type Tab = 'Foundations' | 'Components' | 'Patterns'
 
 const foundationsToc = [
   { label: 'Typography', id: 'typography' },
@@ -59,6 +66,7 @@ const foundationsToc = [
   { label: 'Spacing',    id: 'spacing' },
   { label: 'Radius',     id: 'radius' },
   { label: 'Shadow',     id: 'shadow' },
+  { label: 'Motion',     id: 'motion' },
   { label: 'Media',      id: 'media' },
 ]
 
@@ -69,12 +77,22 @@ const componentsToc = [
   { label: 'Inline Link',        id: 'inline-link' },
   { label: 'Filter Pill',        id: 'filter-pill' },
   { label: 'Tag',                id: 'tag' },
-  { label: 'Token',              id: 'token' },
   { label: 'Inline Code',        id: 'inline-code' },
   { label: 'Tab',                id: 'tab' },
   { label: 'Segmented Control',  id: 'segmented-control' },
   { label: 'Carousel Dot',       id: 'carousel-dot' },
   { label: 'Table of Contents',  id: 'table-of-contents' },
+]
+
+const patternsToc = [
+  { label: 'Page shell',         id: 'page-shell' },
+  { label: 'Responsive system',  id: 'responsive-system' },
+  { label: 'Case study layout',  id: 'case-study-layout' },
+  { label: 'Section pattern',    id: 'section-pattern' },
+  { label: 'Callout cards',      id: 'callout-cards' },
+  { label: 'Metadata grid',      id: 'metadata-grid' },
+  { label: 'Password-gated case studies', id: 'password-gated' },
+  { label: 'How this is maintained',      id: 'maintained' },
 ]
 
 // ── Foundations content ───────────────────────────────────────────────────────
@@ -222,8 +240,8 @@ function FoundationsContent() {
           role at any tier.
         </p>
 
-        <div className="bg-bg border border-border rounded-sm p-8">
-          <div className="sticky top-16 z-10 -mx-8 -mt-8 px-8 pt-8 pb-4 mb-2 bg-bg border-b border-border-subtle rounded-t-sm flex justify-end">
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
+          <div className="sticky top-24 z-10 -mx-8 -mt-8 px-8 pt-8 pb-4 mb-2 bg-bg-secondary rounded-t-sm flex justify-end">
             <SegmentedControl
               options={[
                 { label: 'Mobile',  value: 'mobile'  },
@@ -252,13 +270,11 @@ function FoundationsContent() {
                 <div className="h-px bg-border w-full" />
                 <div className="flex gap-4 items-start pt-3">
                   <div className="flex-1 min-w-0 flex flex-col gap-1.5 items-start">
-                    <Token>{resolvedClass}</Token>
+                    <InlineCode>{resolvedClass}</InlineCode>
                     <p className="text-body-small text-text-tertiary">
                       {size.rem} / {size.px} · lh {size.lh}
                     </p>
-                    <p className="font-mono text-body-small text-text-tertiary">
-                      {utilityModifiers}
-                    </p>
+                    <InlineCode>{utilityModifiers}</InlineCode>
                   </div>
                   <p className="text-body-small text-text-tertiary text-right">
                     {useCase}
@@ -267,6 +283,48 @@ function FoundationsContent() {
               </div>
             )
           })}
+        </div>
+
+        <SubLabel>Application conventions</SubLabel>
+        <div className="mb-8 flex flex-col gap-3 text-body-small text-text-secondary">
+          <p>
+            <span className="text-text-primary">Headings always use <InlineCode>font-normal</InlineCode>.</span>{' '}
+            Never <InlineCode>font-medium</InlineCode> or <InlineCode>font-bold</InlineCode> on{' '}
+            <InlineCode>text-display</InlineCode>, <InlineCode>text-h1</InlineCode>,{' '}
+            <InlineCode>text-h2</InlineCode>, or <InlineCode>text-h3</InlineCode>.
+          </p>
+          <p>
+            <span className="text-text-primary">Section labels</span> (e.g. &quot;Overview&quot;,
+            &quot;Problem&quot;, &quot;Next&quot;) use{' '}
+            <InlineCode>text-body-small text-text-tertiary font-normal</InlineCode> —{' '}
+            <span className="text-text-primary">no uppercase, no letter-spacing</span>. They are
+            visually distinct from micro-labels.
+          </p>
+          <p>
+            <span className="text-text-primary">Micro-labels</span> (footer column headers,
+            TOC &quot;Contents&quot; header, metadata grid field labels) use one unified style:{' '}
+            <InlineCode>text-small font-medium uppercase tracking-widest text-text-tertiary</InlineCode>.
+          </p>
+          <p>
+            <span className="text-text-primary"><InlineCode>text-h4</InlineCode> is mobile-only.</span>{' '}
+            It exists solely as the step-down pair for <InlineCode>text-h3</InlineCode> (auto-paired
+            as <InlineCode>text-h4 md:text-h3</InlineCode>). Never use it as a standalone desktop
+            role.
+          </p>
+          <p>
+            <span className="text-text-primary"><InlineCode>text-body-biggest</InlineCode> exception.</span>{' '}
+            When used as a card title or step-number indicator (CaseStudyCard thumbnail title,
+            NumberedCallout number, CaseStudyPaywall heading), it stays at{' '}
+            <InlineCode>text-body-biggest</InlineCode> across all breakpoints — these are compact
+            visual anchors, not long-form prose, and stepping them down would collapse the
+            card hierarchy on mobile.
+          </p>
+          <p>
+            <span className="text-text-primary">Footer wordmark exception.</span> The footer
+            wordmark uses <InlineCode>text-[56px] md:text-[80px] lg:text-[120px]</InlineCode> —
+            a deliberate one-off, intentionally outside the type scale. Don&apos;t refactor into
+            a role token.
+          </p>
         </div>
 
         <SubLabel>Responsive Mapping</SubLabel>
@@ -294,17 +352,17 @@ function FoundationsContent() {
             { role: 'text-small',        base: 'text-small',      baseRem: '0.833rem', basePx: '13.33px', md: 'text-small',        mdRem: '0.833rem', mdPx: '13.33px', lg: 'text-small',        lgRem: '0.833rem', lgPx: '13.33px' },
           ].map(({ role, base, baseRem, basePx, md, mdRem, mdPx, lg, lgRem, lgPx }) => (
             <div key={role} className="flex items-start py-4 border-b border-border-subtle">
-              <div className="min-w-[11rem] shrink-0 pr-4"><Token>{role}</Token></div>
+              <div className="min-w-[11rem] shrink-0 pr-4"><InlineCode>{role}</InlineCode></div>
               <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
-                <Token>{base}</Token>
+                <InlineCode>{base}</InlineCode>
                 <p className="text-body-small text-text-tertiary">{baseRem} / {basePx}</p>
               </div>
               <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
-                <Token>{md}</Token>
+                <InlineCode>{md}</InlineCode>
                 <p className="text-body-small text-text-tertiary">{mdRem} / {mdPx}</p>
               </div>
               <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
-                <Token>{lg}</Token>
+                <InlineCode>{lg}</InlineCode>
                 <p className="text-body-small text-text-tertiary">{lgRem} / {lgPx}</p>
               </div>
             </div>
@@ -454,8 +512,8 @@ function FoundationsContent() {
 
           <div className="py-6 flex items-center gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>font-sans</Token>
-              <p className="text-body-small text-text-tertiary">Inter</p>
+              <InlineCode>font-sans</InlineCode>
+              <InlineCode>Inter</InlineCode>
               <p className="text-body-small text-text-tertiary mt-1">All UI text</p>
             </div>
             <p className="font-sans text-body-big text-text-primary flex-1 min-w-0">
@@ -465,8 +523,8 @@ function FoundationsContent() {
 
           <div className="py-6 flex items-center gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>font-serif</Token>
-              <p className="text-body-small text-text-tertiary">Lora</p>
+              <InlineCode>font-serif</InlineCode>
+              <InlineCode>Lora</InlineCode>
               <p className="text-body-small text-text-tertiary mt-1">Available; not in active use</p>
             </div>
             <p className="font-serif text-body-big text-text-primary flex-1 min-w-0">
@@ -476,8 +534,8 @@ function FoundationsContent() {
 
           <div className="py-6 flex items-center gap-8 border-b border-border-subtle">
             <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>font-mono</Token>
-              <p className="text-body-small text-text-tertiary">JetBrains Mono</p>
+              <InlineCode>font-mono</InlineCode>
+              <InlineCode>JetBrains Mono</InlineCode>
               <p className="text-body-small text-text-tertiary mt-1">Step numbers, code, token names</p>
             </div>
             <p className="font-mono text-body-big text-text-primary flex-1 min-w-0">
@@ -508,13 +566,13 @@ function FoundationsContent() {
             { size: 20, strokeWidth: 2,   label: 'size={20} strokeWidth={2}',   use: 'UI icons at body-small scale — buttons, inputs, nav, inline links' },
             { size: 24, strokeWidth: 2,   label: 'size={24} strokeWidth={2}',   use: 'Inline with body-small text, standalone icons' },
             { size: 32, strokeWidth: 1.5, label: 'size={32} strokeWidth={1.5}', use: 'Decorative / card icon' },
-            { size: 48, strokeWidth: 2, label: 'size={48} strokeWidth={2}', use: 'Large decorative icon — stat cards, hero accents' },
+            { size: 48, strokeWidth: 1.5, label: 'size={48} strokeWidth={1.5}', use: 'Large decorative icon — stat cards, hero accents' },
           ].map(({ size, strokeWidth, label, use }) => (
             <div key={size} className="flex items-center gap-8 py-5 border-b border-border-subtle">
               <div className="w-12 flex items-center justify-center shrink-0">
                 <ArrowUpRight size={size} strokeWidth={strokeWidth} className="text-text-primary" />
               </div>
-              <div className="min-w-[14rem] shrink-0"><Token>{label}</Token></div>
+              <div className="min-w-[14rem] shrink-0"><InlineCode>{label}</InlineCode></div>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
             </div>
           ))}
@@ -530,10 +588,19 @@ function FoundationsContent() {
           ].map(({ cls, icon, label, use }) => (
             <div key={label} className={`flex items-center gap-8 py-5 border-b border-border-subtle ${cls}`}>
               <div className="w-12 flex items-center justify-center shrink-0">{icon}</div>
-              <div className="min-w-[14rem] shrink-0"><Token>{label}</Token></div>
+              <div className="min-w-[14rem] shrink-0"><InlineCode>{label}</InlineCode></div>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-small text-text-secondary">
+            <span className="text-text-primary">Adjacency rule:</span> when an icon sits next to text
+            (contact links, inline labels, button arrows), <span className="text-text-primary">omit
+            the icon&apos;s color class</span> so it inherits from the parent. Icon and adjacent
+            text must always render in the same color.
+          </p>
         </div>
 
         <SubLabel>Common icons in use</SubLabel>
@@ -554,7 +621,7 @@ function FoundationsContent() {
               <div className="size-12 bg-bg-secondary rounded-sm flex items-center justify-center text-text-secondary border border-border-subtle">
                 {icon}
               </div>
-              <p className="font-mono text-body-small text-text-tertiary text-center leading-tight">{name}</p>
+              <InlineCode>{name}</InlineCode>
             </div>
           ))}
         </div>
@@ -609,9 +676,19 @@ function FoundationsContent() {
                 className={`size-8 rounded-sm shrink-0 ${hex === '#FFFFFF' ? 'border border-border' : ''}`}
                 style={{ backgroundColor: hex }}
               />
-              <div className="min-w-[8rem] shrink-0"><Token>{label}</Token></div>
+              <div className="min-w-[8rem] shrink-0"><InlineCode>{label}</InlineCode></div>
               <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
-              <p className="text-body-small text-text-tertiary flex-1 min-w-0">→ {mapped}</p>
+              <p className="text-body-small text-text-tertiary flex-1 min-w-0">
+                →{' '}
+                {mapped === '—'
+                  ? '—'
+                  : mapped.split(', ').map((c, i) => (
+                      <span key={c}>
+                        {i > 0 && ', '}
+                        <InlineCode>{c}</InlineCode>
+                      </span>
+                    ))}
+              </p>
             </div>
           ))}
         </div>
@@ -632,7 +709,7 @@ function FoundationsContent() {
           ].map(({ label, hex, note }) => (
             <div key={label} className="flex items-center gap-5 py-3 border-b border-border-subtle">
               <div className="size-8 rounded-sm shrink-0" style={{ backgroundColor: hex }} />
-              <div className="min-w-[8rem] shrink-0"><Token>{label}</Token></div>
+              <div className="min-w-[8rem] shrink-0"><InlineCode>{label}</InlineCode></div>
               <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
               <p className="text-body-small text-text-tertiary flex-1 min-w-0">{note}</p>
             </div>
@@ -660,7 +737,7 @@ function FoundationsContent() {
                 style={{ backgroundColor: hex }}
               />
               <div className="flex-1 min-w-0 flex items-center gap-4">
-                <div className="min-w-[13rem] shrink-0"><Token>{label}</Token></div>
+                <div className="min-w-[13rem] shrink-0"><InlineCode>{label}</InlineCode></div>
                 <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
                 <p className="text-body-small text-text-secondary">{role}</p>
               </div>
@@ -684,7 +761,7 @@ function FoundationsContent() {
                 style={{ backgroundColor: hex }}
               />
               <div className="flex-1 min-w-0 flex items-center gap-4">
-                <div className="min-w-[13rem] shrink-0"><Token>{label}</Token></div>
+                <div className="min-w-[13rem] shrink-0"><InlineCode>{label}</InlineCode></div>
                 <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
                 <p className="text-body-small text-text-secondary">{role}</p>
               </div>
@@ -707,7 +784,7 @@ function FoundationsContent() {
                 style={{ borderColor: hex, backgroundColor: 'transparent' }}
               />
               <div className="flex-1 min-w-0 flex items-center gap-4">
-                <div className="min-w-[13rem] shrink-0"><Token>{label}</Token></div>
+                <div className="min-w-[13rem] shrink-0"><InlineCode>{label}</InlineCode></div>
                 <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
                 <p className="text-body-small text-text-secondary">{role}</p>
               </div>
@@ -724,17 +801,50 @@ function FoundationsContent() {
           <div className="flex items-center gap-5 py-4 border-b border-border-subtle">
             <div className="size-10 rounded-sm shrink-0" style={{ backgroundColor: '#f02065' }} />
             <div className="flex-1 min-w-0 flex items-center gap-4">
-              <div className="min-w-[13rem] shrink-0"><Token>bg-accent</Token></div>
+              <div className="min-w-[13rem] shrink-0"><InlineCode>bg-accent</InlineCode></div>
               <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">#f02065</p>
               <p className="text-body-small text-text-secondary">Accent pink — decorative uses. Not used as button hover.</p>
             </div>
           </div>
         </div>
 
+        <SubLabel>Highlights · Application</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          When a span of prose inside a <InlineCode>text-text-secondary</InlineCode> paragraph
+          needs visual emphasis, the default treatment is{' '}
+          <span className="text-text-primary">primary text on the secondary paragraph</span> —
+          wrap the span in <InlineCode>{'<span className="text-text-primary [&_a]:text-inherit">'}</InlineCode>.
+          This is the standard emphasis pattern across the site (used by hero copy, bio
+          paragraphs, and testimonial quotes). Reach for the gradient treatments below only
+          when explicitly requested.
+        </p>
+
+        <div className="mb-6 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-small text-text-secondary">
+            Riley is an{' '}
+            <span className="text-text-primary">experience strategist</span>,{' '}
+            <span className="text-text-primary">interaction designer</span> and{' '}
+            <span className="text-text-primary">designer engineer</span> based in Brooklyn, NY.
+          </p>
+        </div>
+
+        <div className="mb-12 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-small text-text-secondary">
+            <span className="text-text-primary">The highlight always wins over link color.</span>{' '}
+            Any <InlineCode>InlineLink</InlineCode> nested inside a highlight span must inherit
+            the highlight color instead of rendering in its own default. The Tailwind arbitrary
+            variant <InlineCode>{'[&_a]:text-inherit'}</InlineCode> on the highlight span
+            propagates the color down to any child anchor — apply it on every highlight wrapper,
+            not just gradient ones.
+          </p>
+        </div>
+
         <SubLabel>Gradient · Semantic</SubLabel>
         <p className="text-body-small text-text-secondary mb-6">
           Two named gradients are used site-wide, always applied as{' '}
-          <InlineCode>bg-clip-text text-transparent bg-gradient-to-r</InlineCode>.
+          <InlineCode>bg-clip-text text-transparent bg-gradient-to-r</InlineCode>. Use only when
+          the design explicitly calls for a gradient — primary-on-secondary is the default
+          emphasis treatment.
         </p>
         <div>
           <RowDivider />
@@ -745,7 +855,7 @@ function FoundationsContent() {
               style={{ background: 'linear-gradient(to right, #f02065, #d5189b)' }}
             />
             <div className="flex-1 min-w-0">
-              <div className="mb-1"><Token>from-gradient-red to-gradient-pink</Token></div>
+              <div className="mb-1"><InlineCode>from-gradient-red to-gradient-pink</InlineCode></div>
               <p className="text-body-small text-text-tertiary mb-3">#f02065 → #d5189b</p>
               <p className="text-body-big bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">
                 Inline text highlights
@@ -762,7 +872,7 @@ function FoundationsContent() {
               style={{ background: 'linear-gradient(to right, #f02065 22%, #ff7700)' }}
             />
             <div className="flex-1 min-w-0">
-              <div className="mb-1"><Token>from-gradient-red from-[22%] to-gradient-orange</Token></div>
+              <div className="mb-1"><InlineCode>from-gradient-red from-[22%] to-gradient-orange</InlineCode></div>
               <p className="text-body-small text-text-tertiary mb-3">#f02065 → #ff7700 · Pink-orange</p>
               <p className="text-h2 font-normal bg-clip-text text-transparent bg-gradient-to-r from-gradient-red from-[22%] to-gradient-orange">
                 Content dictates form
@@ -772,6 +882,40 @@ function FoundationsContent() {
               </p>
             </div>
           </div>
+        </div>
+
+        <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-small text-text-secondary mb-3">
+            <span className="text-text-primary">Apply the gradient to the parent element, not
+            per highlighted phrase.</span> Wrapping each phrase in its own{' '}
+            <InlineCode>bg-clip-text bg-gradient-to-r</InlineCode> span makes every phrase render
+            its own narrow, independent gradient — the result reads as several disconnected
+            color washes rather than one continuous one. Instead, paint the gradient on the
+            parent element and selectively suppress it on non-highlighted text:
+          </p>
+          <div className="mb-3 bg-bg border border-border-subtle rounded-sm px-5 py-4 overflow-x-auto">
+            <pre className="font-mono text-[0.85em] text-text-primary leading-relaxed whitespace-pre">{`<h1 className="bg-clip-text text-transparent
+            bg-gradient-to-r from-gradient-red to-gradient-pink
+            [&_a]:text-inherit">
+  <span className="text-text-primary">Riley is an </span>
+  experience strategist
+  <span className="text-text-primary">, </span>
+  interaction designer
+  <span className="text-text-primary"> based in Brooklyn.</span>
+</h1>`}</pre>
+          </div>
+          <p className="text-body-small text-text-secondary">
+            <InlineCode>bg-clip-text</InlineCode> on the parent restricts the gradient image to
+            the area of glyphs. <InlineCode>text-transparent</InlineCode> makes glyphs see-through
+            so the clipped gradient shows. Solid-color child spans paint over the gradient on
+            non-highlighted segments. The result reads as one continuous wash. The{' '}
+            <InlineCode>{'[&_a]:text-inherit'}</InlineCode> rule still applies — apply it on
+            the gradient parent, not each child span.
+          </p>
+          <p className="text-body-small text-text-tertiary mt-3">
+            Reference implementations: <InlineCode>components/Hero.tsx</InlineCode>,{' '}
+            <InlineCode>components/TestimonialCarousel.tsx</InlineCode>.
+          </p>
         </div>
       </section>
 
@@ -792,24 +936,25 @@ function FoundationsContent() {
             <p className="text-body-small text-text-tertiary flex-1">Semantic role on this site</p>
           </div>
           {[
-            { scale: '1',    px: '4px',   role: 'Tag inner padding vertical (py-1)' },
-            { scale: '1.5',  px: '6px',   role: 'Tag row gap (gap-1.5)' },
-            { scale: '2',    px: '8px',   role: 'Hero tag row gap (gap-2)' },
-            { scale: '2.5',  px: '10px',  role: 'Nav logo gap (gap-2.5)' },
-            { scale: '3',    px: '12px',  role: 'Tag pill horizontal padding (px-3)' },
-            { scale: '4',    px: '16px',  role: 'Callout inner gap, metadata label bottom padding' },
+            { scale: '1',    px: '4px',   role: 'Inline link inner gap (gap-1); footer column gap (gap-1)' },
+            { scale: '1.5',  px: '6px',   role: 'Tag inner padding vertical (py-1.5); metadata cell gap (gap-1.5)' },
+            { scale: '2',    px: '8px',   role: 'Button icon gap (gap-2); nav links row gap (gap-2)' },
+            { scale: '2.5',  px: '10px',  role: 'Nav logo gap (gap-2.5); Tag horizontal padding (px-2.5); TOC item padding horizontal' },
+            { scale: '3',    px: '12px',  role: 'Filter Pill (small) / Tab / Segmented Control segment horizontal padding (px-3)' },
+            { scale: '4',    px: '16px',  role: 'Filter Pill (default) horizontal padding (px-4); Button icon gap row spacer' },
+            { scale: '6',    px: '24px',  role: 'Button horizontal padding (px-6)' },
             { scale: '7',    px: '28px',  role: 'Callout card vertical padding (py-7)' },
             { scale: '8',    px: '32px',  role: 'Two-column gap, section inner gap (gap-8); small vertical spacer (h-8)' },
-            { scale: '10',   px: '40px',  role: 'Horizontal page padding (px-10); callout horizontal padding (px-10)' },
+            { scale: '10',   px: '40px',  role: 'Horizontal page padding desktop (px-10); callout horizontal padding (px-10)' },
             { scale: '12',   px: '48px',  role: 'Medium vertical spacer before images (h-12); hero bottom padding (pb-12)' },
             { scale: '16',   px: '64px',  role: 'Hero top padding (pt-16); cover image bottom padding (pb-16)' },
             { scale: '20',   px: '80px',  role: '3-column body section vertical padding (py-20)' },
             { scale: '24',   px: '96px',  role: 'Between subsections (h-24); next section bottom padding (pb-24)' },
           ].map(({ scale, px, role }) => (
             <div key={scale} className="flex items-center gap-4 py-3 border-b border-border-subtle">
-              <div className="min-w-[4rem] shrink-0"><Token>{scale}</Token></div>
+              <div className="min-w-[4rem] shrink-0"><InlineCode>{scale}</InlineCode></div>
               <p className="font-mono text-body-small text-text-tertiary w-16 shrink-0">{px}</p>
-              <p className="text-body-small text-text-secondary flex-1 min-w-0">{role}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{renderWithParenChips(role)}</p>
             </div>
           ))}
         </div>
@@ -821,24 +966,39 @@ function FoundationsContent() {
           <RowDivider />
           {[
             {
-              token: 'max-w-page',
-              value: '1560px',
+              key: 'max-w-page',
+              token: <InlineCode>max-w-page</InlineCode>,
+              value: <span className="font-mono text-body-small text-text-tertiary">1560px</span>,
               role: 'Maximum content width — applied to the inner div of every full-width section',
             },
             {
-              token: 'Standard container',
-              value: 'flex justify-center px-10',
-              role: 'Outer shell of every section; pair with max-w-page w-full on the inner div',
+              key: 'standard-container',
+              token: <span className="text-body-small text-text-secondary">Standard container</span>,
+              value: <InlineCode>flex justify-center px-10</InlineCode>,
+              role: (
+                <>
+                  Outer shell of every section; pair with <InlineCode>max-w-page w-full</InlineCode> on the inner div
+                </>
+              ),
             },
             {
-              token: '3-column body',
-              value: '220px + flex-1 + 120px',
-              role: 'TOC (sticky) + content + empty notes column; gap-8 between columns',
+              key: '3-column-body',
+              token: <span className="text-body-small text-text-secondary">3-column body</span>,
+              value: (
+                <span className="font-mono text-body-small text-text-tertiary">
+                  220px + <InlineCode>flex-1</InlineCode> + 120px
+                </span>
+              ),
+              role: (
+                <>
+                  TOC (sticky) + content + empty notes column; <InlineCode>gap-8</InlineCode> between columns
+                </>
+              ),
             },
-          ].map(({ token, value, role }) => (
-            <div key={token} className="flex items-center gap-8 py-4 border-b border-border-subtle">
-              <div className="min-w-[11rem] shrink-0"><Token>{token}</Token></div>
-              <p className="font-mono text-body-small text-text-tertiary w-40 shrink-0">{value}</p>
+          ].map(({ key, token, value, role }) => (
+            <div key={key} className="flex items-center gap-8 py-4 border-b border-border-subtle">
+              <div className="min-w-[11rem] shrink-0">{token}</div>
+              <div className="w-40 shrink-0">{value}</div>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{role}</p>
             </div>
           ))}
@@ -871,15 +1031,15 @@ function FoundationsContent() {
             <div key={usage} className="flex items-start py-4 border-b border-border-subtle">
               <p className="text-body-small text-text-secondary w-56 shrink-0 pr-4">{usage}</p>
               <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
-                <Token>{base}</Token>
+                <InlineCode>{base}</InlineCode>
                 <p className="text-body-small text-text-tertiary">{baseRem} / {basePx}</p>
               </div>
               <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
-                <Token>{md}</Token>
+                <InlineCode>{md}</InlineCode>
                 <p className="text-body-small text-text-tertiary">{mdRem} / {mdPx}</p>
               </div>
               <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
-                <Token>{lg}</Token>
+                <InlineCode>{lg}</InlineCode>
                 <p className="text-body-small text-text-tertiary">{lgRem} / {lgPx}</p>
               </div>
             </div>
@@ -903,23 +1063,23 @@ function FoundationsContent() {
           {[
             { cls: 'rounded-none', value: '0px',    use: 'Sharp / reset' },
             { cls: 'rounded-xs',   value: '2px',    use: '—' },
-            { cls: 'rounded-sm',   value: '4px',    use: 'Cards, callout cards, image blocks, cover image (primary use)' },
-            { cls: 'rounded-md',   value: '8px',    use: '—' },
+            { cls: 'rounded-sm',   value: '4px',    use: 'Cards, callout cards, image blocks, cover image, InlineCode chip, Segmented Control segments (primary use)' },
+            { cls: 'rounded-md',   value: '8px',    use: 'Button (primary + outline); Segmented Control container' },
             { cls: 'rounded-lg',   value: '12px',   use: '—' },
             { cls: 'rounded-xl',   value: '16px',   use: '—' },
             { cls: 'rounded-2xl',  value: '20px',   use: '—' },
-            { cls: 'rounded-3xl',  value: '24px',   use: 'Company logo avatar (rounded-3xl)' },
+            { cls: 'rounded-3xl',  value: '24px',   use: '—' },
             { cls: 'rounded-4xl',  value: '32px',   use: '—' },
-            { cls: 'rounded-full', value: '9999px', use: 'Tag pills, nav logo dot, company logo avatars' },
+            { cls: 'rounded-full', value: '9999px', use: 'IconButton, Filter Pill, Tag, Carousel Dot, nav logo dot' },
           ].map(({ cls, value, use }) => (
             <div key={cls} className="flex items-center gap-5 py-4 border-b border-border-subtle">
               <div
                 className="size-10 bg-bg-tertiary shrink-0 border border-border"
                 style={{ borderRadius: value }}
               />
-              <div className="min-w-[6rem] shrink-0"><Token>{cls}</Token></div>
+              <div className="min-w-[6rem] shrink-0"><InlineCode>{cls}</InlineCode></div>
               <p className="font-mono text-body-small text-text-tertiary w-16 shrink-0">{value}</p>
-              <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{renderWithParenChips(use)}</p>
             </div>
           ))}
         </div>
@@ -932,9 +1092,12 @@ function FoundationsContent() {
         <SectionHeading>Shadow</SectionHeading>
         <p className="text-body-small text-text-secondary mb-8">
           All shadows use the site&apos;s warm neutral base color (
-          <InlineCode>#1c1917</InlineCode>) at low opacity. Currently{' '}
-          <InlineCode>shadow-xs</InlineCode> and{' '}
-          <InlineCode>shadow-md</InlineCode> are used on CaseStudyCard. The rest are reserved for future use.
+          <InlineCode>#1c1917</InlineCode>) at low opacity.{' '}
+          <InlineCode>shadow-sm</InlineCode> is the most-used shadow on the site — applied
+          by default to every image and video via <InlineCode>ImageBlock</InlineCode>.{' '}
+          <InlineCode>shadow-xs</InlineCode> is used on the <InlineCode>CaseStudyCard</InlineCode>{' '}
+          thumbnail (the card itself lifts on hover, so the thumbnail&apos;s shadow stays subtle).
+          The remaining shadow tiers are available but not yet in active use.
         </p>
 
         <div>
@@ -954,7 +1117,7 @@ function FoundationsContent() {
             <div key={cls} className="flex items-center gap-5 py-5 border-b border-border-subtle">
               <div className={`size-10 bg-bg rounded-sm shrink-0 ${cls}`} />
               <div className="flex-1 min-w-0 flex flex-col gap-1 items-start">
-                <Token>{cls}</Token>
+                <InlineCode>{cls}</InlineCode>
                 <p className="text-body-small text-text-tertiary">{value}</p>
               </div>
             </div>
@@ -964,21 +1127,156 @@ function FoundationsContent() {
 
       <SectionDivider />
 
+      {/* ──────────────────────────── MOTION ──────────────────────── */}
+      <section id="motion">
+        <SectionHeading>Motion</SectionHeading>
+        <p className="text-body-small text-text-secondary mb-8">
+          The site has two distinct kinds of motion — <span className="text-text-primary">page-entry
+          animations</span> (fire once when a page or section appears) and{' '}
+          <span className="text-text-primary">interaction transitions</span> (fire on hover, focus,
+          or state changes). They use different duration budgets by design.
+        </p>
+
+        <SubLabel>Page-entry animations</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          Defined as keyframe utilities in <InlineCode>app/globals.css</InlineCode>. Each utility
+          starts the element invisible (<InlineCode>opacity-0</InlineCode>) and animates to
+          visible at its own duration.
+        </p>
+
+        <div className="mb-8">
+          <div className="flex gap-5 py-3 border-b border-border-subtle">
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-56 shrink-0">Utility</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-32 shrink-0">Duration</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Used on</p>
+          </div>
+          {[
+            { util: 'animate-fade-in-up',    dur: '0.55s ease-out', use: <>Home Hero <InlineCode>{'<h1>'}</InlineCode>; case study hero wrappers; <InlineCode>AnimateOnScroll</InlineCode> reveals; About Hero filter pills</> },
+            { util: 'animate-fade-in-left',  dur: '0.55s ease-out', use: <>Home Hero only — <InlineCode>MapPin</InlineCode> location line and bio line</> },
+            { util: 'animate-fade-in-right', dur: '0.7s ease-out',  use: <>About Hero cover image only — intentionally ~27% slower to feel weighty rather than rushed at the end of the longer About stagger</> },
+          ].map(({ util, dur, use }) => (
+            <div key={util} className="flex items-start gap-5 py-4 border-b border-border-subtle">
+              <div className="w-56 shrink-0"><InlineCode>{util}</InlineCode></div>
+              <p className="font-mono text-body-small text-text-tertiary w-32 shrink-0">{dur}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mb-12 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-small text-text-secondary mb-3">
+            <span className="text-text-primary">Hero stagger delays are hand-tuned, not formulaic.</span>{' '}
+            The home Hero staggers at <InlineCode>0</InlineCode> /{' '}
+            <InlineCode>0.8s</InlineCode> / <InlineCode>1.6s</InlineCode>; the About Hero staggers
+            its filter pills at <InlineCode>0.3 + i * 0.18s</InlineCode>. These were picked by eye
+            for each page&apos;s pacing, not derived from a shared scale. Treat them as
+            page-specific design decisions — adjust in place, don&apos;t extract a shared rhythm.
+          </p>
+        </div>
+
+        <SubLabel>AnimateOnScroll</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          Component: <InlineCode>components/AnimateOnScroll.tsx</InlineCode>. Wraps children in a
+          div that starts at <InlineCode>opacity-0</InlineCode> and swaps to{' '}
+          <InlineCode>animate-fade-in-up</InlineCode> the first time the element is at least 10%
+          visible (<InlineCode>IntersectionObserver</InlineCode> with{' '}
+          <InlineCode>threshold: 0.1</InlineCode>). The observer disconnects after the first
+          intersection — this is a <span className="text-text-primary">one-shot reveal</span>, not
+          a continuous effect. Used site-wide for the &quot;Next&quot; section on case study
+          pages and any block that should fade in when scrolled into view.
+        </p>
+
+        <div className="mb-12 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <pre className="font-mono text-[0.85em] text-text-primary leading-relaxed whitespace-pre overflow-x-auto">{`<AnimateOnScroll>
+  {children}
+</AnimateOnScroll>`}</pre>
+        </div>
+
+        <SubLabel>Interaction transitions</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          Two duration budgets, deliberately different. Color shifts feel snappiest when fast
+          and definite; transform changes feel more intentional with a slightly longer duration
+          that makes the movement legible.
+        </p>
+
+        <div>
+          <div className="flex gap-5 py-3 border-b border-border-subtle">
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-56 shrink-0">Property</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-32 shrink-0">Duration</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Where</p>
+          </div>
+          {[
+            { kind: 'Color / bg / border', dur: '150ms (default)', cls: 'transition-colors', where: <>Nav links, <InlineCode>InlineLink</InlineCode>, Button fills, Filter pills, TOC items — every hover-color swap.</> },
+            { kind: 'Transform',           dur: '200ms',           cls: 'duration-200',     where: <><InlineCode>CaseStudyCard</InlineCode> hover lift (<InlineCode>hover:-translate-y-2.5</InlineCode>), <InlineCode>AboutBooks</InlineCode> book-card lift, any other card that translates on hover.</> },
+            { kind: 'Arrow rotation',      dur: '150ms (default)', cls: 'transition-transform', where: <><InlineCode>ArrowUpRight</InlineCode> in Button, <InlineCode>InlineLink</InlineCode> icon variants, footer links — all rotate <InlineCode>group-hover:rotate-45</InlineCode> (↗ → →).</> },
+          ].map(({ kind, dur, cls, where }) => (
+            <div key={kind} className="flex items-start gap-5 py-4 border-b border-border-subtle">
+              <div className="w-56 shrink-0">
+                <p className="text-body-small font-medium text-text-primary mb-1">{kind}</p>
+                <InlineCode>{cls}</InlineCode>
+              </div>
+              <p className="font-mono text-body-small text-text-tertiary w-32 shrink-0">{dur}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{where}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-small text-text-secondary">
+            <span className="text-text-primary">Adding a new hover interaction?</span> Match the
+            convention: color → leave <InlineCode>transition-colors</InlineCode> at default;
+            transform → add <InlineCode>duration-200</InlineCode>. The 150ms / 200ms split is
+            the rhythm — don&apos;t introduce a third duration without a strong reason.
+          </p>
+        </div>
+      </section>
+
+      <SectionDivider />
+
       {/* ──────────────────────────── MEDIA ──────────────────────── */}
       <section id="media">
         <SectionHeading>Media</SectionHeading>
         <p className="text-body-small text-text-secondary mb-8">
-          Rules for all images and videos across the site. These ensure consistent presentation
-          and prevent cropping or distortion.
+          Rules for all images and videos across the site. These ensure consistent presentation,
+          prevent cropping or distortion, and keep one entry point for media chrome.
         </p>
+
+        <SubLabel>Component to use</SubLabel>
+        <div>
+          <RowDivider />
+          {[
+            {
+              context: 'Case study body',
+              comp: <InlineCode>ImageBlock</InlineCode>,
+              detail: <>Single abstraction for stills, looping videos, Vimeo embeds, and placeholders. Pass <InlineCode>type=&quot;image&quot;</InlineCode> (default), <InlineCode>type=&quot;video&quot;</InlineCode>, or <InlineCode>type=&quot;vimeo&quot;</InlineCode>. Applies the standard chrome and renders <InlineCode>{'<figcaption>'}</InlineCode> from the <InlineCode>caption</InlineCode> prop.</>,
+            },
+            {
+              context: 'Work grid card thumbnail',
+              comp: <span><InlineCode>{'<Image>'}</InlineCode> / raw <InlineCode>{'<video>'}</InlineCode></span>,
+              detail: <>Inside <InlineCode>CaseStudyCard</InlineCode> only. The thumbnail uses <InlineCode>aspect-video</InlineCode> + <InlineCode>object-cover</InlineCode> framing — wrapping in <InlineCode>ImageBlock</InlineCode> would fight the card&apos;s layout. This is the single sanctioned direct-<InlineCode>{'<video>'}</InlineCode> call site.</>,
+            },
+            {
+              context: 'Anywhere else',
+              comp: <InlineCode>ImageBlock</InlineCode>,
+              detail: <>Do not import <InlineCode>VideoBlock</InlineCode> directly into a page — it&apos;s an internal implementation detail of <InlineCode>ImageBlock</InlineCode>. One entry point keeps chrome, captions, and play/pause behavior consistent.</>,
+            },
+          ].map(({ context, comp, detail }) => (
+            <div key={context} className="flex items-start gap-8 py-5 border-b border-border-subtle">
+              <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{context}</p>
+              <div className="w-44 shrink-0">{comp}</div>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{detail}</p>
+            </div>
+          ))}
+        </div>
 
         <SubLabel>Sizing</SubLabel>
         <div>
           <RowDivider />
           {[
-            { rule: 'Full width', detail: 'All images and videos use w-full to fill their container' },
-            { rule: 'Natural aspect ratio', detail: 'Never constrain aspect ratio — no aspect-video, object-cover, object-fit, or fill on images or videos' },
+            { rule: 'Full width', detail: <>All images and videos use <InlineCode>w-full</InlineCode> to fill their container</> },
+            { rule: 'Natural aspect ratio', detail: <>Never constrain aspect ratio — no <InlineCode>aspect-video</InlineCode>, <InlineCode>object-cover</InlineCode>, <InlineCode>object-fit</InlineCode>, or <InlineCode>fill</InlineCode> on images or videos</> },
             { rule: 'No cropping', detail: 'Containers must never clip image or video content' },
+            { rule: 'Vimeo iframe exception', detail: <>Vimeo embeds (<InlineCode>type=&quot;vimeo&quot;</InlineCode>) are the only place <InlineCode>aspect-video</InlineCode> is allowed — the embed container needs a fixed aspect ratio for the iframe.</> },
           ].map(({ rule, detail }) => (
             <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
               <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
@@ -991,10 +1289,11 @@ function FoundationsContent() {
         <div>
           <RowDivider />
           {[
-            { rule: 'Border', detail: 'border border-border — applied by default on all images and videos' },
-            { rule: 'Shadow', detail: 'shadow-sm — applied by default alongside the border' },
-            { rule: 'Radius', detail: 'rounded-sm — consistent rounding on all media' },
-            { rule: 'Bare mode', detail: 'Pass bare to ImageBlock to remove border and shadow (e.g. images that bleed into the background)' },
+            { rule: 'Border', detail: <><InlineCode>border border-border</InlineCode> — applied by default on all images and videos</> },
+            { rule: 'Shadow', detail: <><InlineCode>shadow-sm</InlineCode> — applied by default alongside the border</> },
+            { rule: 'CaseStudyCard exception', detail: <>The work-grid card thumbnail uses <InlineCode>shadow-xs</InlineCode> instead of <InlineCode>shadow-sm</InlineCode> — the card itself lifts on hover, so the thumbnail&apos;s shadow stays subtle to avoid stacking shadows.</> },
+            { rule: 'Radius', detail: <><InlineCode>rounded-sm</InlineCode> — consistent rounding on all media</> },
+            { rule: 'Bare mode', detail: <>Pass <InlineCode>bare</InlineCode> to <InlineCode>ImageBlock</InlineCode> to remove border and shadow (e.g. images that bleed into the background)</> },
           ].map(({ rule, detail }) => (
             <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
               <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
@@ -1008,7 +1307,7 @@ function FoundationsContent() {
           <RowDivider />
           {[
             { rule: 'Default on', detail: 'Every image and video should include a caption — omitting is the exception' },
-            { rule: 'Style', detail: 'text-small text-text-tertiary mt-2 text-center' },
+            { rule: 'Style', detail: <InlineCode>text-small text-text-tertiary mt-2 text-center</InlineCode> },
             { rule: 'Position', detail: 'Centered below the media element' },
           ].map(({ rule, detail }) => (
             <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
@@ -1023,7 +1322,23 @@ function FoundationsContent() {
           <RowDivider />
           {[
             { rule: 'Autoplay', detail: 'Videos autoplay muted and loop by default' },
-            { rule: 'Play/pause button', detail: 'Round IconButton overlay — absolute bottom-3 right-3, toggles between Play and Pause lucide icons' },
+            { rule: 'Play/pause button', detail: <>Round <InlineCode>IconButton</InlineCode> overlay — <InlineCode>absolute bottom-3 right-3</InlineCode>, toggles between <InlineCode>Play</InlineCode> and <InlineCode>Pause</InlineCode> lucide icons</> },
+          ].map(({ rule, detail }) => (
+            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
+              <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{detail}</p>
+            </div>
+          ))}
+        </div>
+
+        <SubLabel>File format</SubLabel>
+        <div>
+          <RowDivider />
+          {[
+            { rule: 'Images', detail: <><InlineCode>.webp</InlineCode> only. No <InlineCode>.png</InlineCode>, <InlineCode>.jpg</InlineCode>, <InlineCode>.jpeg</InlineCode> in <InlineCode>public/</InlineCode>. Encode at quality 82, <InlineCode>effort: 6</InlineCode>. Resize so the source&apos;s longest edge is no more than 2× the largest rendered width.</> },
+            { rule: 'Videos', detail: <><InlineCode>.mp4</InlineCode> H.264 only. <InlineCode>VideoBlock</InlineCode> emits <InlineCode>{'<source type="video/mp4">'}</InlineCode> — any other source extension breaks playback. Encode with <InlineCode>libx264 -preset slow -crf 28 -pix_fmt yuv420p -movflags +faststart -an</InlineCode>; cap width at 1600px.</> },
+            { rule: 'Tooling', detail: <>Install <InlineCode>sharp</InlineCode> + <InlineCode>ffmpeg-static</InlineCode> as temporary dev-deps for the conversion, then remove them. They never land in <InlineCode>package.json</InlineCode>.</> },
+            { rule: 'Reference match', detail: <>Code paths must match the file extension on disk — always <InlineCode>.webp</InlineCode> / <InlineCode>.mp4</InlineCode>, never the original format.</> },
           ].map(({ rule, detail }) => (
             <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
               <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
@@ -1051,14 +1366,28 @@ function ComponentsContent() {
     <>
       <section id="icon-button">
         <SectionHeading>Components</SectionHeading>
-        <p className="text-body-small text-text-secondary mb-8">
+        <p className="text-body-small text-text-secondary mb-4">
           Interactive element patterns. All states pass WCAG AA (≥ 4.5:1 for text, ≥ 3:1 for UI).
-          Hover always differentiates by more than color alone.
         </p>
+
+        <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-12">
+          <p className="text-body-small text-text-secondary">
+            <span className="text-text-primary">Non-color-diff rule:</span> every interactive
+            element must differentiate hover, active, and selected states by{' '}
+            <span className="text-text-primary">more than color alone</span>. Pair color
+            shifts with at least one of: background fill, border weight, font weight,
+            transform, or icon rotation. This satisfies WCAG 1.4.1 (color is never the only
+            channel) and keeps the pattern legible for users with color-vision differences.
+          </p>
+        </div>
 
         <SubLabel>Icon Button</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Component: <InlineCode>components/IconButton.tsx</InlineCode>. Icon-only action button. Used in the testimonial carousel.
+          Component: <InlineCode>components/IconButton.tsx</InlineCode>. Icon-only action button.
+          Used in the <InlineCode>TestimonialCarousel</InlineCode> prev/next controls and as the{' '}
+          <InlineCode>VideoBlock</InlineCode> play/pause overlay (positioned{' '}
+          <InlineCode>absolute bottom-3 right-3</InlineCode> on every video). Both call sites
+          share the same component so the chrome stays in sync.
         </p>
 
         <div className="flex gap-2 mb-8">
@@ -1108,13 +1437,38 @@ function ComponentsContent() {
           <Button variant="outline" href="#">Secondary</Button>
         </div>
 
-        <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
+        <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-8">
           <p className="text-body-small text-text-secondary">
             Hover transitions <InlineCode>bg-bg-secondary → bg-bg-tertiary</InlineCode>,{' '}
             <InlineCode>border-border → border-border-strong</InlineCode>, and{' '}
             <InlineCode>text-text-secondary → text-text-primary</InlineCode>.
           </p>
         </div>
+
+        <SubLabel>Form-submit / dense props</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          For non-link uses (forms, dense layouts), <InlineCode>Button</InlineCode> exposes four
+          additional props on top of the variant system. These are off by default so existing
+          link call sites stay unchanged.
+        </p>
+        <div>
+          <RowDivider />
+          {[
+            { prop: 'type="submit"', use: 'Submits the parent form. Use when Button stands in for a native submit input.' },
+            { prop: 'disabled', use: <>Renders at <InlineCode>opacity-60</InlineCode> + <InlineCode>cursor-not-allowed</InlineCode> on both variants. Hover styles are suppressed.</> },
+            { prop: 'fullWidth', use: <>Adds <InlineCode>w-full justify-center</InlineCode>. Use inside narrow form columns or full-bleed mobile actions.</> },
+            { prop: 'noIcon', use: 'Suppresses the trailing ArrowUpRight. Use for submit buttons, destructive actions, or anywhere the rotation cue would be misleading.' },
+          ].map(({ prop, use }) => (
+            <div key={typeof prop === 'string' ? prop : ''} className="flex items-start gap-8 py-4 border-b border-border-subtle">
+              <div className="min-w-[10rem] shrink-0"><InlineCode>{prop}</InlineCode></div>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
+            </div>
+          ))}
+        </div>
+        <p className="text-body-small text-text-secondary mt-6 mb-16">
+          Used by <InlineCode>CaseStudyPaywall</InlineCode>&apos;s submit button — reach for these
+          props instead of hand-rolling another button-styled element.
+        </p>
       </section>
 
       <SectionDivider />
@@ -1122,8 +1476,10 @@ function ComponentsContent() {
       <section id="nav-link">
         <SubLabel>Navigation Link</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Inline in <InlineCode>components/Nav.tsx</InlineCode>. Same visual language as
-          Table of Contents items — filled background on hover and active.
+          Component: <InlineCode>components/NavLink.tsx</InlineCode>. Top nav links and any
+          inline page navigation. <span className="text-text-primary">No background fill</span>{' '}
+          on hover or active — text color and weight shift only. This is the deliberate
+          difference from the Table of Contents, which uses a filled background on hover/active.
         </p>
 
         <div className="mb-8">
@@ -1134,9 +1490,10 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Non-color diff: background fill appears and font weight shifts to medium on hover.
-            Active page retains the same styling. Matches Table of Contents item pattern.
-            Contrast: <InlineCode>#57534e</InlineCode> on white ≈ 7.0:1 ✓ WCAG AA.
+            Non-color diff: font weight shifts from <InlineCode>font-normal</InlineCode> to{' '}
+            <InlineCode>font-medium</InlineCode> on hover and on the active page. Active
+            page retains the same styling so the cursor preview matches the active state.
+            Contrast: <InlineCode>#57534e</InlineCode> on white ≈ 7.8:1 ✓ WCAG AA.
           </p>
         </div>
       </section>
@@ -1169,7 +1526,7 @@ function ComponentsContent() {
             { variant: 'icon-emphasis', icon: '↗', use: 'Navigation external, high emphasis, not branded' },
           ].map(({ variant, icon, use }) => (
             <div key={variant} className="flex items-center gap-8 py-4 border-b border-border-subtle">
-              <div className="min-w-[9rem] shrink-0"><Token>{variant}</Token></div>
+              <div className="min-w-[9rem] shrink-0"><InlineCode>{variant}</InlineCode></div>
               <p className="text-body-small text-text-tertiary w-16 shrink-0">{icon}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
             </div>
@@ -1178,9 +1535,10 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            All variants: <InlineCode>text-text-secondary underline</InlineCode> default →{' '}
-            <InlineCode>text-text-primary no-underline</InlineCode> on hover. No blue, no bold.
-            Underline satisfies WCAG 1.4.1 (not relying on color alone to identify links).
+            All variants: <InlineCode>text-text-primary underline</InlineCode> default →{' '}
+            <InlineCode>text-text-primary no-underline</InlineCode> on hover. Color stays the
+            same — only the underline toggles. No blue, no bold. Underline satisfies WCAG 1.4.1
+            (not relying on color alone to identify links).
           </p>
         </div>
       </section>
@@ -1227,8 +1585,8 @@ function ComponentsContent() {
             { size: 'small', classes: 'text-body-small px-3 py-1.5', use: 'Mobile, dense layouts' },
           ].map(({ size, classes, use }) => (
             <div key={size} className="flex items-center gap-8 py-4 border-b border-border-subtle">
-              <div className="min-w-[6rem] shrink-0"><Token>{size}</Token></div>
-              <p className="font-mono text-body-small text-text-secondary flex-1 min-w-0">{classes}</p>
+              <div className="min-w-[6rem] shrink-0"><InlineCode>{size}</InlineCode></div>
+              <div className="flex-1 min-w-0"><InlineCode>{classes}</InlineCode></div>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
             </div>
           ))}
@@ -1251,55 +1609,24 @@ function ComponentsContent() {
         <p className="text-body-small text-text-secondary mb-8">
           Component: <InlineCode>components/CaseStudyTag.tsx</InlineCode>. Single visual
           treatment, no variants. Used for the tag row in case study heroes and inside{' '}
-          <InlineCode>CaseStudyCard</InlineCode>. Visually mirrors the TOC active state but
-          with a pill shape.
+          <InlineCode>CaseStudyCard</InlineCode>. Intentionally a higher-contrast surface than
+          the TOC active state so tags read as discrete chips rather than blending into the page.
         </p>
 
-        <div className="mb-8 flex gap-2">
-          <span className="text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5">
-            Insurance
-          </span>
-          <span className="text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5">
-            B2B
-          </span>
-          <span className="text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5">
-            Design Systems
-          </span>
+        <div className="mb-8 flex gap-2 flex-wrap">
+          <CaseStudyTag>Insurance</CaseStudyTag>
+          <CaseStudyTag>B2B</CaseStudyTag>
+          <CaseStudyTag>Design Systems</CaseStudyTag>
         </div>
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Same `bg-bg-secondary` + `border-border-subtle` treatment as the TOC active item, but
-            `rounded-full` instead of `rounded-sm`. Padding `px-2.5 py-1.5` matches the TOC active
-            padding so tags and active TOC items have equal vertical weight.
-          </p>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      <section id="token">
-        <SubLabel>Token</SubLabel>
-        <p className="text-body-small text-text-secondary mb-8">
-          Component: <InlineCode>components/Token.tsx</InlineCode>. A monospace pill chip
-          used to display every design token name on this page — color tokens, type roles, spacing
-          values, radius classes, shadow classes, and component variants. Single visual treatment,
-          no variants. Pass the token name as children.
-        </p>
-
-        <div className="mb-8 flex flex-wrap items-center gap-2">
-          <Token>text-display</Token>
-          <Token>neutral-100</Token>
-          <Token>spacing/16</Token>
-          <Token>rounded-full</Token>
-          <Token>shadow-md</Token>
-        </div>
-
-        <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
-          <p className="text-body-small text-text-secondary">
-            <InlineCode>bg-neutral-100</InlineCode> + <InlineCode>border-border-strong</InlineCode> + <InlineCode>rounded-full</InlineCode> + <InlineCode>px-2 py-1</InlineCode>.
-            Inline-flex with <InlineCode>whitespace-nowrap</InlineCode> so it sits cleanly
-            beside surrounding text and never wraps. Mirrors the Figma Token component (no variants).
+            <InlineCode>bg-bg-tertiary</InlineCode> + <InlineCode>border-border-strong</InlineCode>{' '}
+            + <InlineCode>rounded-full</InlineCode> + <InlineCode>px-2.5 py-1.5</InlineCode>.
+            Compare with the TOC active state, which uses <InlineCode>bg-bg-secondary</InlineCode>{' '}
+            + <InlineCode>border-border-subtle</InlineCode>: the Tag&apos;s stronger surface and
+            border are deliberate — they push the chip forward of the page surface, while the
+            TOC&apos;s subtler surface keeps it behind the page chrome.
           </p>
         </div>
       </section>
@@ -1326,11 +1653,12 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            <InlineCode>inline rounded-sm border border-border-subtle bg-neutral-100 px-1.5 py-0.5 font-mono text-[0.9em]</InlineCode>.
+            <InlineCode>inline rounded-sm border border-border-subtle bg-neutral-200 px-1.5 py-0.5 font-mono text-[0.9em]</InlineCode>.
             Em-relative font size shrinks the chip to ~90% of the parent prose, so it stays
             proportional inside any role from <InlineCode>text-body-big</InlineCode> down to{' '}
-            <InlineCode>text-body-small</InlineCode>. Distinct from <InlineCode>{'<Token>'}</InlineCode>:
-            InlineCode is for inline-in-prose; Token is for standalone labels in metadata columns.
+            <InlineCode>text-body-small</InlineCode>. Used both inline within prose and as
+            standalone monospaced labels — wherever a code construct, token name, or class name
+            needs to render as a chip.
           </p>
         </div>
       </section>
@@ -1454,6 +1782,281 @@ function ComponentsContent() {
   )
 }
 
+// ── Patterns content ──────────────────────────────────────────────────────────
+
+function PatternsContent() {
+  return (
+    <>
+      <section id="page-shell">
+        <SectionHeading>Patterns</SectionHeading>
+        <p className="text-body-small text-text-secondary mb-8">
+          Application patterns assembled from the foundations and components. These describe how
+          the parts come together at the page level — the shell, the responsive system, and the
+          case study layout that anchors most of the site.
+        </p>
+
+        <SubLabel>Page shell</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          Every page follows the same outer shell: <InlineCode>{'<Nav />'}</InlineCode> +{' '}
+          <InlineCode>{'<main>'}</InlineCode> + <InlineCode>{'<Footer />'}</InlineCode>. The
+          standard section container inside <InlineCode>{'<main>'}</InlineCode> is{' '}
+          <InlineCode>flex justify-center px-5 md:px-10</InlineCode> with an inner{' '}
+          <InlineCode>max-w-page w-full</InlineCode> div (<InlineCode>max-w-page</InlineCode> ={' '}
+          <InlineCode>1560px</InlineCode>). The Nav uses{' '}
+          <InlineCode>max-w-page mx-auto</InlineCode> with no horizontal padding so the logo and
+          links sit flush with the container edges.
+        </p>
+      </section>
+
+      <SectionDivider />
+
+      <section id="responsive-system">
+        <SubLabel>Responsive system</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          Three active tiers, mobile-first. Tailwind&apos;s default breakpoints — only{' '}
+          <InlineCode>md:</InlineCode> and <InlineCode>lg:</InlineCode> are used.
+        </p>
+
+        <div className="mb-8">
+          <div className="flex gap-5 py-3 border-b border-border-subtle">
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-32 shrink-0">Tier</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-40 shrink-0">Breakpoint</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Target</p>
+          </div>
+          {[
+            { tier: 'Base',                       bp: '< 768px',  target: 'Phones (mobile-first)' },
+            { tier: <InlineCode>md:</InlineCode>, bp: '≥ 768px',  target: 'Tablets, small laptops' },
+            { tier: <InlineCode>lg:</InlineCode>, bp: '≥ 1024px', target: 'Desktop' },
+          ].map((row, i) => (
+            <div key={i} className="flex items-center gap-5 py-4 border-b border-border-subtle">
+              <div className="w-32 shrink-0">{typeof row.tier === 'string' ? <span className="text-body-small text-text-primary">{row.tier}</span> : row.tier}</div>
+              <p className="font-mono text-body-small text-text-tertiary w-40 shrink-0">{row.bp}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{row.target}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mb-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-small text-text-secondary mb-3">
+            <span className="text-text-primary">Layout collapse rule.</span> The 3-column case
+            study layout (TOC + content + notes) collapses to content-only below{' '}
+            <InlineCode>lg:</InlineCode>. The TOC and notes columns use{' '}
+            <InlineCode>hidden lg:block</InlineCode>. The footer stacks vertically on mobile with{' '}
+            <InlineCode>flex-col md:flex-row</InlineCode>.
+          </p>
+          <p className="text-body-small text-text-secondary">
+            <span className="text-text-primary">Horizontal page padding.</span> Every full-width
+            section shell uses <InlineCode>px-5 md:px-10</InlineCode> (20px mobile → 40px
+            desktop).
+          </p>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section id="case-study-layout">
+        <SubLabel>Case study layout</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          Case study pages follow a 3-column flex layout inside the standard section shell:
+        </p>
+
+        <div className="mb-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <pre className="font-mono text-[0.85em] text-text-primary leading-relaxed whitespace-pre overflow-x-auto">{`[220px TOC] [flex-1 content] [120px notes (empty)]
+gap-8, py-20`}</pre>
+        </div>
+
+        <div>
+          <div className="flex gap-5 py-3 border-b border-border-subtle">
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-40 shrink-0">Element</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Spec</p>
+          </div>
+          {[
+            { el: 'Hero',          spec: <><InlineCode>pt-16 pb-12</InlineCode> · <InlineCode>text-h1 md:text-display font-normal</InlineCode> title at full <InlineCode>max-w-page</InlineCode> width. No metadata in the hero — metadata lives in the Overview grid below.</> },
+            { el: 'Cover image',   spec: <><InlineCode>pb-16</InlineCode> · full-width <InlineCode>aspect-video bg-bg-secondary rounded-sm</InlineCode> with the standard image chrome.</> },
+            { el: 'TOC (left)',    spec: <><InlineCode>sticky top-32</InlineCode> (128px — clears the 64px sticky nav with breathing room). Plain <InlineCode>text-body-small text-text-secondary</InlineCode> links, no step numbers.</> },
+            { el: 'Notes (right)', spec: <>Empty <InlineCode>w-[120px]</InlineCode> spacer — reserved for future annotations. Removing it would shift content left and break the rhythm.</> },
+          ].map(({ el, spec }) => (
+            <div key={el} className="flex items-start gap-5 py-4 border-b border-border-subtle">
+              <p className="text-body-small font-medium text-text-primary w-40 shrink-0">{el}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{spec}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section id="section-pattern">
+        <SubLabel>Section pattern</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          Each major section inside the content column follows the same scaffold:
+        </p>
+
+        <div>
+          <div className="flex gap-5 py-3 border-b border-border-subtle">
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-40 shrink-0">Element</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Classes</p>
+          </div>
+          {[
+            { el: 'Section label',     spec: <InlineCode>text-body-small text-text-tertiary mb-4</InlineCode> },
+            { el: 'Section heading',   spec: <InlineCode>text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]</InlineCode> },
+            { el: 'Body prose',        spec: <InlineCode>text-body-small md:text-body-big text-text-secondary</InlineCode> },
+            { el: 'Overview prose',    spec: <InlineCode>text-body-small md:text-body-big lg:text-body-biggest text-text-primary</InlineCode> },
+            { el: 'Between sections',  spec: <>Use <InlineCode>{'<SectionDivider />'}</InlineCode> from <InlineCode>components/case-study.tsx</InlineCode> — renders <InlineCode>h-12 md:h-24</InlineCode> + a rule + matching bottom spacer, all constrained to the <InlineCode>max-w-page</InlineCode> shell.</> },
+            { el: 'Between subsections', spec: <InlineCode>{'<div className="h-24" />'}</InlineCode> },
+            { el: 'Before images',     spec: <InlineCode>{'<div className="h-12" />'}</InlineCode> },
+          ].map(({ el, spec }) => (
+            <div key={el} className="flex items-start gap-5 py-4 border-b border-border-subtle">
+              <p className="text-body-small font-medium text-text-primary w-40 shrink-0">{el}</p>
+              <div className="flex-1 min-w-0 text-body-small text-text-secondary">{spec}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-small text-text-secondary mb-3">
+            <span className="text-text-primary">2-column body layout</span> — used for most
+            section content. Heading or image on the left, prose on the right, equal flex.
+          </p>
+          <pre className="font-mono text-[0.85em] text-text-primary leading-relaxed whitespace-pre overflow-x-auto">{`<div className="flex gap-8 items-start">
+  <div className="flex-1 min-w-0">{/* left: heading or image */}</div>
+  <div className="flex-1 min-w-0">{/* right: prose */}</div>
+</div>`}</pre>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section id="callout-cards">
+        <SubLabel>Callout cards</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          Two variants share the same surface — a <InlineCode>bg-bg-secondary border border-border rounded-sm px-10 py-7</InlineCode> card.
+        </p>
+
+        <div className="mb-6">
+          <p className="text-body-small text-text-tertiary mb-3">Numbered callout</p>
+          <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 flex gap-4 items-center">
+            <p className="text-body-biggest text-text-primary font-mono">01</p>
+            <p className="text-body-small md:text-body-big text-text-primary flex-1 min-w-0">
+              Numbered list items with a step number on the left and prose on the right.
+            </p>
+          </div>
+          <p className="text-body-small text-text-tertiary mt-3">
+            <InlineCode>flex gap-4 items-center</InlineCode> · number{' '}
+            <InlineCode>text-body-biggest</InlineCode> (fixed, doesn&apos;t step down) · body{' '}
+            <InlineCode>text-body-small md:text-body-big text-text-primary</InlineCode>.
+          </p>
+        </div>
+
+        <div>
+          <p className="text-body-small text-text-tertiary mb-3">Stat callout</p>
+          <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 flex flex-col gap-2">
+            <p className="text-display font-normal text-text-primary leading-[1.3]">87%</p>
+            <p className="text-body-big text-text-primary">Reduction in claim review time after rolling out the new portal.</p>
+          </div>
+          <p className="text-body-small text-text-tertiary mt-3">
+            Large value <InlineCode>text-display font-normal text-text-primary</InlineCode> +
+            caption <InlineCode>text-body-big text-text-primary</InlineCode>.
+          </p>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section id="metadata-grid">
+        <SubLabel>Metadata grid</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          Used in the Overview section. Six metadata fields (Role, Team, For, Tools, Timeline,
+          Status) reflow from 3 rows × 2 cols on mobile to 2 rows × 3 cols on tablet+. Each cell
+          is a labeled column. Add new fields in multiples that divide cleanly into both column
+          counts (6 works; 4 or 5 produce a ragged tail on desktop).
+        </p>
+
+        <div className="mb-6 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <pre className="font-mono text-[0.85em] text-text-primary leading-relaxed whitespace-pre overflow-x-auto">{`<div className="grid grid-cols-2 md:grid-cols-3 gap-8 pt-8">
+  {fields.map(({ label, value }) => (
+    <div key={label} className="flex flex-col gap-1.5">
+      <p className="text-small font-medium uppercase tracking-widest
+                    text-text-tertiary pb-2">{label}</p>
+      <p className="text-body-small text-text-secondary">{value}</p>
+    </div>
+  ))}
+</div>`}</pre>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section id="password-gated">
+        <SubLabel>Password-gated case studies</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          Three deliberate deviations from the standard case study shell. When the password gate
+          is lifted, restore the standard shell — don&apos;t leave the gated layout behind.
+        </p>
+
+        <div>
+          <div className="flex gap-5 py-3 border-b border-border-subtle">
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-44 shrink-0">Deviation</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Rule</p>
+          </div>
+          {[
+            { dev: 'No View Live button',   rule: <>Hero <InlineCode>{'<h1>'}</InlineCode> renders bare — no flex wrapper, no Button. When the gate lifts, restore <InlineCode>{'<div className="flex flex-col md:flex-row items-start md:items-end gap-4 md:gap-8">'}</InlineCode> wrapping the heading + Button.</> },
+            { dev: 'Gated TOC',             rule: <>When <InlineCode>unlocked === false</InlineCode>, swap <InlineCode>{'<TableOfContents>'}</InlineCode> for an empty <InlineCode>{'<div aria-hidden className="hidden lg:block w-[220px] shrink-0" />'}</InlineCode>. Keeps the content column centered without advertising unreachable structure.</> },
+            { dev: 'Paywall spacer',        rule: <>Use <InlineCode>{'<div className="h-16 md:h-24" />'}</InlineCode> before <InlineCode>{'<CaseStudyPaywall>'}</InlineCode> instead of <InlineCode>{'<SectionDivider>'}</InlineCode>. The paywall fades into the content via its own gradient — a hard rule would fight the fade.</> },
+          ].map(({ dev, rule }) => (
+            <div key={dev} className="flex items-start gap-5 py-4 border-b border-border-subtle">
+              <p className="text-body-small font-medium text-text-primary w-44 shrink-0">{dev}</p>
+              <p className="text-body-small text-text-secondary flex-1 min-w-0">{rule}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section id="maintained">
+        <SubLabel>How this is maintained</SubLabel>
+        <p className="text-body-small text-text-secondary mb-6">
+          <span className="text-text-primary">Code is the source of truth.</span> Tokens and
+          components live in <InlineCode>tailwind.config.ts</InlineCode> and{' '}
+          <InlineCode>components/</InlineCode>. The Figma file at{' '}
+          <InlineCode>QXoQt5JPBJapI2H4z1bP7T</InlineCode> mirrors the same variables, text styles,
+          effect styles, and components — and stays in sync via a manual propagation chain rather
+          than Code Connect.
+        </p>
+
+        <div>
+          <div className="flex gap-5 py-3 border-b border-border-subtle">
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-56 shrink-0">Step</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Update when</p>
+          </div>
+          {[
+            { step: 'React component / token',     when: <>Implementation source — every other surface follows from this.</> },
+            { step: <InlineCode>CLAUDE.md</InlineCode>, when: <>New layout pattern, shared component, prop, variant, state, token, type-scale entry, color role, or page type.</> },
+            { step: 'Design system page',          when: <>New token in <InlineCode>tailwind.config.ts</InlineCode> / new semantic usage convention / new shared component. (This page.)</> },
+            { step: 'Figma file',                  when: <>Any design system change — token, typography, shadow, component, variant, or interactive state. <span className="text-text-primary">Mandatory same-session update.</span></> },
+            { step: <InlineCode>.figma/components.md</InlineCode>, when: <>New / renamed / removed Figma component, property, or variant; React file path moves; inline pattern extracted to a component.</> },
+          ].map((row, i) => (
+            <div key={i} className="flex items-start gap-5 py-4 border-b border-border-subtle">
+              <div className="w-56 shrink-0 text-body-small font-medium text-text-primary">{row.step}</div>
+              <div className="flex-1 min-w-0 text-body-small text-text-secondary">{row.when}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-small text-text-secondary">
+            Each Figma component carries a <InlineCode>description</InlineCode> (React file path
+            + usage snippet) and <InlineCode>documentationLinks</InlineCode> (GitHub URL) — set
+            both via <InlineCode>mcp__plugin_figma_figma__use_figma</InlineCode>. This is the
+            manual replacement for Code Connect, which would require a Figma Org/Enterprise plan.
+          </p>
+        </div>
+      </section>
+    </>
+  )
+}
+
 // ── Main export ───────────────────────────────────────────────────────────────
 
 const activeTabCls = 'text-body-small font-medium text-text-primary border-b-2 border-text-primary -mb-px pb-3 transition-colors'
@@ -1461,15 +2064,18 @@ const inactiveTabCls = 'text-body-small text-text-secondary hover:text-text-prim
 
 export default function DesignSystemTabs() {
   const [tab, setTab] = useState<Tab>('Foundations')
-  const toc = tab === 'Foundations' ? foundationsToc : componentsToc
+  const toc =
+    tab === 'Foundations' ? foundationsToc :
+    tab === 'Components'  ? componentsToc  :
+    patternsToc
 
   return (
     <>
       {/* Tab bar — edge-to-edge, sticky-pinned, finishes the white hero zone */}
       <div className="sticky top-16 z-40 bg-bg-secondary border-b border-border">
         <div className="flex justify-center px-5 md:px-10">
-          <div className="max-w-page w-full flex gap-8 pt-12 md:pt-20">
-            {(['Foundations', 'Components'] as Tab[]).map((t) => (
+          <div className="max-w-page w-full flex gap-8 pt-4">
+            {(['Foundations', 'Components', 'Patterns'] as Tab[]).map((t) => (
               <button
                 key={t}
                 type="button"
@@ -1492,7 +2098,9 @@ export default function DesignSystemTabs() {
 
             {/* Content */}
             <div className="flex-1 min-w-0">
-              {tab === 'Foundations' ? <FoundationsContent /> : <ComponentsContent />}
+              {tab === 'Foundations' && <FoundationsContent />}
+              {tab === 'Components'  && <ComponentsContent />}
+              {tab === 'Patterns'    && <PatternsContent />}
             </div>
 
             {/* Notes column — reserved, hidden on mobile */}
