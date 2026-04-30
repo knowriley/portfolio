@@ -7,6 +7,7 @@ import InlineLink from './InlineLink'
 import TableOfContents from './TableOfContents'
 import SegmentedControl from './SegmentedControl'
 import Token from './Token'
+import InlineCode from './InlineCode'
 import { SectionDivider } from './case-study'
 import {
   ArrowUpRight, ExternalLink, ArrowRight, ArrowLeft,
@@ -69,6 +70,7 @@ const componentsToc = [
   { label: 'Filter Pill',        id: 'filter-pill' },
   { label: 'Tag',                id: 'tag' },
   { label: 'Token',              id: 'token' },
+  { label: 'Inline Code',        id: 'inline-code' },
   { label: 'Tab',                id: 'tab' },
   { label: 'Segmented Control',  id: 'segmented-control' },
   { label: 'Carousel Dot',       id: 'carousel-dot' },
@@ -79,143 +81,198 @@ const componentsToc = [
 
 type Breakpoint = 'mobile' | 'tablet' | 'desktop'
 
+type TypeRole = {
+  token: string
+  utilityModifiers: string
+  useCase: string
+  sample: string
+  sampleColor: string
+  extraSampleClasses?: string
+  resolved: Record<Breakpoint, string>
+}
+
+const sizeFor: Record<string, { rem: string; px: string; lh: string }> = {
+  'text-display':      { rem: '3.5rem',   px: '56px',    lh: '1.3' },
+  'text-h1':           { rem: '2.488rem', px: '39.81px', lh: '1.3' },
+  'text-h2':           { rem: '2.074rem', px: '33.18px', lh: '1.3' },
+  'text-h3':           { rem: '1.728rem', px: '27.65px', lh: '1.3' },
+  'text-h4':           { rem: '1.44rem',  px: '23.04px', lh: '1.3' },
+  'text-body-biggest': { rem: '1.44rem',  px: '23.04px', lh: '1.5' },
+  'text-body-big':     { rem: '1.2rem',   px: '19.2px',  lh: '1.5' },
+  'text-body-small':   { rem: '1rem',     px: '16px',    lh: '1.5' },
+  'text-small':        { rem: '0.833rem', px: '13.33px', lh: '1' },
+}
+
+const typeRoles: TypeRole[] = [
+  {
+    token: 'text-display',
+    utilityModifiers: 'font-normal',
+    useCase: 'Hero headlines only',
+    sample: 'Content dictates form',
+    sampleColor: 'text-text-primary',
+    resolved: { mobile: 'text-h1', tablet: 'text-display', desktop: 'text-display' },
+  },
+  {
+    token: 'text-h1',
+    utilityModifiers: 'font-normal',
+    useCase: 'Page-level headings',
+    sample: 'Content dictates form',
+    sampleColor: 'text-text-primary',
+    resolved: { mobile: 'text-h2', tablet: 'text-h1', desktop: 'text-h1' },
+  },
+  {
+    token: 'text-h2',
+    utilityModifiers: 'font-normal',
+    useCase: 'Section headings, pull quotes, stats',
+    sample: 'Content dictates form',
+    sampleColor: 'text-text-primary',
+    resolved: { mobile: 'text-h3', tablet: 'text-h2', desktop: 'text-h2' },
+  },
+  {
+    token: 'text-h3',
+    utilityModifiers: 'font-normal',
+    useCase: 'Sub-section headings within a section',
+    sample: 'Content dictates form',
+    sampleColor: 'text-text-primary',
+    resolved: { mobile: 'text-h4', tablet: 'text-h3', desktop: 'text-h3' },
+  },
+  {
+    token: 'text-h4',
+    utilityModifiers: 'font-normal',
+    useCase: 'Mobile-only — step-down pair for text-h3',
+    sample: 'Content dictates form',
+    sampleColor: 'text-text-primary',
+    resolved: { mobile: 'text-h4', tablet: 'text-h4', desktop: 'text-h4' },
+  },
+  {
+    token: 'text-body-biggest',
+    utilityModifiers: 'font-normal',
+    useCase: 'Card titles, sub-headings, overview prose',
+    sample: 'Content dictates form',
+    sampleColor: 'text-text-primary',
+    resolved: { mobile: 'text-body-small', tablet: 'text-body-big', desktop: 'text-body-biggest' },
+  },
+  {
+    token: 'text-body-big',
+    utilityModifiers: 'font-normal',
+    useCase: 'Primary prose, bio copy',
+    sample: 'In order to create the universal, you must pay very great attention to the specific.',
+    sampleColor: 'text-text-secondary',
+    resolved: { mobile: 'text-body-small', tablet: 'text-body-big', desktop: 'text-body-big' },
+  },
+  {
+    token: 'text-body-small',
+    utilityModifiers: 'font-normal',
+    useCase: 'Secondary prose, links, nav, badges',
+    sample: 'In order to create the universal, you must pay very great attention to the specific.',
+    sampleColor: 'text-text-secondary',
+    resolved: { mobile: 'text-body-small', tablet: 'text-body-small', desktop: 'text-body-small' },
+  },
+  {
+    token: 'text-small',
+    utilityModifiers: 'font-normal',
+    useCase: 'Captions only',
+    sample: 'Design Systems · 2024 · Lead Designer',
+    sampleColor: 'text-text-tertiary',
+    resolved: { mobile: 'text-small', tablet: 'text-small', desktop: 'text-small' },
+  },
+  {
+    token: 'label',
+    utilityModifiers: 'font-medium uppercase tracking-widest',
+    useCase: 'Footer headers, TOC title, metadata field labels',
+    sample: 'Role · Team · Local Time',
+    sampleColor: 'text-text-tertiary',
+    extraSampleClasses: 'font-medium uppercase tracking-widest',
+    resolved: { mobile: 'text-small', tablet: 'text-small', desktop: 'text-small' },
+  },
+]
+
 function FoundationsContent() {
   const [breakpoint, setBreakpoint] = useState<Breakpoint>('mobile')
+  const [typeBreakpoint, setTypeBreakpoint] = useState<Breakpoint>('desktop')
   return (
     <>
       {/* ──────────────────────────── TYPOGRAPHY ──────────────────────── */}
       <section id="typography">
-        <SectionHeading>Typography</SectionHeading>
+        <p className="text-body-small text-text-tertiary mb-4">Typography</p>
 
-        <SubLabel>Type Scale</SubLabel>
-        <p className="text-body-small text-text-secondary mb-8">
-          All readable text uses one of these roles. Every role is{' '}
-          <span className="font-mono">font-normal</span> except{' '}
-          <span className="font-mono">label</span>, which sets its own weight. Raw Tailwind sizes (
-          <span className="font-mono">text-sm</span>,{' '}
-          <span className="font-mono">text-lg</span>, etc.) and arbitrary pixel values
-          are not used for body or UI text.
+        <div className="flex flex-col md:flex-row gap-8 items-start mb-12">
+          <div className="flex-1 min-w-0">
+            <h2 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+              A role-based type scale built on top of Tailwind&apos;s fontSize utility
+            </h2>
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-body-small text-text-secondary">
+              All readable text uses one of these roles. Every role is{' '}
+              <InlineCode>font-normal</InlineCode> except{' '}
+              <InlineCode>label</InlineCode>, which sets its own weight. Raw Tailwind
+              sizes (<InlineCode>text-sm</InlineCode>,{' '}
+              <InlineCode>text-lg</InlineCode>, etc.) and arbitrary pixel values are
+              not used for body or UI text.
+            </p>
+          </div>
+        </div>
+
+        <p className="text-body-small text-text-secondary mb-6">
+          Most heading roles step down one notch on mobile, then return to their intrinsic size at
+          the <InlineCode>md:</InlineCode> breakpoint and above.{' '}
+          <InlineCode>text-body-biggest</InlineCode> is the only 3-tier role — it grows
+          again at <InlineCode>lg:</InlineCode>. Use the control below to preview each
+          role at any tier.
         </p>
 
-        <div>
-          <RowDivider />
-
-          <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>text-display</Token>
-              <p className="text-body-small text-text-tertiary">3.5rem / 56px · lh 1.3</p>
-              <p className="text-body-small text-text-tertiary mt-1">Hero headlines only</p>
-            </div>
-            <p className="text-display font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
-              Content dictates form
-            </p>
+        <div className="bg-bg border border-border rounded-sm p-8">
+          <div className="sticky top-16 z-10 -mx-8 -mt-8 px-8 pt-8 pb-4 mb-2 bg-bg border-b border-border-subtle rounded-t-sm flex justify-end">
+            <SegmentedControl
+              options={[
+                { label: 'Mobile',  value: 'mobile'  },
+                { label: 'Tablet',  value: 'tablet'  },
+                { label: 'Desktop', value: 'desktop' },
+              ]}
+              value={typeBreakpoint}
+              onChange={setTypeBreakpoint}
+              ariaLabel="Preview typography at breakpoint"
+            />
           </div>
 
-          <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>text-h1</Token>
-              <p className="text-body-small text-text-tertiary">2.488rem / 39.81px · lh 1.3</p>
-              <p className="text-body-small text-text-tertiary mt-1">Page-level headings</p>
-            </div>
-            <p className="text-h1 font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
-              Content dictates form
-            </p>
-          </div>
-
-          <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>text-h2</Token>
-              <p className="text-body-small text-text-tertiary">2.074rem / 33.18px · lh 1.3</p>
-              <p className="text-body-small text-text-tertiary mt-1">Section headings, pull quotes, stats</p>
-            </div>
-            <p className="text-h2 font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
-              Content dictates form
-            </p>
-          </div>
-
-          <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>text-h3</Token>
-              <p className="text-body-small text-text-tertiary">1.728rem / 27.65px · lh 1.3</p>
-              <p className="text-body-small text-text-tertiary mt-1">Sub-section headings within a section</p>
-            </div>
-            <p className="text-h3 font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
-              Content dictates form
-            </p>
-          </div>
-
-          <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>text-h4</Token>
-              <p className="text-body-small text-text-tertiary">1.44rem / 23.04px · lh 1.3</p>
-              <p className="text-body-small text-text-tertiary mt-1">Mobile-only — step-down pair for text-h3</p>
-            </div>
-            <p className="text-h4 font-normal text-text-primary leading-[1.3] flex-1 min-w-0">
-              Content dictates form
-            </p>
-          </div>
-
-          <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>text-body-biggest</Token>
-              <p className="text-body-small text-text-tertiary">1.44rem / 23.04px · lh 1.5</p>
-              <p className="text-body-small text-text-tertiary mt-1">Card titles, sub-headings, overview prose</p>
-            </div>
-            <p className="text-body-biggest text-text-primary flex-1 min-w-0">
-              Content dictates form
-            </p>
-          </div>
-
-          <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>text-body-big</Token>
-              <p className="text-body-small text-text-tertiary">1.2rem / 19.2px · lh 1.5</p>
-              <p className="text-body-small text-text-tertiary mt-1">Primary prose, bio copy</p>
-            </div>
-            <p className="text-body-big text-text-secondary flex-1 min-w-0">
-              In order to create the universal, you must pay very great attention to the specific.
-            </p>
-          </div>
-
-          <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>text-body-small</Token>
-              <p className="text-body-small text-text-tertiary">1rem / 16px · lh 1.5</p>
-              <p className="text-body-small text-text-tertiary mt-1">Secondary prose, links, nav, badges</p>
-            </div>
-            <p className="text-body-small text-text-secondary flex-1 min-w-0">
-              In order to create the universal, you must pay very great attention to the specific.
-            </p>
-          </div>
-
-          <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>text-small</Token>
-              <p className="text-body-small text-text-tertiary">0.833rem / 13.33px · lh 1</p>
-              <p className="text-body-small text-text-tertiary mt-1">Captions only</p>
-            </div>
-            <p className="text-small text-text-tertiary flex-1 min-w-0">
-              Design Systems · 2024 · Lead Designer
-            </p>
-          </div>
-
-          <div className="py-6 flex items-baseline gap-8 border-b border-border-subtle">
-            <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
-              <Token>label</Token>
-              <p className="text-body-small text-text-tertiary">0.833rem / 13.33px · lh 1</p>
-              <p className="text-body-small text-text-tertiary">font-medium · uppercase · widest</p>
-              <p className="text-body-small text-text-tertiary mt-1">Footer headers, TOC title, metadata field labels</p>
-            </div>
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1 min-w-0">
-              Role · Team · Local Time
-            </p>
-          </div>
+          {typeRoles.map(({ token, utilityModifiers, useCase, sample, sampleColor, extraSampleClasses, resolved }) => {
+            const resolvedClass = resolved[typeBreakpoint]
+            const size = sizeFor[resolvedClass]
+            return (
+              <div key={token} className="py-6 flex flex-col gap-2 border-b border-border-subtle last:border-b-0">
+                <div className="grid w-full items-end">
+                  <p aria-hidden className={`${resolved.desktop} ${sampleColor} ${extraSampleClasses ?? ''} col-start-1 row-start-1 invisible w-full`}>
+                    {sample}
+                  </p>
+                  <p className={`${resolvedClass} ${sampleColor} ${extraSampleClasses ?? ''} col-start-1 row-start-1 w-full`}>
+                    {sample}
+                  </p>
+                </div>
+                <div className="h-px bg-border w-full" />
+                <div className="flex gap-4 items-start pt-3">
+                  <div className="flex-1 min-w-0 flex flex-col gap-1.5 items-start">
+                    <Token>{resolvedClass}</Token>
+                    <p className="text-body-small text-text-tertiary">
+                      {size.rem} / {size.px} · lh {size.lh}
+                    </p>
+                    <p className="font-mono text-body-small text-text-tertiary">
+                      {utilityModifiers}
+                    </p>
+                  </div>
+                  <p className="text-body-small text-text-tertiary text-right">
+                    {useCase}
+                  </p>
+                </div>
+              </div>
+            )
+          })}
         </div>
 
         <SubLabel>Responsive Mapping</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
           Role tokens resolve to the same value at every breakpoint. The responsive shift happens
-          at the usage site (e.g. <span className="font-mono">text-h1 md:text-display</span>).
+          at the usage site (e.g. <InlineCode>text-h1 md:text-display</InlineCode>).
           This table documents the site-wide convention.
         </p>
 
@@ -305,7 +362,7 @@ function FoundationsContent() {
                 <div className="border-t border-border-subtle pt-4">
                   <p className="text-body-small text-text-tertiary mb-2">Problem</p>
                   <p className="text-h4 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
-                  <p className="text-body-small text-text-secondary">Body prose steps down to <span className="font-mono">text-body-small</span> on mobile for comfortable reading, then up to <span className="font-mono">text-body-big</span> from tablet up.</p>
+                  <p className="text-body-small text-text-secondary">Body prose steps down to <InlineCode>text-body-small</InlineCode> on mobile for comfortable reading, then up to <InlineCode>text-body-big</InlineCode> from tablet up.</p>
                 </div>
               </div>
             </div>
@@ -340,7 +397,7 @@ function FoundationsContent() {
                 <div className="border-t border-border-subtle pt-5">
                   <p className="text-body-small text-text-tertiary mb-2">Problem</p>
                   <p className="text-h2 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
-                  <p className="text-body-big text-text-secondary">From tablet up, body prose renders at <span className="font-mono">text-body-big</span>.</p>
+                  <p className="text-body-big text-text-secondary">From tablet up, body prose renders at <InlineCode>text-body-big</InlineCode>.</p>
                 </div>
               </div>
             </div>
@@ -382,7 +439,7 @@ function FoundationsContent() {
                   <div className="border-t border-border-subtle pt-5">
                     <p className="text-body-small text-text-tertiary mb-2">Problem</p>
                     <p className="text-h2 font-normal text-text-primary leading-[1.3] mb-3">Type doesn&apos;t land the same way on every screen</p>
-                    <p className="text-body-big text-text-secondary">From tablet up, body prose renders at <span className="font-mono">text-body-big</span>.</p>
+                    <p className="text-body-big text-text-secondary">From tablet up, body prose renders at <InlineCode>text-body-big</InlineCode>.</p>
                   </div>
                 </div>
                 <div className="w-[160px] shrink-0" />
@@ -440,7 +497,7 @@ function FoundationsContent() {
           Icons come from{' '}
           <InlineLink href="https://lucide.dev" external variant="emphasis">Lucide React</InlineLink>
           . Import named icons directly — works in Server and Client Components.
-          Color is always set via <span className="font-mono">className</span> using
+          Color is always set via <InlineCode>className</InlineCode> using
           text token classes. Never hardcode stroke or fill colors.
         </p>
 
@@ -677,7 +734,7 @@ function FoundationsContent() {
         <SubLabel>Gradient · Semantic</SubLabel>
         <p className="text-body-small text-text-secondary mb-6">
           Two named gradients are used site-wide, always applied as{' '}
-          <span className="font-mono">bg-clip-text text-transparent bg-gradient-to-r</span>.
+          <InlineCode>bg-clip-text text-transparent bg-gradient-to-r</InlineCode>.
         </p>
         <div>
           <RowDivider />
@@ -790,7 +847,7 @@ function FoundationsContent() {
         <SubLabel>Responsive Mapping</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
           Spacing tokens themselves don&apos;t change at breakpoints — the swap happens at the usage
-          site (e.g. <span className="font-mono">px-5 md:px-10</span>). These are the recurring
+          site (e.g. <InlineCode>px-5 md:px-10</InlineCode>). These are the recurring
           site-wide patterns.
         </p>
 
@@ -875,9 +932,9 @@ function FoundationsContent() {
         <SectionHeading>Shadow</SectionHeading>
         <p className="text-body-small text-text-secondary mb-8">
           All shadows use the site&apos;s warm neutral base color (
-          <span className="font-mono">#1c1917</span>) at low opacity. Currently{' '}
-          <span className="font-mono">shadow-xs</span> and{' '}
-          <span className="font-mono">shadow-md</span> are used on CaseStudyCard. The rest are reserved for future use.
+          <InlineCode>#1c1917</InlineCode>) at low opacity. Currently{' '}
+          <InlineCode>shadow-xs</InlineCode> and{' '}
+          <InlineCode>shadow-md</InlineCode> are used on CaseStudyCard. The rest are reserved for future use.
         </p>
 
         <div>
@@ -977,9 +1034,9 @@ function FoundationsContent() {
 
         <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
           <p className="text-body-small text-text-secondary">
-            The <span className="font-mono">ImageBlock</span> component handles all media rendering —
+            The <InlineCode>ImageBlock</InlineCode> component handles all media rendering —
             images, looping videos, Vimeo embeds, and placeholders. Videos delegate to the{' '}
-            <span className="font-mono">VideoBlock</span> client component for play/pause interactivity.
+            <InlineCode>VideoBlock</InlineCode> client component for play/pause interactivity.
           </p>
         </div>
       </section>
@@ -1001,7 +1058,7 @@ function ComponentsContent() {
 
         <SubLabel>Icon Button</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Component: <span className="font-mono">components/IconButton.tsx</span>. Icon-only action button. Used in the testimonial carousel.
+          Component: <InlineCode>components/IconButton.tsx</InlineCode>. Icon-only action button. Used in the testimonial carousel.
         </p>
 
         <div className="flex gap-2 mb-8">
@@ -1011,11 +1068,11 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Matches the primary button color: <span className="font-mono">bg-bg-inverse</span> →{' '}
-            <span className="font-mono">bg-neutral-800</span> on hover. Pass any Lucide icon as the{' '}
-            <span className="font-mono">icon</span> prop at{' '}
-            <span className="font-mono">size={'{20}'} strokeWidth={'{2}'}</span> (UI icon tier).
-            Always provide a descriptive <span className="font-mono">aria-label</span>.
+            Matches the primary button color: <InlineCode>bg-bg-inverse</InlineCode> →{' '}
+            <InlineCode>bg-neutral-800</InlineCode> on hover. Pass any Lucide icon as the{' '}
+            <InlineCode>icon</InlineCode> prop at{' '}
+            <InlineCode>size={'{20}'} strokeWidth={'{2}'}</InlineCode> (UI icon tier).
+            Always provide a descriptive <InlineCode>aria-label</InlineCode>.
           </p>
         </div>
       </section>
@@ -1025,9 +1082,9 @@ function ComponentsContent() {
       <section id="primary-button">
         <SubLabel>Primary Button</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Component: <span className="font-mono">components/Button.tsx</span>. Renders as{' '}
-          <span className="font-mono">{'<Link>'}</span> when given <span className="font-mono">href</span>,
-          or <span className="font-mono">{'<button>'}</span> when given <span className="font-mono">onClick</span>.
+          Component: <InlineCode>components/Button.tsx</InlineCode>. Renders as{' '}
+          <InlineCode>{'<Link>'}</InlineCode> when given <InlineCode>href</InlineCode>,
+          or <InlineCode>{'<button>'}</InlineCode> when given <InlineCode>onClick</InlineCode>.
         </p>
 
         <div className="mb-8">
@@ -1037,8 +1094,8 @@ function ComponentsContent() {
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-8">
           <p className="text-body-small text-text-secondary">
             Non-color diff: ArrowUpRight icon rotates 45° on hover (↗ → →).{' '}
-            Subtle lightening on hover (<span className="font-mono">#1c1917 → #292524</span>).{' '}
-            Contrast: white on <span className="font-mono">#292524</span> ≈ 15.4:1 ✓ WCAG AA.
+            Subtle lightening on hover (<InlineCode>#1c1917 → #292524</InlineCode>).{' '}
+            Contrast: white on <InlineCode>#292524</InlineCode> ≈ 15.4:1 ✓ WCAG AA.
           </p>
         </div>
 
@@ -1053,9 +1110,9 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Hover transitions <span className="font-mono">bg-bg-secondary → bg-bg-tertiary</span>,{' '}
-            <span className="font-mono">border-border → border-border-strong</span>, and{' '}
-            <span className="font-mono">text-text-secondary → text-text-primary</span>.
+            Hover transitions <InlineCode>bg-bg-secondary → bg-bg-tertiary</InlineCode>,{' '}
+            <InlineCode>border-border → border-border-strong</InlineCode>, and{' '}
+            <InlineCode>text-text-secondary → text-text-primary</InlineCode>.
           </p>
         </div>
       </section>
@@ -1065,7 +1122,7 @@ function ComponentsContent() {
       <section id="nav-link">
         <SubLabel>Navigation Link</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Inline in <span className="font-mono">components/Nav.tsx</span>. Same visual language as
+          Inline in <InlineCode>components/Nav.tsx</InlineCode>. Same visual language as
           Table of Contents items — filled background on hover and active.
         </p>
 
@@ -1079,7 +1136,7 @@ function ComponentsContent() {
           <p className="text-body-small text-text-secondary">
             Non-color diff: background fill appears and font weight shifts to medium on hover.
             Active page retains the same styling. Matches Table of Contents item pattern.
-            Contrast: <span className="font-mono">#57534e</span> on white ≈ 7.0:1 ✓ WCAG AA.
+            Contrast: <InlineCode>#57534e</InlineCode> on white ≈ 7.0:1 ✓ WCAG AA.
           </p>
         </div>
       </section>
@@ -1089,8 +1146,8 @@ function ComponentsContent() {
       <section id="inline-link">
         <SubLabel>Inline Link</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Component: <span className="font-mono">components/InlineLink.tsx</span>. 4 variants controlled
-          by the <span className="font-mono">variant</span> prop. All share the same visual treatment —
+          Component: <InlineCode>components/InlineLink.tsx</InlineCode>. 4 variants controlled
+          by the <InlineCode>variant</InlineCode> prop. All share the same visual treatment —
           the only difference is the presence of an arrow icon.
         </p>
 
@@ -1121,8 +1178,8 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            All variants: <span className="font-mono">text-text-secondary underline</span> default →{' '}
-            <span className="font-mono">text-text-primary no-underline</span> on hover. No blue, no bold.
+            All variants: <InlineCode>text-text-secondary underline</InlineCode> default →{' '}
+            <InlineCode>text-text-primary no-underline</InlineCode> on hover. No blue, no bold.
             Underline satisfies WCAG 1.4.1 (not relying on color alone to identify links).
           </p>
         </div>
@@ -1133,9 +1190,9 @@ function ComponentsContent() {
       <section id="filter-pill">
         <SubLabel>Filter Pill</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Inline in <span className="font-mono">components/AboutHero.tsx</span>. Two sizes (default,
+          Inline in <InlineCode>components/AboutHero.tsx</InlineCode>. Two sizes (default,
           small) × three states — no selected-hover state by design. AboutHero auto-swaps default →
-          small below <span className="font-mono">md:</span> via responsive classes.
+          small below <InlineCode>md:</InlineCode> via responsive classes.
         </p>
 
         <div className="mb-8 flex flex-col gap-4">
@@ -1180,9 +1237,9 @@ function ComponentsContent() {
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7">
           <p className="text-body-small text-text-secondary">
             Non-color diff: unsel. hover shifts background, border, and text simultaneously.
-            Selected adds <span className="font-mono">font-medium</span> as a weight signal.
-            Contrast: <span className="font-mono">#57534e</span> on white ≈ 7.0:1 · white on{' '}
-            <span className="font-mono">#1c1917</span> ≈ 17.6:1 — both ✓ WCAG AA.
+            Selected adds <InlineCode>font-medium</InlineCode> as a weight signal.
+            Contrast: <InlineCode>#57534e</InlineCode> on white ≈ 7.0:1 · white on{' '}
+            <InlineCode>#1c1917</InlineCode> ≈ 17.6:1 — both ✓ WCAG AA.
           </p>
         </div>
       </section>
@@ -1192,9 +1249,9 @@ function ComponentsContent() {
       <section id="tag">
         <SubLabel>Tag</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Component: <span className="font-mono">components/CaseStudyTag.tsx</span>. Single visual
+          Component: <InlineCode>components/CaseStudyTag.tsx</InlineCode>. Single visual
           treatment, no variants. Used for the tag row in case study heroes and inside{' '}
-          <span className="font-mono">CaseStudyCard</span>. Visually mirrors the TOC active state but
+          <InlineCode>CaseStudyCard</InlineCode>. Visually mirrors the TOC active state but
           with a pill shape.
         </p>
 
@@ -1224,7 +1281,7 @@ function ComponentsContent() {
       <section id="token">
         <SubLabel>Token</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Component: <span className="font-mono">components/Token.tsx</span>. A monospace pill chip
+          Component: <InlineCode>components/Token.tsx</InlineCode>. A monospace pill chip
           used to display every design token name on this page — color tokens, type roles, spacing
           values, radius classes, shadow classes, and component variants. Single visual treatment,
           no variants. Pass the token name as children.
@@ -1240,9 +1297,40 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            <span className="font-mono">bg-neutral-100</span> + <span className="font-mono">border-border-strong</span> + <span className="font-mono">rounded-full</span> + <span className="font-mono">px-2 py-1</span>.
-            Inline-flex with <span className="font-mono">whitespace-nowrap</span> so it sits cleanly
+            <InlineCode>bg-neutral-100</InlineCode> + <InlineCode>border-border-strong</InlineCode> + <InlineCode>rounded-full</InlineCode> + <InlineCode>px-2 py-1</InlineCode>.
+            Inline-flex with <InlineCode>whitespace-nowrap</InlineCode> so it sits cleanly
             beside surrounding text and never wraps. Mirrors the Figma Token component (no variants).
+          </p>
+        </div>
+      </section>
+
+      <SectionDivider />
+
+      <section id="inline-code">
+        <SubLabel>Inline Code</SubLabel>
+        <p className="text-body-small text-text-secondary mb-8">
+          Component: <InlineCode>components/InlineCode.tsx</InlineCode>. A lightweight rectangular
+          chip for inline references to code constructs — Tailwind classes, file names, prop names,
+          hex values — within prose. Renders as a semantic <InlineCode>{'<code>'}</InlineCode>{' '}
+          element. Single visual treatment, no variants.
+        </p>
+
+        <div className="mb-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-small text-text-secondary">
+            All readable text uses one of these roles. Every role is{' '}
+            <InlineCode>font-normal</InlineCode> except <InlineCode>label</InlineCode>, which sets
+            its own weight. Raw Tailwind sizes (<InlineCode>text-sm</InlineCode>,{' '}
+            <InlineCode>text-lg</InlineCode>, etc.) are not used for body or UI text.
+          </p>
+        </div>
+
+        <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
+          <p className="text-body-small text-text-secondary">
+            <InlineCode>inline rounded-sm border border-border-subtle bg-neutral-100 px-1.5 py-0.5 font-mono text-[0.9em]</InlineCode>.
+            Em-relative font size shrinks the chip to ~90% of the parent prose, so it stays
+            proportional inside any role from <InlineCode>text-body-big</InlineCode> down to{' '}
+            <InlineCode>text-body-small</InlineCode>. Distinct from <InlineCode>{'<Token>'}</InlineCode>:
+            InlineCode is for inline-in-prose; Token is for standalone labels in metadata columns.
           </p>
         </div>
       </section>
@@ -1252,7 +1340,7 @@ function ComponentsContent() {
       <section id="tab">
         <SubLabel>Tab</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Inline pattern in <span className="font-mono">components/DesignSystemTabs.tsx</span>{' '}
+          Inline pattern in <InlineCode>components/DesignSystemTabs.tsx</InlineCode>{' '}
           (Foundations / Components header). Two states — Active and Inactive.
         </p>
 
@@ -1267,7 +1355,7 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Active uses <span className="font-mono">bg-bg-inverse</span> + white text + medium
+            Active uses <InlineCode>bg-bg-inverse</InlineCode> + white text + medium
             weight; inactive matches the Filter Pill unselected treatment. No selected-hover state
             by design — once a tab is active, hovering it is a no-op.
           </p>
@@ -1279,7 +1367,7 @@ function ComponentsContent() {
       <section id="segmented-control">
         <SubLabel>Segmented Control</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Component: <span className="font-mono">components/SegmentedControl.tsx</span>. A grouped
+          Component: <InlineCode>components/SegmentedControl.tsx</InlineCode>. A grouped
           set of buttons where exactly one is selected — used to switch between mutually-exclusive
           views in place. Currently powers the breakpoint switcher in Foundations → Type Scale →
           Breakpoint Samples.
@@ -1291,14 +1379,14 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Generic in its option type — pass any string-literal union as <span className="font-mono">value</span>{' '}
-            and the matching <span className="font-mono">options[]</span>. Active uses{' '}
-            <span className="font-mono">bg-bg-inverse</span> + white text + medium weight; inactive
-            shifts text from <span className="font-mono">text-text-secondary</span> →{' '}
-            <span className="font-mono">text-text-primary</span> on hover. Container uses{' '}
-            <span className="font-mono">bg-bg-tertiary</span> + <span className="font-mono">border-border</span> +{' '}
-            <span className="font-mono">rounded-md</span> +{' '}
-            <span className="font-mono">p-1</span> — visually distinct from the Tab pattern (no
+            Generic in its option type — pass any string-literal union as <InlineCode>value</InlineCode>{' '}
+            and the matching <InlineCode>options[]</InlineCode>. Active uses{' '}
+            <InlineCode>bg-bg-inverse</InlineCode> + white text + medium weight; inactive
+            shifts text from <InlineCode>text-text-secondary</InlineCode> →{' '}
+            <InlineCode>text-text-primary</InlineCode> on hover. Container uses{' '}
+            <InlineCode>bg-bg-tertiary</InlineCode> + <InlineCode>border-border</InlineCode> +{' '}
+            <InlineCode>rounded-md</InlineCode> +{' '}
+            <InlineCode>p-1</InlineCode> — visually distinct from the Tab pattern (no
             container, individual outlined inactive buttons).
           </p>
         </div>
@@ -1309,7 +1397,7 @@ function ComponentsContent() {
       <section id="carousel-dot">
         <SubLabel>Carousel Dot</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Inline pattern in <span className="font-mono">components/TestimonialCarousel.tsx</span>.
+          Inline pattern in <InlineCode>components/TestimonialCarousel.tsx</InlineCode>.
           Small circular indicator buttons; two states — Active and Inactive.
         </p>
 
@@ -1322,9 +1410,9 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Active dot uses <span className="font-mono">bg-text-primary</span>; inactive dots use{' '}
-            <span className="font-mono">bg-border-strong</span> with{' '}
-            <span className="font-mono">hover:bg-text-tertiary</span>. <span className="font-mono">size-2</span>{' '}
+            Active dot uses <InlineCode>bg-text-primary</InlineCode>; inactive dots use{' '}
+            <InlineCode>bg-border-strong</InlineCode> with{' '}
+            <InlineCode>hover:bg-text-tertiary</InlineCode>. <InlineCode>size-2</InlineCode>{' '}
             (8px) circles, full radius.
           </p>
         </div>
@@ -1335,9 +1423,9 @@ function ComponentsContent() {
       <section id="table-of-contents">
         <SubLabel>Table of Contents</SubLabel>
         <p className="text-body-small text-text-secondary mb-8">
-          Component: <span className="font-mono">components/TableOfContents.tsx</span>. Sticky sidebar
+          Component: <InlineCode>components/TableOfContents.tsx</InlineCode>. Sticky sidebar
           navigation with IntersectionObserver-based active section tracking. Hidden below{' '}
-          <span className="font-mono">lg:</span> breakpoint.
+          <InlineCode>lg:</InlineCode> breakpoint.
         </p>
 
         <div className="mb-8 flex flex-col gap-1 w-fit">
@@ -1351,14 +1439,14 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7">
           <p className="text-body-small text-text-secondary">
-            Pass an array of <span className="font-mono">{'{ label, id }'}</span> items. The component
-            uses IntersectionObserver to detect which <span className="font-mono">id</span> is in
+            Pass an array of <InlineCode>{'{ label, id }'}</InlineCode> items. The component
+            uses IntersectionObserver to detect which <InlineCode>id</InlineCode> is in
             view and highlights it. Active adds a{' '}
-            <span className="font-mono">border-border-subtle</span> outline on top of the filled
+            <InlineCode>border-border-subtle</InlineCode> outline on top of the filled
             background to distinguish it from hover. Inactive items carry a{' '}
-            <span className="font-mono">border-transparent</span> placeholder so the active border
-            doesn't nudge layout. Positioned <span className="font-mono">sticky top-32</span> (128px)
-            to clear the 64px nav. Hidden below <span className="font-mono">lg:</span> breakpoint.
+            <InlineCode>border-transparent</InlineCode> placeholder so the active border
+            doesn't nudge layout. Positioned <InlineCode>sticky top-32</InlineCode> (128px)
+            to clear the 64px nav. Hidden below <InlineCode>lg:</InlineCode> breakpoint.
           </p>
         </div>
       </section>
@@ -1376,38 +1464,43 @@ export default function DesignSystemTabs() {
   const toc = tab === 'Foundations' ? foundationsToc : componentsToc
 
   return (
-    <div className="flex justify-center px-5 md:px-10">
-      <div className="max-w-page w-full py-12 md:py-20">
-
-        {/* Tab bar */}
-        <div className="border-b border-border-subtle flex gap-8 mb-8 md:mb-12 sticky top-16 z-40 bg-bg pt-4">
-          {(['Foundations', 'Components'] as Tab[]).map((t) => (
-            <button
-              key={t}
-              type="button"
-              onClick={() => setTab(t)}
-              className={tab === t ? activeTabCls : inactiveTabCls}
-            >
-              {t}
-            </button>
-          ))}
-        </div>
-
-        {/* 3-column body */}
-        <div className="flex gap-8 items-start">
-
-          <TableOfContents items={toc} className="top-36" />
-
-          {/* Content */}
-          <div className="flex-1 min-w-0">
-            {tab === 'Foundations' ? <FoundationsContent /> : <ComponentsContent />}
+    <>
+      {/* Tab bar — edge-to-edge, sticky-pinned, finishes the white hero zone */}
+      <div className="sticky top-16 z-40 bg-bg-secondary border-b border-border">
+        <div className="flex justify-center px-5 md:px-10">
+          <div className="max-w-page w-full flex gap-8 pt-12 md:pt-20">
+            {(['Foundations', 'Components'] as Tab[]).map((t) => (
+              <button
+                key={t}
+                type="button"
+                onClick={() => setTab(t)}
+                className={tab === t ? activeTabCls : inactiveTabCls}
+              >
+                {t}
+              </button>
+            ))}
           </div>
-
-          {/* Notes column — reserved, hidden on mobile */}
-          <div className="hidden lg:block w-[120px] shrink-0" />
-
         </div>
       </div>
-    </div>
+
+      {/* Body — centered, default page bg */}
+      <div className="flex justify-center px-5 md:px-10">
+        <div className="max-w-page w-full py-12 md:py-20">
+          <div className="flex gap-8 items-start">
+
+            <TableOfContents items={toc} className="top-36" />
+
+            {/* Content */}
+            <div className="flex-1 min-w-0">
+              {tab === 'Foundations' ? <FoundationsContent /> : <ComponentsContent />}
+            </div>
+
+            {/* Notes column — reserved, hidden on mobile */}
+            <div className="hidden lg:block w-[120px] shrink-0" />
+
+          </div>
+        </div>
+      </div>
+    </>
   )
 }

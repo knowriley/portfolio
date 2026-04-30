@@ -85,7 +85,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 
 **Figma effect styles** (7) mirror `boxShadow` tokens: shadow/xs through shadow/2xl + shadow/inner.
 
-**Figma components** (14) mirror React components — each with matching variants, states, and (where appropriate) text properties:
+**Figma components** (15) mirror React components — each with matching variants, states, and (where appropriate) text properties:
 - **Button** — `Variant` (Primary | Outline) × `State` (Default | Hover | Disabled), `Show Icon` boolean
 - **IconButton** — `State` (Default | Hover)
 - **Filter Pill** — `Size` (Default | Small) × `State` (Unselected | Hover | Selected), `Label` text
@@ -99,6 +99,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 - **Tab** — `State` (Active | Inactive), `Label` text (Foundations / Components header in DesignSystemTabs)
 - **Carousel Dot** — `State` (Active | Inactive) (TestimonialCarousel)
 - **Token** — single component, `Label` text (matches `components/Token.tsx`)
+- **InlineCode** — single component, `Label` text (matches `components/InlineCode.tsx`)
 - **Segmented Control** — `State` (Default | Active), `Label` text (matches `components/SegmentedControl.tsx`)
 
 **Code Connect status:** Not used. The manual mapping lives in `.figma/components.md`. Each Figma component carries a `description` (React file path + usage snippet) and `documentationLinks` (GitHub URL) — set both via `mcp__plugin_figma_figma__use_figma`.
@@ -295,6 +296,8 @@ No selected-hover state by design. Non-color diff on hover: bg, border, and text
 **Tag** — `components/CaseStudyTag.tsx` (Server Component). Usage: `<CaseStudyTag>Insurance</CaseStudyTag>`. Single visual treatment, no variants: `text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5`. Used for the tag row in case study heroes and inside `CaseStudyCard`. Higher-contrast surface than the TOC active state (`bg-bg-tertiary` + `border-border-strong`, vs TOC's `bg-bg-secondary` + `border-border-subtle`) so the pills read as discrete chips rather than blending into the page surface.
 
 **Token** — `components/Token.tsx` (Server Component). Usage: `<Token>text-display</Token>`. Single visual treatment, no variants: `inline-flex items-center justify-center whitespace-nowrap bg-neutral-100 border border-border-strong rounded-full px-2 py-1 font-mono text-body-small text-text-primary`. Optional `className` prop passes through for layout overrides. Used on the design system page to display every token name (color tokens, type roles, spacing values, radius classes, shadow classes, component variants). Visually distinct from `CaseStudyTag` — Token is monospace + neutral fill + strong border, while Tag is sans + secondary fill + subtle border.
+
+**InlineCode** — `components/InlineCode.tsx` (Server Component). Usage: `<InlineCode>text-h1 md:text-display</InlineCode>`. Single visual treatment, no variants: `inline rounded-sm border border-border-subtle bg-neutral-100 px-1.5 py-0.5 font-mono text-[0.9em] text-text-primary`. Renders as a semantic `<code>` element. Use for inline references to code constructs (Tailwind classes, file names, prop names, hex values) within prose. Distinct from `Token`: `InlineCode` is a lightweight rectangular chip (`rounded-sm`, `border-subtle`, em-relative `text-[0.9em]`) designed to flow inside body copy without disrupting the line; `Token` is a stronger pill (`rounded-full`, `border-strong`, fixed `text-body-small`) for standalone labels in metadata columns. The bar for choosing one over the other: if the chip sits inside a `<p>` of running prose, use `InlineCode`; if it sits in its own line/cell as the primary data of that slot, use `Token` (or plain `font-mono` for spec values like `1rem / 16px`).
 
 **Segmented Control** — `components/SegmentedControl.tsx` ('use client'). Usage: `<SegmentedControl options={[{label, value}, ...]} value={value} onChange={setValue} ariaLabel="…" />`. Generic over the option `value` type (string-literal union). Two visual states per segment: active (`bg-bg-inverse text-text-inverse font-medium`) and inactive (`text-text-secondary hover:text-text-primary`). Container is `inline-flex items-center gap-1 p-1 bg-bg-tertiary border border-border rounded-md`. Use for switching between mutually-exclusive views in place (e.g. the breakpoint switcher in `/design-system`). Distinct from the inline `Tab` pattern, which has no container and uses outlined inactive buttons.
 
