@@ -57,7 +57,7 @@ function SegmentedControlDemo() {
 
 // ── TOC data ──────────────────────────────────────────────────────────────────
 
-type Tab = 'Foundations' | 'Components' | 'Patterns'
+type Tab = 'Foundations' | 'Components'
 
 const foundationsToc = [
   { label: 'Typography', id: 'typography' },
@@ -82,17 +82,6 @@ const componentsToc = [
   { label: 'Segmented Control',  id: 'segmented-control' },
   { label: 'Carousel Dot',       id: 'carousel-dot' },
   { label: 'Table of Contents',  id: 'table-of-contents' },
-]
-
-const patternsToc = [
-  { label: 'Page shell',         id: 'page-shell' },
-  { label: 'Responsive system',  id: 'responsive-system' },
-  { label: 'Case study layout',  id: 'case-study-layout' },
-  { label: 'Section pattern',    id: 'section-pattern' },
-  { label: 'Callout cards',      id: 'callout-cards' },
-  { label: 'Metadata grid',      id: 'metadata-grid' },
-  { label: 'Password-gated case studies', id: 'password-gated' },
-  { label: 'How this is maintained',      id: 'maintained' },
 ]
 
 // ── Foundations content ───────────────────────────────────────────────────────
@@ -1792,10 +1781,7 @@ const inactiveTabCls = 'text-body-small text-text-secondary hover:text-text-prim
 
 export default function DesignSystemTabs() {
   const [tab, setTab] = useState<Tab>('Foundations')
-  const toc =
-    tab === 'Foundations' ? foundationsToc :
-    tab === 'Components'  ? componentsToc  :
-    patternsToc
+  const toc = tab === 'Foundations' ? foundationsToc : componentsToc
 
   return (
     <>
@@ -1803,7 +1789,7 @@ export default function DesignSystemTabs() {
       <div className="sticky top-16 z-40 bg-bg-secondary border-b border-border">
         <div className="flex justify-center px-5 md:px-10">
           <div className="max-w-page w-full flex gap-8 pt-4">
-            {(['Foundations', 'Components', 'Patterns'] as Tab[]).map((t) => (
+            {(['Foundations', 'Components'] as Tab[]).map((t) => (
               <button
                 key={t}
                 type="button"
@@ -1828,7 +1814,6 @@ export default function DesignSystemTabs() {
             <div className="flex-1 min-w-0">
               {tab === 'Foundations' && <FoundationsContent />}
               {tab === 'Components'  && <ComponentsContent />}
-              {tab === 'Patterns'    && <PatternsContent />}
             </div>
 
             {/* Notes column — reserved, hidden on mobile */}
