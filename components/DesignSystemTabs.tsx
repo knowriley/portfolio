@@ -390,7 +390,7 @@ function FoundationsContent() {
           />
         </div>
 
-        <div className="overflow-x-auto bg-bg-tertiary rounded-sm border border-border-subtle p-4">
+        <div className="overflow-x-auto bg-bg-tertiary rounded-sm p-4">
           {breakpoint === 'mobile' && (
             <div className="w-[375px] bg-bg rounded-sm border border-border p-5">
               <div className="flex flex-col gap-4">
@@ -660,8 +660,8 @@ function FoundationsContent() {
           {[
             { label: 'neutral-000', hex: '#FFFFFF', mapped: 'bg-secondary, text-inverse' },
             { label: 'neutral-050', hex: '#fafaf9', mapped: 'bg' },
-            { label: 'neutral-100', hex: '#f5f5f4', mapped: 'bg-tertiary, border-subtle' },
-            { label: 'neutral-200', hex: '#e7e5e4', mapped: 'border' },
+            { label: 'neutral-100', hex: '#f5f5f4', mapped: 'border-subtle' },
+            { label: 'neutral-200', hex: '#e7e5e4', mapped: 'bg-tertiary, border' },
             { label: 'neutral-300', hex: '#d6d3d1', mapped: 'border-strong, text-placeholder' },
             { label: 'neutral-400', hex: '#a8a29e', mapped: '—' },
             { label: 'neutral-500', hex: '#78716c', mapped: 'text-tertiary' },
@@ -751,7 +751,7 @@ function FoundationsContent() {
           {[
             { label: 'bg-bg',           hex: '#fafaf9', role: 'Page background, nav surface' },
             { label: 'bg-bg-secondary', hex: '#FFFFFF', role: 'Card surfaces, image placeholders, callout cards', border: true },
-            { label: 'bg-bg-tertiary',  hex: '#f5f5f4', role: 'Tag pills, subtle highlights' },
+            { label: 'bg-bg-tertiary',  hex: '#e7e5e4', role: 'Tag pills, subtle highlights' },
             { label: 'bg-bg-inverse',   hex: '#1c1917', role: 'Dark / inverse surfaces' },
             { label: 'bg-bg-brand',     hex: '#EAF4F4', role: 'Brand-tinted surface — reserved, not yet used' },
           ].map(({ label, hex, role, border }) => (
@@ -1074,7 +1074,7 @@ function FoundationsContent() {
           ].map(({ cls, value, use }) => (
             <div key={cls} className="flex items-center gap-5 py-4 border-b border-border-subtle">
               <div
-                className="size-10 bg-bg-tertiary shrink-0 border border-border"
+                className="size-10 bg-bg-tertiary shrink-0"
                 style={{ borderRadius: value }}
               />
               <div className="min-w-[6rem] shrink-0"><InlineCode>{cls}</InlineCode></div>
@@ -1609,24 +1609,28 @@ function ComponentsContent() {
         <p className="text-body-small text-text-secondary mb-8">
           Component: <InlineCode>components/CaseStudyTag.tsx</InlineCode>. Single visual
           treatment, no variants. Used for the tag row in case study heroes and inside{' '}
-          <InlineCode>CaseStudyCard</InlineCode>. Intentionally a higher-contrast surface than
-          the TOC active state so tags read as discrete chips rather than blending into the page.
+          <span className="font-mono">CaseStudyCard</span>.
         </p>
 
-        <div className="mb-8 flex gap-2 flex-wrap">
-          <CaseStudyTag>Insurance</CaseStudyTag>
-          <CaseStudyTag>B2B</CaseStudyTag>
-          <CaseStudyTag>Design Systems</CaseStudyTag>
+        <div className="mb-8 flex gap-2">
+          <span className="text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5">
+            Insurance
+          </span>
+          <span className="text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5">
+            B2B
+          </span>
+          <span className="text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5">
+            Design Systems
+          </span>
         </div>
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            <InlineCode>bg-bg-tertiary</InlineCode> + <InlineCode>border-border-strong</InlineCode>{' '}
-            + <InlineCode>rounded-full</InlineCode> + <InlineCode>px-2.5 py-1.5</InlineCode>.
-            Compare with the TOC active state, which uses <InlineCode>bg-bg-secondary</InlineCode>{' '}
-            + <InlineCode>border-border-subtle</InlineCode>: the Tag&apos;s stronger surface and
-            border are deliberate — they push the chip forward of the page surface, while the
-            TOC&apos;s subtler surface keeps it behind the page chrome.
+            Filled <span className="font-mono">bg-bg-tertiary</span> with a{' '}
+            <span className="font-mono">border-border-strong</span> outline and{' '}
+            <span className="font-mono">rounded-full</span> shape. Padding{' '}
+            <span className="font-mono">px-2.5 py-1.5</span> matches the TOC active padding so tags
+            and active TOC items have equal vertical weight.
           </p>
         </div>
       </section>
@@ -1707,14 +1711,14 @@ function ComponentsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Generic in its option type — pass any string-literal union as <InlineCode>value</InlineCode>{' '}
-            and the matching <InlineCode>options[]</InlineCode>. Active uses{' '}
-            <InlineCode>bg-bg-inverse</InlineCode> + white text + medium weight; inactive
-            shifts text from <InlineCode>text-text-secondary</InlineCode> →{' '}
-            <InlineCode>text-text-primary</InlineCode> on hover. Container uses{' '}
-            <InlineCode>bg-bg-tertiary</InlineCode> + <InlineCode>border-border</InlineCode> +{' '}
-            <InlineCode>rounded-md</InlineCode> +{' '}
-            <InlineCode>p-1</InlineCode> — visually distinct from the Tab pattern (no
+            Generic in its option type — pass any string-literal union as <span className="font-mono">value</span>{' '}
+            and the matching <span className="font-mono">options[]</span>. Active uses{' '}
+            <span className="font-mono">bg-bg-inverse</span> + white text + medium weight; inactive
+            shifts text from <span className="font-mono">text-text-secondary</span> →{' '}
+            <span className="font-mono">text-text-primary</span> on hover. Container uses{' '}
+            <span className="font-mono">bg-bg-tertiary</span> +{' '}
+            <span className="font-mono">rounded-md</span> +{' '}
+            <span className="font-mono">p-1</span> — visually distinct from the Tab pattern (no
             container, individual outlined inactive buttons).
           </p>
         </div>
@@ -1757,299 +1761,23 @@ function ComponentsContent() {
         </p>
 
         <div className="mb-8 flex flex-col gap-1 w-fit">
-          <a href="#" className="block text-body-small text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:font-medium px-2.5 py-1.5 rounded-sm border border-transparent transition-colors">
+          <a href="#" className="block text-body-small text-text-secondary hover:bg-bg-tertiary hover:text-text-primary hover:font-medium px-2.5 py-1.5 rounded-sm transition-colors">
             Overview
           </a>
-          <a href="#" className="block text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle px-2.5 py-1.5 rounded-sm">
+          <a href="#" className="block text-body-small font-medium text-text-primary bg-bg-tertiary px-2.5 py-1.5 rounded-sm">
             Problem (active)
           </a>
         </div>
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7">
           <p className="text-body-small text-text-secondary">
-            Pass an array of <InlineCode>{'{ label, id }'}</InlineCode> items. The component
-            uses IntersectionObserver to detect which <InlineCode>id</InlineCode> is in
-            view and highlights it. Active adds a{' '}
-            <InlineCode>border-border-subtle</InlineCode> outline on top of the filled
-            background to distinguish it from hover. Inactive items carry a{' '}
-            <InlineCode>border-transparent</InlineCode> placeholder so the active border
-            doesn't nudge layout. Positioned <InlineCode>sticky top-32</InlineCode> (128px)
-            to clear the 64px nav. Hidden below <InlineCode>lg:</InlineCode> breakpoint.
-          </p>
-        </div>
-      </section>
-    </>
-  )
-}
-
-// ── Patterns content ──────────────────────────────────────────────────────────
-
-function PatternsContent() {
-  return (
-    <>
-      <section id="page-shell">
-        <SectionHeading>Patterns</SectionHeading>
-        <p className="text-body-small text-text-secondary mb-8">
-          Application patterns assembled from the foundations and components. These describe how
-          the parts come together at the page level — the shell, the responsive system, and the
-          case study layout that anchors most of the site.
-        </p>
-
-        <SubLabel>Page shell</SubLabel>
-        <p className="text-body-small text-text-secondary mb-6">
-          Every page follows the same outer shell: <InlineCode>{'<Nav />'}</InlineCode> +{' '}
-          <InlineCode>{'<main>'}</InlineCode> + <InlineCode>{'<Footer />'}</InlineCode>. The
-          standard section container inside <InlineCode>{'<main>'}</InlineCode> is{' '}
-          <InlineCode>flex justify-center px-5 md:px-10</InlineCode> with an inner{' '}
-          <InlineCode>max-w-page w-full</InlineCode> div (<InlineCode>max-w-page</InlineCode> ={' '}
-          <InlineCode>1560px</InlineCode>). The Nav uses{' '}
-          <InlineCode>max-w-page mx-auto</InlineCode> with no horizontal padding so the logo and
-          links sit flush with the container edges.
-        </p>
-      </section>
-
-      <SectionDivider />
-
-      <section id="responsive-system">
-        <SubLabel>Responsive system</SubLabel>
-        <p className="text-body-small text-text-secondary mb-6">
-          Three active tiers, mobile-first. Tailwind&apos;s default breakpoints — only{' '}
-          <InlineCode>md:</InlineCode> and <InlineCode>lg:</InlineCode> are used.
-        </p>
-
-        <div className="mb-8">
-          <div className="flex gap-5 py-3 border-b border-border-subtle">
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-32 shrink-0">Tier</p>
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-40 shrink-0">Breakpoint</p>
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Target</p>
-          </div>
-          {[
-            { tier: 'Base',                       bp: '< 768px',  target: 'Phones (mobile-first)' },
-            { tier: <InlineCode>md:</InlineCode>, bp: '≥ 768px',  target: 'Tablets, small laptops' },
-            { tier: <InlineCode>lg:</InlineCode>, bp: '≥ 1024px', target: 'Desktop' },
-          ].map((row, i) => (
-            <div key={i} className="flex items-center gap-5 py-4 border-b border-border-subtle">
-              <div className="w-32 shrink-0">{typeof row.tier === 'string' ? <span className="text-body-small text-text-primary">{row.tier}</span> : row.tier}</div>
-              <p className="font-mono text-body-small text-text-tertiary w-40 shrink-0">{row.bp}</p>
-              <p className="text-body-small text-text-secondary flex-1 min-w-0">{row.target}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mb-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
-          <p className="text-body-small text-text-secondary mb-3">
-            <span className="text-text-primary">Layout collapse rule.</span> The 3-column case
-            study layout (TOC + content + notes) collapses to content-only below{' '}
-            <InlineCode>lg:</InlineCode>. The TOC and notes columns use{' '}
-            <InlineCode>hidden lg:block</InlineCode>. The footer stacks vertically on mobile with{' '}
-            <InlineCode>flex-col md:flex-row</InlineCode>.
-          </p>
-          <p className="text-body-small text-text-secondary">
-            <span className="text-text-primary">Horizontal page padding.</span> Every full-width
-            section shell uses <InlineCode>px-5 md:px-10</InlineCode> (20px mobile → 40px
-            desktop).
-          </p>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      <section id="case-study-layout">
-        <SubLabel>Case study layout</SubLabel>
-        <p className="text-body-small text-text-secondary mb-6">
-          Case study pages follow a 3-column flex layout inside the standard section shell:
-        </p>
-
-        <div className="mb-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
-          <pre className="font-mono text-[0.85em] text-text-primary leading-relaxed whitespace-pre overflow-x-auto">{`[220px TOC] [flex-1 content] [120px notes (empty)]
-gap-8, py-20`}</pre>
-        </div>
-
-        <div>
-          <div className="flex gap-5 py-3 border-b border-border-subtle">
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-40 shrink-0">Element</p>
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Spec</p>
-          </div>
-          {[
-            { el: 'Hero',          spec: <><InlineCode>pt-16 pb-12</InlineCode> · <InlineCode>text-h1 md:text-display font-normal</InlineCode> title at full <InlineCode>max-w-page</InlineCode> width. No metadata in the hero — metadata lives in the Overview grid below.</> },
-            { el: 'Cover image',   spec: <><InlineCode>pb-16</InlineCode> · full-width <InlineCode>aspect-video bg-bg-secondary rounded-sm</InlineCode> with the standard image chrome.</> },
-            { el: 'TOC (left)',    spec: <><InlineCode>sticky top-32</InlineCode> (128px — clears the 64px sticky nav with breathing room). Plain <InlineCode>text-body-small text-text-secondary</InlineCode> links, no step numbers.</> },
-            { el: 'Notes (right)', spec: <>Empty <InlineCode>w-[120px]</InlineCode> spacer — reserved for future annotations. Removing it would shift content left and break the rhythm.</> },
-          ].map(({ el, spec }) => (
-            <div key={el} className="flex items-start gap-5 py-4 border-b border-border-subtle">
-              <p className="text-body-small font-medium text-text-primary w-40 shrink-0">{el}</p>
-              <p className="text-body-small text-text-secondary flex-1 min-w-0">{spec}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      <section id="section-pattern">
-        <SubLabel>Section pattern</SubLabel>
-        <p className="text-body-small text-text-secondary mb-6">
-          Each major section inside the content column follows the same scaffold:
-        </p>
-
-        <div>
-          <div className="flex gap-5 py-3 border-b border-border-subtle">
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-40 shrink-0">Element</p>
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Classes</p>
-          </div>
-          {[
-            { el: 'Section label',     spec: <InlineCode>text-body-small text-text-tertiary mb-4</InlineCode> },
-            { el: 'Section heading',   spec: <InlineCode>text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]</InlineCode> },
-            { el: 'Body prose',        spec: <InlineCode>text-body-small md:text-body-big text-text-secondary</InlineCode> },
-            { el: 'Overview prose',    spec: <InlineCode>text-body-small md:text-body-big lg:text-body-biggest text-text-primary</InlineCode> },
-            { el: 'Between sections',  spec: <>Use <InlineCode>{'<SectionDivider />'}</InlineCode> from <InlineCode>components/case-study.tsx</InlineCode> — renders <InlineCode>h-12 md:h-24</InlineCode> + a rule + matching bottom spacer, all constrained to the <InlineCode>max-w-page</InlineCode> shell.</> },
-            { el: 'Between subsections', spec: <InlineCode>{'<div className="h-24" />'}</InlineCode> },
-            { el: 'Before images',     spec: <InlineCode>{'<div className="h-12" />'}</InlineCode> },
-          ].map(({ el, spec }) => (
-            <div key={el} className="flex items-start gap-5 py-4 border-b border-border-subtle">
-              <p className="text-body-small font-medium text-text-primary w-40 shrink-0">{el}</p>
-              <div className="flex-1 min-w-0 text-body-small text-text-secondary">{spec}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
-          <p className="text-body-small text-text-secondary mb-3">
-            <span className="text-text-primary">2-column body layout</span> — used for most
-            section content. Heading or image on the left, prose on the right, equal flex.
-          </p>
-          <pre className="font-mono text-[0.85em] text-text-primary leading-relaxed whitespace-pre overflow-x-auto">{`<div className="flex gap-8 items-start">
-  <div className="flex-1 min-w-0">{/* left: heading or image */}</div>
-  <div className="flex-1 min-w-0">{/* right: prose */}</div>
-</div>`}</pre>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      <section id="callout-cards">
-        <SubLabel>Callout cards</SubLabel>
-        <p className="text-body-small text-text-secondary mb-6">
-          Two variants share the same surface — a <InlineCode>bg-bg-secondary border border-border rounded-sm px-10 py-7</InlineCode> card.
-        </p>
-
-        <div className="mb-6">
-          <p className="text-body-small text-text-tertiary mb-3">Numbered callout</p>
-          <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 flex gap-4 items-center">
-            <p className="text-body-biggest text-text-primary font-mono">01</p>
-            <p className="text-body-small md:text-body-big text-text-primary flex-1 min-w-0">
-              Numbered list items with a step number on the left and prose on the right.
-            </p>
-          </div>
-          <p className="text-body-small text-text-tertiary mt-3">
-            <InlineCode>flex gap-4 items-center</InlineCode> · number{' '}
-            <InlineCode>text-body-biggest</InlineCode> (fixed, doesn&apos;t step down) · body{' '}
-            <InlineCode>text-body-small md:text-body-big text-text-primary</InlineCode>.
-          </p>
-        </div>
-
-        <div>
-          <p className="text-body-small text-text-tertiary mb-3">Stat callout</p>
-          <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 flex flex-col gap-2">
-            <p className="text-display font-normal text-text-primary leading-[1.3]">87%</p>
-            <p className="text-body-big text-text-primary">Reduction in claim review time after rolling out the new portal.</p>
-          </div>
-          <p className="text-body-small text-text-tertiary mt-3">
-            Large value <InlineCode>text-display font-normal text-text-primary</InlineCode> +
-            caption <InlineCode>text-body-big text-text-primary</InlineCode>.
-          </p>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      <section id="metadata-grid">
-        <SubLabel>Metadata grid</SubLabel>
-        <p className="text-body-small text-text-secondary mb-6">
-          Used in the Overview section. Six metadata fields (Role, Team, For, Tools, Timeline,
-          Status) reflow from 3 rows × 2 cols on mobile to 2 rows × 3 cols on tablet+. Each cell
-          is a labeled column. Add new fields in multiples that divide cleanly into both column
-          counts (6 works; 4 or 5 produce a ragged tail on desktop).
-        </p>
-
-        <div className="mb-6 bg-bg-secondary border border-border rounded-sm px-10 py-7">
-          <pre className="font-mono text-[0.85em] text-text-primary leading-relaxed whitespace-pre overflow-x-auto">{`<div className="grid grid-cols-2 md:grid-cols-3 gap-8 pt-8">
-  {fields.map(({ label, value }) => (
-    <div key={label} className="flex flex-col gap-1.5">
-      <p className="text-small font-medium uppercase tracking-widest
-                    text-text-tertiary pb-2">{label}</p>
-      <p className="text-body-small text-text-secondary">{value}</p>
-    </div>
-  ))}
-</div>`}</pre>
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      <section id="password-gated">
-        <SubLabel>Password-gated case studies</SubLabel>
-        <p className="text-body-small text-text-secondary mb-6">
-          Three deliberate deviations from the standard case study shell. When the password gate
-          is lifted, restore the standard shell — don&apos;t leave the gated layout behind.
-        </p>
-
-        <div>
-          <div className="flex gap-5 py-3 border-b border-border-subtle">
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-44 shrink-0">Deviation</p>
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Rule</p>
-          </div>
-          {[
-            { dev: 'No View Live button',   rule: <>Hero <InlineCode>{'<h1>'}</InlineCode> renders bare — no flex wrapper, no Button. When the gate lifts, restore <InlineCode>{'<div className="flex flex-col md:flex-row items-start md:items-end gap-4 md:gap-8">'}</InlineCode> wrapping the heading + Button.</> },
-            { dev: 'Gated TOC',             rule: <>When <InlineCode>unlocked === false</InlineCode>, swap <InlineCode>{'<TableOfContents>'}</InlineCode> for an empty <InlineCode>{'<div aria-hidden className="hidden lg:block w-[220px] shrink-0" />'}</InlineCode>. Keeps the content column centered without advertising unreachable structure.</> },
-            { dev: 'Paywall spacer',        rule: <>Use <InlineCode>{'<div className="h-16 md:h-24" />'}</InlineCode> before <InlineCode>{'<CaseStudyPaywall>'}</InlineCode> instead of <InlineCode>{'<SectionDivider>'}</InlineCode>. The paywall fades into the content via its own gradient — a hard rule would fight the fade.</> },
-          ].map(({ dev, rule }) => (
-            <div key={dev} className="flex items-start gap-5 py-4 border-b border-border-subtle">
-              <p className="text-body-small font-medium text-text-primary w-44 shrink-0">{dev}</p>
-              <p className="text-body-small text-text-secondary flex-1 min-w-0">{rule}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <SectionDivider />
-
-      <section id="maintained">
-        <SubLabel>How this is maintained</SubLabel>
-        <p className="text-body-small text-text-secondary mb-6">
-          <span className="text-text-primary">Code is the source of truth.</span> Tokens and
-          components live in <InlineCode>tailwind.config.ts</InlineCode> and{' '}
-          <InlineCode>components/</InlineCode>. The Figma file at{' '}
-          <InlineCode>QXoQt5JPBJapI2H4z1bP7T</InlineCode> mirrors the same variables, text styles,
-          effect styles, and components — and stays in sync via a manual propagation chain rather
-          than Code Connect.
-        </p>
-
-        <div>
-          <div className="flex gap-5 py-3 border-b border-border-subtle">
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-56 shrink-0">Step</p>
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Update when</p>
-          </div>
-          {[
-            { step: 'React component / token',     when: <>Implementation source — every other surface follows from this.</> },
-            { step: <InlineCode>CLAUDE.md</InlineCode>, when: <>New layout pattern, shared component, prop, variant, state, token, type-scale entry, color role, or page type.</> },
-            { step: 'Design system page',          when: <>New token in <InlineCode>tailwind.config.ts</InlineCode> / new semantic usage convention / new shared component. (This page.)</> },
-            { step: 'Figma file',                  when: <>Any design system change — token, typography, shadow, component, variant, or interactive state. <span className="text-text-primary">Mandatory same-session update.</span></> },
-            { step: <InlineCode>.figma/components.md</InlineCode>, when: <>New / renamed / removed Figma component, property, or variant; React file path moves; inline pattern extracted to a component.</> },
-          ].map((row, i) => (
-            <div key={i} className="flex items-start gap-5 py-4 border-b border-border-subtle">
-              <div className="w-56 shrink-0 text-body-small font-medium text-text-primary">{row.step}</div>
-              <div className="flex-1 min-w-0 text-body-small text-text-secondary">{row.when}</div>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
-          <p className="text-body-small text-text-secondary">
-            Each Figma component carries a <InlineCode>description</InlineCode> (React file path
-            + usage snippet) and <InlineCode>documentationLinks</InlineCode> (GitHub URL) — set
-            both via <InlineCode>mcp__plugin_figma_figma__use_figma</InlineCode>. This is the
-            manual replacement for Code Connect, which would require a Figma Org/Enterprise plan.
+            Pass an array of <span className="font-mono">{'{ label, id }'}</span> items. The component
+            uses IntersectionObserver to detect which <span className="font-mono">id</span> is in
+            view and highlights it. Active and hover share the same{' '}
+            <span className="font-mono">bg-bg-tertiary</span> fill — hovering an item previews
+            exactly how the active state will look. Positioned{' '}
+            <span className="font-mono">sticky top-32</span> (128px) to clear the 64px nav. Hidden
+            below <span className="font-mono">lg:</span> breakpoint.
           </p>
         </div>
       </section>

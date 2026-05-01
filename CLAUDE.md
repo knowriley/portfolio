@@ -118,7 +118,11 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 
 **Image & video optimization:** Optimize all `public/` assets per the user-scoped web asset defaults — WebP for images, MP4 H.264 for videos. `VideoBlock` emits `<source type="video/mp4">` so any non-`.mp4` source breaks playback. See `~/.claude/CLAUDE.md` for encoding parameters and the `sharp` / `ffmpeg-static` workflow.
 
-**Inline text highlights** — when a span of prose inside a `text-text-secondary` paragraph needs to be visually emphasized, default to wrapping it in `<span className="text-text-primary [&_a]:text-inherit">`. Primary-color highlight on a secondary-color paragraph is the standard emphasis treatment across the site. Only use the gradient highlights below when the user specifically requests a gradient.
+**Inline text highlights** — ⚠️ **REVISIT — these rules need refinement before next use.** Riley flagged that the inline-highlight system below isn't fully accurate as written. Don't blindly apply it on the next use; pause and clarify the intended pattern (default emphasis color, when pink vs. gradient applies, which sections own which treatment) before adding or changing any highlight spans. Only the existing call sites should be considered "as designed" for now.
+
+When a span of prose inside a `text-text-secondary` paragraph needs to be visually emphasized, default to wrapping it in `<span className="text-text-primary [&_a]:text-inherit">`. Primary-color highlight on a secondary-color paragraph is the standard emphasis treatment across the site. Only use the gradient highlights below when the user specifically requests a gradient.
+
+**Case-study takeaway pattern** — ⚠️ also part of the unresolved rules above. Currently used in the EOI Takeaways section: inside `<TwoColumnSection>` blocks, inline emphasis is `<span className="text-primary [&_a]:text-inherit">` (brand pink) instead of the default `text-text-primary`. Treat this as the one validated case-study takeaway treatment until the broader highlight rules are refined.
 
 **The highlight always wins over link color.** Any `InlineLink` that sits inside a highlight span must inherit the highlight's color instead of rendering in its own default `text-text-primary`. Use the Tailwind arbitrary variant `[&_a]:text-inherit` on the highlight span to propagate the color down to any child anchor. This is especially important for gradient highlights, where a child link with its own solid color would break the gradient visually.
 
@@ -292,11 +296,11 @@ All variants share the same visual treatment: `text-text-primary underline` defa
 
 No selected-hover state by design. Non-color diff on hover: bg, border, and text all shift simultaneously. Selected adds `font-medium`.
 
-**Tag** — `components/CaseStudyTag.tsx` (Server Component). Usage: `<CaseStudyTag>Insurance</CaseStudyTag>`. Single visual treatment, no variants: `text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5`. Used for the tag row in case study heroes and inside `CaseStudyCard`. Higher-contrast surface than the TOC active state (`bg-bg-tertiary` + `border-border-strong`, vs TOC's `bg-bg-secondary` + `border-border-subtle`) so the pills read as discrete chips rather than blending into the page surface.
+**Tag** — `components/CaseStudyTag.tsx` (Server Component). Usage: `<CaseStudyTag>Insurance</CaseStudyTag>`. Single visual treatment, no variants: `text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5`. Used for the tag row in case study heroes and inside `CaseStudyCard`. Higher-contrast surface than the TOC active state (`bg-bg-tertiary` + `border-border-strong` outline, vs TOC's `bg-bg-tertiary` with no border) so the pills read as discrete chips rather than blending into the page surface.
 
 **InlineCode** — `components/InlineCode.tsx` (Server Component). Usage: `<InlineCode>text-h1 md:text-display</InlineCode>`. Single visual treatment, no variants: `inline rounded-sm border border-border-subtle bg-neutral-200 px-1.5 py-0.5 font-mono text-[0.9em] text-text-primary`. Renders as a semantic `<code>` element. Use for inline references to code constructs (Tailwind classes, file names, prop names, hex values) within prose, in metadata columns, or in any cell where a monospaced chip is the primary data of the slot. Em-relative font size (`text-[0.9em]`) shrinks the chip to ~90% of its parent prose, so it stays proportional inside any role from `text-body-big` down to `text-body-small`. Plain `font-mono` is the right call for spec values like `1rem / 16px` where chip chrome would feel heavy.
 
-**Segmented Control** — `components/SegmentedControl.tsx` ('use client'). Usage: `<SegmentedControl options={[{label, value}, ...]} value={value} onChange={setValue} ariaLabel="…" />`. Generic over the option `value` type (string-literal union). Two visual states per segment: active (`bg-bg-inverse text-text-inverse font-medium`) and inactive (`text-text-secondary hover:text-text-primary`). Container is `inline-flex items-center gap-1 p-1 bg-bg-tertiary border border-border rounded-md`. Use for switching between mutually-exclusive views in place (e.g. the breakpoint switcher in `/design-system`). Distinct from the inline `Tab` pattern, which has no container and uses outlined inactive buttons.
+**Segmented Control** — `components/SegmentedControl.tsx` ('use client'). Usage: `<SegmentedControl options={[{label, value}, ...]} value={value} onChange={setValue} ariaLabel="…" />`. Generic over the option `value` type (string-literal union). Two visual states per segment: active (`bg-bg-inverse text-text-inverse font-medium`) and inactive (`text-text-secondary hover:text-text-primary`). Container is `inline-flex items-center gap-1 p-1 bg-bg-tertiary rounded-md`. Use for switching between mutually-exclusive views in place (e.g. the breakpoint switcher in `/design-system`). Distinct from the inline `Tab` pattern, which has no container and uses outlined inactive buttons.
 
 | State | Key classes |
 |---|---|
@@ -307,11 +311,11 @@ No selected-hover state by design. Non-color diff on hover: bg, border, and text
 
 | State | Key classes |
 |---|---|
-| Default | `text-body-small text-text-secondary px-2.5 py-1.5 rounded-sm border border-transparent` |
-| Hover | `bg-bg-secondary border-border-subtle text-text-primary font-medium` (on `hover:` variant) |
-| Active | `bg-bg-secondary border-border-subtle text-text-primary font-medium` |
+| Default | `text-body-small text-text-secondary px-2.5 py-1.5 rounded-sm` |
+| Hover | `bg-bg-tertiary text-text-primary font-medium` (on `hover:` variant) |
+| Active | `bg-bg-tertiary text-text-primary font-medium` |
 
-Each item gets a filled `bg-bg-secondary` background plus a `border-border-subtle` outline on hover and when active — hover and active are intentionally identical so any item the cursor lands on previews exactly how the active state will look. All items carry a placeholder `border border-transparent` in the default state so the bordered states don't shift surrounding items by 1px. `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room). The same hover-and-active border treatment is applied to the `AboutBooks` accordion list (`components/AboutBooks.tsx`) — both lists share this convention.
+Each item gets a filled `bg-bg-tertiary` background on hover and when active — hover and active are intentionally identical so any item the cursor lands on previews exactly how the active state will look. No border on any state, so there's no layout shift between default and filled. `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room). The same hover-and-active fill treatment is applied to the `AboutBooks` accordion list (`components/AboutBooks.tsx`) — both lists share this convention.
 
 ## Motion & Transitions
 

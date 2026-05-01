@@ -44,7 +44,10 @@ export default function VideoBlock({
           <source src={src} type="video/mp4" />
         </video>
         <IconButton
-          icon={playing ? <Pause size={20} strokeWidth={2} /> : <Play size={20} strokeWidth={2} />}
+          icon={playing
+            ? <Pause size={20} strokeWidth={2} fill="currentColor" />
+            : <Play size={20} strokeWidth={2} fill="currentColor" />
+          }
           onClick={toggle}
           aria-label={playing ? 'Pause video' : 'Play video'}
           className="absolute bottom-3 right-3"
