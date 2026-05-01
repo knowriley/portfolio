@@ -159,10 +159,9 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                       <Label>Background</Label>
                       <TwoColumnSection heading="Getting approved for insurance above the guaranteed limit">
                         <p className="text-body-small md:text-body-big text-text-secondary">
-                          Evidence of insurability (EOI) is a medical underwriting review that&apos;s
-                          required when employees choose voluntary insurance coverage above their
-                          guaranteed amount. To approve the higher coverage amount, Chubb asks them
-                          to answer health questions and submit an EOI form.
+                          Employees requesting insurance above a set limit must complete an Evidence
+                          of Insurability (EOI) form, which underwriting uses to evaluate eligibility
+                          for higher coverage.
                         </p>
                       </TwoColumnSection>
                     </section>
@@ -172,28 +171,33 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                     {/* ────────────────────── OPPORTUNITY ────────────────────── */}
                     <section id="opportunity">
                       <Label>Opportunity</Label>
-                      <TwoColumnSection heading="Higher revenue for Chubb">
-                        <p className="text-body-small md:text-body-big text-text-secondary">
-                          Previously, the Evidence of Insurability form only supported one product
-                          therefore omitting the opportunity for Chubb to underwrite larger coverage
-                          amounts for their other products. Enabling five products instead of the
-                          original one, means that Chubb can underwrite larger amounts than previously
-                          available.
-                        </p>
-                      </TwoColumnSection>
+                      <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                        The original experience was designed for a single product, unintentionally
+                        constraining both the business and the user
+                      </h2>
 
-                      <div className="h-12" />
+                      <div className="h-6" />
 
-                      <TwoColumnSection heading="More flexibility for customers">
-                        <p className="text-body-small md:text-body-big text-text-secondary">
-                          Depending on their benefits provider, customers were previously locked-in
-                          to a maximum amount of coverage they could request for a certain product -
-                          disability insurance, life insurance etc., offering no path to request
-                          extended coverage they might need. By enabling the selection of 5 products
-                          on the portal, customers will have greater flexibility to get the exact
-                          coverage they need.
+                      <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
+                        <p className="text-body-biggest text-text-secondary">
+                          <span className="text-primary [&_a]:text-inherit">
+                            Customers had no path to request additional coverage
+                          </span>
+                          {' '}beyond the one product
                         </p>
-                      </TwoColumnSection>
+                      </div>
+
+                      <div className="h-8" />
+
+                      <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
+                        <p className="text-body-biggest text-text-secondary">
+                          Chubb was{' '}
+                          <span className="text-primary [&_a]:text-inherit">
+                            missing opportunities to underwrite higher coverage
+                          </span>
+                          {' '}across products
+                        </p>
+                      </div>
                     </section>
 
                     <SectionDivider />
@@ -335,12 +339,17 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
 
                       <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="flex-1 min-w-0">
-                          <ImageBlock label="Helper text usage in Yes / No variants" />
+                          <ImageBlock
+                            type="video"
+                            src="/images/eoi-getting-help.mp4"
+                            caption="Helper text usage in Yes / No variants"
+                          />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-body-small md:text-body-big text-text-primary">
-                            In the Yes / No variants, participants used the new helper text when
-                            they needed help, though the internal content wasn&apos;t helpful.
+                          <p className="text-body-small md:text-body-big text-text-secondary">
+                            In the Yes / No variant, participants used the helper text and clicked
+                            on the inline help link, but found the drawer content to be confusing
+                            and unhelpful.
                           </p>
                         </div>
                       </div>
@@ -349,16 +358,20 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
 
                       <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="flex-1 min-w-0">
-                          <ImageBlock label="Defaulted dropdown over-selection" />
+                          <ImageBlock
+                            src="/images/eoi-variant-b-screenshot-product-zoom.webp"
+                            alt="Defaulted dropdown over-selection"
+                            caption="Defaulted dropdown over-selection"
+                          />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="text-body-small md:text-body-big text-text-primary space-y-6">
+                          <div className="text-body-small md:text-body-big text-text-secondary space-y-6">
                             <p>
                               Defaulted dropdowns were misinterpreted as a recommendation, and
                               the lower-friction input seemed to drive over-selection when
                               participants were confused.
                             </p>
-                            <p>
+                            <p className="text-primary [&_a]:text-inherit">
                               This was a key insight, because shipping an experience that
                               encouraged over-selection would have negative downstream impacts
                               to the underwriting team.
@@ -377,7 +390,11 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                         Yes/No Variant just edged out the Dropdowns
                       </h2>
                       <div className="h-8" />
-                      <ImageBlock label="Final solution iteration" />
+                      <ImageBlock
+                        type="video"
+                        src="/images/eoi-final-solution.mp4"
+                        caption="Final solution iteration"
+                      />
                       <div className="h-12" />
                       <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
                         with jargon-free, legal-approved language
@@ -385,10 +402,18 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                       <div className="h-8" />
                       <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="flex-1 min-w-0">
-                          <ImageBlock label="Before" />
+                          <ImageBlock
+                            src="/images/eoi-writing-before.webp"
+                            alt="Original Employee coverage amount explainer copy"
+                            caption="Before"
+                          />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <ImageBlock label="After" />
+                          <ImageBlock
+                            src="/images/eoi-writing-after.webp"
+                            alt="Revised Employee total coverage amount explainer copy"
+                            caption="After"
+                          />
                         </div>
                       </div>
                     </section>
