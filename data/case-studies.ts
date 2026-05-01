@@ -38,11 +38,11 @@ const rawCaseStudies: CaseStudy[] = [
     slug: 'evidence-of-insurability',
     title: 'Ambiguous interaction to explicit choice: improving insurance product selection accuracy by 62%',
     description:
-      'Redesigning a Chubb Evidence of Insurability flow to support five products — explicit per-product choices replaced ambiguous tile selection, lifting task accuracy 62% in A/B testing. Built and iterated in Claude Code. Password-protected; details available on request.',
+      'Leveraged Claude Code to accelerate design, enabling two rounds of usability testing not originally in scope. These insights drove design changes that improved the customer experience and minimized downstream operational impacts — all without extending the delivery timeline.',
     tags: ['AI Workflows', 'Rapid Prototyping', 'A/B Testing', 'Interaction Design'],
     year: 'Apr 2026',
     industry: 'Insurance',
-    thumbnail: '/images/chubb-cover-eoi.webp',
+    thumbnail: '/images/eoi-cover.mp4',
   },
   {
     slug: 'ai-claims-portal',

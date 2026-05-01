@@ -1601,25 +1601,19 @@ function ComponentsContent() {
           <span className="font-mono">CaseStudyCard</span>.
         </p>
 
-        <div className="mb-8 flex gap-2">
-          <span className="text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5">
-            Insurance
-          </span>
-          <span className="text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5">
-            B2B
-          </span>
-          <span className="text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5">
-            Design Systems
-          </span>
+        <div className="mb-8 flex flex-wrap gap-2">
+          <CaseStudyTag>Insurance</CaseStudyTag>
+          <CaseStudyTag>B2B</CaseStudyTag>
+          <CaseStudyTag>Design Systems</CaseStudyTag>
         </div>
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Filled <span className="font-mono">bg-bg-tertiary</span> with a{' '}
-            <span className="font-mono">border-border-strong</span> outline and{' '}
-            <span className="font-mono">rounded-full</span> shape. Padding{' '}
-            <span className="font-mono">px-2.5 py-1.5</span> matches the TOC active padding so tags
-            and active TOC items have equal vertical weight.
+            Filled <InlineCode>bg-bg-tertiary</InlineCode> with a{' '}
+            <InlineCode>border-border-strong</InlineCode> outline and{' '}
+            <InlineCode>rounded-full</InlineCode> shape. Padding{' '}
+            <InlineCode>px-2.5 py-1.5</InlineCode> matches the TOC active padding so tags and
+            active TOC items have equal vertical weight.
           </p>
         </div>
       </section>

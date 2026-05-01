@@ -80,8 +80,8 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
           <div className="flex justify-center px-5 md:px-10 pb-10 md:pb-16">
             <div className="max-w-page w-full">
               <ImageBlock
-                src="/images/chubb-cover-eoi.webp"
-                alt="Evidence of Insurability case study cover"
+                type="video"
+                src="/images/eoi-cover.mp4"
               />
             </div>
           </div>

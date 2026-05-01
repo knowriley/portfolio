@@ -33,7 +33,7 @@ export default function CaseStudyPaywall({ pathname }: { pathname: string }) {
       />
 
       <div className="relative flex justify-center pt-8 pb-4">
-        <div className="w-full max-w-[480px] bg-bg-tertiary rounded-sm shadow-md px-8 py-12 text-center">
+        <div className="w-full max-w-[480px] bg-bg-tertiary border border-border-strong rounded-sm shadow-md px-8 py-12 text-center">
           <div className="flex justify-center mb-5 text-gradient-pink">
             <Lock size={48} strokeWidth={1.5} />
           </div>
