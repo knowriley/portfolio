@@ -433,7 +433,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                           <li>Users missing products they actually want (lost coverage + lost revenue)</li>
                           <li>Users over-selecting due to confusion (unnecessary underwriting work)</li>
                         </ul>
-                        <p>This results in cleaner submissions entering the underwriting pipeline, leading to:</p>
+                        <p>And this results in cleaner submissions entering the underwriting pipeline, leading to:</p>
                         <ul className="list-disc pl-6 space-y-1">
                           <li>Fewer incomplete or incorrect EOI forms</li>
                           <li>Less manual review and rework for underwriting teams</li>
@@ -447,23 +447,41 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                     {/* ────────────────────── TAKEAWAYS ────────────────────── */}
                     <section id="takeaways">
                       <Label>Takeaways</Label>
-                      <TwoColumnSection heading="Sometimes the biggest UX improvements aren't on-screen changes.">
-                        <p className="text-body-small md:text-body-big text-text-secondary">
-                          What I asked at the top of the project and what nearly half of users said
-                          they wished for- unprompted - when filling out these forms was users
-                          wanting their product selections already pushed and known on the site, so
-                          all they had to do was provide the NEW information, none of the basic info
-                          again or the product selection they had just made on the previous page.
-                        </p>
-                      </TwoColumnSection>
+                      <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                        I want to ship frontend code
+                      </h2>
+                      <div className="h-8" />
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        This was my first project using agentic prototyping and it honestly
+                        transformed how I want to work forever. Figma is still ideal for
+                        collaborating with other designers — but the speed and fidelity I can
+                        achieve with code, and{' '}
+                        <span className="text-primary">the ability to engineer design context</span>{' '}
+                        into the CLAUDE.md file I think planted the seed in my mind that
+                        designers — as the SMEs of design — could in some future own the frontend
+                        experience of the delivery pipeline (with review from senior frontend
+                        developers, of course).
+                      </p>
 
-                      <div className="h-12" />
+                      <div className="h-24" />
 
-                      <TwoColumnSection heading="I want to ship frontend code">
-                        <p className="text-body-small md:text-body-big text-text-secondary">
-                          I worked almost entirely in Claude Code to build this prototype.
-                        </p>
-                      </TwoColumnSection>
+                      <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                        Sometimes the biggest UX improvements aren&apos;t on-screen changes.
+                      </h2>
+                      <div className="h-8" />
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        My very first question when getting onboarded to this project was,{' '}
+                        <span className="text-primary">
+                          &ldquo;Can we automatically populate which products the customer
+                          selected, so they don&apos;t have to?&rdquo;
+                        </span>{' '}
+                        Because of budget and timeline constraints this wasn&apos;t a part of this
+                        delivery, but the same complaint was made by nearly half of the
+                        participants during testing. For me, this stands out as another example of
+                        where looking beyond the screens and thinking about the system and the
+                        service overall could be the answer to the greatest win-win solutions for
+                        customers and businesses.
+                      </p>
                     </section>
                   </>
                 ) : (
