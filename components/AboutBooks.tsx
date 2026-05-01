@@ -132,10 +132,10 @@ export default function AboutBooks() {
                       type="button"
                       onClick={() => setActiveIndex(isActive ? null : i)}
                       aria-expanded={isActive}
-                      className={`block w-full text-left text-body-small px-2.5 py-1.5 rounded-sm border transition-colors lg:whitespace-nowrap ${
+                      className={`block w-full text-left text-body-small px-2.5 py-1.5 rounded-sm transition-colors lg:whitespace-nowrap ${
                         isActive
-                          ? 'bg-bg-secondary border-border-subtle text-text-primary font-medium'
-                          : 'border-transparent text-text-secondary hover:bg-bg-secondary hover:border-border-subtle hover:text-text-primary hover:font-medium'
+                          ? 'bg-bg-tertiary text-text-primary font-medium'
+                          : 'text-text-secondary hover:bg-bg-tertiary hover:text-text-primary hover:font-medium'
                       }`}
                     >
                       {book.title}

@@ -23,7 +23,7 @@ export default function SegmentedControl<T extends string>({
     <div
       role="tablist"
       aria-label={ariaLabel}
-      className={`inline-flex items-center gap-1 p-1 bg-bg-tertiary border border-border rounded-md ${className}`}
+      className={`inline-flex items-center gap-1 p-1 bg-bg-tertiary rounded-md ${className}`}
     >
       {options.map((opt) => {
         const active = opt.value === value

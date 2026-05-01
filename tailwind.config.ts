@@ -40,7 +40,7 @@ const config: Config = {
         bg: {
           DEFAULT: '#fafaf9',
           secondary: '#FFFFFF',
-          tertiary: '#f5f5f4',
+          tertiary: '#e7e5e4',
           inverse: '#1c1917',
           brand: '#EAF4F4',
         },

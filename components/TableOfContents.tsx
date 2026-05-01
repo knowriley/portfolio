@@ -48,10 +48,10 @@ export default function TableOfContents({ items, className }: { items: TocItem[]
             <li key={id}>
               <a
                 href={`#${id}`}
-                className={`block text-body-small px-2.5 py-1.5 rounded-sm border transition-colors ${
+                className={`block text-body-small px-2.5 py-1.5 rounded-sm transition-colors ${
                   isActive
-                    ? 'bg-bg-secondary border-border-subtle text-text-primary font-medium'
-                    : 'border-transparent text-text-secondary hover:bg-bg-secondary hover:border-border-subtle hover:text-text-primary hover:font-medium'
+                    ? 'bg-bg-tertiary text-text-primary font-medium'
+                    : 'text-text-secondary hover:bg-bg-tertiary hover:text-text-primary hover:font-medium'
                 }`}
               >
                 {label}

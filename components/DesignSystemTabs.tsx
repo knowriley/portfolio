@@ -275,7 +275,7 @@ function FoundationsContent() {
           />
         </div>
 
-        <div className="overflow-x-auto bg-bg-tertiary rounded-sm border border-border-subtle p-4">
+        <div className="overflow-x-auto bg-bg-tertiary rounded-sm p-4">
           {breakpoint === 'mobile' && (
             <div className="w-[375px] bg-bg rounded-sm border border-border p-5">
               <div className="flex flex-col gap-4">
@@ -536,8 +536,8 @@ function FoundationsContent() {
           {[
             { label: 'neutral-000', hex: '#FFFFFF', mapped: 'bg-secondary, text-inverse' },
             { label: 'neutral-050', hex: '#fafaf9', mapped: 'bg' },
-            { label: 'neutral-100', hex: '#f5f5f4', mapped: 'bg-tertiary, border-subtle' },
-            { label: 'neutral-200', hex: '#e7e5e4', mapped: 'border' },
+            { label: 'neutral-100', hex: '#f5f5f4', mapped: 'border-subtle' },
+            { label: 'neutral-200', hex: '#e7e5e4', mapped: 'bg-tertiary, border' },
             { label: 'neutral-300', hex: '#d6d3d1', mapped: 'border-strong, text-placeholder' },
             { label: 'neutral-400', hex: '#a8a29e', mapped: '—' },
             { label: 'neutral-500', hex: '#78716c', mapped: 'text-tertiary' },
@@ -617,7 +617,7 @@ function FoundationsContent() {
           {[
             { label: 'bg-bg',           hex: '#fafaf9', role: 'Page background, nav surface' },
             { label: 'bg-bg-secondary', hex: '#FFFFFF', role: 'Card surfaces, image placeholders, callout cards', border: true },
-            { label: 'bg-bg-tertiary',  hex: '#f5f5f4', role: 'Tag pills, subtle highlights' },
+            { label: 'bg-bg-tertiary',  hex: '#e7e5e4', role: 'Tag pills, subtle highlights' },
             { label: 'bg-bg-inverse',   hex: '#1c1917', role: 'Dark / inverse surfaces' },
             { label: 'bg-bg-brand',     hex: '#EAF4F4', role: 'Brand-tinted surface — reserved, not yet used' },
           ].map(({ label, hex, role, border }) => (
@@ -857,7 +857,7 @@ function FoundationsContent() {
           ].map(({ cls, value, use }) => (
             <div key={cls} className="flex items-center gap-5 py-4 border-b border-border-subtle">
               <div
-                className="size-10 bg-bg-tertiary shrink-0 border border-border"
+                className="size-10 bg-bg-tertiary shrink-0"
                 style={{ borderRadius: value }}
               />
               <div className="min-w-[6rem] shrink-0"><Token>{cls}</Token></div>
@@ -1194,27 +1194,28 @@ function ComponentsContent() {
         <p className="text-body-small text-text-secondary mb-8">
           Component: <span className="font-mono">components/CaseStudyTag.tsx</span>. Single visual
           treatment, no variants. Used for the tag row in case study heroes and inside{' '}
-          <span className="font-mono">CaseStudyCard</span>. Visually mirrors the TOC active state but
-          with a pill shape.
+          <span className="font-mono">CaseStudyCard</span>.
         </p>
 
         <div className="mb-8 flex gap-2">
-          <span className="text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5">
+          <span className="text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5">
             Insurance
           </span>
-          <span className="text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5">
+          <span className="text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5">
             B2B
           </span>
-          <span className="text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle rounded-full px-2.5 py-1.5">
+          <span className="text-body-small font-medium text-text-primary bg-bg-tertiary border border-border-strong rounded-full px-2.5 py-1.5">
             Design Systems
           </span>
         </div>
 
         <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7 mb-16">
           <p className="text-body-small text-text-secondary">
-            Same `bg-bg-secondary` + `border-border-subtle` treatment as the TOC active item, but
-            `rounded-full` instead of `rounded-sm`. Padding `px-2.5 py-1.5` matches the TOC active
-            padding so tags and active TOC items have equal vertical weight.
+            Filled <span className="font-mono">bg-bg-tertiary</span> with a{' '}
+            <span className="font-mono">border-border-strong</span> outline and{' '}
+            <span className="font-mono">rounded-full</span> shape. Padding{' '}
+            <span className="font-mono">px-2.5 py-1.5</span> matches the TOC active padding so tags
+            and active TOC items have equal vertical weight.
           </p>
         </div>
       </section>
@@ -1296,7 +1297,7 @@ function ComponentsContent() {
             <span className="font-mono">bg-bg-inverse</span> + white text + medium weight; inactive
             shifts text from <span className="font-mono">text-text-secondary</span> →{' '}
             <span className="font-mono">text-text-primary</span> on hover. Container uses{' '}
-            <span className="font-mono">bg-bg-tertiary</span> + <span className="font-mono">border-border</span> +{' '}
+            <span className="font-mono">bg-bg-tertiary</span> +{' '}
             <span className="font-mono">rounded-md</span> +{' '}
             <span className="font-mono">p-1</span> — visually distinct from the Tab pattern (no
             container, individual outlined inactive buttons).
@@ -1341,10 +1342,10 @@ function ComponentsContent() {
         </p>
 
         <div className="mb-8 flex flex-col gap-1 w-fit">
-          <a href="#" className="block text-body-small text-text-secondary hover:bg-bg-secondary hover:text-text-primary hover:font-medium px-2.5 py-1.5 rounded-sm border border-transparent transition-colors">
+          <a href="#" className="block text-body-small text-text-secondary hover:bg-bg-tertiary hover:text-text-primary hover:font-medium px-2.5 py-1.5 rounded-sm transition-colors">
             Overview
           </a>
-          <a href="#" className="block text-body-small font-medium text-text-primary bg-bg-secondary border border-border-subtle px-2.5 py-1.5 rounded-sm">
+          <a href="#" className="block text-body-small font-medium text-text-primary bg-bg-tertiary px-2.5 py-1.5 rounded-sm">
             Problem (active)
           </a>
         </div>
@@ -1353,12 +1354,11 @@ function ComponentsContent() {
           <p className="text-body-small text-text-secondary">
             Pass an array of <span className="font-mono">{'{ label, id }'}</span> items. The component
             uses IntersectionObserver to detect which <span className="font-mono">id</span> is in
-            view and highlights it. Active adds a{' '}
-            <span className="font-mono">border-border-subtle</span> outline on top of the filled
-            background to distinguish it from hover. Inactive items carry a{' '}
-            <span className="font-mono">border-transparent</span> placeholder so the active border
-            doesn't nudge layout. Positioned <span className="font-mono">sticky top-32</span> (128px)
-            to clear the 64px nav. Hidden below <span className="font-mono">lg:</span> breakpoint.
+            view and highlights it. Active and hover share the same{' '}
+            <span className="font-mono">bg-bg-tertiary</span> fill — hovering an item previews
+            exactly how the active state will look. Positioned{' '}
+            <span className="font-mono">sticky top-32</span> (128px) to clear the 64px nav. Hidden
+            below <span className="font-mono">lg:</span> breakpoint.
           </p>
         </div>
       </section>
