@@ -12,7 +12,11 @@ const links = [
   { href: '/design-system', label: 'system' },
 ]
 
-export default function Nav() {
+type NavProps = {
+  variant?: 'default' | 'white'
+}
+
+export default function Nav({ variant = 'default' }: NavProps = {}) {
   const [isOpen, setIsOpen] = useState(false)
   const pathname = usePathname()
 
@@ -20,8 +24,10 @@ export default function Nav() {
     setIsOpen(false)
   }, [pathname])
 
+  const bgClass = variant === 'white' ? 'bg-bg-secondary' : 'bg-bg'
+
   return (
-    <nav className="sticky top-0 z-50 bg-bg border-b border-border-subtle px-5 md:px-10">
+    <nav className={`sticky top-0 z-50 ${bgClass} border-b border-border-subtle px-5 md:px-10`}>
       <div className="max-w-page mx-auto h-16 flex items-center justify-between w-full">
         <Link
           href="/"
@@ -57,7 +63,7 @@ export default function Nav() {
       {isOpen && (
         <div
           id="mobile-nav"
-          className="md:hidden absolute top-full left-0 right-0 bg-bg border-b border-border-subtle px-5"
+          className={`md:hidden absolute top-full left-0 right-0 ${bgClass} border-b border-border-subtle px-5`}
         >
           <ul className="flex flex-col py-3 gap-1">
             {links.map((link) => (
