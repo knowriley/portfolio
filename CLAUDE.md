@@ -307,7 +307,7 @@ No selected-hover state by design. Non-color diff on hover: bg, border, and text
 | Inactive | `text-body-small px-3 py-1.5 rounded-sm text-text-secondary hover:text-text-primary` |
 | Active | `text-body-small font-medium px-3 py-1.5 rounded-sm bg-bg-inverse text-text-inverse` |
 
-**Table of Contents** — `components/TableOfContents.tsx` ('use client'). Usage: `<TableOfContents items={[{ label, id }, ...]} />`. Sticky sidebar TOC with IntersectionObserver-based active section tracking. Used in case study pages and the design system page. Hidden below `lg:` breakpoint.
+**Table of Contents** — `components/TableOfContents.tsx` ('use client'). Usage: `<TableOfContents items={[{ label, id }, ...]} smoothScroll? className? />`. Sticky sidebar TOC with IntersectionObserver-based active section tracking. Used in case study pages and the design system page. Hidden below `lg:` breakpoint.
 
 | State | Key classes |
 |---|---|
@@ -315,7 +315,9 @@ No selected-hover state by design. Non-color diff on hover: bg, border, and text
 | Hover | `bg-bg-tertiary text-text-primary font-medium` (on `hover:` variant) |
 | Active | `bg-bg-tertiary text-text-primary font-medium` |
 
-Each item gets a filled `bg-bg-tertiary` background on hover and when active — hover and active are intentionally identical so any item the cursor lands on previews exactly how the active state will look. No border on any state, so there's no layout shift between default and filled. `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room). The same hover-and-active fill treatment is applied to the `AboutBooks` accordion list (`components/AboutBooks.tsx`) — both lists share this convention.
+Each item gets a filled `bg-bg-tertiary` background on hover and when active — hover and active are intentionally identical so any item the cursor lands on previews exactly how the active state will look. No border on any state, so there's no layout shift between default and filled. `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room) by default; the design-system page passes `className="top-36"` to sit lower under its taller sticky header. The same hover-and-active fill treatment is applied to the `AboutBooks` accordion list (`components/AboutBooks.tsx`) — both lists share this convention.
+
+**Smooth scroll on click** — pass `smoothScroll` to enable a rAF-driven scroll handler in place of native anchor jumps. Currently opted in by all four case-study pages and the `/design-system` page (`DesignSystemTabs`); the prop defaults to `false` so the component remains a drop-in replacement for any future non-animated use. When enabled, clicking an item animates `window.scrollY` to the target's position offset by 96px (clears the 64px sticky `Nav` plus breathing room) using `easeInOutCubic`, with a distance-aware duration clamped to 420–900ms so short jumps stay snappy and long ones feel weighty. The active item highlight updates immediately on click rather than waiting for the IntersectionObserver to catch up. Modified clicks (cmd / ctrl / shift / alt / middle-button) fall through to native anchor behavior so "open in new tab" still works, and `prefers-reduced-motion` collapses the animation to an instant `scrollTo`. The URL hash is updated via `history.pushState` after the animation completes so deep links remain shareable. The 96px offset is tuned to the `Nav` height (64px) and is independent of the TOC's own sticky `top-*` value — both consumers get the same scroll-target offset regardless of how far down the TOC itself sits.
 
 ## Motion & Transitions
 

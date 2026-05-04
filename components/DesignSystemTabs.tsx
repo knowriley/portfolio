@@ -1776,7 +1776,7 @@ export default function DesignSystemTabs() {
         <div className="max-w-page w-full py-12 md:py-20">
           <div className="flex gap-8 items-start">
 
-            <TableOfContents items={toc} className="top-36" />
+            <TableOfContents items={toc} className="top-36" smoothScroll />
 
             {/* Content */}
             <div className="flex-1 min-w-0">

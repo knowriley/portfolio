@@ -89,7 +89,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
           <div className="max-w-page w-full">
             <div className="flex gap-8 items-start py-12 md:py-20">
 
-              <TableOfContents items={tocItems} />
+              <TableOfContents items={tocItems} smoothScroll />
 
               {/* ── Content column ── */}
               <div className="flex-1 min-w-0">
