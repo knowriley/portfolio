@@ -28,10 +28,6 @@ function SubLabel({ children }: { children: React.ReactNode }) {
   )
 }
 
-function RowDivider() {
-  return <div className="border-b border-border-subtle" />
-}
-
 // Wrap parenthetical class refs in InlineCode chips: "padding (py-1)" → "padding (<chip>py-1</chip>)"
 function renderWithParenChips(text: string): React.ReactNode[] {
   return text.split(/\(([^)]+)\)/g).map((p, i) =>
@@ -247,7 +243,7 @@ function FoundationsContent() {
             const resolvedClass = resolved[typeBreakpoint]
             const size = sizeFor[resolvedClass]
             return (
-              <div key={token} className="py-6 flex flex-col gap-2 border-b border-border-subtle last:border-b-0">
+              <div key={token} className="py-6 flex flex-col gap-2 border-b border-border last:border-b-0 last:border-b-0">
                 <div className="grid w-full items-end">
                   <p aria-hidden className={`${resolved.desktop} ${sampleColor} ${extraSampleClasses ?? ''} col-start-1 row-start-1 invisible w-full`}>
                     {sample}
@@ -323,8 +319,8 @@ function FoundationsContent() {
           This table documents the site-wide convention.
         </p>
 
-        <div>
-          <div className="flex items-stretch py-3 border-b border-border-subtle">
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
+          <div className="flex items-stretch py-3 border-b border-border last:border-b-0">
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-44 shrink-0 pr-4">Role</p>
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1 min-w-0 border-l border-border-subtle pl-4">Mobile · &lt;768px</p>
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1 min-w-0 border-l border-border-subtle pl-4">md: · ≥768px</p>
@@ -340,7 +336,7 @@ function FoundationsContent() {
             { role: 'text-body-small',   base: 'text-body-small', baseRem: '1rem',     basePx: '16px',    md: 'text-body-small',   mdRem: '1rem',     mdPx: '16px',    lg: 'text-body-small',   lgRem: '1rem',     lgPx: '16px' },
             { role: 'text-small',        base: 'text-small',      baseRem: '0.833rem', basePx: '13.33px', md: 'text-small',        mdRem: '0.833rem', mdPx: '13.33px', lg: 'text-small',        lgRem: '0.833rem', lgPx: '13.33px' },
           ].map(({ role, base, baseRem, basePx, md, mdRem, mdPx, lg, lgRem, lgPx }) => (
-            <div key={role} className="flex items-start py-4 border-b border-border-subtle">
+            <div key={role} className="flex items-start py-4 border-b border-border last:border-b-0">
               <div className="min-w-[11rem] shrink-0 pr-4"><InlineCode>{role}</InlineCode></div>
               <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
                 <InlineCode>{base}</InlineCode>
@@ -496,10 +492,9 @@ function FoundationsContent() {
         </div>
 
         <SubLabel>Font Families</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
 
-          <div className="py-6 flex items-center gap-8 border-b border-border-subtle">
+          <div className="py-6 flex items-center gap-8 border-b border-border last:border-b-0">
             <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
               <InlineCode>font-sans</InlineCode>
               <InlineCode>Inter</InlineCode>
@@ -510,7 +505,7 @@ function FoundationsContent() {
             </p>
           </div>
 
-          <div className="py-6 flex items-center gap-8 border-b border-border-subtle">
+          <div className="py-6 flex items-center gap-8 border-b border-border last:border-b-0">
             <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
               <InlineCode>font-serif</InlineCode>
               <InlineCode>Lora</InlineCode>
@@ -521,7 +516,7 @@ function FoundationsContent() {
             </p>
           </div>
 
-          <div className="py-6 flex items-center gap-8 border-b border-border-subtle">
+          <div className="py-6 flex items-center gap-8 border-b border-border last:border-b-0">
             <div className="w-52 shrink-0 flex flex-col gap-1 items-start">
               <InlineCode>font-mono</InlineCode>
               <InlineCode>JetBrains Mono</InlineCode>
@@ -549,15 +544,14 @@ function FoundationsContent() {
         </p>
 
         <SubLabel>Sizes</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { size: 20, strokeWidth: 2,   label: 'size={20} strokeWidth={2}',   use: 'UI icons at body-small scale — buttons, inputs, nav, inline links' },
             { size: 24, strokeWidth: 2,   label: 'size={24} strokeWidth={2}',   use: 'Inline with body-small text, standalone icons' },
             { size: 32, strokeWidth: 1.5, label: 'size={32} strokeWidth={1.5}', use: 'Decorative / card icon' },
             { size: 48, strokeWidth: 1.5, label: 'size={48} strokeWidth={1.5}', use: 'Large decorative icon — stat cards, hero accents' },
           ].map(({ size, strokeWidth, label, use }) => (
-            <div key={size} className="flex items-center gap-8 py-5 border-b border-border-subtle">
+            <div key={size} className="flex items-center gap-8 py-5 border-b border-border last:border-b-0">
               <div className="w-12 flex items-center justify-center shrink-0">
                 <ArrowUpRight size={size} strokeWidth={strokeWidth} className="text-text-primary" />
               </div>
@@ -568,14 +562,13 @@ function FoundationsContent() {
         </div>
 
         <SubLabel>Color</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { cls: 'text-text-primary',   icon: <ArrowUpRight size={20} strokeWidth={2} />, label: 'text-text-primary',   use: 'Default — primary actions, emphasis' },
             { cls: 'text-text-secondary', icon: <ArrowUpRight size={20} strokeWidth={2} />, label: 'text-text-secondary', use: 'Supporting icons alongside body text' },
             { cls: 'text-text-tertiary',  icon: <ArrowUpRight size={20} strokeWidth={2} />, label: 'text-text-tertiary',  use: 'Decorative, indicators, external link arrows' },
           ].map(({ cls, icon, label, use }) => (
-            <div key={label} className={`flex items-center gap-8 py-5 border-b border-border-subtle ${cls}`}>
+            <div key={label} className={`flex items-center gap-8 py-5 border-b border-border last:border-b-0 ${cls}`}>
               <div className="w-12 flex items-center justify-center shrink-0">{icon}</div>
               <div className="min-w-[14rem] shrink-0"><InlineCode>{label}</InlineCode></div>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
@@ -644,8 +637,7 @@ function FoundationsContent() {
         <p className="text-body-small text-text-secondary mb-6">
           The Tailwind CSS Stone (warm neutral) ramp underpins every semantic token. Referenced by semantic roles, never used directly in components.
         </p>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { label: 'neutral-000', hex: '#FFFFFF', mapped: 'bg-secondary, text-inverse' },
             { label: 'neutral-050', hex: '#fafaf9', mapped: 'bg' },
@@ -660,7 +652,7 @@ function FoundationsContent() {
             { label: 'neutral-900', hex: '#1c1917', mapped: 'bg-inverse, text-primary' },
             { label: 'neutral-950', hex: '#0c0a09', mapped: '—' },
           ].map(({ label, hex, mapped }) => (
-            <div key={label} className="flex items-center gap-5 py-3 border-b border-border-subtle">
+            <div key={label} className="flex items-center gap-5 py-3 border-b border-border last:border-b-0">
               <div
                 className={`size-8 rounded-sm shrink-0 ${hex === '#FFFFFF' ? 'border border-border' : ''}`}
                 style={{ backgroundColor: hex }}
@@ -685,18 +677,13 @@ function FoundationsContent() {
         {/* ── Atomic: Primary ── */}
         <SubLabel>Primary · Atomic</SubLabel>
         <p className="text-body-small text-text-secondary mb-6">
-          Magenta hue aligned with the gradient-pink direction. Used for text highlights, numbered callouts, and interactive accents. WCAG AA compliant as text on page bg (4.71:1) and as button bg with white text (4.91:1).
+          Magenta hue aligned with the gradient-pink direction. Used as <InlineCode>text-primary</InlineCode> for inline emphasis inside <InlineCode>text-text-secondary</InlineCode> paragraphs, numbered callout numbers, and case-study takeaway highlights. WCAG AA compliant as text on page bg (4.71:1).
         </p>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
-            { label: 'primary',        hex: '#DA007B', note: 'Base — text highlights, callout numbers' },
-            { label: 'primary-hover',   hex: '#B80068', note: 'Hover variant — button hover bg' },
-            { label: 'primary-active',  hex: '#940054', note: 'Active variant' },
-            { label: 'primary-light',   hex: '#E279B4', note: 'Light variant' },
-            { label: 'primary-subtle',  hex: '#FEF6FA', note: 'Subtle background tint' },
+            { label: 'primary', hex: '#DA007B', note: 'Text highlights, numbered callouts, takeaway emphasis' },
           ].map(({ label, hex, note }) => (
-            <div key={label} className="flex items-center gap-5 py-3 border-b border-border-subtle">
+            <div key={label} className="flex items-center gap-5 py-3 border-b border-border last:border-b-0">
               <div className="size-8 rounded-sm shrink-0" style={{ backgroundColor: hex }} />
               <div className="min-w-[8rem] shrink-0"><InlineCode>{label}</InlineCode></div>
               <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
@@ -707,8 +694,7 @@ function FoundationsContent() {
 
         {/* ── Semantic: Text ── */}
         <SubLabel>Text · Semantic</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { label: 'text-text-primary',     hex: '#1c1917', role: 'Body, headings, all primary content' },
             { label: 'text-text-secondary',   hex: '#57534e', role: 'Supporting prose, descriptions, metadata values' },
@@ -720,7 +706,7 @@ function FoundationsContent() {
             { label: 'text-text-link-hover',  hex: '#064b7d', role: 'Reserved — not currently used' },
             { label: 'text-text-on-brand',    hex: '#FFFFFF', role: 'Text on brand-tinted surfaces — reserved, not yet used', border: true },
           ].map(({ label, hex, role, border }) => (
-            <div key={label} className="flex items-center gap-5 py-4 border-b border-border-subtle">
+            <div key={label} className="flex items-center gap-5 py-4 border-b border-border last:border-b-0">
               <div
                 className={`size-10 rounded-sm shrink-0 ${border ? 'border border-border' : ''}`}
                 style={{ backgroundColor: hex }}
@@ -735,8 +721,7 @@ function FoundationsContent() {
         </div>
 
         <SubLabel>Background · Semantic</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { label: 'bg-bg',           hex: '#fafaf9', role: 'Page background, nav surface' },
             { label: 'bg-bg-secondary', hex: '#FFFFFF', role: 'Card surfaces, image placeholders, callout cards', border: true },
@@ -744,7 +729,7 @@ function FoundationsContent() {
             { label: 'bg-bg-inverse',   hex: '#1c1917', role: 'Dark / inverse surfaces' },
             { label: 'bg-bg-brand',     hex: '#EAF4F4', role: 'Brand-tinted surface — reserved, not yet used' },
           ].map(({ label, hex, role, border }) => (
-            <div key={label} className="flex items-center gap-5 py-4 border-b border-border-subtle">
+            <div key={label} className="flex items-center gap-5 py-4 border-b border-border last:border-b-0">
               <div
                 className={`size-10 rounded-sm shrink-0 ${border ? 'border border-border' : ''}`}
                 style={{ backgroundColor: hex }}
@@ -759,15 +744,14 @@ function FoundationsContent() {
         </div>
 
         <SubLabel>Border · Semantic</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { label: 'border-border-subtle', hex: '#f5f5f4', role: 'Dividers, section rules, subtle separators' },
             { label: 'border-border',        hex: '#e7e5e4', role: 'Card outlines, callout card borders' },
             { label: 'border-border-strong', hex: '#d6d3d1', role: 'Emphasized borders, form inputs' },
             { label: 'border-border-focus',  hex: '#2B6B6B', role: 'Focus rings — reserved, not yet used' },
           ].map(({ label, hex, role }) => (
-            <div key={label} className="flex items-center gap-5 py-4 border-b border-border-subtle">
+            <div key={label} className="flex items-center gap-5 py-4 border-b border-border last:border-b-0">
               <div
                 className="size-10 rounded-sm shrink-0 border-2"
                 style={{ borderColor: hex, backgroundColor: 'transparent' }}
@@ -785,9 +769,8 @@ function FoundationsContent() {
         <p className="text-body-small text-text-secondary mb-6">
           The brand pink accent. Used for high-emphasis interactive states.
         </p>
-        <div>
-          <RowDivider />
-          <div className="flex items-center gap-5 py-4 border-b border-border-subtle">
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
+          <div className="flex items-center gap-5 py-4 border-b border-border last:border-b-0">
             <div className="size-10 rounded-sm shrink-0" style={{ backgroundColor: '#f02065' }} />
             <div className="flex-1 min-w-0 flex items-center gap-4">
               <div className="min-w-[13rem] shrink-0"><InlineCode>bg-accent</InlineCode></div>
@@ -835,10 +818,9 @@ function FoundationsContent() {
           the design explicitly calls for a gradient — primary-on-secondary is the default
           emphasis treatment.
         </p>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
 
-          <div className="flex items-center gap-5 py-6 border-b border-border-subtle">
+          <div className="flex items-center gap-5 py-6 border-b border-border last:border-b-0">
             <div
               className="h-10 w-10 rounded-sm shrink-0"
               style={{ background: 'linear-gradient(to right, #f02065, #d5189b)' }}
@@ -855,7 +837,7 @@ function FoundationsContent() {
             </div>
           </div>
 
-          <div className="flex items-center gap-5 py-6 border-b border-border-subtle">
+          <div className="flex items-center gap-5 py-6 border-b border-border last:border-b-0">
             <div
               className="h-10 w-10 rounded-sm shrink-0"
               style={{ background: 'linear-gradient(to right, #f02065 22%, #ff7700)' }}
@@ -918,8 +900,8 @@ function FoundationsContent() {
           listed for values with established roles on this site.
         </p>
 
-        <div>
-          <div className="flex gap-4 py-3 border-b border-border-subtle">
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
+          <div className="flex gap-4 py-3 border-b border-border last:border-b-0">
             <p className="font-mono text-body-small text-text-tertiary w-16 shrink-0">Scale</p>
             <p className="font-mono text-body-small text-text-tertiary w-16 shrink-0">px</p>
             <p className="text-body-small text-text-tertiary flex-1">Semantic role on this site</p>
@@ -940,7 +922,7 @@ function FoundationsContent() {
             { scale: '20',   px: '80px',  role: '3-column body section vertical padding (py-20)' },
             { scale: '24',   px: '96px',  role: 'Between subsections (h-24); next section bottom padding (pb-24)' },
           ].map(({ scale, px, role }) => (
-            <div key={scale} className="flex items-center gap-4 py-3 border-b border-border-subtle">
+            <div key={scale} className="flex items-center gap-4 py-3 border-b border-border last:border-b-0">
               <div className="min-w-[4rem] shrink-0"><InlineCode>{scale}</InlineCode></div>
               <p className="font-mono text-body-small text-text-tertiary w-16 shrink-0">{px}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{renderWithParenChips(role)}</p>
@@ -951,8 +933,7 @@ function FoundationsContent() {
         <div className="h-16" />
 
         <SubLabel>Layout</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             {
               key: 'max-w-page',
@@ -985,7 +966,7 @@ function FoundationsContent() {
               ),
             },
           ].map(({ key, token, value, role }) => (
-            <div key={key} className="flex items-center gap-8 py-4 border-b border-border-subtle">
+            <div key={key} className="flex items-center gap-8 py-4 border-b border-border last:border-b-0">
               <div className="min-w-[11rem] shrink-0">{token}</div>
               <div className="w-40 shrink-0">{value}</div>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{role}</p>
@@ -1000,8 +981,8 @@ function FoundationsContent() {
           site-wide patterns.
         </p>
 
-        <div>
-          <div className="flex items-stretch py-3 border-b border-border-subtle">
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
+          <div className="flex items-stretch py-3 border-b border-border last:border-b-0">
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-56 shrink-0 pr-4">Usage</p>
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1 min-w-0 border-l border-border-subtle pl-4">Mobile · &lt;768px</p>
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1 min-w-0 border-l border-border-subtle pl-4">md: · ≥768px</p>
@@ -1017,7 +998,7 @@ function FoundationsContent() {
             { usage: 'Paywall spacer',                 base: 'h-16',  baseRem: '4rem',    basePx: '64px', md: 'h-24',  mdRem: '6rem',   mdPx: '96px', lg: 'h-24',  lgRem: '6rem',   lgPx: '96px' },
             { usage: 'Next section bottom',            base: 'pb-12', baseRem: '3rem',    basePx: '48px', md: 'pb-24', mdRem: '6rem',   mdPx: '96px', lg: 'pb-24', lgRem: '6rem',   lgPx: '96px' },
           ].map(({ usage, base, baseRem, basePx, md, mdRem, mdPx, lg, lgRem, lgPx }) => (
-            <div key={usage} className="flex items-start py-4 border-b border-border-subtle">
+            <div key={usage} className="flex items-start py-4 border-b border-border last:border-b-0">
               <p className="text-body-small text-text-secondary w-56 shrink-0 pr-4">{usage}</p>
               <div className="flex-1 min-w-0 border-l border-border-subtle pl-4 flex flex-col gap-1 items-start">
                 <InlineCode>{base}</InlineCode>
@@ -1042,8 +1023,8 @@ function FoundationsContent() {
       <section id="radius">
         <SectionHeading>Radius</SectionHeading>
 
-        <div>
-          <div className="flex gap-5 py-3 border-b border-border-subtle">
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
+          <div className="flex gap-5 py-3 border-b border-border last:border-b-0">
             <div className="w-16 shrink-0" />
             <p className="font-mono text-body-small text-text-tertiary w-24 shrink-0">Class</p>
             <p className="font-mono text-body-small text-text-tertiary w-16 shrink-0">Value</p>
@@ -1061,7 +1042,7 @@ function FoundationsContent() {
             { cls: 'rounded-4xl',  value: '32px',   use: '—' },
             { cls: 'rounded-full', value: '9999px', use: 'IconButton, Filter Pill, Tag, Carousel Dot, nav logo dot' },
           ].map(({ cls, value, use }) => (
-            <div key={cls} className="flex items-center gap-5 py-4 border-b border-border-subtle">
+            <div key={cls} className="flex items-center gap-5 py-4 border-b border-border last:border-b-0">
               <div
                 className="size-10 bg-bg-tertiary shrink-0"
                 style={{ borderRadius: value }}
@@ -1089,8 +1070,8 @@ function FoundationsContent() {
           The remaining shadow tiers are available but not yet in active use.
         </p>
 
-        <div>
-          <div className="flex gap-5 py-3 border-b border-border-subtle">
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
+          <div className="flex gap-5 py-3 border-b border-border last:border-b-0">
             <div className="w-16 shrink-0" />
             <p className="font-mono text-body-small text-text-tertiary flex-1">Class</p>
           </div>
@@ -1103,7 +1084,7 @@ function FoundationsContent() {
             { cls: 'shadow-2xl',   value: '0 32px 64px (16% opacity)' },
             { cls: 'shadow-inner', value: 'inset 0 2px 6px (6% opacity)' },
           ].map(({ cls, value }) => (
-            <div key={cls} className="flex items-center gap-5 py-5 border-b border-border-subtle">
+            <div key={cls} className="flex items-center gap-5 py-5 border-b border-border last:border-b-0">
               <div className={`size-10 bg-bg rounded-sm shrink-0 ${cls}`} />
               <div className="flex-1 min-w-0 flex flex-col gap-1 items-start">
                 <InlineCode>{cls}</InlineCode>
@@ -1133,8 +1114,8 @@ function FoundationsContent() {
           visible at its own duration.
         </p>
 
-        <div className="mb-8">
-          <div className="flex gap-5 py-3 border-b border-border-subtle">
+        <div className="mb-8 bg-bg-secondary border border-border rounded-sm p-8">
+          <div className="flex gap-5 py-3 border-b border-border last:border-b-0">
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-56 shrink-0">Utility</p>
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-32 shrink-0">Duration</p>
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Used on</p>
@@ -1144,7 +1125,7 @@ function FoundationsContent() {
             { util: 'animate-fade-in-left',  dur: '0.55s ease-out', use: <>Home Hero only — <InlineCode>MapPin</InlineCode> location line and bio line</> },
             { util: 'animate-fade-in-right', dur: '0.7s ease-out',  use: <>About Hero cover image only — intentionally ~27% slower to feel weighty rather than rushed at the end of the longer About stagger</> },
           ].map(({ util, dur, use }) => (
-            <div key={util} className="flex items-start gap-5 py-4 border-b border-border-subtle">
+            <div key={util} className="flex items-start gap-5 py-4 border-b border-border last:border-b-0">
               <div className="w-56 shrink-0"><InlineCode>{util}</InlineCode></div>
               <p className="font-mono text-body-small text-text-tertiary w-32 shrink-0">{dur}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
@@ -1188,8 +1169,8 @@ function FoundationsContent() {
           that makes the movement legible.
         </p>
 
-        <div>
-          <div className="flex gap-5 py-3 border-b border-border-subtle">
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
+          <div className="flex gap-5 py-3 border-b border-border last:border-b-0">
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-56 shrink-0">Property</p>
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-32 shrink-0">Duration</p>
             <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Where</p>
@@ -1199,7 +1180,7 @@ function FoundationsContent() {
             { kind: 'Transform',           dur: '200ms',           cls: 'duration-200',     where: <><InlineCode>CaseStudyCard</InlineCode> hover lift (<InlineCode>hover:-translate-y-2.5</InlineCode>), <InlineCode>AboutBooks</InlineCode> book-card lift, any other card that translates on hover.</> },
             { kind: 'Arrow rotation',      dur: '150ms (default)', cls: 'transition-transform', where: <><InlineCode>ArrowUpRight</InlineCode> in Button, <InlineCode>InlineLink</InlineCode> icon variants, footer links — all rotate <InlineCode>group-hover:rotate-45</InlineCode> (↗ → →).</> },
           ].map(({ kind, dur, cls, where }) => (
-            <div key={kind} className="flex items-start gap-5 py-4 border-b border-border-subtle">
+            <div key={kind} className="flex items-start gap-5 py-4 border-b border-border last:border-b-0">
               <div className="w-56 shrink-0">
                 <p className="text-body-small font-medium text-text-primary mb-1">{kind}</p>
                 <InlineCode>{cls}</InlineCode>
@@ -1231,8 +1212,7 @@ function FoundationsContent() {
         </p>
 
         <SubLabel>Component to use</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             {
               context: 'Case study body',
@@ -1250,7 +1230,7 @@ function FoundationsContent() {
               detail: <>Do not import <InlineCode>VideoBlock</InlineCode> directly into a page — it&apos;s an internal implementation detail of <InlineCode>ImageBlock</InlineCode>. One entry point keeps chrome, captions, and play/pause behavior consistent.</>,
             },
           ].map(({ context, comp, detail }) => (
-            <div key={context} className="flex items-start gap-8 py-5 border-b border-border-subtle">
+            <div key={context} className="flex items-start gap-8 py-5 border-b border-border last:border-b-0">
               <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{context}</p>
               <div className="w-44 shrink-0">{comp}</div>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{detail}</p>
@@ -1259,15 +1239,14 @@ function FoundationsContent() {
         </div>
 
         <SubLabel>Sizing</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { rule: 'Full width', detail: <>All images and videos use <InlineCode>w-full</InlineCode> to fill their container</> },
             { rule: 'Natural aspect ratio', detail: <>Never constrain aspect ratio — no <InlineCode>aspect-video</InlineCode>, <InlineCode>object-cover</InlineCode>, <InlineCode>object-fit</InlineCode>, or <InlineCode>fill</InlineCode> on images or videos</> },
             { rule: 'No cropping', detail: 'Containers must never clip image or video content' },
             { rule: 'Vimeo iframe exception', detail: <>Vimeo embeds (<InlineCode>type=&quot;vimeo&quot;</InlineCode>) are the only place <InlineCode>aspect-video</InlineCode> is allowed — the embed container needs a fixed aspect ratio for the iframe.</> },
           ].map(({ rule, detail }) => (
-            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
+            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border last:border-b-0">
               <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{detail}</p>
             </div>
@@ -1275,8 +1254,7 @@ function FoundationsContent() {
         </div>
 
         <SubLabel>Chrome</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { rule: 'Border', detail: <><InlineCode>border border-border</InlineCode> — applied by default on all images and videos</> },
             { rule: 'Shadow', detail: <><InlineCode>shadow-sm</InlineCode> — applied by default alongside the border</> },
@@ -1284,7 +1262,7 @@ function FoundationsContent() {
             { rule: 'Radius', detail: <><InlineCode>rounded-sm</InlineCode> — consistent rounding on all media</> },
             { rule: 'Bare mode', detail: <>Pass <InlineCode>bare</InlineCode> to <InlineCode>ImageBlock</InlineCode> to remove border and shadow (e.g. images that bleed into the background)</> },
           ].map(({ rule, detail }) => (
-            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
+            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border last:border-b-0">
               <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{detail}</p>
             </div>
@@ -1292,14 +1270,13 @@ function FoundationsContent() {
         </div>
 
         <SubLabel>Captions</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { rule: 'Default on', detail: 'Every image and video should include a caption — omitting is the exception' },
             { rule: 'Style', detail: <InlineCode>text-small text-text-tertiary mt-2 text-center</InlineCode> },
             { rule: 'Position', detail: 'Centered below the media element' },
           ].map(({ rule, detail }) => (
-            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
+            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border last:border-b-0">
               <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{detail}</p>
             </div>
@@ -1307,13 +1284,12 @@ function FoundationsContent() {
         </div>
 
         <SubLabel>Video controls</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { rule: 'Autoplay', detail: 'Videos autoplay muted and loop by default' },
             { rule: 'Play/pause button', detail: <>Round <InlineCode>IconButton</InlineCode> overlay — <InlineCode>absolute bottom-3 right-3</InlineCode>, toggles between <InlineCode>Play</InlineCode> and <InlineCode>Pause</InlineCode> lucide icons</> },
           ].map(({ rule, detail }) => (
-            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
+            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border last:border-b-0">
               <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{detail}</p>
             </div>
@@ -1321,15 +1297,14 @@ function FoundationsContent() {
         </div>
 
         <SubLabel>File format</SubLabel>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { rule: 'Images', detail: <><InlineCode>.webp</InlineCode> only. No <InlineCode>.png</InlineCode>, <InlineCode>.jpg</InlineCode>, <InlineCode>.jpeg</InlineCode> in <InlineCode>public/</InlineCode>. Encode at quality 82, <InlineCode>effort: 6</InlineCode>. Resize so the source&apos;s longest edge is no more than 2× the largest rendered width.</> },
             { rule: 'Videos', detail: <><InlineCode>.mp4</InlineCode> H.264 only. <InlineCode>VideoBlock</InlineCode> emits <InlineCode>{'<source type="video/mp4">'}</InlineCode> — any other source extension breaks playback. Encode with <InlineCode>libx264 -preset slow -crf 28 -pix_fmt yuv420p -movflags +faststart -an</InlineCode>; cap width at 1600px.</> },
             { rule: 'Tooling', detail: <>Install <InlineCode>sharp</InlineCode> + <InlineCode>ffmpeg-static</InlineCode> as temporary dev-deps for the conversion, then remove them. They never land in <InlineCode>package.json</InlineCode>.</> },
             { rule: 'Reference match', detail: <>Code paths must match the file extension on disk — always <InlineCode>.webp</InlineCode> / <InlineCode>.mp4</InlineCode>, never the original format.</> },
           ].map(({ rule, detail }) => (
-            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border-subtle">
+            <div key={rule} className="flex items-start gap-8 py-5 border-b border-border last:border-b-0">
               <p className="text-body-small font-medium text-text-primary w-48 shrink-0">{rule}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{detail}</p>
             </div>
@@ -1440,15 +1415,14 @@ function ComponentsContent() {
           additional props on top of the variant system. These are off by default so existing
           link call sites stay unchanged.
         </p>
-        <div>
-          <RowDivider />
+        <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { prop: 'type="submit"', use: 'Submits the parent form. Use when Button stands in for a native submit input.' },
             { prop: 'disabled', use: <>Renders at <InlineCode>opacity-60</InlineCode> + <InlineCode>cursor-not-allowed</InlineCode> on both variants. Hover styles are suppressed.</> },
             { prop: 'fullWidth', use: <>Adds <InlineCode>w-full justify-center</InlineCode>. Use inside narrow form columns or full-bleed mobile actions.</> },
             { prop: 'noIcon', use: 'Suppresses the trailing ArrowUpRight. Use for submit buttons, destructive actions, or anywhere the rotation cue would be misleading.' },
           ].map(({ prop, use }) => (
-            <div key={typeof prop === 'string' ? prop : ''} className="flex items-start gap-8 py-4 border-b border-border-subtle">
+            <div key={typeof prop === 'string' ? prop : ''} className="flex items-start gap-8 py-4 border-b border-border last:border-b-0">
               <div className="min-w-[10rem] shrink-0"><InlineCode>{prop}</InlineCode></div>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
             </div>
@@ -1502,8 +1476,8 @@ function ComponentsContent() {
           <div>Read the <InlineLink href="#" external variant="icon">case study</InlineLink> (with icon)</div>
         </div>
 
-        <div className="mb-6">
-          <div className="flex gap-8 py-3 border-b border-border-subtle">
+        <div className="mb-6 bg-bg-secondary border border-border rounded-sm p-8">
+          <div className="flex gap-8 py-3 border-b border-border last:border-b-0">
             <p className="text-body-small text-text-tertiary w-36 shrink-0">Variant</p>
             <p className="text-body-small text-text-tertiary w-16 shrink-0">Icon</p>
             <p className="text-body-small text-text-tertiary flex-1">Use case</p>
@@ -1514,7 +1488,7 @@ function ComponentsContent() {
             { variant: 'icon', icon: '↗', use: 'Standalone external, low emphasis or branded content' },
             { variant: 'icon-emphasis', icon: '↗', use: 'Navigation external, high emphasis, not branded' },
           ].map(({ variant, icon, use }) => (
-            <div key={variant} className="flex items-center gap-8 py-4 border-b border-border-subtle">
+            <div key={variant} className="flex items-center gap-8 py-4 border-b border-border last:border-b-0">
               <div className="min-w-[9rem] shrink-0"><InlineCode>{variant}</InlineCode></div>
               <p className="text-body-small text-text-tertiary w-16 shrink-0">{icon}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
@@ -1563,8 +1537,8 @@ function ComponentsContent() {
           </div>
         </div>
 
-        <div className="mb-6">
-          <div className="flex gap-8 py-3 border-b border-border-subtle">
+        <div className="mb-6 bg-bg-secondary border border-border rounded-sm p-8">
+          <div className="flex gap-8 py-3 border-b border-border last:border-b-0">
             <p className="text-body-small text-text-tertiary w-24 shrink-0">Size</p>
             <p className="text-body-small text-text-tertiary flex-1">Classes</p>
             <p className="text-body-small text-text-tertiary flex-1">Use</p>
@@ -1573,7 +1547,7 @@ function ComponentsContent() {
             { size: 'default', classes: 'text-body-small px-4 py-2', use: 'Tablet and up, desktop layouts' },
             { size: 'small', classes: 'text-body-small px-3 py-1.5', use: 'Mobile, dense layouts' },
           ].map(({ size, classes, use }) => (
-            <div key={size} className="flex items-center gap-8 py-4 border-b border-border-subtle">
+            <div key={size} className="flex items-center gap-8 py-4 border-b border-border last:border-b-0">
               <div className="min-w-[6rem] shrink-0"><InlineCode>{size}</InlineCode></div>
               <div className="flex-1 min-w-0"><InlineCode>{classes}</InlineCode></div>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>

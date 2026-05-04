@@ -24,10 +24,6 @@ const config: Config = {
         },
         primary: {
           DEFAULT: '#DA007B',
-          hover: '#B80068',
-          active: '#940054',
-          light: '#E279B4',
-          subtle: '#FEF6FA',
         },
         gradient: {
           red: '#f02065',    // shared gradient start (highlight + wordmark)
