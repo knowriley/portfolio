@@ -10,8 +10,8 @@ import InlineCode from './InlineCode'
 import CaseStudyTag from './CaseStudyTag'
 import { SectionDivider } from './case-study'
 import {
-  ArrowUpRight, ExternalLink, ArrowRight, ArrowLeft,
-  X, Check, ChevronDown, ChevronRight, Search, Plus,
+  ArrowUpRight, ArrowDownRight, ArrowRight, ArrowLeft,
+  MapPin, Menu, X, Lock, Play, Pause,
 } from 'lucide-react'
 
 // ── Local helpers ─────────────────────────────────────────────────────────────
@@ -33,6 +33,12 @@ function renderWithParenChips(text: string): React.ReactNode[] {
   return text.split(/\(([^)]+)\)/g).map((p, i) =>
     i % 2 === 1 ? <span key={i}>(<InlineCode>{p}</InlineCode>)</span> : p
   )
+}
+
+// Light fills that vanish against the page bg (#fafaf9) need a 1px outline
+const SWATCH_OUTLINE_HEXES = new Set(['#FFFFFF', '#fafaf9', '#f5f5f4'])
+function needsSwatchOutline(hex: string): boolean {
+  return SWATCH_OUTLINE_HEXES.has(hex)
 }
 
 function SegmentedControlDemo() {
@@ -543,7 +549,39 @@ function FoundationsContent() {
           text token classes. Never hardcode stroke or fill colors.
         </p>
 
-        <SubLabel>Sizes</SubLabel>
+        <div className="flex flex-wrap gap-6">
+          {[
+            { icon: <ArrowUpRight    size={48} strokeWidth={1.5} />, name: 'ArrowUpRight' },
+            { icon: <ArrowDownRight  size={48} strokeWidth={1.5} />, name: 'ArrowDownRight' },
+            { icon: <ArrowRight      size={48} strokeWidth={1.5} />, name: 'ArrowRight' },
+            { icon: <ArrowLeft       size={48} strokeWidth={1.5} />, name: 'ArrowLeft' },
+            { icon: <MapPin          size={48} strokeWidth={1.5} />, name: 'MapPin' },
+            { icon: <Menu            size={48} strokeWidth={1.5} />, name: 'Menu' },
+            { icon: <X               size={48} strokeWidth={1.5} />, name: 'X' },
+            { icon: <Lock            size={48} strokeWidth={1.5} />, name: 'Lock' },
+            { icon: <Play            size={48} strokeWidth={1.5} />, name: 'Play' },
+            { icon: <Pause           size={48} strokeWidth={1.5} />, name: 'Pause' },
+          ].map(({ icon, name }) => (
+            <figure key={name} className="flex flex-col gap-2 items-start w-36">
+              <div className="size-36 bg-bg-secondary border border-border rounded-sm flex items-center justify-center text-text-primary">
+                {icon}
+              </div>
+              <figcaption className="font-mono text-body-small text-text-tertiary leading-[1.5]">
+                {name}
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-small text-text-secondary">
+            Lucide has 1,500+ icons —{' '}
+            <InlineLink href="https://lucide.dev/icons" external variant="emphasis">browse the full library</InlineLink>
+            . Import only what you use; each icon is tree-shaken individually.
+          </p>
+        </div>
+
+        <SubLabel>Size</SubLabel>
         <div className="bg-bg-secondary border border-border rounded-sm p-8">
           {[
             { size: 20, strokeWidth: 2,   label: 'size={20} strokeWidth={2}',   use: 'UI icons at body-small scale — buttons, inputs, nav, inline links' },
@@ -562,57 +600,18 @@ function FoundationsContent() {
         </div>
 
         <SubLabel>Color</SubLabel>
-        <div className="bg-bg-secondary border border-border rounded-sm p-8">
-          {[
-            { cls: 'text-text-primary',   icon: <ArrowUpRight size={20} strokeWidth={2} />, label: 'text-text-primary',   use: 'Default — primary actions, emphasis' },
-            { cls: 'text-text-secondary', icon: <ArrowUpRight size={20} strokeWidth={2} />, label: 'text-text-secondary', use: 'Supporting icons alongside body text' },
-            { cls: 'text-text-tertiary',  icon: <ArrowUpRight size={20} strokeWidth={2} />, label: 'text-text-tertiary',  use: 'Decorative, indicators, external link arrows' },
-          ].map(({ cls, icon, label, use }) => (
-            <div key={label} className={`flex items-center gap-8 py-5 border-b border-border last:border-b-0 ${cls}`}>
-              <div className="w-12 flex items-center justify-center shrink-0">{icon}</div>
-              <div className="min-w-[14rem] shrink-0"><InlineCode>{label}</InlineCode></div>
-              <p className="text-body-small text-text-secondary flex-1 min-w-0">{use}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
-          <p className="text-body-small text-text-secondary">
-            <span className="text-text-primary">Adjacency rule:</span> when an icon sits next to text
-            (contact links, inline labels, button arrows), <span className="text-text-primary">omit
-            the icon&apos;s color class</span> so it inherits from the parent. Icon and adjacent
-            text must always render in the same color.
-          </p>
-        </div>
-
-        <SubLabel>Common icons in use</SubLabel>
-        <div className="flex flex-wrap gap-6">
-          {[
-            { icon: <ArrowUpRight size={20} strokeWidth={2} />, name: 'ArrowUpRight' },
-            { icon: <ExternalLink  size={20} strokeWidth={2} />, name: 'ExternalLink' },
-            { icon: <ArrowRight    size={20} strokeWidth={2} />, name: 'ArrowRight' },
-            { icon: <ArrowLeft     size={20} strokeWidth={2} />, name: 'ArrowLeft' },
-            { icon: <ChevronRight  size={20} strokeWidth={2} />, name: 'ChevronRight' },
-            { icon: <ChevronDown   size={20} strokeWidth={2} />, name: 'ChevronDown' },
-            { icon: <Check         size={20} strokeWidth={2} />, name: 'Check' },
-            { icon: <X             size={20} strokeWidth={2} />, name: 'X' },
-            { icon: <Search        size={20} strokeWidth={2} />, name: 'Search' },
-            { icon: <Plus          size={20} strokeWidth={2} />, name: 'Plus' },
-          ].map(({ icon, name }) => (
-            <div key={name} className="flex flex-col items-center gap-2 w-20">
-              <div className="size-12 bg-bg-secondary rounded-sm flex items-center justify-center text-text-secondary border border-border-subtle">
-                {icon}
-              </div>
-              <InlineCode>{name}</InlineCode>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
-          <p className="text-body-small text-text-secondary">
-            Lucide has 1,500+ icons —{' '}
-            <InlineLink href="https://lucide.dev/icons" external variant="emphasis">browse the full library</InlineLink>
-            . Import only what you use; each icon is tree-shaken individually.
+        <div className="flex flex-col md:flex-row gap-6 items-start">
+          <div className="w-full md:w-[188px] h-36 bg-bg-secondary border border-border rounded-sm shrink-0 flex items-center justify-center px-6">
+            <p className="font-mono text-body-small text-text-secondary text-center leading-[1.5]">
+              <span className="text-text-primary">
+                Inline link <ArrowUpRight size={20} strokeWidth={2} className="inline align-text-bottom" />
+              </span>
+            </p>
+          </div>
+          <p className="text-body-small text-text-secondary flex-1 min-w-0">
+            Icons inherit the color of the text they sit next to. When an icon is paired with a word,
+            omit its color class so it picks up the parent&apos;s <InlineCode>text-*</InlineCode> token.
+            Icon and adjacent text must always render in the same color.
           </p>
         </div>
       </section>
@@ -637,40 +636,42 @@ function FoundationsContent() {
         <p className="text-body-small text-text-secondary mb-6">
           The Tailwind CSS Stone (warm neutral) ramp underpins every semantic token. Referenced by semantic roles, never used directly in components.
         </p>
-        <div className="bg-bg-secondary border border-border rounded-sm p-8">
+        <div className="flex flex-wrap gap-6">
           {[
             { label: 'neutral-000', hex: '#FFFFFF', mapped: 'bg-secondary, text-inverse' },
             { label: 'neutral-050', hex: '#fafaf9', mapped: 'bg' },
             { label: 'neutral-100', hex: '#f5f5f4', mapped: 'border-subtle' },
             { label: 'neutral-200', hex: '#e7e5e4', mapped: 'bg-tertiary, border' },
             { label: 'neutral-300', hex: '#d6d3d1', mapped: 'border-strong, text-placeholder' },
-            { label: 'neutral-400', hex: '#a8a29e', mapped: '—' },
+            { label: 'neutral-400', hex: '#a8a29e' },
             { label: 'neutral-500', hex: '#78716c', mapped: 'text-tertiary' },
             { label: 'neutral-600', hex: '#57534e', mapped: 'text-secondary' },
-            { label: 'neutral-700', hex: '#44403c', mapped: '—' },
-            { label: 'neutral-800', hex: '#292524', mapped: '—' },
+            { label: 'neutral-700', hex: '#44403c' },
+            { label: 'neutral-800', hex: '#292524' },
             { label: 'neutral-900', hex: '#1c1917', mapped: 'bg-inverse, text-primary' },
-            { label: 'neutral-950', hex: '#0c0a09', mapped: '—' },
+            { label: 'neutral-950', hex: '#0c0a09' },
           ].map(({ label, hex, mapped }) => (
-            <div key={label} className="flex items-center gap-5 py-3 border-b border-border last:border-b-0">
+            <figure key={label} className="flex flex-col gap-2 items-start w-36">
               <div
-                className={`size-8 rounded-sm shrink-0 ${hex === '#FFFFFF' ? 'border border-border' : ''}`}
+                className={`size-36 rounded-sm shrink-0 ${needsSwatchOutline(hex) ? 'border border-border' : ''}`}
                 style={{ backgroundColor: hex }}
               />
-              <div className="min-w-[8rem] shrink-0"><InlineCode>{label}</InlineCode></div>
-              <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
-              <p className="text-body-small text-text-tertiary flex-1 min-w-0">
-                →{' '}
-                {mapped === '—'
-                  ? '—'
-                  : mapped.split(', ').map((c, i) => (
+              <figcaption className="flex flex-col gap-0.5 min-w-0">
+                <InlineCode>{label}</InlineCode>
+                <span className="font-mono text-body-small text-text-tertiary leading-[1.5]">{hex}</span>
+                {mapped && (
+                  <span className="text-body-small text-text-tertiary leading-[1.5]">
+                    →{' '}
+                    {mapped.split(', ').map((c, i) => (
                       <span key={c}>
                         {i > 0 && ', '}
                         <InlineCode>{c}</InlineCode>
                       </span>
                     ))}
-              </p>
-            </div>
+                  </span>
+                )}
+              </figcaption>
+            </figure>
           ))}
         </div>
 
@@ -679,89 +680,83 @@ function FoundationsContent() {
         <p className="text-body-small text-text-secondary mb-6">
           Magenta hue aligned with the gradient-pink direction. Used as <InlineCode>text-primary</InlineCode> for inline emphasis inside <InlineCode>text-text-secondary</InlineCode> paragraphs, numbered callout numbers, and case-study takeaway highlights. WCAG AA compliant as text on page bg (4.71:1).
         </p>
-        <div className="bg-bg-secondary border border-border rounded-sm p-8">
-          {[
-            { label: 'primary', hex: '#DA007B', note: 'Text highlights, numbered callouts, takeaway emphasis' },
-          ].map(({ label, hex, note }) => (
-            <div key={label} className="flex items-center gap-5 py-3 border-b border-border last:border-b-0">
-              <div className="size-8 rounded-sm shrink-0" style={{ backgroundColor: hex }} />
-              <div className="min-w-[8rem] shrink-0"><InlineCode>{label}</InlineCode></div>
-              <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
-              <p className="text-body-small text-text-tertiary flex-1 min-w-0">{note}</p>
-            </div>
-          ))}
+        <div className="flex flex-wrap gap-6">
+          <figure className="flex flex-col gap-2 items-start w-36">
+            <div className="size-36 rounded-sm shrink-0" style={{ backgroundColor: '#DA007B' }} />
+            <figcaption className="flex flex-col gap-0.5 min-w-0">
+              <InlineCode>primary</InlineCode>
+              <span className="font-mono text-body-small text-text-tertiary leading-[1.5]">#DA007B</span>
+            </figcaption>
+          </figure>
         </div>
 
         {/* ── Semantic: Text ── */}
         <SubLabel>Text · Semantic</SubLabel>
-        <div className="bg-bg-secondary border border-border rounded-sm p-8">
+        <div className="flex flex-wrap gap-6">
           {[
-            { label: 'text-text-primary',     hex: '#1c1917', role: 'Body, headings, all primary content' },
-            { label: 'text-text-secondary',   hex: '#57534e', role: 'Supporting prose, descriptions, metadata values' },
-            { label: 'text-text-tertiary',    hex: '#78716c', role: 'Labels, captions, placeholder hints' },
-            { label: 'text-text-placeholder', hex: '#d6d3d1', role: 'Form input placeholders — reserved, not yet used' },
-            { label: 'text-text-disabled',    hex: '#d6d3d1', role: 'Disabled states — reserved, not yet used' },
-            { label: 'text-text-inverse',     hex: '#FFFFFF', role: 'Text on dark/inverse surfaces', border: true },
-            { label: 'text-text-link',        hex: '#085fa0', role: 'Reserved — not currently used (links use text-secondary instead)' },
-            { label: 'text-text-link-hover',  hex: '#064b7d', role: 'Reserved — not currently used' },
-            { label: 'text-text-on-brand',    hex: '#FFFFFF', role: 'Text on brand-tinted surfaces — reserved, not yet used', border: true },
-          ].map(({ label, hex, role, border }) => (
-            <div key={label} className="flex items-center gap-5 py-4 border-b border-border last:border-b-0">
+            { label: 'text-text-primary',     hex: '#1c1917' },
+            { label: 'text-text-secondary',   hex: '#57534e' },
+            { label: 'text-text-tertiary',    hex: '#78716c' },
+            { label: 'text-text-placeholder', hex: '#d6d3d1' },
+            { label: 'text-text-disabled',    hex: '#d6d3d1' },
+            { label: 'text-text-inverse',     hex: '#FFFFFF' },
+            { label: 'text-text-link',        hex: '#085fa0' },
+            { label: 'text-text-link-hover',  hex: '#064b7d' },
+            { label: 'text-text-on-brand',    hex: '#FFFFFF' },
+          ].map(({ label, hex }) => (
+            <figure key={label} className="flex flex-col gap-2 items-start w-36">
               <div
-                className={`size-10 rounded-sm shrink-0 ${border ? 'border border-border' : ''}`}
+                className={`size-36 rounded-sm shrink-0 ${needsSwatchOutline(hex) ? 'border border-border' : ''}`}
                 style={{ backgroundColor: hex }}
               />
-              <div className="flex-1 min-w-0 flex items-center gap-4">
-                <div className="min-w-[13rem] shrink-0"><InlineCode>{label}</InlineCode></div>
-                <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
-                <p className="text-body-small text-text-secondary">{role}</p>
-              </div>
-            </div>
+              <figcaption className="flex flex-col gap-0.5 min-w-0">
+                <InlineCode>{label}</InlineCode>
+                <span className="font-mono text-body-small text-text-tertiary leading-[1.5]">{hex}</span>
+              </figcaption>
+            </figure>
           ))}
         </div>
 
         <SubLabel>Background · Semantic</SubLabel>
-        <div className="bg-bg-secondary border border-border rounded-sm p-8">
+        <div className="flex flex-wrap gap-6">
           {[
-            { label: 'bg-bg',           hex: '#fafaf9', role: 'Page background, nav surface' },
-            { label: 'bg-bg-secondary', hex: '#FFFFFF', role: 'Card surfaces, image placeholders, callout cards', border: true },
-            { label: 'bg-bg-tertiary',  hex: '#e7e5e4', role: 'Tag pills, subtle highlights' },
-            { label: 'bg-bg-inverse',   hex: '#1c1917', role: 'Dark / inverse surfaces' },
-            { label: 'bg-bg-brand',     hex: '#EAF4F4', role: 'Brand-tinted surface — reserved, not yet used' },
-          ].map(({ label, hex, role, border }) => (
-            <div key={label} className="flex items-center gap-5 py-4 border-b border-border last:border-b-0">
+            { label: 'bg-bg',           hex: '#fafaf9' },
+            { label: 'bg-bg-secondary', hex: '#FFFFFF' },
+            { label: 'bg-bg-tertiary',  hex: '#e7e5e4' },
+            { label: 'bg-bg-inverse',   hex: '#1c1917' },
+            { label: 'bg-bg-brand',     hex: '#EAF4F4' },
+          ].map(({ label, hex }) => (
+            <figure key={label} className="flex flex-col gap-2 items-start w-36">
               <div
-                className={`size-10 rounded-sm shrink-0 ${border ? 'border border-border' : ''}`}
+                className={`size-36 rounded-sm shrink-0 ${needsSwatchOutline(hex) ? 'border border-border' : ''}`}
                 style={{ backgroundColor: hex }}
               />
-              <div className="flex-1 min-w-0 flex items-center gap-4">
-                <div className="min-w-[13rem] shrink-0"><InlineCode>{label}</InlineCode></div>
-                <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
-                <p className="text-body-small text-text-secondary">{role}</p>
-              </div>
-            </div>
+              <figcaption className="flex flex-col gap-0.5 min-w-0">
+                <InlineCode>{label}</InlineCode>
+                <span className="font-mono text-body-small text-text-tertiary leading-[1.5]">{hex}</span>
+              </figcaption>
+            </figure>
           ))}
         </div>
 
         <SubLabel>Border · Semantic</SubLabel>
-        <div className="bg-bg-secondary border border-border rounded-sm p-8">
+        <div className="flex flex-wrap gap-6">
           {[
-            { label: 'border-border-subtle', hex: '#f5f5f4', role: 'Dividers, section rules, subtle separators' },
-            { label: 'border-border',        hex: '#e7e5e4', role: 'Card outlines, callout card borders' },
-            { label: 'border-border-strong', hex: '#d6d3d1', role: 'Emphasized borders, form inputs' },
-            { label: 'border-border-focus',  hex: '#2B6B6B', role: 'Focus rings — reserved, not yet used' },
-          ].map(({ label, hex, role }) => (
-            <div key={label} className="flex items-center gap-5 py-4 border-b border-border last:border-b-0">
+            { label: 'border-border-subtle', hex: '#f5f5f4' },
+            { label: 'border-border',        hex: '#e7e5e4' },
+            { label: 'border-border-strong', hex: '#d6d3d1' },
+            { label: 'border-border-focus',  hex: '#2B6B6B' },
+          ].map(({ label, hex }) => (
+            <figure key={label} className="flex flex-col gap-2 items-start w-36">
               <div
-                className="size-10 rounded-sm shrink-0 border-2"
-                style={{ borderColor: hex, backgroundColor: 'transparent' }}
+                className="size-36 rounded-sm shrink-0 bg-bg-secondary border-2"
+                style={{ borderColor: hex }}
               />
-              <div className="flex-1 min-w-0 flex items-center gap-4">
-                <div className="min-w-[13rem] shrink-0"><InlineCode>{label}</InlineCode></div>
-                <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">{hex}</p>
-                <p className="text-body-small text-text-secondary">{role}</p>
-              </div>
-            </div>
+              <figcaption className="flex flex-col gap-0.5 min-w-0">
+                <InlineCode>{label}</InlineCode>
+                <span className="font-mono text-body-small text-text-tertiary leading-[1.5]">{hex}</span>
+              </figcaption>
+            </figure>
           ))}
         </div>
 
@@ -769,15 +764,14 @@ function FoundationsContent() {
         <p className="text-body-small text-text-secondary mb-6">
           The brand pink accent. Used for high-emphasis interactive states.
         </p>
-        <div className="bg-bg-secondary border border-border rounded-sm p-8">
-          <div className="flex items-center gap-5 py-4 border-b border-border last:border-b-0">
-            <div className="size-10 rounded-sm shrink-0" style={{ backgroundColor: '#f02065' }} />
-            <div className="flex-1 min-w-0 flex items-center gap-4">
-              <div className="min-w-[13rem] shrink-0"><InlineCode>bg-accent</InlineCode></div>
-              <p className="font-mono text-body-small text-text-tertiary w-20 shrink-0">#f02065</p>
-              <p className="text-body-small text-text-secondary">Accent pink — decorative uses. Not used as button hover.</p>
-            </div>
-          </div>
+        <div className="flex flex-wrap gap-6">
+          <figure className="flex flex-col gap-2 items-start w-36">
+            <div className="size-36 rounded-sm shrink-0" style={{ backgroundColor: '#f02065' }} />
+            <figcaption className="flex flex-col gap-0.5 min-w-0">
+              <InlineCode>bg-accent</InlineCode>
+              <span className="font-mono text-body-small text-text-tertiary leading-[1.5]">#f02065</span>
+            </figcaption>
+          </figure>
         </div>
 
         <SubLabel>Highlights · Application</SubLabel>
@@ -818,41 +812,40 @@ function FoundationsContent() {
           the design explicitly calls for a gradient — primary-on-secondary is the default
           emphasis treatment.
         </p>
-        <div className="bg-bg-secondary border border-border rounded-sm p-8">
-
-          <div className="flex items-center gap-5 py-6 border-b border-border last:border-b-0">
+        <div className="flex flex-wrap gap-6">
+          <figure className="flex flex-col gap-2 items-start w-36">
             <div
-              className="h-10 w-10 rounded-sm shrink-0"
-              style={{ background: 'linear-gradient(to right, #f02065, #d5189b)' }}
+              className="size-36 rounded-sm shrink-0 bg-gradient-to-r from-gradient-red to-gradient-pink"
             />
-            <div className="flex-1 min-w-0">
-              <div className="mb-1"><InlineCode>from-gradient-red to-gradient-pink</InlineCode></div>
-              <p className="text-body-small text-text-tertiary mb-3">#f02065 → #d5189b</p>
-              <p className="text-body-big bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">
-                Inline text highlights
-              </p>
-              <p className="text-body-small text-text-tertiary mt-2">
-                Used in hero copy and testimonial pull quotes
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-5 py-6 border-b border-border last:border-b-0">
+            <figcaption className="flex flex-col gap-0.5 min-w-0">
+              <InlineCode>from-gradient-red to-gradient-pink</InlineCode>
+              <span className="font-mono text-body-small text-text-tertiary leading-[1.5]">#f02065 → #d5189b</span>
+            </figcaption>
+          </figure>
+          <figure className="flex flex-col gap-2 items-start w-36">
             <div
-              className="h-10 w-10 rounded-sm shrink-0"
-              style={{ background: 'linear-gradient(to right, #f02065 22%, #ff7700)' }}
+              className="size-36 rounded-sm shrink-0 bg-gradient-to-r from-gradient-red from-[22%] to-gradient-orange"
             />
-            <div className="flex-1 min-w-0">
-              <div className="mb-1"><InlineCode>from-gradient-red from-[22%] to-gradient-orange</InlineCode></div>
-              <p className="text-body-small text-text-tertiary mb-3">#f02065 → #ff7700 · Pink-orange</p>
-              <p className="text-h2 font-normal bg-clip-text text-transparent bg-gradient-to-r from-gradient-red from-[22%] to-gradient-orange">
-                Content dictates form
-              </p>
-              <p className="text-body-small text-text-tertiary mt-2">
-                Large text highlights (h2 and larger) and decorative items
-              </p>
-            </div>
-          </div>
+            <figcaption className="flex flex-col gap-0.5 min-w-0">
+              <InlineCode>from-gradient-red from-[22%] to-gradient-orange</InlineCode>
+              <span className="font-mono text-body-small text-text-tertiary leading-[1.5]">#f02065 → #ff7700</span>
+            </figcaption>
+          </figure>
+        </div>
+
+        <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+          <p className="text-body-big bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink mb-2">
+            Inline text highlights
+          </p>
+          <p className="text-body-small text-text-tertiary mb-6">
+            <InlineCode>from-gradient-red to-gradient-pink</InlineCode> — used in hero copy and testimonial pull quotes
+          </p>
+          <p className="text-h2 font-normal bg-clip-text text-transparent bg-gradient-to-r from-gradient-red from-[22%] to-gradient-orange mb-2">
+            Content dictates form
+          </p>
+          <p className="text-body-small text-text-tertiary">
+            <InlineCode>from-gradient-red from-[22%] to-gradient-orange</InlineCode> — large text highlights (h2 and larger) and decorative items
+          </p>
         </div>
 
         <div className="mt-8 bg-bg-secondary border border-border rounded-sm px-10 py-7">
