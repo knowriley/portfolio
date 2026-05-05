@@ -12,7 +12,7 @@ import {
   MetadataGrid,
   TwoColumnSection,
 } from '@/components/case-study'
-import { caseStudies, type CaseStudy } from '@/data/case-studies'
+import { caseStudies } from '@/data/case-studies'
 import { isUnlocked } from '@/lib/case-study-lock'
 
 const study = caseStudies.find((s) => s.slug === 'evidence-of-insurability')!
@@ -21,26 +21,9 @@ export const metadata = {
   title: `${study.title} — Riley Knowles`,
 }
 
-const nextStudies: CaseStudy[] = [
-  {
-    slug: 'coming-soon-a',
-    title: 'Coming Soon',
-    description: '',
-    tags: [],
-    year: '—',
-    industry: '—',
-    comingSoon: true,
-  },
-  {
-    slug: 'coming-soon-b',
-    title: 'Coming Soon',
-    description: '',
-    tags: [],
-    year: '—',
-    industry: '—',
-    comingSoon: true,
-  },
-]
+const nextStudy = caseStudies.find(
+  (s) => !s.hidden && s.slug !== 'evidence-of-insurability',
+)!
 
 // ── Page ─────────────────────────────────────────────────────────────────────
 
@@ -506,16 +489,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
           <div className="flex justify-center px-5 md:px-10 pt-12 pb-12 md:pb-24">
             <div className="max-w-page w-full">
               <Label>Next</Label>
-              <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3] mb-8">
-                I&apos;ve done other cool stuff too
-              </h2>
-              <div className="flex flex-col md:flex-row gap-8">
-                {nextStudies.map((study) => (
-                  <div key={study.slug} className="flex-1 min-w-0">
-                    <CaseStudyCard study={study} />
-                  </div>
-                ))}
-              </div>
+              <CaseStudyCard study={nextStudy} />
             </div>
           </div>
         </AnimateOnScroll>
