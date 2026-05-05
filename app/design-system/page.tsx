@@ -21,10 +21,9 @@ export default function DesignSystemPage() {
             </h1>
             <div className="flex-1 min-w-0 flex flex-col gap-2">
               <p className="text-body-small md:text-body-big text-text-secondary">
-                This page captures the visual subset of decisions I reach for when building a page —
-                type scale, color tokens, spacing, motion, components. The detailed system patterns
-                live in CLAUDE.md, sitting alongside the code so the docs never drift from
-                what&apos;s actually shipping.
+                A small subset of the system and design choices that support this website. The
+                true source of truth is maintained in CLAUDE.md — setting context and
+                mitigating drift.
               </p>
               <div className="flex gap-2 flex-wrap pt-2">
                 <Button
