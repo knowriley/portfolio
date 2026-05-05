@@ -456,7 +456,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                         transformed how I want to work forever. Figma is still ideal for
                         collaborating with other designers — but the speed and fidelity I can
                         achieve with code, and{' '}
-                        <span className="text-primary">the ability to engineer design context</span>{' '}
+                        <span className="text-primary [&_a]:text-inherit">the ability to engineer design context</span>{' '}
                         into the CLAUDE.md file I think planted the seed in my mind that
                         designers — as the SMEs of design — could in some future own the frontend
                         experience of the delivery pipeline (with review from senior frontend
@@ -471,7 +471,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                       <div className="h-8" />
                       <p className="text-body-small md:text-body-big text-text-secondary">
                         My very first question when getting onboarded to this project was,{' '}
-                        <span className="text-primary">
+                        <span className="text-primary [&_a]:text-inherit">
                           &ldquo;Can we automatically populate which products the customer
                           selected, so they don&apos;t have to?&rdquo;
                         </span>{' '}

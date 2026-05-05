@@ -86,7 +86,7 @@ export default function TestimonialCarousel() {
           the parent's transparent fill, revealing the slice of gradient at their position.
           See CLAUDE.md → Gradient system for the canonical pattern.
         */}
-        <p className="font-normal text-h3 md:text-h2 lg:text-h1 bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">
+        <p className="font-normal text-h3 md:text-h2 lg:text-h1 bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink [&_a]:text-inherit">
           {t.segments.map((seg, i) => (
             <span key={i} className={seg.highlight ? undefined : 'text-text-primary'}>
               {seg.text}

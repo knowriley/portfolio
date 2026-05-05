@@ -26,12 +26,9 @@ const config: Config = {
           DEFAULT: '#DA007B',
         },
         gradient: {
-          red: '#f02065',    // shared gradient start (highlight + wordmark)
-          pink: '#d5189b',   // highlight gradient end
+          red: '#f02065',    // shared gradient start (highlight + wordmark + Nav glow)
+          pink: '#d5189b',   // highlight gradient end + paywall accent (text-gradient-pink)
           orange: '#ff7700', // wordmark gradient end
-        },
-        accent: {
-          DEFAULT: '#f02065', // brand pink — accent color
         },
         bg: {
           DEFAULT: '#fafaf9',

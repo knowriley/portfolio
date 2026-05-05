@@ -99,7 +99,7 @@ export default function Hero() {
               gradient at their position.
             */}
             <h1
-              className={`font-normal mb-4 text-h3 md:text-h2 lg:text-display bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink ${
+              className={`font-normal mb-4 text-h3 md:text-h2 lg:text-display bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink [&_a]:text-inherit ${
                 enteredFinalFromGreeting ? 'animate-fade-in-up' : ''
               }`}
             >

@@ -42,7 +42,7 @@ For the components with multiple Figma variants/properties, the React prop names
 | Numbered Callout | `Body` (text) | `children` |
 | Tag | `Label` (text) | `children` |
 | InlineCode | `Label` (text) | `children` |
-| Segmented Control | `State` (Default \| Active) | (CSS-only — driven by `value === option.value` in React) |
+| Segmented Control | `State` (Default \| Hover \| Active) | (CSS-only — driven by `value === option.value` in React; Hover and Active are visually identical) |
 | Segmented Control | `Label` (text) | `option.label` |
 | Tab | `State` (Active \| Inactive) | (currently inline; see DesignSystemTabs) |
 | Carousel Dot | `State` (Active \| Inactive) | (currently inline; see TestimonialCarousel) |

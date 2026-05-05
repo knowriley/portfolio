@@ -22,6 +22,7 @@ const rawCaseStudies: CaseStudy[] = [
     year: 'Jun 2024 - Nov 2024',
     industry: 'B2B SEO',
     thumbnail: '/images/bricks-cover.webp',
+    hidden: true,
   },
   {
     slug: 'conductor-website-redesign',
