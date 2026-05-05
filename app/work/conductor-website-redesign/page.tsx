@@ -89,7 +89,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
           <div className="max-w-page w-full">
             <div className="flex gap-8 items-start py-12 md:py-20">
 
-              <TableOfContents items={tocItems} />
+              <TableOfContents items={tocItems} smoothScroll />
 
               {/* ── Content column ── */}
               <div className="flex-1 min-w-0">
@@ -157,7 +157,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                     The existing site felt dated and disconnected from the company&apos;s
                     forward-thinking culture and its defining product offering. Internally,
                     the message was blunt:{' '}
-                    <span className="text-primary">&ldquo;This website does not look like AI.
+                    <span className="text-primary [&_a]:text-inherit">&ldquo;This website does not look like AI.
                     We are GTM and the website needs a facelift.&rdquo;</span>
                   </p>
 
@@ -257,7 +257,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                           Getting the hero right was the most involved part of the process.
                           It was originally scoped to graphic design, but she was at capacity on
                           day-to-day needs, so I picked it up. I produced{' '}
-                          <span className="text-primary">10+ variations</span>, starting with
+                          <span className="text-primary [&_a]:text-inherit">10+ variations</span>, starting with
                           high-contrast exploration in shape motifs and motion. After aligning
                           GTM, Marketing, and UX Design on favorites, I ran a second iteration
                           that kept the structural motifs but rebuilt the color ways in-palette.
@@ -274,7 +274,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">1</span>
                           <p className="text-body-small md:text-body-big text-text-primary">
-                            <span className="text-primary">Ownership was ambiguous</span> — was graphic design responsible, or UX?
+                            <span className="text-primary [&_a]:text-inherit">Ownership was ambiguous</span> — was graphic design responsible, or UX?
                           </p>
                         </div>
                       </div>
@@ -282,7 +282,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">2</span>
                           <p className="text-body-small md:text-body-big text-text-primary">
-                            <span className="text-primary">The end state was hard to define</span> — Marketing Director, GTM Lead, or my manager as final say?
+                            <span className="text-primary [&_a]:text-inherit">The end state was hard to define</span> — Marketing Director, GTM Lead, or my manager as final say?
                           </p>
                         </div>
                       </div>
@@ -290,7 +290,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">3</span>
                           <p className="text-body-small md:text-body-big text-text-primary">
-                            The CEO wouldn&apos;t accept <span className="text-primary">a dark website</span>, so every direction had to work on light.
+                            The CEO wouldn&apos;t accept <span className="text-primary [&_a]:text-inherit">a dark website</span>, so every direction had to work on light.
                           </p>
                         </div>
                       </div>
@@ -298,7 +298,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">4</span>
                           <p className="text-body-small md:text-body-big text-text-primary">
-                            Meeting <span className="text-primary">color-contrast accessibility across gradients, responsive breakpoints, and Conductor&apos;s challenging green brand color</span>.
+                            Meeting <span className="text-primary [&_a]:text-inherit">color-contrast accessibility across gradients, responsive breakpoints, and Conductor&apos;s challenging green brand color</span>.
                           </p>
                         </div>
                       </div>
@@ -312,7 +312,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                     <TwoColumnSection heading="Simplified product visuals that tease the functionality and stay future-proof.">
                       <p className="text-body-small md:text-body-big text-text-secondary">
                         Rather than screenshot the current UI, I built{' '}
-                        <span className="text-primary">abstracted product visuals</span> that
+                        <span className="text-primary [&_a]:text-inherit">abstracted product visuals</span> that
                         communicate the product&apos;s value without locking the site to any
                         specific build — so the page holds up as the product continues to evolve.
                       </p>
@@ -328,7 +328,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                     <TwoColumnSection heading="A new product icon set with cross-team buy-in.">
                       <p className="text-body-small md:text-body-big text-text-secondary">
                         I designed the icon set anchored on{' '}
-                        <span className="text-primary">color associations from one department</span>,
+                        <span className="text-primary [&_a]:text-inherit">color associations from one department</span>,
                         then refined it with the broader design team. The final set earned
                         immediate buy-in from the Go-to-Market lead and Marketing Director — a
                         rare outcome in a project with this many cooks in the kitchen.
@@ -344,9 +344,9 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                   <div>
                     <TwoColumnSection heading="Scannable sections with custom, copy-driven illustrations.">
                       <p className="text-body-small md:text-body-big text-text-secondary">
-                        A net-new pattern: <span className="text-primary">hyper-simple custom illustrations</span>{' '}
+                        A net-new pattern: <span className="text-primary [&_a]:text-inherit">hyper-simple custom illustrations</span>{' '}
                         that are visually cohesive and help tell the story of the copy. The copy{' '}
-                        <span className="text-primary">directly</span> informed what I made — each
+                        <span className="text-primary [&_a]:text-inherit">directly</span> informed what I made — each
                         illustration earns its place by reinforcing a specific sentence on the page.
                       </p>
                     </TwoColumnSection>
@@ -407,7 +407,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
                       <p className="text-body-small md:text-body-big text-text-secondary">
                         The homepage now sets a visual bar the rest of the site can grow into.
                         The clear next step is to{' '}
-                        <span className="text-primary">formalize this work as a design system</span>{' '}
+                        <span className="text-primary [&_a]:text-inherit">formalize this work as a design system</span>{' '}
                         and roll it through the remaining pages as quickly as possible — because
                         the homepage now diverges meaningfully from everything behind it.
                       </p>

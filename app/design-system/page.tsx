@@ -21,10 +21,10 @@ export default function DesignSystemPage() {
             </h1>
             <div className="flex-1 min-w-0 flex flex-col gap-2">
               <p className="text-body-small md:text-body-big text-text-secondary">
-                While refining this portfolio I extracted every recurring decision —
-                color, type, spacing, components — into a small system that keeps each
-                page visually consistent. This page renders that system live from the
-                same source the rest of the site uses.
+                This page captures the visual subset of decisions I reach for when building a page —
+                type scale, color tokens, spacing, motion, components. The detailed system patterns
+                live in CLAUDE.md, sitting alongside the code so the docs never drift from
+                what&apos;s actually shipping.
               </p>
               <div className="flex gap-2 flex-wrap pt-2">
                 <Button

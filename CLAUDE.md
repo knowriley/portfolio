@@ -33,7 +33,7 @@ No test suite exists yet.
 - `size={32} strokeWidth={1.5}` — decorative / card icon
 - `size={48} strokeWidth={1.5}` — large decorative icon (stat cards, hero accents)
 
-**Case study pages** live at `app/work/[slug]/page.tsx`. The only published one is `design-system-documentation`. All case study metadata lives in `data/case-studies.ts` — add new entries there and create the matching page route.
+**Case study pages** live at `app/work/[slug]/page.tsx`. All case study metadata lives in `data/case-studies.ts` — add new entries there and create the matching page route. Pages with `hidden: true` are excluded from `WorkGrid` (via the filter in `components/WorkGrid.tsx`) and `notFound()` on direct visit; remove or set `hidden: false` to publish.
 
 **Fonts** are loaded in `app/layout.tsx` via `next/font/google` (Inter, Lora, JetBrains Mono) and exposed as CSS variables `--font-inter`, `--font-lora`, `--font-jetbrains-mono`.
 
@@ -77,7 +77,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 **Naming convention:** Figma uses `/` separators that map one-to-one to Tailwind config keys (e.g. Figma `text/primary` → Tailwind `text.primary` → class `text-text-primary`).
 
 **Figma variable collections:**
-- **Color** (39 vars) — atomic (neutral, primary, gradient, accent) + semantic (bg, border, text)
+- **Color** (34 vars) — atomic (neutral, primary, gradient) + semantic (bg, border, text)
 - **Spacing** (29 vars) — `spacing/0` through `spacing/384`, scoped to GAP and WIDTH_HEIGHT (includes `spacing/6` for `py-1.5` use cases)
 - **Border Radius** (10 vars) — `radius/none` through `radius/full`, scoped to CORNER_RADIUS
 
@@ -99,7 +99,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 - **Tab** — `State` (Active | Inactive), `Label` text (Foundations / Components header in DesignSystemTabs)
 - **Carousel Dot** — `State` (Active | Inactive) (TestimonialCarousel)
 - **InlineCode** — single component, `Label` text (matches `components/InlineCode.tsx`)
-- **Segmented Control** — `State` (Default | Active), `Label` text (matches `components/SegmentedControl.tsx`)
+- **Segmented Control** — `State` (Default | Hover | Active), `Label` text (matches `components/SegmentedControl.tsx`; Hover and Active are visually identical)
 
 **Code Connect status:** Not used. The manual mapping lives in `.figma/components.md`. Each Figma component carries a `description` (React file path + usage snippet) and `documentationLinks` (GitHub URL) — set both via `mcp__plugin_figma_figma__use_figma`.
 
@@ -118,29 +118,33 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 
 **Image & video optimization:** Optimize all `public/` assets per the user-scoped web asset defaults — WebP for images, MP4 H.264 for videos. `VideoBlock` emits `<source type="video/mp4">` so any non-`.mp4` source breaks playback. See `~/.claude/CLAUDE.md` for encoding parameters and the `sharp` / `ffmpeg-static` workflow.
 
-**Inline text highlights** — ⚠️ **REVISIT — these rules need refinement before next use.** Riley flagged that the inline-highlight system below isn't fully accurate as written. Don't blindly apply it on the next use; pause and clarify the intended pattern (default emphasis color, when pink vs. gradient applies, which sections own which treatment) before adding or changing any highlight spans. Only the existing call sites should be considered "as designed" for now.
+**Inline text highlights** — when a span of prose inside a `text-text-secondary` paragraph needs visual emphasis, wrap it in `<span className="text-primary [&_a]:text-inherit">`. Brand pink (`text-primary`, `#DA007B`) on a secondary paragraph is the standard emphasis treatment across the site — used in case-study prose, the About bio, in-callout phrases, and the paywall contact line. `text-text-primary` is the body-text role for primary readable copy, **not** an emphasis treatment — never reach for it to highlight a span. Reach for the gradient treatments below only when the design explicitly calls for a gradient.
 
-When a span of prose inside a `text-text-secondary` paragraph needs to be visually emphasized, default to wrapping it in `<span className="text-text-primary [&_a]:text-inherit">`. Primary-color highlight on a secondary-color paragraph is the standard emphasis treatment across the site. Only use the gradient highlights below when the user specifically requests a gradient.
+**Three pinks coexist in the system, each scoped to its role.** They are visually similar but distinctly different magentas — never substitute one for another:
 
-**Case-study takeaway pattern** — ⚠️ also part of the unresolved rules above. Currently used in the EOI Takeaways section: inside `<TwoColumnSection>` blocks, inline emphasis is `<span className="text-primary [&_a]:text-inherit">` (brand pink) instead of the default `text-text-primary`. Treat this as the one validated case-study takeaway treatment until the broader highlight rules are refined.
+| Token | Hex | Used for |
+|---|---|---|
+| `text-primary` / `bg-primary` | `#DA007B` | Inline text highlights (case studies, bio, callouts) |
+| `gradient.red` (`bg-gradient-red`) | `#f02065` | Gradient start color (red-pink + pink-orange) and the Nav logo glow |
+| `gradient.pink` (`text-gradient-pink`) | `#d5189b` | Gradient end color (red-pink) and the paywall lock icon + contact-link wrapper (`components/CaseStudyPaywall.tsx`) |
 
-**The highlight always wins over link color.** Any `InlineLink` that sits inside a highlight span must inherit the highlight's color instead of rendering in its own default `text-text-primary`. Use the Tailwind arbitrary variant `[&_a]:text-inherit` on the highlight span to propagate the color down to any child anchor. This is especially important for gradient highlights, where a child link with its own solid color would break the gradient visually.
+**The highlight always wins over link color.** Any `InlineLink` that sits inside a highlight span must inherit the highlight's color instead of rendering in its own default `text-text-primary`. Use the Tailwind arbitrary variant `[&_a]:text-inherit` on the highlight span to propagate the color down to any child anchor. Apply this to every highlight wrapper — solid brand-pink and gradient alike.
 
 **Gradient system** (`gradient.*` tokens in `tailwind.config.ts`):
 
-Two named gradients available — always applied via the parent-element pattern below. Use only when explicitly requested:
+Two named gradients. Reach for them only when the design explicitly calls for a gradient — solid brand-pink emphasis is the default.
 
 | Name | Classes | Tokens | Use |
 |---|---|---|---|
-| Red-pink | `from-gradient-red to-gradient-pink` | `#f02065 → #d5189b` | Inline text highlights (hero, testimonials) — on request |
-| Pink-orange | `from-gradient-red from-[22%] to-gradient-orange` | `#f02065 → #ff7700` | Large text highlights (h2 and larger) and decorative items — on request |
+| Red-pink | `from-gradient-red to-gradient-pink` | `#f02065 → #d5189b` | The only gradient used as a text highlight — hero (`Hero.tsx`) and testimonial quotes (`TestimonialCarousel.tsx`) |
+| Pink-orange | `from-gradient-red from-[22%] to-gradient-orange` | `#f02065 → #ff7700` | Decorative-only — Footer wordmark (`Footer.tsx`), Nav logo dot (`Nav.tsx`), About portrait blur glow (`app/about/page.tsx`). Not used as a text highlight in production |
 
 Never use raw hex values for these — always use the `gradient-*` token classes.
 
-**Apply the gradient to the parent element, not per highlighted phrase.** When a heading or paragraph has multiple highlighted segments, wrapping each segment in its own `bg-clip-text bg-gradient-to-r ...` span makes each phrase render its own narrow, independent gradient — the result reads as several disconnected color washes rather than one continuous one. Instead, paint the gradient on the parent element and selectively suppress it on non-highlighted text:
+**Apply the text gradient to the parent element, not per highlighted phrase.** When a heading or paragraph has multiple highlighted segments, wrapping each segment in its own `bg-clip-text bg-gradient-to-r ...` span makes each phrase render its own narrow, independent gradient — the result reads as several disconnected color washes rather than one continuous one. Instead, paint the gradient on the parent element and selectively suppress it on non-highlighted text:
 
 ```tsx
-<h1 className="text-h3 md:text-h2 lg:text-display bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink">
+<h1 className="text-h3 md:text-h2 lg:text-display bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink [&_a]:text-inherit">
   <span className="text-text-primary">Riley is an </span>
   experience strategist
   <span className="text-text-primary">, </span>
@@ -151,7 +155,7 @@ Never use raw hex values for these — always use the `gradient-*` token classes
 </h1>
 ```
 
-How it works: `bg-clip-text` on the parent restricts the gradient image to the area of text glyphs. `text-transparent` makes glyphs see-through so the clipped gradient shows. Child spans with `text-text-primary` paint solid text on top, hiding the gradient under those segments. The result: every highlighted phrase reveals the slice of gradient at its position, so the entire heading reads as one continuous wash. The highlight-wins-over-link-color rule still applies here — apply `[&_a]:text-inherit` on the gradient parent (not each child span) so anchors inherit the transparent fill.
+How it works: `bg-clip-text` on the parent restricts the gradient image to the area of text glyphs. `text-transparent` makes glyphs see-through so the clipped gradient shows. The masking child spans use `text-text-primary` here because they paint over the gradient with the body-text color — the mask is the body-text role, not an emphasis treatment. The result: every highlighted phrase reveals the slice of gradient at its position, so the entire heading reads as one continuous wash. `[&_a]:text-inherit` goes on the gradient parent (not each child span) so any nested anchor inherits the transparent fill.
 
 Reference implementations:
 - `components/Hero.tsx` — final-state h1 with three highlighted phrases
@@ -300,14 +304,15 @@ No selected-hover state by design. Non-color diff on hover: bg, border, and text
 
 **InlineCode** — `components/InlineCode.tsx` (Server Component). Usage: `<InlineCode>text-h1 md:text-display</InlineCode>`. Single visual treatment, no variants: `inline rounded-sm border border-border-subtle bg-neutral-200 px-1.5 py-0.5 font-mono text-[0.9em] text-text-primary`. Renders as a semantic `<code>` element. Use for inline references to code constructs (Tailwind classes, file names, prop names, hex values) within prose, in metadata columns, or in any cell where a monospaced chip is the primary data of the slot. Em-relative font size (`text-[0.9em]`) shrinks the chip to ~90% of its parent prose, so it stays proportional inside any role from `text-body-big` down to `text-body-small`. Plain `font-mono` is the right call for spec values like `1rem / 16px` where chip chrome would feel heavy.
 
-**Segmented Control** — `components/SegmentedControl.tsx` ('use client'). Usage: `<SegmentedControl options={[{label, value}, ...]} value={value} onChange={setValue} ariaLabel="…" />`. Generic over the option `value` type (string-literal union). Two visual states per segment: active (`bg-bg-inverse text-text-inverse font-medium`) and inactive (`text-text-secondary hover:text-text-primary`). Container is `inline-flex items-center gap-1 p-1 bg-bg-tertiary rounded-md`. Use for switching between mutually-exclusive views in place (e.g. the breakpoint switcher in `/design-system`). Distinct from the inline `Tab` pattern, which has no container and uses outlined inactive buttons.
+**Segmented Control** — `components/SegmentedControl.tsx` ('use client'). Usage: `<SegmentedControl options={[{label, value}, ...]} value={value} onChange={setValue} ariaLabel="…" />`. Generic over the option `value` type (string-literal union). Visually a horizontal variant of the `TableOfContents` menu — no container fill, hover and active share the same `bg-bg-tertiary` fill so any item the cursor lands on previews exactly how the active state will look. Container is `inline-flex items-center gap-0.5`. Use for switching between mutually-exclusive views in place (e.g. the breakpoint switcher in `/design-system`). Distinct from the inline `Tab` pattern, which uses an underline rather than a fill for active state.
 
 | State | Key classes |
 |---|---|
-| Inactive | `text-body-small px-3 py-1.5 rounded-sm text-text-secondary hover:text-text-primary` |
-| Active | `text-body-small font-medium px-3 py-1.5 rounded-sm bg-bg-inverse text-text-inverse` |
+| Inactive | `text-body-small px-2.5 py-1.5 rounded-sm text-text-secondary` |
+| Hover | `bg-bg-tertiary text-text-primary font-medium` (on `hover:` variant) |
+| Active | `bg-bg-tertiary text-text-primary font-medium` |
 
-**Table of Contents** — `components/TableOfContents.tsx` ('use client'). Usage: `<TableOfContents items={[{ label, id }, ...]} />`. Sticky sidebar TOC with IntersectionObserver-based active section tracking. Used in case study pages and the design system page. Hidden below `lg:` breakpoint.
+**Table of Contents** — `components/TableOfContents.tsx` ('use client'). Usage: `<TableOfContents items={[{ label, id }, ...]} smoothScroll? className? />`. Sticky sidebar TOC with IntersectionObserver-based active section tracking. Used in case study pages and the design system page. Hidden below `lg:` breakpoint.
 
 | State | Key classes |
 |---|---|
@@ -315,7 +320,9 @@ No selected-hover state by design. Non-color diff on hover: bg, border, and text
 | Hover | `bg-bg-tertiary text-text-primary font-medium` (on `hover:` variant) |
 | Active | `bg-bg-tertiary text-text-primary font-medium` |
 
-Each item gets a filled `bg-bg-tertiary` background on hover and when active — hover and active are intentionally identical so any item the cursor lands on previews exactly how the active state will look. No border on any state, so there's no layout shift between default and filled. `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room). The same hover-and-active fill treatment is applied to the `AboutBooks` accordion list (`components/AboutBooks.tsx`) — both lists share this convention.
+Each item gets a filled `bg-bg-tertiary` background on hover and when active — hover and active are intentionally identical so any item the cursor lands on previews exactly how the active state will look. No border on any state, so there's no layout shift between default and filled. `rounded-sm` on all items. Positioned `sticky top-32` (128px — clears the 64px nav with breathing room) by default; the design-system page passes `className="top-36"` to sit lower under its taller sticky header. The same hover-and-active fill treatment is applied to the `AboutBooks` accordion list (`components/AboutBooks.tsx`) — both lists share this convention.
+
+**Smooth scroll on click** — pass `smoothScroll` to enable a rAF-driven scroll handler in place of native anchor jumps. Currently opted in by all four case-study pages and the `/design-system` page (`DesignSystemTabs`); the prop defaults to `false` so the component remains a drop-in replacement for any future non-animated use. When enabled, clicking an item animates `window.scrollY` to the target's position offset by 96px (clears the 64px sticky `Nav` plus breathing room) using `easeInOutCubic`, with a distance-aware duration clamped to 420–900ms so short jumps stay snappy and long ones feel weighty. The active item highlight updates immediately on click rather than waiting for the IntersectionObserver to catch up. Modified clicks (cmd / ctrl / shift / alt / middle-button) fall through to native anchor behavior so "open in new tab" still works, and `prefers-reduced-motion` collapses the animation to an instant `scrollTo`. The URL hash is updated via `history.pushState` after the animation completes so deep links remain shareable. The 96px offset is tuned to the `Nav` height (64px) and is independent of the TOC's own sticky `top-*` value — both consumers get the same scroll-target offset regardless of how far down the TOC itself sits.
 
 ## Motion & Transitions
 

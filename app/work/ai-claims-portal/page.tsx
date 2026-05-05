@@ -85,7 +85,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
             <div className="flex gap-8 items-start py-12 md:py-20">
 
               {unlocked ? (
-                <TableOfContents items={tocItems} />
+                <TableOfContents items={tocItems} smoothScroll />
               ) : (
                 <div aria-hidden className="hidden lg:block w-[220px] shrink-0" />
               )}

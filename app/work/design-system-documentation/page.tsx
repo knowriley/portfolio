@@ -6,6 +6,7 @@ import TableOfContents from '@/components/TableOfContents'
 import InlineLink from '@/components/InlineLink'
 import AnimateOnScroll from '@/components/AnimateOnScroll'
 import { ArrowDownRight } from 'lucide-react'
+import { notFound } from 'next/navigation'
 import {
   Label,
   SectionDivider,
@@ -53,6 +54,8 @@ const nextStudies: CaseStudy[] = [
 // ── Page ─────────────────────────────────────────────────────────────────────
 
 export default function BricksDesignSystemCaseStudyPage() {
+  if (study.hidden) notFound()
+
   return (
     <>
       <Nav />
@@ -88,7 +91,7 @@ export default function BricksDesignSystemCaseStudyPage() {
           <div className="max-w-page w-full">
             <div className="flex gap-8 items-start py-12 md:py-20">
 
-              <TableOfContents items={tocItems} />
+              <TableOfContents items={tocItems} smoothScroll />
 
               {/* ── Content column ── */}
               <div className="flex-1 min-w-0">
@@ -188,7 +191,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">1</span>
                           <p className="text-body-small md:text-body-big text-text-primary">
-                            <span className="text-primary">Ask the design systems lead</span>, creating a workflow bottleneck.
+                            <span className="text-primary [&_a]:text-inherit">Ask the design systems lead</span>, creating a workflow bottleneck.
                           </p>
                         </div>
                       </div>
@@ -196,7 +199,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                         <div className="flex gap-4 items-center">
                           <span className="text-body-biggest text-primary shrink-0">2</span>
                           <p className="text-body-small md:text-body-big text-text-primary">
-                            <span className="text-primary">Search past design files</span> to mimic previous applications of certain components.
+                            <span className="text-primary [&_a]:text-inherit">Search past design files</span> to mimic previous applications of certain components.
                           </p>
                         </div>
                       </div>
@@ -205,7 +208,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                           <span className="text-body-biggest text-primary shrink-0">3</span>
                           <p className="text-body-small md:text-body-big text-text-primary">
                             Post their question to Slack where the{' '}
-                            <span className="text-primary">design team collectively rehashes design
+                            <span className="text-primary [&_a]:text-inherit">design team collectively rehashes design
                             decisions that were already made</span>{' '}
                             (but never written down) a couple features back.
                           </p>
@@ -223,7 +226,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                       <p className="text-body-small md:text-body-big text-text-secondary">
                         The capabilities of the built Bricks components in Storybook were much broader
                         than the more constrained Figma representations, creating{' '}
-                        <span className="text-primary">confusion at designer-developer handoff</span>.
+                        <span className="text-primary [&_a]:text-inherit">confusion at designer-developer handoff</span>.
                       </p>
                     </TwoColumnSection>
                   </div>
@@ -273,7 +276,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                       <p className="text-body-small md:text-body-big text-text-secondary">
                         Instead of describing expected component behavior, I relied on interactive Storybook
                         embeds.{' '}
-                        <span className="text-primary">This provides designers with a richer, visual-first understanding of expected
+                        <span className="text-primary [&_a]:text-inherit">This provides designers with a richer, visual-first understanding of expected
                         component behavior</span>. This also helps designers better understand the built components,
                         improving cross-collaboration between design and development teams.
                       </p>
@@ -297,7 +300,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                         <p className="text-body-small md:text-body-big text-text-secondary">
                           After feedback on V1 from the design team, I iterated to create landing pages for
                           each grouping of components that{' '}
-                          <span className="text-primary">surfaces their targeted use cases for better
+                          <span className="text-primary [&_a]:text-inherit">surfaces their targeted use cases for better
                           discoverability and quick decision-making.</span>
                         </p>
                       </div>
@@ -313,7 +316,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                         Most design systems questions sent to the Slack channel followed the form &ldquo;Should
                         I use X component or Y component in this situation?&rdquo; To meet the unique needs of
                         Conductor&apos;s specific design team, I included documentation sections that{' '}
-                        <span className="text-primary">explained the differences between the most frequently confused components.</span>
+                        <span className="text-primary [&_a]:text-inherit">explained the differences between the most frequently confused components.</span>
                       </p>
                     </TwoColumnSection>
                     <div className="h-12" />
@@ -328,7 +331,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                     <TwoColumnSection heading="Repeatable and maintainable process supporting long-term quality and scale.">
                       <p className="text-body-small md:text-body-big text-text-secondary">
                         When new components do need to be added to the documentation site,{' '}
-                        <span className="text-primary">I built slot-component Figma templates to quickly and easily update the documentation and
+                        <span className="text-primary [&_a]:text-inherit">I built slot-component Figma templates to quickly and easily update the documentation and
                         maintain visual consistency.</span>
                       </p>
                     </TwoColumnSection>
