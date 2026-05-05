@@ -37,7 +37,7 @@ function SectionHeading({ children, descriptor }: { children: React.ReactNode; d
 
 function SubLabel({ children }: { children: React.ReactNode }) {
   return (
-    <h3 className="text-body-small text-text-tertiary mb-6 mt-16 first:mt-0">{children}</h3>
+    <h3 className="text-body-big md:text-body-biggest font-normal text-text-primary mb-6 mt-16 first:mt-0">{children}</h3>
   )
 }
 
@@ -82,7 +82,6 @@ const foundationsToc = [
   { label: 'Radius',     id: 'radius' },
   { label: 'Shadow',     id: 'shadow' },
   { label: 'Motion',     id: 'motion' },
-  { label: 'Media',      id: 'media' },
 ]
 
 const componentsToc = [
@@ -97,6 +96,7 @@ const componentsToc = [
   { label: 'Segmented Control',  id: 'segmented-control' },
   { label: 'Carousel Dot',       id: 'carousel-dot' },
   { label: 'Table of Contents',  id: 'table-of-contents' },
+  { label: 'Media',              id: 'media' },
 ]
 
 // ── Foundations content ───────────────────────────────────────────────────────
@@ -297,9 +297,18 @@ function FoundationsContent() {
           ))}
         </div>
 
-        <p className="text-body-small text-text-secondary mt-8">
-          Color inherits from adjacent text — never set explicitly when an icon sits next to a word.
-        </p>
+        <SubLabel>Color</SubLabel>
+        <div className="flex flex-col md:flex-row items-start md:items-center gap-6 md:gap-8">
+          <div className="bg-bg-secondary border border-border rounded-sm p-8 shrink-0">
+            <span className="text-text-primary inline-flex items-center gap-1 underline underline-offset-2 decoration-1">
+              Visit GitHub
+              <ArrowUpRight size={20} strokeWidth={1.5} className="shrink-0" />
+            </span>
+          </div>
+          <p className="text-body-small text-text-secondary flex-1 min-w-0">
+            Color inherits from adjacent text — never set explicitly when an icon sits next to a word.
+          </p>
+        </div>
       </section>
 
       <SectionDivider />
@@ -530,7 +539,7 @@ function FoundationsContent() {
       <section id="radius">
         <SectionHeading
           descriptor={
-            <>Most surfaces are <InlineCode>rounded-sm</InlineCode> (4px). Pills and dots are <InlineCode>rounded-full</InlineCode>. Everything else is reach.</>
+            <>Three radii do the work — a subset of Tailwind&apos;s default scale. Soft but precise: enough rounding to feel approachable, never so much that the geometry goes soft.</>
           }
         >
           Radius
@@ -544,15 +553,8 @@ function FoundationsContent() {
             <p className="text-body-small text-text-tertiary flex-1">Use</p>
           </div>
           {[
-            { cls: 'rounded-none', value: '0px',    use: 'Sharp / reset' },
-            { cls: 'rounded-xs',   value: '2px',    use: '—' },
             { cls: 'rounded-sm',   value: '4px',    use: 'Cards, callout cards, image blocks, cover image, InlineCode chip, Segmented Control segments (primary use)' },
             { cls: 'rounded-md',   value: '8px',    use: 'Button (primary + outline); Segmented Control container' },
-            { cls: 'rounded-lg',   value: '12px',   use: '—' },
-            { cls: 'rounded-xl',   value: '16px',   use: '—' },
-            { cls: 'rounded-2xl',  value: '20px',   use: '—' },
-            { cls: 'rounded-3xl',  value: '24px',   use: '—' },
-            { cls: 'rounded-4xl',  value: '32px',   use: '—' },
             { cls: 'rounded-full', value: '9999px', use: 'IconButton, Filter Pill, Tag, Carousel Dot, nav logo dot' },
           ].map(({ cls, value, use }) => (
             <div key={cls} className="flex items-center gap-5 py-4 border-b border-border last:border-b-0">
@@ -574,20 +576,17 @@ function FoundationsContent() {
       <section id="shadow">
         <SectionHeading
           descriptor={
-            <>Warm-neutral shadows at low opacity. <InlineCode>shadow-sm</InlineCode> does almost all the work — every image and video uses it by default.</>
+            <>Reserved for media excerpts and elements that obviously float above the page. One shadow does the work — <InlineCode>shadow-sm</InlineCode> — for controlled, subtle emphasis.</>
           }
         >
           Shadow
         </SectionHeading>
 
-        <div className="bg-bg-secondary border border-border rounded-sm p-8">
-          {['shadow-xs', 'shadow-sm', 'shadow-md', 'shadow-lg', 'shadow-xl', 'shadow-2xl', 'shadow-inner'].map((cls) => (
-            <div key={cls} className="flex items-center gap-5 py-5 border-b border-border last:border-b-0">
-              <div className={`size-10 bg-bg rounded-sm shrink-0 ${cls}`} />
-              <InlineCode>{cls}</InlineCode>
-            </div>
-          ))}
-        </div>
+        <ImageBlock
+          src="/images/bricks-cover.webp"
+          alt="Example image with shadow-sm applied"
+          caption="shadow-sm on a media excerpt — the only shadow used in production."
+        />
       </section>
 
       <SectionDivider />
@@ -599,31 +598,37 @@ function FoundationsContent() {
         </SectionHeading>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-bg-secondary border border-border rounded-sm p-8 flex flex-col gap-6 items-start min-h-[200px]">
-            <AnimateOnScroll>
-              <div className="w-32 aspect-video bg-bg-tertiary rounded-sm border border-border" />
-            </AnimateOnScroll>
-            <div className="flex flex-col gap-1 items-start mt-auto">
+          <div className="flex flex-col gap-4">
+            <div className="bg-bg-secondary border border-border rounded-sm p-8 flex items-start min-h-[200px]">
+              <AnimateOnScroll>
+                <div className="w-32 aspect-video bg-bg-tertiary rounded-sm border border-border" />
+              </AnimateOnScroll>
+            </div>
+            <div className="flex flex-col gap-1 items-start">
               <p className="text-body-small text-text-primary font-medium">Page entry</p>
               <InlineCode>animate-fade-in-up</InlineCode>
               <p className="text-body-small text-text-tertiary">0.55s ease-out · fires on scroll</p>
             </div>
           </div>
 
-          <div className="bg-bg-secondary border border-border rounded-sm p-8 flex flex-col gap-6 items-start min-h-[200px]">
-            <div className="bg-bg-inverse text-text-inverse text-body-small px-6 py-3 rounded-md font-semibold transition-transform duration-200 hover:-translate-y-2.5 cursor-pointer">
-              Hover to lift
+          <div className="flex flex-col gap-4">
+            <div className="bg-bg-secondary border border-border rounded-sm p-8 flex items-start min-h-[200px]">
+              <div className="bg-bg-inverse text-text-inverse text-body-small px-6 py-3 rounded-md font-semibold transition-transform duration-200 hover:-translate-y-2.5 cursor-pointer">
+                Hover to lift
+              </div>
             </div>
-            <div className="flex flex-col gap-1 items-start mt-auto">
+            <div className="flex flex-col gap-1 items-start">
               <p className="text-body-small text-text-primary font-medium">Hover lift</p>
               <InlineCode>duration-200</InlineCode>
               <p className="text-body-small text-text-tertiary">200ms · transform</p>
             </div>
           </div>
 
-          <div className="bg-bg-secondary border border-border rounded-sm p-8 flex flex-col gap-6 items-start min-h-[200px]">
-            <Button href="#">Hover me</Button>
-            <div className="flex flex-col gap-1 items-start mt-auto">
+          <div className="flex flex-col gap-4">
+            <div className="bg-bg-secondary border border-border rounded-sm p-8 flex items-start min-h-[200px]">
+              <Button href="#">Hover me</Button>
+            </div>
+            <div className="flex flex-col gap-1 items-start">
               <p className="text-body-small text-text-primary font-medium">Arrow rotate</p>
               <InlineCode>transition-transform</InlineCode>
               <p className="text-body-small text-text-tertiary">150ms · rotate-45° on group-hover</p>
@@ -636,20 +641,6 @@ function FoundationsContent() {
         </p>
       </section>
 
-      <SectionDivider />
-
-      {/* ──────────────────────────── MEDIA ──────────────────────── */}
-      <section id="media">
-        <SectionHeading descriptor="Every image and video on the site renders through one component — same border, same shadow, same rounded corners, same caption pattern. Consistency over flexibility.">
-          Media
-        </SectionHeading>
-
-        <ImageBlock
-          src="/images/bricks-cover.webp"
-          alt="Example image rendered through ImageBlock"
-          caption="Standard chrome — border-border, shadow-sm, rounded-sm, centered caption."
-        />
-      </section>
     </>
   )
 }
@@ -840,6 +831,25 @@ function ComponentsContent() {
         <p className="text-body-small text-text-tertiary">
           Hover and active share the same fill — whatever your cursor is over previews how the active state will look.
         </p>
+      </section>
+
+      <SectionDivider />
+
+      {/* ──────────────────────────── MEDIA ──────────────────────── */}
+      <section id="media">
+        <SectionHeading
+          descriptor={
+            <>Every image and video renders through one component — <InlineCode>border-border</InlineCode>, <InlineCode>shadow-sm</InlineCode>, <InlineCode>rounded-sm</InlineCode>, centered caption. Consistency over flexibility.</>
+          }
+        >
+          Media
+        </SectionHeading>
+
+        <ImageBlock
+          src="/images/bricks-cover.webp"
+          alt="Example image rendered through ImageBlock"
+          caption="Standard chrome — border-border, shadow-sm, rounded-sm, centered caption."
+        />
       </section>
     </>
   )
