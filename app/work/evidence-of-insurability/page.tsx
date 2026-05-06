@@ -486,8 +486,9 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
 
         {/* ── Next case studies ── */}
         <AnimateOnScroll>
-          <div className="flex justify-center px-5 md:px-10 pt-12 pb-12 md:pb-24">
+          <div className="flex justify-center px-5 md:px-10 pb-12 md:pb-24">
             <div className="max-w-page w-full">
+              <SectionDivider />
               <Label>Next</Label>
               <CaseStudyCard study={nextStudy} />
             </div>
