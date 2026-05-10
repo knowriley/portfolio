@@ -47,11 +47,11 @@ const rawCaseStudies: CaseStudy[] = [
   },
   {
     slug: 'ai-claims-portal',
-    title: 'Converging 2 websites and 8 customer segments into 1 unified portal experience at Chubb Benefits',
+    title: 'Navigating scope explosion: Re-establishing design alignment in an AI-accelerated project',
     description:
-      'Unifying eight customer segments and three billing systems into a single claims portal — shipped faster with AI-assisted design and engineering workflows. Password-protected; details available on request.',
-    tags: ['Figma Engineering for AI', 'Cross-functional Alignment'],
-    year: 'Mar 2026 - Present',
+      "Led the design strategy and redesign of Chubb Benefits' unified consumer claims portal supporting 350K customers — stepping into a leadership role to re-align design and engineering after an AI-accelerated rebuild diverged from the original strategy.",
+    tags: ['Relationship Management', 'AI Workflows'],
+    year: 'Jan 2026 – Apr 2026',
     industry: 'Insurance',
     thumbnail: '/images/chubb-cover-unified-experience.webp',
   },
