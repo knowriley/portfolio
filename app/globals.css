@@ -10,6 +10,29 @@
   a {
     @apply transition-colors;
   }
+
+  /* Tailwind Preflight strips the UA outline. Restore it for keyboard users only.
+     Element selectors (specificity 0,1,1) beat the .outline-none utility (0,1,0)
+     so components don't have to opt in. */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  summary:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 3px solid theme('colors.border.focus');
+    outline-offset: 4px;
+  }
+
+  /* Anchors typically have no border-radius (inline links, whole-card links).
+     Outline follows border-radius, so square anchors get a square ring — round
+     them to match the rest of the system (image cards, buttons all use rounded-sm
+     or larger). Buttons/inputs are excluded since they already carry their own
+     radius (rounded-md, rounded-full, etc.). */
+  a:focus-visible {
+    border-radius: theme('borderRadius.sm');
+  }
 }
 
 @keyframes fade-in-up {
@@ -55,4 +78,15 @@
 
 .animate-fade-in-right {
   animation: fade-in-right 0.7s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

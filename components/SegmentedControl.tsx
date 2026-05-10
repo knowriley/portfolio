@@ -21,7 +21,7 @@ export default function SegmentedControl<T extends string>({
 }: SegmentedControlProps<T>) {
   return (
     <div
-      role="tablist"
+      role="group"
       aria-label={ariaLabel}
       className={`inline-flex items-center gap-0.5 ${className}`}
     >
@@ -31,8 +31,7 @@ export default function SegmentedControl<T extends string>({
           <button
             key={opt.value}
             type="button"
-            role="tab"
-            aria-selected={active}
+            aria-pressed={active}
             onClick={() => onChange(opt.value)}
             className={`text-body-small px-2.5 py-1.5 rounded-sm transition-colors ${
               active

@@ -7,7 +7,7 @@ export type TocItem = {
   id: string
 }
 
-const SCROLL_OFFSET = 96
+const DEFAULT_SCROLL_OFFSET = 96
 const easeInOutCubic = (t: number) =>
   t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
 
@@ -15,10 +15,15 @@ export default function TableOfContents({
   items,
   className,
   smoothScroll = false,
+  scrollOffset = DEFAULT_SCROLL_OFFSET,
 }: {
   items: TocItem[]
   className?: string
   smoothScroll?: boolean
+  /** Distance in px from viewport top where the smooth-scrolled section heading lands.
+   *  Default 96 clears the 64px sticky Nav. Pages with an additional sticky bar (e.g.
+   *  /design-system's tab bar) should pass a larger value. */
+  scrollOffset?: number
 }) {
   const [activeId, setActiveId] = useState<string>('')
   const rafRef = useRef<number | null>(null)
@@ -67,7 +72,7 @@ export default function TableOfContents({
       e.preventDefault()
 
       const targetY =
-        target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET
+        target.getBoundingClientRect().top + window.scrollY - scrollOffset
       const startY = window.scrollY
       const distance = targetY - startY
 
@@ -99,7 +104,7 @@ export default function TableOfContents({
       }
       rafRef.current = requestAnimationFrame(step)
     },
-    [smoothScroll],
+    [smoothScroll, scrollOffset],
   )
 
   return (

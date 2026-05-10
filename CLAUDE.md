@@ -118,7 +118,9 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 
 **Image & video optimization:** Optimize all `public/` assets per the user-scoped web asset defaults — WebP for images, MP4 H.264 for videos. `VideoBlock` emits `<source type="video/mp4">` so any non-`.mp4` source breaks playback. See `~/.claude/CLAUDE.md` for encoding parameters and the `sharp` / `ffmpeg-static` workflow.
 
-**Inline text highlights** — when a span of prose inside a `text-text-secondary` paragraph needs visual emphasis, wrap it in `<span className="text-primary [&_a]:text-inherit">`. Brand pink (`text-primary`, `#DA007B`) on a secondary paragraph is the standard emphasis treatment across the site — used in case-study prose, the About bio, in-callout phrases, and the paywall contact line. `text-text-primary` is the body-text role for primary readable copy, **not** an emphasis treatment — never reach for it to highlight a span. Reach for the gradient treatments below only when the design explicitly calls for a gradient.
+**Inline text highlights** — when a span of prose inside a `text-text-secondary` paragraph needs visual emphasis, wrap it in `<span className="text-primary [&_a]:text-inherit">`. Brand pink (`text-primary`, `#DA007B`) on a secondary paragraph is the standard emphasis treatment across the site — used in case-study prose, the About bio, and in-callout phrases. `text-text-primary` is the body-text role for primary readable copy, **not** an emphasis treatment — never reach for it to highlight a span. Reach for the gradient treatments below only when the design explicitly calls for a gradient.
+
+**Contrast caveat for highlights on tinted surfaces.** `text-primary` on `bg-bg-tertiary` is **3.92:1** — fails AA for normal-size text (4.5:1 minimum). Don't use the pink/gradient highlight on `bg-bg-tertiary` cards or callouts; let the underline + `text-text-primary` carry the link affordance instead (see `components/CaseStudyPaywall.tsx` for an example). The highlight treatment is safe on `bg` (`#fafaf9`) and `bg-bg-secondary` (white).
 
 **Three pinks coexist in the system, each scoped to its role.** They are visually similar but distinctly different magentas — never substitute one for another:
 
@@ -126,7 +128,7 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 |---|---|---|
 | `text-primary` / `bg-primary` | `#DA007B` | Inline text highlights (case studies, bio, callouts) |
 | `gradient.red` (`bg-gradient-red`) | `#f02065` | Gradient start color (red-pink + pink-orange) and the Nav logo glow |
-| `gradient.pink` (`text-gradient-pink`) | `#d5189b` | Gradient end color (red-pink) and the paywall lock icon + contact-link wrapper (`components/CaseStudyPaywall.tsx`) |
+| `gradient.pink` (`text-gradient-pink`) | `#d5189b` | Gradient end color (red-pink) and the paywall lock icon (`components/CaseStudyPaywall.tsx`) |
 
 **The highlight always wins over link color.** Any `InlineLink` that sits inside a highlight span must inherit the highlight's color instead of rendering in its own default `text-text-primary`. Use the Tailwind arbitrary variant `[&_a]:text-inherit` on the highlight span to propagate the color down to any child anchor. Apply this to every highlight wrapper — solid brand-pink and gradient alike.
 
@@ -338,7 +340,7 @@ All motion tokens live in `app/globals.css` (fade-in keyframes) or are applied a
 
 `fade-in-right` is intentionally ~27% slower than the other two. It's reserved for About's cover image, which has a longer overall stagger (2.0s delay) — the slower duration keeps the final entrance feeling weighty rather than rushed. Don't normalize the three durations to one value without rechecking the About hero sequence.
 
-**Hero stagger delays are hand-tuned, not formulaic.** The home Hero staggers at `0` / `0.8s` / `1.6s`; About Hero staggers the filter pills at `0.3 + i * 0.18s`. These numbers were picked by eye for each page's vibe, not derived from a scale. Treat them as page-specific design decisions — adjust in place, don't extract a shared rhythm.
+**Hero stagger delays are hand-tuned, not formulaic.** The home Hero staggers the three greeting phrases at `0` / `1.0s` / `1.6s` (shorter beat between phrases 2 and 3 than between 1 and 2), then holds for `1300ms` before fading out; About Hero staggers the filter pills at `0.3 + i * 0.18s`. These numbers were picked by eye for each page's vibe, not derived from a scale. Treat them as page-specific design decisions — adjust in place, don't extract a shared rhythm.
 
 **`AnimateOnScroll` contract** — `components/AnimateOnScroll.tsx` (client component):
 

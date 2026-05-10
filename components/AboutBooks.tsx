@@ -132,6 +132,7 @@ export default function AboutBooks() {
                       type="button"
                       onClick={() => setActiveIndex(isActive ? null : i)}
                       aria-expanded={isActive}
+                      aria-controls={`book-desc-${i}`}
                       className={`block w-full text-left text-body-small px-2.5 py-1.5 rounded-sm transition-colors lg:whitespace-nowrap ${
                         isActive
                           ? 'bg-bg-tertiary text-text-primary font-medium'
@@ -142,6 +143,9 @@ export default function AboutBooks() {
                     </button>
                     {book.description && (
                       <div
+                        id={`book-desc-${i}`}
+                        role="region"
+                        aria-label={`${book.title} description`}
                         className={`hidden lg:grid overflow-hidden transition-[grid-template-rows] duration-300 ease-out ${
                           isActive ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
                         }`}

@@ -44,11 +44,9 @@ export default function CaseStudyPaywall({ pathname }: { pathname: string }) {
 
           <p className="text-body-small text-text-secondary mb-6">
             Don&apos;t have it? Send me an email at{' '}
-            <span className="text-gradient-pink [&_a]:text-inherit">
-              <InlineLink href="mailto:knowles.riley@gmail.com">
-                knowles.riley@gmail.com
-              </InlineLink>
-            </span>
+            <InlineLink href="mailto:knowles.riley@gmail.com">
+              knowles.riley@gmail.com
+            </InlineLink>
             , I&apos;d be happy to share.
           </p>
 
@@ -61,7 +59,7 @@ export default function CaseStudyPaywall({ pathname }: { pathname: string }) {
               required
               placeholder="Password"
               aria-label="Password"
-              className="w-full text-body-small text-text-primary placeholder:text-text-tertiary bg-bg-secondary border border-border rounded-sm p-3 focus:border-border-strong outline-none transition-colors"
+              className="w-full text-body-small text-text-primary placeholder:text-text-tertiary bg-bg-secondary border border-border rounded-sm p-3 focus:border-border-focus transition-colors"
             />
             <SubmitButton />
           </form>
