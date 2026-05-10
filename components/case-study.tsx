@@ -29,7 +29,7 @@ export function SectionDivider() {
 //   <ImageBlock src="/work/slug/fig.png" alt="Audit findings" />
 //   <ImageBlock src="/work/slug/fig.png" alt="..." caption="Optional caption" />
 //   <ImageBlock type="video" src="/work/slug/demo.mp4" />
-//   <ImageBlock type="vimeo" vimeoId="123456789" caption="Full walkthrough" />
+//   <ImageBlock type="vimeo" vimeoId="123456789" title="Walkthrough video" caption="Full walkthrough" />
 //   <ImageBlock />                         ← placeholder
 //   <ImageBlock label="Custom label" />    ← placeholder with custom label
 
@@ -38,7 +38,7 @@ type ImageBlockBase = { bare?: boolean }
 type ImageBlockProps =
   | (ImageBlockBase & { type?: 'image'; src: string; alt: string; caption?: string })
   | (ImageBlockBase & { type: 'video'; src: string; caption?: string })
-  | (ImageBlockBase & { type: 'vimeo'; vimeoId: string; caption?: string })
+  | (ImageBlockBase & { type: 'vimeo'; vimeoId: string; title: string; caption?: string })
   | (ImageBlockBase & { type?: never; label?: string })
 
 export function ImageBlock(props: ImageBlockProps) {
@@ -53,6 +53,7 @@ export function ImageBlock(props: ImageBlockProps) {
         <div className={`relative rounded-sm overflow-hidden aspect-video w-full bg-bg-secondary${chrome}`}>
           <iframe
             src={`https://player.vimeo.com/video/${props.vimeoId}?autoplay=0&title=0&byline=0&portrait=0`}
+            title={props.title}
             className="absolute inset-0 w-full h-full"
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen

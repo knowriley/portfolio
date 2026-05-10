@@ -11,8 +11,15 @@ export default function AnimateOnScroll({
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
+  const [reducedMotion, setReducedMotion] = useState(false)
 
   useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReducedMotion(mq.matches)
+    if (mq.matches) {
+      setVisible(true)
+      return
+    }
     const el = ref.current
     if (!el) return
     const observer = new IntersectionObserver(
@@ -28,11 +35,14 @@ export default function AnimateOnScroll({
     return () => observer.disconnect()
   }, [])
 
+  const animationClass = reducedMotion
+    ? ''
+    : visible
+      ? 'animate-fade-in-up'
+      : 'opacity-0'
+
   return (
-    <div
-      ref={ref}
-      className={`${visible ? 'animate-fade-in-up' : 'opacity-0'} ${className}`}
-    >
+    <div ref={ref} className={`${animationClass} ${className}`}>
       {children}
     </div>
   )

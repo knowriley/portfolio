@@ -8,15 +8,15 @@ import InlineLink from './InlineLink'
 // `animate-fade-in-up`) actually move the text — `transform` is a no-op on inline elements.
 const PHRASES = [
   { words: ['Hey,'], delay: 0 },
-  { words: ["I'm", 'Riley'], delay: 1.2 },
-  // Phrase 3 follows phrase 2 with a shorter beat (0.7s) than phrase 2 follows phrase 1 (1.2s).
-  { words: ['and', "I'm", 'really', 'glad', "you're", 'here.'], delay: 1.9 },
+  { words: ["I'm", 'Riley'], delay: 1.0 },
+  // Phrase 3 follows phrase 2 with a shorter beat (0.6s) than phrase 2 follows phrase 1 (1.0s).
+  { words: ['and', "I'm", 'really', 'glad', "you're", 'here.'], delay: 1.6 },
 ]
 const FLAT_WORDS = PHRASES.flatMap(({ words, delay }) => words.map((word) => ({ word, delay })))
 const PHRASE_ANIM_S = 0.8 // per-phrase fade-in-up duration; overrides the class's 0.55s default
 const PHRASE_ANIM_MS = PHRASE_ANIM_S * 1000
 const GREETING_REVEAL_MS = Math.round(PHRASES[PHRASES.length - 1].delay * 1000) + PHRASE_ANIM_MS // last phrase fully visible
-const HOLD_MS = 1800
+const HOLD_MS = 1300
 const FADE_OUT_MS = 250
 const SESSION_FLAG = 'hero-greeting-shown'
 

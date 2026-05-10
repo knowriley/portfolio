@@ -61,7 +61,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
   return (
     <>
       <Nav />
-      <main>
+      <main id="main-content" tabIndex={-1}>
 
         {/* ── Hero ── */}
         <div className="animate-fade-in-up">

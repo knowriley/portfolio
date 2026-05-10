@@ -11,7 +11,7 @@ export default function DesignSystemPage() {
   return (
     <>
       <Nav variant="white" />
-      <main>
+      <main id="main-content" tabIndex={-1}>
 
         {/* ── Hero ── */}
         <section className="flex justify-center px-5 md:px-10 pt-10 md:pt-16 pb-8 md:pb-12 bg-bg-secondary">
