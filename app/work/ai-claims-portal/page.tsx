@@ -39,6 +39,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
         { label: 'Strategy',         id: 'strategy' },
         { label: 'Inflection Point', id: 'inflection-point' },
         { label: 'My Proposal',      id: 'my-proposal' },
+        { label: 'Solution',         id: 'solution' },
         { label: 'Impact',           id: 'impact' },
         { label: 'Takeaways',        id: 'takeaways' },
       ]
@@ -255,6 +256,86 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="h-12" />
                       <ImageBlock />
+                    </section>
+
+                    <SectionDivider />
+
+                    {/* ────────────────────────────── SOLUTION ───────────────────────────── */}
+                    <section id="solution">
+                      <Label>Solution</Label>
+                      <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                        TODO: umbrella Solution headline
+                      </h2>
+
+                      <div className="h-8" />
+
+                      <ImageBlock
+                        type="video"
+                        src="/images/chubb-claim-dashboard.mp4"
+                        caption="TODO: caption for the claim dashboard overview"
+                      />
+
+                      <div className="h-12" />
+
+                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                        Figma mockups engineered like code
+                      </h3>
+
+                      <div className="h-8" />
+
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        TODO: body copy describing how the Figma mockups were structured / componentized / responsive-engineered to match the code-side approach.
+                      </p>
+
+                      <div className="h-12" />
+
+                      <ImageBlock
+                        type="video"
+                        src="/images/chubb-mobile-responsive-screens.mp4"
+                        caption="TODO: caption for the responsive-screens demo"
+                      />
+
+                      <div className="h-12" />
+
+                      <ImageBlock
+                        src="/images/chubb-structure-again.webp"
+                        alt="TODO: alt text describing the Figma file structure"
+                        caption="TODO: caption for the structure diagram"
+                      />
+
+                      <div className="h-24" />
+
+                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                        Improved claim type selection
+                      </h3>
+
+                      <div className="h-8" />
+
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        We rebuilt the claim-type selection step around three targeted improvements:
+                      </p>
+
+                      <div className="h-4" />
+
+                      <div className="flex flex-col gap-5">
+                        <NumberedCallout number="1">
+                          Reduced cognitive load by simplifying the path to the right claim type.
+                        </NumberedCallout>
+                        <NumberedCallout number="2">
+                          Sharpened the language so users can clearly identify pregnancy and disability claims.
+                        </NumberedCallout>
+                        <NumberedCallout number="3">
+                          <span className="text-primary [&_a]:text-inherit">Made the flow fully mobile-responsive — the previous site had no mobile layout at all, despite more than 50% of user sessions happening on mobile.</span>
+                        </NumberedCallout>
+                      </div>
+
+                      <div className="h-12" />
+
+                      <ImageBlock
+                        type="video"
+                        src="/images/chubb-claim-type-selection.mp4"
+                        caption="TODO: caption for the claim-type selection demo"
+                      />
                     </section>
 
                     <SectionDivider />
