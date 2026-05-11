@@ -39,6 +39,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
         { label: 'Strategy',         id: 'strategy' },
         { label: 'Inflection Point', id: 'inflection-point' },
         { label: 'My Proposal',      id: 'my-proposal' },
+        { label: 'Solution',         id: 'solution' },
         { label: 'Impact',           id: 'impact' },
         { label: 'Takeaways',        id: 'takeaways' },
       ]
@@ -199,7 +200,11 @@ export default async function AiClaimsPortalCaseStudyPage() {
                       </p>
 
                       <div className="h-12" />
-                      <ImageBlock label="example" />
+                      <ImageBlock
+                        src="/images/chubb-targeted-updates-strategy.webp"
+                        alt="TODO: alt text describing the targeted updates strategy diagram"
+                        caption="TODO: caption for the targeted updates strategy diagram"
+                      />
                     </section>
 
                     <SectionDivider />
@@ -227,7 +232,11 @@ export default async function AiClaimsPortalCaseStudyPage() {
                       </div>
 
                       <div className="h-12" />
-                      <ImageBlock label="img" />
+                      <ImageBlock
+                        src="/images/chubb-home-page.webp"
+                        alt="TODO: alt text describing the rebuilt homepage"
+                        caption="TODO: caption for the rebuilt homepage screenshot"
+                      />
                     </section>
 
                     <SectionDivider />
@@ -254,7 +263,113 @@ export default async function AiClaimsPortalCaseStudyPage() {
                       </div>
 
                       <div className="h-12" />
-                      <ImageBlock />
+
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-expected-starting-place.webp"
+                            alt="TODO: alt text for the expected starting place mockup"
+                            caption="TODO: caption for the expected starting place"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-home-page.webp"
+                            alt="TODO: alt text for the Claude-rebuilt homepage"
+                            caption="TODO: caption for what Claude built"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-og-targeted-end-state.webp"
+                            alt="TODO: alt text for the original targeted end state mockup"
+                            caption="TODO: caption for the original targeted end state"
+                          />
+                        </div>
+                      </div>
+                    </section>
+
+                    <SectionDivider />
+
+                    {/* ────────────────────────────── SOLUTION ───────────────────────────── */}
+                    <section id="solution">
+                      <Label>Solution</Label>
+                      <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                        TODO: umbrella Solution headline
+                      </h2>
+
+                      <div className="h-8" />
+
+                      <ImageBlock
+                        type="video"
+                        src="/images/chubb-claim-dashboard.mp4"
+                        caption="TODO: caption for the claim dashboard overview"
+                      />
+
+                      <div className="h-12" />
+
+                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                        Figma mockups engineered like code
+                      </h3>
+
+                      <div className="h-8" />
+
+                      <ImageBlock
+                        type="video"
+                        src="/images/chubb-mobile-responsive-screens.mp4"
+                        caption="TODO: caption for the responsive-screens demo"
+                      />
+
+                      <div className="h-12" />
+
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-structure-again.webp"
+                            alt="TODO: alt text describing the Figma file structure"
+                            caption="TODO: caption for the structure diagram"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-body-small md:text-body-big text-text-secondary">
+                            TODO: body copy describing how the Figma mockups were structured / componentized / responsive-engineered to match the code-side approach.
+                          </p>
+                        </div>
+                      </div>
+
+                      <div className="h-24" />
+
+                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                        Improved claim type selection
+                      </h3>
+
+                      <div className="h-8" />
+
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        We rebuilt the claim-type selection step around three targeted improvements:
+                      </p>
+
+                      <div className="h-4" />
+
+                      <div className="flex flex-col gap-5">
+                        <NumberedCallout number="1">
+                          Reduced cognitive load by simplifying the path to the right claim type.
+                        </NumberedCallout>
+                        <NumberedCallout number="2">
+                          Sharpened the language so users can clearly identify pregnancy and disability claims.
+                        </NumberedCallout>
+                        <NumberedCallout number="3">
+                          <span className="text-primary [&_a]:text-inherit">Made the flow fully mobile-responsive — the previous site had no mobile layout at all, despite more than 50% of user sessions happening on mobile.</span>
+                        </NumberedCallout>
+                      </div>
+
+                      <div className="h-12" />
+
+                      <ImageBlock
+                        type="video"
+                        src="/images/chubb-claim-type-selection.mp4"
+                        caption="TODO: caption for the claim-type selection demo"
+                      />
                     </section>
 
                     <SectionDivider />
