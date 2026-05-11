@@ -200,7 +200,11 @@ export default async function AiClaimsPortalCaseStudyPage() {
                       </p>
 
                       <div className="h-12" />
-                      <ImageBlock label="example" />
+                      <ImageBlock
+                        src="/images/chubb-targeted-updates-strategy.webp"
+                        alt="TODO: alt text describing the targeted updates strategy diagram"
+                        caption="TODO: caption for the targeted updates strategy diagram"
+                      />
                     </section>
 
                     <SectionDivider />
@@ -228,7 +232,11 @@ export default async function AiClaimsPortalCaseStudyPage() {
                       </div>
 
                       <div className="h-12" />
-                      <ImageBlock label="img" />
+                      <ImageBlock
+                        src="/images/chubb-home-page.webp"
+                        alt="TODO: alt text describing the rebuilt homepage"
+                        caption="TODO: caption for the rebuilt homepage screenshot"
+                      />
                     </section>
 
                     <SectionDivider />
@@ -255,7 +263,30 @@ export default async function AiClaimsPortalCaseStudyPage() {
                       </div>
 
                       <div className="h-12" />
-                      <ImageBlock />
+
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-expected-starting-place.webp"
+                            alt="TODO: alt text for the expected starting place mockup"
+                            caption="TODO: caption for the expected starting place"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-home-page.webp"
+                            alt="TODO: alt text for the Claude-rebuilt homepage"
+                            caption="TODO: caption for what Claude built"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-og-targeted-end-state.webp"
+                            alt="TODO: alt text for the original targeted end state mockup"
+                            caption="TODO: caption for the original targeted end state"
+                          />
+                        </div>
+                      </div>
                     </section>
 
                     <SectionDivider />
@@ -283,12 +314,6 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="h-8" />
 
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        TODO: body copy describing how the Figma mockups were structured / componentized / responsive-engineered to match the code-side approach.
-                      </p>
-
-                      <div className="h-12" />
-
                       <ImageBlock
                         type="video"
                         src="/images/chubb-mobile-responsive-screens.mp4"
@@ -297,11 +322,20 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="h-12" />
 
-                      <ImageBlock
-                        src="/images/chubb-structure-again.webp"
-                        alt="TODO: alt text describing the Figma file structure"
-                        caption="TODO: caption for the structure diagram"
-                      />
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-structure-again.webp"
+                            alt="TODO: alt text describing the Figma file structure"
+                            caption="TODO: caption for the structure diagram"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="text-body-small md:text-body-big text-text-secondary">
+                            TODO: body copy describing how the Figma mockups were structured / componentized / responsive-engineered to match the code-side approach.
+                          </p>
+                        </div>
+                      </div>
 
                       <div className="h-24" />
 
