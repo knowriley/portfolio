@@ -39,7 +39,7 @@ const rawCaseStudies: CaseStudy[] = [
     slug: 'evidence-of-insurability',
     title: 'Ambiguous interaction to explicit choice: improving insurance product selection accuracy by 62%',
     description:
-      'Leveraged Claude Code to accelerate design, enabling two rounds of usability testing not originally in scope. These insights drove design changes that improved the customer experience and minimized downstream operational impacts — all without extending the delivery timeline.',
+      'Leveraged Claude Code to accelerate design, enabling two rounds of usability testing not originally in scope. These insights drove design changes that improved the customer experience and minimized downstream operational impacts, all without extending the delivery timeline.',
     tags: ['AI Workflows', 'Rapid Prototyping', 'A/B Testing', 'Interaction Design'],
     year: 'Apr 2026',
     industry: 'Insurance',
@@ -47,26 +47,32 @@ const rawCaseStudies: CaseStudy[] = [
   },
   {
     slug: 'ai-claims-portal',
-    title: 'Navigating scope explosion: Re-establishing design alignment in an AI-accelerated project',
+    title: "Pivoting design strategy mid-build for Chubb's 350K customer claims portal",
     description:
-      "Led the design strategy and redesign of Chubb Benefits' unified consumer claims portal supporting 350K customers — stepping into a leadership role to re-align design and engineering after an AI-accelerated rebuild diverged from the original strategy.",
+      "Led the design strategy and redesign of Chubb Benefits' unified consumer claims portal supporting 350K customers. Stepped into a leadership role to re-align design and engineering after an AI-accelerated rebuild diverged from the original strategy.",
     tags: ['Relationship Management', 'AI Workflows'],
-    year: 'Jan 2026 – Apr 2026',
+    year: 'Nov 2025 – Present',
     industry: 'Insurance',
-    thumbnail: '/images/chubb-cover-unified-experience.webp',
+    thumbnail: '/images/chubb-cover-unified-experience.mp4',
   },
 ]
 
-// Parse the start date from the `year` field. Accepts "Jun 2024",
-// "Feb 2025 - May 2025", "Mar 2026 - Present", or a bare "2023".
-// Falls back to 0 (oldest) when the value can't be parsed.
-function parseStartDate(year: string): number {
-  const start = year.split(/[–-]/)[0].trim()
-  const t = Date.parse(start)
-  return Number.isNaN(t) ? 0 : t
+// Parse the most-recently-active date from the `year` field — i.e. the END of
+// the range, or the single date if there's no range, or `Date.now()` for any
+// "Present" sentinel. Accepts "Jun 2024", "Feb 2025 - May 2025",
+// "Mar 2026 - Present", or a bare "2023". Falls back to 0 if unparseable.
+function parseRecency(year: string): number {
+  const parts = year.split(/[–-]/).map((s) => s.trim())
+  const end = parts[parts.length - 1]
+  if (/present/i.test(end)) return Date.now()
+  const t = Date.parse(end)
+  if (!Number.isNaN(t)) return t
+  const startFallback = Date.parse(parts[0])
+  return Number.isNaN(startFallback) ? 0 : startFallback
 }
 
-// Sorted by start date, most recent first. Keep source order for ties.
+// Sorted by most recently active first — in-progress ("Present") studies
+// lead, then completed studies by their end date. Keep source order for ties.
 export const caseStudies: CaseStudy[] = [...rawCaseStudies].sort(
-  (a, b) => parseStartDate(b.year) - parseStartDate(a.year),
+  (a, b) => parseRecency(b.year) - parseRecency(a.year),
 )

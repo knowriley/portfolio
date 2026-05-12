@@ -64,8 +64,8 @@ export default async function AiClaimsPortalCaseStudyPage() {
           <div className="flex justify-center px-5 md:px-10 pb-10 md:pb-16">
             <div className="max-w-page w-full">
               <ImageBlock
-                src="/images/chubb-cover-unified-experience.webp"
-                alt="Unified Chubb Benefits portal case study cover"
+                type="video"
+                src="/images/chubb-cover-unified-experience.mp4"
               />
             </div>
           </div>
@@ -90,14 +90,25 @@ export default async function AiClaimsPortalCaseStudyPage() {
                   <p className="text-small font-medium uppercase tracking-widest text-text-tertiary mb-4">Overview</p>
                   <div className="text-body-small md:text-body-big lg:text-body-biggest text-text-secondary">
                     <p>
-                      <span className="text-primary [&_a]:text-inherit">I led the design strategy, redesign and successful measurement of the Chubb Benefits consumer claims portal unification initiative, supporting 350K customers,</span>
-                      {' '}owning the re-design of the claims, billing, coverages and notifications experiences.
+                      I led the design strategy and redesign of the Chubb Benefits consumer claims portal unification initiative, supporting{' '}
+                      <span className="text-primary [&_a]:text-inherit">350K customers</span>
+                      , and{' '}
+                      <span className="text-primary [&_a]:text-inherit">owned measurement end-to-end, from scaffolding the baseline tracking system to defining delivery success metrics with product owners</span>
+                      . Before kickoff, I ran a stakeholder discovery workshop with 10+ insurance agents and led structured validation interviews to refine Chubb Benefits&rsquo; existing proto-personas, sharpening our understanding of the end user before design work began.
                     </p>
                     <p className="mt-6">
-                      When the original implementation strategy was abandoned, I stepped into a leadership role to own the relationship between design and engineering, and developed a new, successful design strategy that would (a) allow us to meet the delivery timeline, (b) keep designers as the design authority, (c) introduce meaningful user experience improvements.
+                      Entering the build phase, our initial design strategy was constrained to brand updates and targeted, tightly-scoped changes due to the complexity of the backend development requirements. However, midway through delivery{' '}
+                      <span className="text-primary [&_a]:text-inherit">the engineering team began a new AI-enabled development strategy without cross-functional alignment</span>
+                      , and the entire team — BAs, Product Owners, and QA — had to rapidly adjust.
                     </p>
                     <p className="mt-6">
-                      I additionally scaffolded the entire metrics-tracking dashboard in FullStory and partnered with product owners to define delivery success metrics, as well as personally owned the claims, billing and coverages experiences on the website.
+                      As the most technical member of the design team,{' '}
+                      <span className="text-primary [&_a]:text-inherit">I stepped into a leadership role to own the relationship between design and engineering</span>
+                      . I developed a new design strategy highly collaborative with engineering that{' '}
+                      <span className="text-primary [&_a]:text-inherit">kept designers as the design authority</span>
+                      {' '}and{' '}
+                      <span className="text-primary [&_a]:text-inherit">expanded the user experience improvements beyond the original targeted updates</span>
+                      , all while meeting the delivery timeline.
                     </p>
                   </div>
 
@@ -117,7 +128,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         </InlineLink>
                       </>
                     ) },
-                    { label: 'Timeline', content: 'Jan 2026 – Apr 2026' },
+                    { label: 'Timeline', content: 'Nov 2025 – Present' },
                     { label: 'Status',   content: 'In testing' },
                   ]} />
                 </section>
@@ -233,7 +244,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="h-12" />
                       <ImageBlock
-                        src="/images/chubb-home-page.webp"
+                        src="/images/chubb-combined.webp"
                         alt="TODO: alt text describing the rebuilt homepage"
                         caption="TODO: caption for the rebuilt homepage screenshot"
                       />
@@ -274,7 +285,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         </div>
                         <div className="flex-1 min-w-0">
                           <ImageBlock
-                            src="/images/chubb-home-page.webp"
+                            src="/images/chubb-combined.webp"
                             alt="TODO: alt text for the Claude-rebuilt homepage"
                             caption="TODO: caption for what Claude built"
                           />

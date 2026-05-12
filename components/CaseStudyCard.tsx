@@ -7,28 +7,31 @@ export type { CaseStudy }
 export default function CaseStudyCard({ study }: { study: CaseStudy }) {
   const isVideo = !!study.thumbnail && /\.(mov|mp4|webm)$/i.test(study.thumbnail)
   const content = (
-    <div className="flex flex-col-reverse md:flex-row gap-5 md:gap-8 items-start">
-      {/* Meta — 1/3 on the left at md+ */}
-      <div className="w-full md:w-1/3 space-y-2.5">
-        <h3
-          className={`text-body-biggest font-medium ${
-            study.comingSoon ? 'text-text-tertiary' : 'text-text-primary'
-          }`}
-        >
-          {study.title}
-        </h3>
+    <div className="flex flex-col gap-5 md:gap-8">
+      {/* Meta — title + year on the left, description on the right at md+ */}
+      <div className="flex flex-col md:flex-row gap-5 md:gap-8 items-start">
+        <div className="w-full md:w-1/2 space-y-2.5">
+          <h3
+            className={`text-h4 md:text-h3 font-medium ${
+              study.comingSoon ? 'text-text-tertiary' : 'text-text-primary'
+            }`}
+          >
+            {study.title}
+          </h3>
+          <p className="text-small text-text-tertiary">
+            {study.year}
+          </p>
+        </div>
 
         {!study.comingSoon && (
-          <p className="text-body-small text-text-secondary">{study.description}</p>
+          <div className="w-full md:w-1/2">
+            <p className="text-body-small text-text-secondary">{study.description}</p>
+          </div>
         )}
-
-        <p className="text-body-small text-text-tertiary">
-          {study.year}
-        </p>
       </div>
 
-      {/* Thumbnail — 2/3 on the right at md+ */}
-      <div className="relative w-full md:w-2/3 bg-bg-secondary rounded-sm overflow-hidden aspect-video shadow-xs border border-border">
+      {/* Thumbnail — full width */}
+      <div className="relative w-full bg-bg-secondary rounded-sm overflow-hidden aspect-video shadow-xs border border-border">
         {study.thumbnail ? (
           isVideo ? (
             <video
@@ -46,7 +49,7 @@ export default function CaseStudyCard({ study }: { study: CaseStudy }) {
               alt={study.title}
               fill
               className="object-cover"
-              sizes="(max-width: 768px) 100vw, 67vw"
+              sizes="100vw"
             />
           )
         ) : (
