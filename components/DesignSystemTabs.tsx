@@ -507,7 +507,7 @@ function FoundationsContent() {
             { label: 'border-border-subtle', hex: '#f5f5f4' },
             { label: 'border-border',        hex: '#e7e5e4' },
             { label: 'border-border-strong', hex: '#d6d3d1' },
-            { label: 'border-border-focus',  hex: '#2B6B6B' },
+            { label: 'border-border-focus',  hex: '#000ECD' },
           ].map(({ label, hex }) => (
             <figure key={label} className="flex flex-col gap-2 items-start w-36">
               <div

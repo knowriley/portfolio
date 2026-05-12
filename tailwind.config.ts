@@ -41,7 +41,7 @@ const config: Config = {
           subtle: '#f5f5f4',
           DEFAULT: '#e7e5e4',
           strong: '#d6d3d1',
-          focus: '#085fa0',
+          focus: '#000ECD',
         },
         text: {
           primary: '#1c1917',
