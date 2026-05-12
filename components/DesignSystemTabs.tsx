@@ -7,7 +7,6 @@ import InlineLink from './InlineLink'
 import TableOfContents from './TableOfContents'
 import SegmentedControl from './SegmentedControl'
 import InlineCode from './InlineCode'
-import CaseStudyTag from './CaseStudyTag'
 import AnimateOnScroll from './AnimateOnScroll'
 import { SectionDivider, ImageBlock } from './case-study'
 import {
@@ -70,6 +69,85 @@ function SegmentedControlDemo() {
   )
 }
 
+function TabDemo() {
+  type TabValue = 'overview' | 'details'
+  const [active, setActive] = useState<TabValue>('overview')
+  const options: { value: TabValue; label: string }[] = [
+    { value: 'overview', label: 'Overview' },
+    { value: 'details', label: 'Details' },
+  ]
+  return (
+    <div className="flex gap-8 border-b border-border w-full">
+      {options.map(({ value, label }) => {
+        const isActive = active === value
+        return (
+          <button
+            key={value}
+            type="button"
+            onClick={() => setActive(value)}
+            className={`text-body-small pb-3 transition-colors ${
+              isActive
+                ? 'font-medium text-text-primary border-b-2 border-text-primary -mb-px'
+                : 'text-text-secondary hover:text-text-primary'
+            }`}
+          >
+            {label}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+function CarouselDotDemo() {
+  const [active, setActive] = useState(0)
+  return (
+    <div className="flex items-center gap-2.5">
+      {[0, 1, 2, 3].map((i) => (
+        <button
+          key={i}
+          type="button"
+          onClick={() => setActive(i)}
+          aria-label={`Go to slide ${i + 1}`}
+          className={`size-2 rounded-full transition-all ${
+            i === active ? 'bg-text-primary' : 'bg-border-strong hover:bg-text-tertiary'
+          }`}
+        />
+      ))}
+    </div>
+  )
+}
+
+function TocDemo() {
+  type TocValue = 'overview' | 'problem'
+  const [active, setActive] = useState<TocValue>('problem')
+  const options: { value: TocValue; label: string }[] = [
+    { value: 'overview', label: 'Overview' },
+    { value: 'problem', label: 'Problem' },
+  ]
+  return (
+    <div className="flex flex-col gap-1 w-fit">
+      {options.map(({ value, label }) => {
+        const isActive = active === value
+        return (
+          <button
+            key={value}
+            type="button"
+            onClick={() => setActive(value)}
+            className={`text-left text-body-small px-2.5 py-1.5 rounded-sm transition-colors ${
+              isActive
+                ? 'bg-bg-tertiary text-text-primary font-medium'
+                : 'text-text-secondary hover:bg-bg-tertiary hover:text-text-primary hover:font-medium'
+            }`}
+          >
+            {label}
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
 // ── TOC data ──────────────────────────────────────────────────────────────────
 
 type Tab = 'Foundations' | 'Components'
@@ -86,11 +164,10 @@ const foundationsToc = [
 
 const componentsToc = [
   { label: 'Icon Button',        id: 'icon-button' },
-  { label: 'Primary Button',     id: 'primary-button' },
+  { label: 'Button',             id: 'primary-button' },
   { label: 'Navigation Link',    id: 'nav-link' },
   { label: 'Inline Link',        id: 'inline-link' },
   { label: 'Filter Pill',        id: 'filter-pill' },
-  { label: 'Tag',                id: 'tag' },
   { label: 'Inline Code',        id: 'inline-code' },
   { label: 'Tab',                id: 'tab' },
   { label: 'Segmented Control',  id: 'segmented-control' },
@@ -503,9 +580,9 @@ function FoundationsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm p-8">
           <div className="flex gap-4 py-3 border-b border-border last:border-b-0">
-            <p className="font-mono text-body-small text-text-tertiary w-16 shrink-0">Scale</p>
-            <p className="font-mono text-body-small text-text-tertiary w-16 shrink-0">px</p>
-            <p className="text-body-small text-text-tertiary flex-1">Semantic role on this site</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-16 shrink-0 pl-[7px]">Scale</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-16 shrink-0">px</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Semantic role on this site</p>
           </div>
           {[
             { scale: '1',    px: '4px',   role: 'Inline link inner gap (gap-1); footer column gap (gap-1)' },
@@ -547,10 +624,10 @@ function FoundationsContent() {
 
         <div className="bg-bg-secondary border border-border rounded-sm p-8">
           <div className="flex gap-5 py-3 border-b border-border last:border-b-0">
-            <div className="w-16 shrink-0" />
-            <p className="font-mono text-body-small text-text-tertiary w-24 shrink-0">Class</p>
-            <p className="font-mono text-body-small text-text-tertiary w-16 shrink-0">Value</p>
-            <p className="text-body-small text-text-tertiary flex-1">Use</p>
+            <div className="size-10 shrink-0" />
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-32 shrink-0 pl-[7px]">Class</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-16 shrink-0">Value</p>
+            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary flex-1">Use</p>
           </div>
           {[
             { cls: 'rounded-sm',   value: '4px',    use: 'Cards, callout cards, image blocks, cover image, InlineCode chip, Segmented Control segments (primary use)' },
@@ -562,7 +639,7 @@ function FoundationsContent() {
                 className="size-10 bg-bg-tertiary shrink-0"
                 style={{ borderRadius: value }}
               />
-              <div className="min-w-[6rem] shrink-0"><InlineCode>{cls}</InlineCode></div>
+              <div className="w-32 shrink-0"><InlineCode>{cls}</InlineCode></div>
               <p className="font-mono text-body-small text-text-tertiary w-16 shrink-0">{value}</p>
               <p className="text-body-small text-text-secondary flex-1 min-w-0">{renderWithParenChips(use)}</p>
             </div>
@@ -647,210 +724,169 @@ function FoundationsContent() {
 
 // ── Components content ────────────────────────────────────────────────────────
 
+function ShowcaseCard({
+  id,
+  title,
+  useCase,
+  spanFull = false,
+  children,
+}: {
+  id: string
+  title: string
+  useCase: string
+  spanFull?: boolean
+  children: React.ReactNode
+}) {
+  return (
+    <section
+      id={id}
+      className={`bg-bg-secondary border border-border rounded-sm p-6 md:p-8 flex flex-col gap-6 scroll-mt-32 ${spanFull ? 'md:col-span-2' : ''}`}
+    >
+      <header>
+        <h3 className="text-body-big font-medium text-text-primary mb-1">{title}</h3>
+        <p className="text-body-small text-text-tertiary">{useCase}</p>
+      </header>
+      <div className="flex flex-wrap items-center gap-3">{children}</div>
+    </section>
+  )
+}
+
 function ComponentsContent() {
   return (
     <>
-      <section id="icon-button">
-        <SectionHeading descriptor="Color is never the only channel for state. Every interactive element pairs a color shift with weight, fill, border, or transform.">
-          Components
-        </SectionHeading>
+      <SectionHeading descriptor="Color is never the only channel for state. Every interactive element pairs a color shift with weight, fill, border, or transform.">
+        Components
+      </SectionHeading>
 
-        <SubLabel>Icon Button</SubLabel>
-        <div className="mb-4 flex gap-2">
-          <IconButton icon={<ArrowLeft size={20} strokeWidth={2} />} onClick={() => {}} aria-label="Previous" />
-          <IconButton icon={<ArrowRight size={20} strokeWidth={2} />} onClick={() => {}} aria-label="Next" />
-        </div>
-        <p className="text-body-small text-text-tertiary">
-          Same dark fill as the primary button — they&apos;re the same family.
-        </p>
-      </section>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-      <SectionDivider />
+        <ShowcaseCard
+          id="icon-button"
+          title="Icon Button"
+          useCase="Compact action used in dense UI; matches the primary button colour."
+        >
+          <IconButton icon={<ArrowRight size={20} strokeWidth={2} />} onClick={() => {}} aria-label="Default" />
+          <span aria-hidden className="size-11 rounded-full bg-neutral-800 text-text-inverse flex items-center justify-center">
+            <ArrowRight size={20} strokeWidth={2} />
+          </span>
+        </ShowcaseCard>
 
-      <section id="primary-button">
-        <SubLabel>Primary Button</SubLabel>
-        <div className="mb-4">
+        <ShowcaseCard
+          id="primary-button"
+          title="Button"
+          useCase="Primary call to action, with an outline variant for secondary actions."
+        >
           <Button href="#">View Case Study</Button>
-        </div>
-        <p className="text-body-small text-text-tertiary mb-12">
-          Hover: subtle lightening + 45° arrow rotation. Color alone never carries an interactive state.
-        </p>
-
-        <SubLabel>Outline Variant</SubLabel>
-        <div className="mb-4">
           <Button variant="outline" href="#">Secondary</Button>
-        </div>
-        <p className="text-body-small text-text-tertiary">
-          Same arrow rotation as primary. Bg, border, and text all shift on hover.
-        </p>
-      </section>
+        </ShowcaseCard>
 
-      <SectionDivider />
-
-      <section id="nav-link">
-        <SubLabel>Navigation Link</SubLabel>
-        <div className="mb-4">
+        <ShowcaseCard
+          id="nav-link"
+          title="Navigation Link"
+          useCase="Top-level nav links; weight shifts on hover and active."
+        >
           <a href="#" className="inline-block text-body-small text-text-secondary hover:text-text-primary hover:font-medium px-2.5 py-1.5 rounded-sm transition-colors">
             work
           </a>
-        </div>
-        <p className="text-body-small text-text-tertiary">
-          No background fill — text color and weight shift only. The deliberate counter to the TOC&apos;s filled hover.
-        </p>
-      </section>
+        </ShowcaseCard>
 
-      <SectionDivider />
-
-      <section id="inline-link">
-        <SubLabel>Inline Link</SubLabel>
-        <div className="mb-4 flex flex-col gap-3 text-body-small text-text-secondary">
-          <div>Read the <InlineLink href="#">case study</InlineLink> (no icon)</div>
-          <div>Read the <InlineLink href="#" external variant="icon">case study</InlineLink> (with icon)</div>
-        </div>
-        <p className="text-body-small text-text-tertiary">
-          Underlined at rest, no underline on hover. Reverses the convention so the resting state announces &quot;link&quot; loudly.
-        </p>
-      </section>
-
-      <SectionDivider />
-
-      <section id="filter-pill">
-        <SubLabel>Filter Pill</SubLabel>
-        <div className="mb-4 flex flex-col gap-4">
-          <div className="flex items-center gap-4">
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-16 shrink-0">Default</p>
-            <button type="button" className="text-body-small px-4 py-2 rounded-full border bg-bg-secondary border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary transition-colors">
-              Design Systems
-            </button>
-            <button type="button" className="text-body-small font-medium px-4 py-2 rounded-full border bg-bg-inverse text-text-inverse border-transparent">
-              Selected
-            </button>
+        <ShowcaseCard
+          id="inline-link"
+          title="Inline Link"
+          useCase="Anchors inside prose; underlined by default, drops the underline on hover. Inline text gets the underline; higher-emphasis outbound links get the arrow."
+        >
+          <div className="flex flex-col gap-3 text-body-small text-text-secondary">
+            <div>Read the <InlineLink href="#">case study</InlineLink> (no icon)</div>
+            <div>Read the <InlineLink href="#" external variant="icon">case study</InlineLink> (with icon)</div>
           </div>
-          <div className="flex items-center gap-4">
-            <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-16 shrink-0">Small</p>
-            <button type="button" className="text-body-small px-3 py-1.5 rounded-full border bg-bg-secondary border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary transition-colors">
-              Design Systems
-            </button>
-            <button type="button" className="text-body-small font-medium px-3 py-1.5 rounded-full border bg-bg-inverse text-text-inverse border-transparent">
-              Selected
-            </button>
+        </ShowcaseCard>
+
+        <ShowcaseCard
+          id="filter-pill"
+          title="Filter Pill"
+          useCase="Toggles between mutually-exclusive filters in a row."
+        >
+          <div className="flex flex-col gap-4 w-full">
+            <div className="flex items-center gap-4 flex-wrap">
+              <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-16 shrink-0">Default</p>
+              <button type="button" className="text-body-small px-4 py-2 rounded-full border bg-bg-secondary border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary transition-colors">
+                Design Systems
+              </button>
+              <button type="button" className="text-body-small font-medium px-4 py-2 rounded-full border bg-bg-inverse text-text-inverse border-transparent">
+                Selected
+              </button>
+            </div>
+            <div className="flex items-center gap-4 flex-wrap">
+              <p className="text-small font-medium uppercase tracking-widest text-text-tertiary w-16 shrink-0">Small</p>
+              <button type="button" className="text-body-small px-3 py-1.5 rounded-full border bg-bg-secondary border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary transition-colors">
+                Design Systems
+              </button>
+              <button type="button" className="text-body-small font-medium px-3 py-1.5 rounded-full border bg-bg-inverse text-text-inverse border-transparent">
+                Selected
+              </button>
+            </div>
           </div>
-        </div>
-        <p className="text-body-small text-text-tertiary">
-          All four properties shift on hover (bg, border, text, weight). Color is never the only channel.
-        </p>
-      </section>
+        </ShowcaseCard>
 
-      <SectionDivider />
-
-      <section id="tag">
-        <SubLabel>Tag</SubLabel>
-        <div className="mb-4 flex flex-wrap gap-2">
-          <CaseStudyTag>Insurance</CaseStudyTag>
-          <CaseStudyTag>B2B</CaseStudyTag>
-          <CaseStudyTag>Design Systems</CaseStudyTag>
-        </div>
-        <p className="text-body-small text-text-tertiary">
-          Reads as a chip, not a label — denser than the TOC active state on purpose.
-        </p>
-      </section>
-
-      <SectionDivider />
-
-      <section id="inline-code">
-        <SubLabel>Inline Code</SubLabel>
-        <div className="mb-4 bg-bg-secondary border border-border rounded-sm px-10 py-7">
+        <ShowcaseCard
+          id="inline-code"
+          title="Inline Code"
+          useCase="Monospace chip for code references inside prose."
+        >
           <p className="text-body-small text-text-secondary">
             Every role is <InlineCode>font-normal</InlineCode> except{' '}
             <InlineCode>label</InlineCode>, which sets its own weight. Raw Tailwind sizes
             (<InlineCode>text-sm</InlineCode>, <InlineCode>text-lg</InlineCode>, etc.) are not
             used for body or UI text.
           </p>
-        </div>
-        <p className="text-body-small text-text-tertiary">
-          Monospace at <InlineCode>text-[0.9em]</InlineCode> so the chip stays proportional inside any prose role.
-        </p>
-      </section>
+        </ShowcaseCard>
 
-      <SectionDivider />
-
-      <section id="tab">
-        <SubLabel>Tab</SubLabel>
-        <div className="mb-4 flex gap-2">
-          <button type="button" className="text-body-small font-medium px-3 py-1.5 rounded-sm bg-bg-inverse text-text-inverse">
-            Active
-          </button>
-          <button type="button" className="text-body-small px-3 py-1.5 rounded-sm bg-bg-secondary border border-border text-text-secondary hover:bg-bg-tertiary hover:border-border-strong hover:text-text-primary transition-colors">
-            Inactive
-          </button>
-        </div>
-        <p className="text-body-small text-text-tertiary">
-          Same horizontal grouping as Segmented Control; underline differentiates an active tab from a switched view.
-        </p>
-      </section>
-
-      <SectionDivider />
-
-      <section id="segmented-control">
-        <SubLabel>Segmented Control</SubLabel>
-        <div className="mb-4">
-          <SegmentedControlDemo />
-        </div>
-        <p className="text-body-small text-text-tertiary">
-          Hover and active share the same fill — exact horizontal twin of the TOC menu pattern.
-        </p>
-      </section>
-
-      <SectionDivider />
-
-      <section id="carousel-dot">
-        <SubLabel>Carousel Dot</SubLabel>
-        <div className="mb-4 flex items-center gap-2">
-          <span className="size-2 rounded-full bg-text-primary inline-block" />
-          <span className="size-2 rounded-full bg-border-strong inline-block" />
-          <span className="size-2 rounded-full bg-border-strong inline-block" />
-          <span className="size-2 rounded-full bg-border-strong inline-block" />
-        </div>
-        <p className="text-body-small text-text-tertiary">
-          Three states only — minimum needed for orientation.
-        </p>
-      </section>
-
-      <SectionDivider />
-
-      <section id="table-of-contents">
-        <SubLabel>Table of Contents</SubLabel>
-        <div className="mb-4 flex flex-col gap-1 w-fit">
-          <a href="#" className="block text-body-small text-text-secondary hover:bg-bg-tertiary hover:text-text-primary hover:font-medium px-2.5 py-1.5 rounded-sm transition-colors">
-            Overview
-          </a>
-          <a href="#" className="block text-body-small font-medium text-text-primary bg-bg-tertiary px-2.5 py-1.5 rounded-sm">
-            Problem (active)
-          </a>
-        </div>
-        <p className="text-body-small text-text-tertiary">
-          Hover and active share the same fill — whatever your cursor is over previews how the active state will look.
-        </p>
-      </section>
-
-      <SectionDivider />
-
-      {/* ──────────────────────────── MEDIA ──────────────────────── */}
-      <section id="media">
-        <SectionHeading
-          descriptor={
-            <>Every image and video renders through one component — <InlineCode>border-border</InlineCode>, <InlineCode>shadow-sm</InlineCode>, <InlineCode>rounded-sm</InlineCode>, centered caption. Consistency over flexibility.</>
-          }
+        <ShowcaseCard
+          id="tab"
+          title="Tab"
+          useCase="Switches between sectioned content within a single view."
         >
-          Media
-        </SectionHeading>
+          <TabDemo />
+        </ShowcaseCard>
 
-        <ImageBlock
-          src="/images/bricks-cover.webp"
-          alt="Example image rendered through ImageBlock"
-          caption="Standard chrome — border-border, shadow-sm, rounded-sm, centered caption."
-        />
-      </section>
+        <ShowcaseCard
+          id="segmented-control"
+          title="Segmented Control"
+          useCase="In-place toggle between mutually-exclusive views. Visually identical to the Table of Contents item style — same padding, same active fill — by design, so the two patterns feel like horizontal and vertical variants of one menu."
+        >
+          <SegmentedControlDemo />
+        </ShowcaseCard>
+
+        <ShowcaseCard
+          id="carousel-dot"
+          title="Carousel Dot"
+          useCase="Position indicator for a carousel sequence."
+        >
+          <CarouselDotDemo />
+        </ShowcaseCard>
+
+        <ShowcaseCard
+          id="table-of-contents"
+          title="Table of Contents"
+          useCase="Sticky sidebar with IntersectionObserver-driven active-section tracking. Item style is intentionally identical to Segmented Control — the vertical variant of the same menu pattern."
+        >
+          <TocDemo />
+        </ShowcaseCard>
+
+        <ShowcaseCard
+          id="media"
+          title="Media"
+          useCase="Images and videos share the same treatment — border, soft shadow, rounded corners, centered caption. Videos add a play/pause button."
+          spanFull
+        >
+          <ImageBlock
+            type="video"
+            src="/images/eoi-cover.mp4"
+            caption="border-border, shadow-sm, rounded-sm, centered caption — applied identically to every image and video on the site."
+          />
+        </ShowcaseCard>
+
+      </div>
     </>
   )
 }

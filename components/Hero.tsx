@@ -64,7 +64,7 @@ export default function Hero() {
   const greetingFading = phase === 'fading-out'
 
   return (
-    <section className="flex justify-center px-5 md:px-10 md:h-[calc(100dvh-64px)]">
+    <section className="flex justify-center px-5 md:px-10 md:h-[calc(100dvh-64px)] md:pb-16">
       <div className="max-w-page w-full flex flex-col">
         {/* Spacer — fills remaining space on desktop, pushes content to bottom */}
         <div className="pt-12 md:pt-0 md:flex-1" />
@@ -123,6 +123,10 @@ export default function Hero() {
             </p>
           </>
         )}
+
+        {/* Bottom-of-viewport rule on desktop (md:h-[calc(100dvh-64px)] on the section
+            pins this to the viewport bottom); flows naturally below the bio on mobile. */}
+        <div className="border-t border-border" />
       </div>
     </section>
   )

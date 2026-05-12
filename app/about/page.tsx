@@ -88,6 +88,10 @@ export default function AboutPage() {
           </div>
         </section>
 
+        <div className="flex justify-center px-5 md:px-10">
+          <div className="max-w-page w-full border-t border-border" />
+        </div>
+
         <AboutBooks />
 
       </main>

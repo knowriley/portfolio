@@ -105,7 +105,7 @@ export default function AboutBooks() {
               key={`desc-${activeIndex}`}
               className="order-3 lg:hidden animate-fade-in"
             >
-              <div className="px-2.5 text-body-small text-text-secondary">
+              <div className="bg-bg-secondary border border-border rounded-sm p-5 text-body-small text-text-secondary">
                 {active.description}
                 {active.buyUrl && (
                   <div className="mt-4">
@@ -152,18 +152,20 @@ export default function AboutBooks() {
                       >
                         <div className="min-h-0">
                           <div
-                            className={`px-2.5 pt-2 pb-5 text-body-small text-text-secondary transition-opacity duration-300 ease-out ${
+                            className={`pt-2 pb-2 transition-opacity duration-300 ease-out ${
                               isActive ? 'opacity-100' : 'opacity-0'
                             }`}
                           >
-                            {book.description}
-                            {book.buyUrl && (
-                              <div className="mt-4">
-                                <InlineLink href={book.buyUrl} external variant="icon-emphasis">
-                                  Read {book.title}
-                                </InlineLink>
-                              </div>
-                            )}
+                            <div className="bg-bg-secondary border border-border rounded-sm p-5 text-body-small text-text-secondary">
+                              {book.description}
+                              {book.buyUrl && (
+                                <div className="mt-4">
+                                  <InlineLink href={book.buyUrl} external variant="icon-emphasis">
+                                    Read {book.title}
+                                  </InlineLink>
+                                </div>
+                              )}
+                            </div>
                           </div>
                         </div>
                       </div>
