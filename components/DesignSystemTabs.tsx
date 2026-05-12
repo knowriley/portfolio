@@ -754,7 +754,7 @@ function ShowcaseCard({
 function ComponentsContent() {
   return (
     <>
-      <SectionHeading descriptor="Color is never the only channel for state. Every interactive element pairs a color shift with weight, fill, border, or transform.">
+      <SectionHeading descriptor="A library of the small interactive parts that make up this site. Small introductions of motion introduce play, while reinforcing actions. Never used without purpose.">
         Components
       </SectionHeading>
 
