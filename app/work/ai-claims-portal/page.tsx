@@ -204,8 +204,8 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <ImageBlock
                         src="/images/chubb-strategy-before-after.webp"
-                        alt="TODO: alt text describing the before/after of an example targeted update"
-                        caption="TODO: caption for the before/after example"
+                        alt="Example of targeted design updates handoff"
+                        caption="Example of targeted design updates handoff"
                       />
 
                       <div className="h-12" />
@@ -223,8 +223,8 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         <div className="flex-1 min-w-0">
                           <ImageBlock
                             src="/images/chubb-targeted-updates-strategy.webp"
-                            alt="TODO: alt text describing the targeted updates strategy diagram"
-                            caption="TODO: caption for the targeted updates strategy diagram"
+                            alt="Handoff file for full page"
+                            caption="Handoff file for full page"
                           />
                         </div>
                       </div>
@@ -261,15 +261,15 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         <div className="flex-1 min-w-0">
                           <ImageBlock
                             src="/images/chubb-expected-starting-place.webp"
-                            alt="TODO: alt text for the expected starting place mockup"
-                            caption="TODO: caption for the expected starting place"
+                            alt="Expected starting point"
+                            caption="Expected starting point"
                           />
                         </div>
                         <div className="flex-1 min-w-0">
                           <ImageBlock
                             src="/images/chubb-combined.webp"
-                            alt="TODO: alt text for the rebuilt homepage"
-                            caption="TODO: caption for what Claude built"
+                            alt="AI output starting state"
+                            caption="AI output starting state"
                           />
                         </div>
                       </div>
@@ -312,22 +312,22 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         <div className="flex-1 min-w-0">
                           <ImageBlock
                             src="/images/chubb-expected-starting-place.webp"
-                            alt="TODO: alt text for the expected starting place mockup"
-                            caption="TODO: caption for the expected starting place"
+                            alt="Original website homepage"
+                            caption="Original website homepage"
                           />
                         </div>
                         <div className="flex-1 min-w-0">
                           <ImageBlock
                             src="/images/chubb-combined.webp"
-                            alt="TODO: alt text for the Claude-rebuilt homepage"
-                            caption="TODO: caption for what Claude built"
+                            alt="AI homepage build"
+                            caption="AI homepage build"
                           />
                         </div>
                         <div className="flex-1 min-w-0">
                           <ImageBlock
                             src="/images/chubb-og-targeted-end-state.webp"
-                            alt="TODO: alt text for the original targeted end state mockup"
-                            caption="TODO: caption for the original targeted end state"
+                            alt="Targeted end state"
+                            caption="Targeted end state"
                           />
                         </div>
                       </div>
