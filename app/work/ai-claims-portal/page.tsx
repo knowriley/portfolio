@@ -140,7 +140,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                     {/* ────────────────────────────── PROBLEM ────────────────────────────── */}
                     <section id="problem">
-                      <Label>Background</Label>
+                      <Label>Context</Label>
                       <h2 className="text-h3 md:text-h2 font-normal text-text-secondary leading-[1.3]">
                         2 portals, 3 customer segments, 3 backend billing systems
                       </h2>
@@ -175,6 +175,19 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <SectionDivider />
 
+                      <Label>Users</Label>
+                      <h2 className="text-h3 md:text-h2 font-normal text-text-secondary leading-[1.3]">
+                        TODO: Users headline
+                      </h2>
+
+                      <div className="h-4" />
+
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        TODO: Users body copy describing the people this portal serves.
+                      </p>
+
+                      <SectionDivider />
+
                       <Label>Problem</Label>
                       <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="flex-1 min-w-0">
@@ -202,20 +215,32 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="h-8" />
 
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        The team defined a focused, intentional consolidation strategy suitable to our tight timeline rather than going with a ground-up rebuild. We would use Portal A as the foundation - it already had the most complete feature set and serviced the majority of Chubb Benefits&rsquo; policyholders - and migrate the remaining customers there. We would{' '}
-                        <span className="text-primary [&_a]:text-inherit">introduce highly targeted, surgical design changes to bring clarity to the unified experience</span>
-                        , as well as{' '}
-                        <span className="text-primary [&_a]:text-inherit">update the colors and typography in closer alignment to Chubb&rsquo;s brand standards</span>
-                        . Critically, the new portal would be dynamically adaptive, relevant to their specific coverage context.
-                      </p>
+                      <ImageBlock
+                        src="/images/chubb-strategy-before-after.webp"
+                        alt="TODO: alt text describing the before/after of an example targeted update"
+                        caption="TODO: caption for the before/after example"
+                      />
 
                       <div className="h-12" />
-                      <ImageBlock
-                        src="/images/chubb-targeted-updates-strategy.webp"
-                        alt="TODO: alt text describing the targeted updates strategy diagram"
-                        caption="TODO: caption for the targeted updates strategy diagram"
-                      />
+
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <p className="text-body-small md:text-body-big text-text-secondary">
+                            The team defined a focused, intentional consolidation strategy suitable to our tight timeline rather than going with a ground-up rebuild. We would use Portal A as the foundation - it already had the most complete feature set and serviced the majority of Chubb Benefits&rsquo; policyholders - and migrate the remaining customers there. We would{' '}
+                            <span className="text-primary [&_a]:text-inherit">introduce highly targeted, surgical design changes to bring clarity to the unified experience</span>
+                            , as well as{' '}
+                            <span className="text-primary [&_a]:text-inherit">update the colors and typography in closer alignment to Chubb&rsquo;s brand standards</span>
+                            . Critically, the new portal would be dynamically adaptive, relevant to their specific coverage context.
+                          </p>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-targeted-updates-strategy.webp"
+                            alt="TODO: alt text describing the targeted updates strategy diagram"
+                            caption="TODO: caption for the targeted updates strategy diagram"
+                          />
+                        </div>
+                      </div>
                     </section>
 
                     <SectionDivider />
@@ -243,11 +268,22 @@ export default async function AiClaimsPortalCaseStudyPage() {
                       </div>
 
                       <div className="h-12" />
-                      <ImageBlock
-                        src="/images/chubb-combined.webp"
-                        alt="TODO: alt text describing the rebuilt homepage"
-                        caption="TODO: caption for the rebuilt homepage screenshot"
-                      />
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-expected-starting-place.webp"
+                            alt="TODO: alt text for the expected starting place mockup"
+                            caption="TODO: caption for the expected starting place"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-combined.webp"
+                            alt="TODO: alt text for the rebuilt homepage"
+                            caption="TODO: caption for what Claude built"
+                          />
+                        </div>
+                      </div>
                     </section>
 
                     <SectionDivider />
@@ -263,10 +299,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="text-body-small md:text-body-big text-text-secondary">
                         <p>
-                          At this pivotal point in the project, I leveraged my technical background to step into a leadership role - owning the working relationship between design and engineering, and proposing a feasible path forward.
-                        </p>
-                        <p className="mt-6">
-                          I suggested that we evaluate the Claude-generated designs against our design system standards and the existing website designs. Where Claude made brand-aligned and accessible changes, we would accept them and update our mockups to match.
+                          At this pivotal point in the project, I leveraged my technical background to step into a leadership role - owning the working relationship between design and engineering, and proposing a feasible path forward. I suggested that we evaluate the Claude-generated designs against our design system standards and the existing website designs. Where Claude made brand-aligned and accessible changes, we would accept them and update our mockups to match.
                         </p>
                         <p className="mt-6">
                           Goal of this was to maintain Design&rsquo;s position as an authority, while also demonstrating we could extend an olive branch to engineering and be flexible. It was also a legitimate opportunity to introduce meaningful user experience improvements that weren&rsquo;t previously in-scope.
