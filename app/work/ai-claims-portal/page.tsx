@@ -175,19 +175,6 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <SectionDivider />
 
-                      <Label>Users</Label>
-                      <h2 className="text-h3 md:text-h2 font-normal text-text-secondary leading-[1.3]">
-                        TODO: Users headline
-                      </h2>
-
-                      <div className="h-4" />
-
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        TODO: Users body copy describing the people this portal serves.
-                      </p>
-
-                      <SectionDivider />
-
                       <Label>Problem</Label>
                       <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="flex-1 min-w-0">
@@ -258,16 +245,18 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         <p>
                           As development ramped up, the project took a significant turn. Quickly, and without cross-functional alignment, the implementation approach shifted away from the previously aligned strategy of building on Portal A, toward a full, from-scratch rebuild of the website with Claude Code.
                         </p>
-                        <p className="mt-6">
-                          <span className="text-primary [&_a]:text-inherit">Without an established design context or clear guardrails in place, Claude built a completely unrecognizable website.</span>
-                          {' '}It introduced new and inconsistently applied UX patterns and a visual identity completely divergent from the original website or our global design system&rsquo;s standards. New hallucinated content needed to be combed through and revisited by different stakeholders and legal. QA efforts seemed impossible - deliverables no longer mapped cleanly to previously defined specifications.
-                        </p>
-                        <p className="mt-6">
-                          Scope creep? More like scope explosion. The team needed to recalibrate - quickly.
+                      </div>
+
+                      <div className="h-6" />
+
+                      <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7">
+                        <p className="text-body-small md:text-body-big lg:text-body-biggest text-primary">
+                          Without an established design context or clear guardrails in place, Claude built a completely unrecognizable website.
                         </p>
                       </div>
 
                       <div className="h-12" />
+
                       <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="flex-1 min-w-0">
                           <ImageBlock
@@ -284,6 +273,17 @@ export default async function AiClaimsPortalCaseStudyPage() {
                           />
                         </div>
                       </div>
+
+                      <div className="h-12" />
+
+                      <div className="text-body-small md:text-body-big text-text-secondary">
+                        <p>
+                          It introduced new and inconsistently applied UX patterns and a visual identity completely divergent from the original website or our global design system&rsquo;s standards. New hallucinated content needed to be combed through and revisited by different stakeholders and legal. QA efforts seemed impossible - deliverables no longer mapped cleanly to previously defined specifications.
+                        </p>
+                        <p className="mt-6">
+                          Scope creep? More like scope explosion. The team needed to recalibrate - quickly.
+                        </p>
+                      </div>
                     </section>
 
                     <SectionDivider />
@@ -299,7 +299,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="text-body-small md:text-body-big text-text-secondary">
                         <p>
-                          At this pivotal point in the project, I leveraged my technical background to step into a leadership role - owning the working relationship between design and engineering, and proposing a feasible path forward. I suggested that we evaluate the Claude-generated designs against our design system standards and the existing website designs. Where Claude made brand-aligned and accessible changes, we would accept them and update our mockups to match.
+                          As the most technical member of the design team, I stepped into a leadership role to own the relationship between design and engineering. I suggested that we evaluate the Claude-generated designs against our design system standards and the existing website designs. Where Claude made brand-aligned and accessible changes, we would accept them and update our mockups to match.
                         </p>
                         <p className="mt-6">
                           Goal of this was to maintain Design&rsquo;s position as an authority, while also demonstrating we could extend an olive branch to engineering and be flexible. It was also a legitimate opportunity to introduce meaningful user experience improvements that weren&rsquo;t previously in-scope.
