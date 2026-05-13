@@ -430,41 +430,43 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="h-8" />
 
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        We rebuilt the claim-type selection step around three targeted improvements:
-                      </p>
-
-                      <div className="h-4" />
-
-                      <div className="flex flex-col gap-5">
-                        <NumberedCallout number="1">
-                          Reduced cognitive load by simplifying the path to the right claim type.
-                        </NumberedCallout>
-                        <NumberedCallout number="2">
-                          Sharpened the language so users can clearly identify pregnancy and disability claims.
-                        </NumberedCallout>
-                        <NumberedCallout number="3">
-                          <span className="text-primary [&_a]:text-inherit">Made the flow fully mobile-responsive — the previous site had no mobile layout at all, despite more than 50% of user sessions happening on mobile.</span>
-                        </NumberedCallout>
+                      <div className="text-body-small md:text-body-big text-text-secondary">
+                        <p>
+                          In the original design, claimant and claim-type selection lived on the same step, cluttering the page and confusing users. Now they&rsquo;re clear, segmented steps.
+                        </p>
+                        <p className="mt-6">
+                          FullStory recordings and insights from our stakeholder discovery workshop revealed that customers had a really hard time identifying which claim type they needed to submit. Reimagining the claim types themselves was still out of scope, but we could add high-visibility, reassuring disability language for users looking to submit a disability claim. We also added examples to each claim type, leaning on the design principle that recognition is an easier way to inform a choice.
+                        </p>
                       </div>
 
                       <div className="h-12" />
 
-                      <ImageBlock
-                        type="video"
-                        src="/images/chubb-claim-type-selection.mp4"
-                        caption="TODO: caption for the claim-type selection demo"
-                      />
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-claim-selection-before.webp"
+                            alt="TODO: alt text for the original claim-type selection"
+                            caption="TODO: caption for the original claim-type selection"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-claim-selection-after.webp"
+                            alt="TODO: alt text for the rebuilt claim-type selection"
+                            caption="TODO: caption for the claim-type selection demo"
+                          />
+                        </div>
+                      </div>
 
                       <div className="h-24" />
 
                       <div className="flex flex-col md:flex-row gap-8 items-start">
-                        <div className="flex-1 min-w-0">
+                        <div className="md:flex-[2_1_0] min-w-0">
                           <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
                             Fully mobile responsive for the first time &mdash; finally giving the 50%+ mobile users of our website the experience they deserve
                           </h3>
                         </div>
-                        <div className="flex-1 min-w-0">
+                        <div className="md:flex-[1_1_0] min-w-0">
                           <ImageBlock
                             type="video"
                             src="/images/chubb-mobile-claim-selection.mp4"
@@ -494,7 +496,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
                     <section id="impact">
                       <Label>Impact</Label>
                       <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                        TODO: Impact headline (e.g. &ldquo;Launched on time, on-brand, and on-message&rdquo;)
+                        Brand-aligned, first-time fully responsive web experience for 350K customers, delivered on time.
                       </h2>
 
                       <div className="h-8" />
@@ -520,23 +522,10 @@ export default async function AiClaimsPortalCaseStudyPage() {
                     {/* ────────────────────────────── TAKEAWAYS ──────────────────────────── */}
                     <section id="takeaways">
                       <Label>Takeaways</Label>
-                      <TwoColumnSection heading="Context Matters">
-                        <div>
-                          <p className="text-body-small md:text-body-big text-text-secondary">
-                            The homepage now sets a visual bar the rest of the site can grow into. The clear next step is to formalize this work as a design system and roll it through the remaining pages as quickly as possible — because the homepage now diverges meaningfully from everything behind it.
-                          </p>
-                          <p className="text-body-small md:text-body-big text-text-secondary mt-6">
-                            TODO: Personal takeaway — what you learned about leading a cross-functional redesign under ambiguous decision ownership, and what you&rsquo;d do differently next time.
-                          </p>
-                        </div>
-                      </TwoColumnSection>
-
-                      <div className="h-8" />
-
                       <TwoColumnSection heading="Personal AI Velocity">
                         <div>
                           <p className="text-body-small md:text-body-big text-text-secondary">
-                            <span className="text-primary [&_a]:text-inherit">This work also reframed AI for me: done well, it isn&rsquo;t just slop-creation &mdash; it&rsquo;s a way to scale craft, not replace it.</span> Debugging over Zoom while I sent engineers annotated screenshots of inspected HTML over Teams felt deeply un-ideal &mdash; I was reacting to AI output instead of directing it. I wanted to get my hands on Claude Code myself, and I did on my{' '}
+                            Debugging over Zoom while I sent engineers annotated screenshots of inspected HTML over Teams felt deeply un-ideal. I was reacting to AI output instead of directing it. <span className="text-primary [&_a]:text-inherit">This work reframed AI for me: done well, it isn&rsquo;t just slop-creation; it&rsquo;s a way to scale craft, not replace it.</span> I wanted to get my hands on Claude Code myself, and I did, on my very{' '}
                             <InlineLink href="/work/evidence-of-insurability">next project</InlineLink>
                             .
                           </p>
