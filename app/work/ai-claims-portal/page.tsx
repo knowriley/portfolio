@@ -39,7 +39,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
         { label: 'Strategy',         id: 'strategy' },
         { label: 'Inflection Point', id: 'inflection-point' },
         { label: 'My Proposal',      id: 'my-proposal' },
-        { label: 'Solution',         id: 'solution' },
+        { label: 'UX Wins',          id: 'ux-wins' },
         { label: 'Impact',           id: 'impact' },
         { label: 'Takeaways',        id: 'takeaways' },
       ]
@@ -140,7 +140,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                     {/* ────────────────────────────── PROBLEM ────────────────────────────── */}
                     <section id="problem">
-                      <Label>Background</Label>
+                      <Label>Context</Label>
                       <h2 className="text-h3 md:text-h2 font-normal text-text-secondary leading-[1.3]">
                         2 portals, 3 customer segments, 3 backend billing systems
                       </h2>
@@ -155,13 +155,13 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="flex flex-col gap-5">
                         <NumberedCallout number="1">
-                          Individuals who purchase coverage directly, like self-employed policyholders managing their own bills
+                          Individuals who <span className="text-primary [&_a]:text-inherit">purchase coverage directly</span>, like self-employed policyholders managing their own bills
                         </NumberedCallout>
                         <NumberedCallout number="2">
-                          Employees who receive coverage through their employer and are named on the policy.
+                          Employees who receive <span className="text-primary [&_a]:text-inherit">coverage through their employer</span> and are <span className="text-primary [&_a]:text-inherit">named on the policy</span>.
                         </NumberedCallout>
                         <NumberedCallout number="3">
-                          Employees who receive coverage through their employer and are not named on the policy.
+                          Employees who receive <span className="text-primary [&_a]:text-inherit">coverage through their employer</span> and are <span className="text-primary [&_a]:text-inherit">not named on the policy</span>.
                         </NumberedCallout>
                       </div>
 
@@ -172,6 +172,25 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         <span className="text-primary [&_a]:text-inherit">Which portal a customer used had nothing to do with who they were or even how their coverage worked</span>
                         {' '}- it was determined entirely by which back-end billing system their policy happened to live in.
                       </p>
+
+                      <div className="h-12" />
+
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-expected-starting-place.webp"
+                            alt="Portal A — supporting most customers, has direct-pay billing features but outdated branding."
+                            caption="Portal A &mdash; Supporting most customers, has direct-pay billing features but outdated branding."
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-blue-portal.webp"
+                            alt="Portal B — for 1 customer segment only, limited features, closer branding but still not there."
+                            caption="Portal B &mdash; For 1 customer segment only, limited features, closer branding but still not there"
+                          />
+                        </div>
+                      </div>
 
                       <SectionDivider />
 
@@ -202,20 +221,32 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="h-8" />
 
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        The team defined a focused, intentional consolidation strategy suitable to our tight timeline rather than going with a ground-up rebuild. We would use Portal A as the foundation - it already had the most complete feature set and serviced the majority of Chubb Benefits&rsquo; policyholders - and migrate the remaining customers there. We would{' '}
-                        <span className="text-primary [&_a]:text-inherit">introduce highly targeted, surgical design changes to bring clarity to the unified experience</span>
-                        , as well as{' '}
-                        <span className="text-primary [&_a]:text-inherit">update the colors and typography in closer alignment to Chubb&rsquo;s brand standards</span>
-                        . Critically, the new portal would be dynamically adaptive, relevant to their specific coverage context.
-                      </p>
+                      <ImageBlock
+                        src="/images/chubb-strategy-before-after.webp"
+                        alt="Example of targeted design updates handoff"
+                        caption="Example of targeted design updates handoff"
+                      />
 
                       <div className="h-12" />
-                      <ImageBlock
-                        src="/images/chubb-targeted-updates-strategy.webp"
-                        alt="TODO: alt text describing the targeted updates strategy diagram"
-                        caption="TODO: caption for the targeted updates strategy diagram"
-                      />
+
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <p className="text-body-small md:text-body-big text-text-secondary">
+                            The team defined a focused, intentional consolidation strategy suitable to our tight timeline rather than going with a ground-up rebuild. We would use Portal A as the foundation - it already had the most complete feature set and serviced the majority of Chubb Benefits&rsquo; policyholders - and migrate the remaining customers there. We would{' '}
+                            <span className="text-primary [&_a]:text-inherit">introduce highly targeted, surgical design changes to bring clarity to the unified experience</span>
+                            , as well as{' '}
+                            <span className="text-primary [&_a]:text-inherit">update the colors and typography in closer alignment to Chubb&rsquo;s brand standards</span>
+                            . Critically, the new portal would be dynamically adaptive, relevant to their specific coverage context.
+                          </p>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-targeted-updates-strategy.webp"
+                            alt="Handoff file for full page"
+                            caption="Handoff file for full page"
+                          />
+                        </div>
+                      </div>
                     </section>
 
                     <SectionDivider />
@@ -233,21 +264,45 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         <p>
                           As development ramped up, the project took a significant turn. Quickly, and without cross-functional alignment, the implementation approach shifted away from the previously aligned strategy of building on Portal A, toward a full, from-scratch rebuild of the website with Claude Code.
                         </p>
-                        <p className="mt-6">
-                          <span className="text-primary [&_a]:text-inherit">Without an established design context or clear guardrails in place, Claude built a completely unrecognizable website.</span>
-                          {' '}It introduced new and inconsistently applied UX patterns and a visual identity completely divergent from the original website or our global design system&rsquo;s standards. New hallucinated content needed to be combed through and revisited by different stakeholders and legal. QA efforts seemed impossible - deliverables no longer mapped cleanly to previously defined specifications.
+                      </div>
+
+                      <div className="h-6" />
+
+                      <div className="bg-bg-secondary border border-border rounded-sm px-10 py-7">
+                        <p className="text-body-small md:text-body-big lg:text-body-biggest text-primary">
+                          Without an established design context or clear guardrails in place, Claude built a completely unrecognizable website.
+                        </p>
+                      </div>
+
+                      <div className="h-12" />
+
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-expected-starting-place.webp"
+                            alt="Expected starting point"
+                            caption="Expected starting point"
+                          />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-combined.webp"
+                            alt="AI output starting state"
+                            caption="AI output starting state"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="h-12" />
+
+                      <div className="text-body-small md:text-body-big text-text-secondary">
+                        <p>
+                          Claude introduced new and inconsistently applied UX patterns and a visual identity completely divergent from the original website or our global design system&rsquo;s standards. New hallucinated content needed to be combed through and revisited by different stakeholders and legal. QA efforts seemed impossible - deliverables no longer mapped cleanly to previously defined specifications.
                         </p>
                         <p className="mt-6">
                           Scope creep? More like scope explosion. The team needed to recalibrate - quickly.
                         </p>
                       </div>
-
-                      <div className="h-12" />
-                      <ImageBlock
-                        src="/images/chubb-combined.webp"
-                        alt="TODO: alt text describing the rebuilt homepage"
-                        caption="TODO: caption for the rebuilt homepage screenshot"
-                      />
                     </section>
 
                     <SectionDivider />
@@ -261,41 +316,97 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="h-8" />
 
-                      <div className="text-body-small md:text-body-big text-text-secondary">
-                        <p>
-                          At this pivotal point in the project, I leveraged my technical background to step into a leadership role - owning the working relationship between design and engineering, and proposing a feasible path forward.
-                        </p>
-                        <p className="mt-6">
-                          I suggested that we evaluate the Claude-generated designs against our design system standards and the existing website designs. Where Claude made brand-aligned and accessible changes, we would accept them and update our mockups to match.
-                        </p>
-                        <p className="mt-6">
-                          Goal of this was to maintain Design&rsquo;s position as an authority, while also demonstrating we could extend an olive branch to engineering and be flexible. It was also a legitimate opportunity to introduce meaningful user experience improvements that weren&rsquo;t previously in-scope.
-                        </p>
-                      </div>
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        <span className="text-primary [&_a]:text-inherit">As the most technical member of the design team, I stepped into a leadership role to own the relationship between design and engineering.</span> I suggested that we evaluate the Claude-generated designs against our design system standards and the existing website designs. Where Claude made brand-aligned and accessible changes, we would accept them and update our mockups to match.
+                      </p>
 
                       <div className="h-12" />
 
                       <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="flex-1 min-w-0">
                           <ImageBlock
-                            src="/images/chubb-expected-starting-place.webp"
-                            alt="TODO: alt text for the expected starting place mockup"
-                            caption="TODO: caption for the expected starting place"
+                            src="/images/chubb-cancer-before.webp"
+                            alt="Original Cancer Claim Details Form"
+                            caption="Original Cancer Claim Details Form"
                           />
                         </div>
                         <div className="flex-1 min-w-0">
                           <ImageBlock
-                            src="/images/chubb-combined.webp"
-                            alt="TODO: alt text for the Claude-rebuilt homepage"
-                            caption="TODO: caption for what Claude built"
+                            src="/images/chubb-cancer-ai.webp"
+                            alt="AI-Generated Cancer Claim Details Form"
+                            caption="AI-Generated Cancer Claim Details Form"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="h-12" />
+
+                      <ImageBlock
+                        src="/images/chubb-diagnosis.webp"
+                        alt="Design System Aligned Cancer Claim Details Form"
+                        caption="Design System Aligned Cancer Claim Details Form"
+                      />
+
+                      <div className="h-12" />
+
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        Goal of this was to maintain Design&rsquo;s position as an authority, while also demonstrating we could extend an olive branch to engineering and be flexible. It was also a legitimate opportunity to introduce meaningful user experience improvements that weren&rsquo;t previously in-scope.
+                      </p>
+
+                      <div className="h-8" />
+
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        I developed a new design strategy with three goals:
+                      </p>
+
+                      <div className="h-4" />
+
+                      <div className="flex flex-col gap-5">
+                        <NumberedCallout number="1">
+                          Build a highly collaborative process with engineering.
+                        </NumberedCallout>
+                        <NumberedCallout number="2">
+                          Keep designers as the design authority.
+                        </NumberedCallout>
+                        <NumberedCallout number="3">
+                          Expand the user experience improvements beyond the original targeted updates &mdash; all while meeting the delivery timeline.
+                        </NumberedCallout>
+                      </div>
+
+                      <div className="h-24" />
+
+                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                        Figma mockups engineered like code
+                      </h3>
+
+                      <div className="h-8" />
+
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        Because our design team didn&rsquo;t have access to Claude Code, we couldn&rsquo;t work on the frontend ourselves. To support our development team as much as possible, we created fully responsive wireframes with well-structured properties to map seamlessly to code.
+                      </p>
+
+                      <div className="h-12" />
+
+                      <ImageBlock
+                        type="video"
+                        src="/images/chubb-mobile-responsive-screens.mp4"
+                        caption="New Handoff &mdash; Fully Mobile Responsive at Every Breakpoint"
+                      />
+
+                      <div className="h-12" />
+
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            src="/images/chubb-structure-again.webp"
+                            alt="Renamed Figma layers and components for predictable structure"
+                            caption="Renamed Figma layers and components for predictable structure"
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <ImageBlock
-                            src="/images/chubb-og-targeted-end-state.webp"
-                            alt="TODO: alt text for the original targeted end state mockup"
-                            caption="TODO: caption for the original targeted end state"
-                          />
+                          <p className="text-body-small md:text-body-big text-text-secondary">
+                            I even renamed components and file layers to create a predictable structure Claude could easily read, understand and implement.
+                          </p>
                         </div>
                       </div>
                     </section>
@@ -303,10 +414,10 @@ export default async function AiClaimsPortalCaseStudyPage() {
                     <SectionDivider />
 
                     {/* ────────────────────────────── SOLUTION ───────────────────────────── */}
-                    <section id="solution">
-                      <Label>Solution</Label>
+                    <section id="ux-wins">
+                      <Label>UX Wins</Label>
                       <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                        TODO: umbrella Solution headline
+                        Reducing overwhelm and bringing clarity to claim initiation
                       </h2>
 
                       <div className="h-8" />
@@ -316,37 +427,6 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         src="/images/chubb-claim-dashboard.mp4"
                         caption="TODO: caption for the claim dashboard overview"
                       />
-
-                      <div className="h-12" />
-
-                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
-                        Figma mockups engineered like code
-                      </h3>
-
-                      <div className="h-8" />
-
-                      <ImageBlock
-                        type="video"
-                        src="/images/chubb-mobile-responsive-screens.mp4"
-                        caption="TODO: caption for the responsive-screens demo"
-                      />
-
-                      <div className="h-12" />
-
-                      <div className="flex flex-col md:flex-row gap-8 items-start">
-                        <div className="flex-1 min-w-0">
-                          <ImageBlock
-                            src="/images/chubb-structure-again.webp"
-                            alt="TODO: alt text describing the Figma file structure"
-                            caption="TODO: caption for the structure diagram"
-                          />
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-body-small md:text-body-big text-text-secondary">
-                            TODO: body copy describing how the Figma mockups were structured / componentized / responsive-engineered to match the code-side approach.
-                          </p>
-                        </div>
-                      </div>
 
                       <div className="h-24" />
 
@@ -380,6 +460,37 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         type="video"
                         src="/images/chubb-claim-type-selection.mp4"
                         caption="TODO: caption for the claim-type selection demo"
+                      />
+
+                      <div className="h-24" />
+
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                            Fully mobile responsive for the first time &mdash; finally giving the 50%+ mobile users of our website the experience they deserve
+                          </h3>
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <ImageBlock
+                            type="video"
+                            src="/images/chubb-mobile-claim-selection.mp4"
+                            caption="TODO: caption for the mobile-responsive demo"
+                          />
+                        </div>
+                      </div>
+
+                      <div className="h-24" />
+
+                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                        Using progressive disclosure to handle staggered backend data loads &mdash; improving overall page load time.
+                      </h3>
+
+                      <div className="h-8" />
+
+                      <ImageBlock
+                        type="video"
+                        src="/images/chubb-coverage-data-load.mp4"
+                        caption="TODO: caption for the progressive disclosure / data load demo"
                       />
                     </section>
 
