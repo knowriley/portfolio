@@ -18,7 +18,7 @@ import { isUnlocked } from '@/lib/case-study-lock'
 const study = caseStudies.find((s) => s.slug === 'evidence-of-insurability')!
 
 export const metadata = {
-  title: `${study.title} — Riley Knowles`,
+  title: study.title,
 }
 
 const nextStudy = caseStudies.find(

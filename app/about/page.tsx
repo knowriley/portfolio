@@ -6,7 +6,7 @@ import AboutBooks from '@/components/AboutBooks'
 import InlineLink from '@/components/InlineLink'
 
 export const metadata = {
-  title: 'About — Riley Knowles',
+  title: 'About',
 }
 
 export default function AboutPage() {

@@ -4,7 +4,7 @@ import Button from '@/components/Button'
 import DesignSystemTabs from '@/components/DesignSystemTabs'
 
 export const metadata = {
-  title: 'Design System — Riley Knowles',
+  title: 'Design System',
 }
 
 export default function DesignSystemPage() {

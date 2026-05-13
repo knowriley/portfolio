@@ -21,9 +21,19 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Riley Knowles — Product Designer',
+  metadataBase: new URL('https://knowriley.com'),
+  title: {
+    default: 'Riley Knowles — Product Designer',
+    template: '%s — Riley Knowles',
+  },
   description:
     'UX Strategist & Product Designer solving complex problems with human-centered design and systems thinking.',
+  openGraph: {
+    type: 'website',
+    siteName: 'Riley Knowles',
+    locale: 'en_US',
+  },
+  twitter: { card: 'summary_large_image' },
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
