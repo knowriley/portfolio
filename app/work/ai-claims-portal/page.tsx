@@ -536,10 +536,9 @@ export default async function AiClaimsPortalCaseStudyPage() {
                       <TwoColumnSection heading="Personal AI Velocity">
                         <div>
                           <p className="text-body-small md:text-body-big text-text-secondary">
-                            The homepage now sets a visual bar the rest of the site can grow into. The clear next step is to formalize this work as a design system and roll it through the remaining pages as quickly as possible — because the homepage now diverges meaningfully from everything behind it.
-                          </p>
-                          <p className="text-body-small md:text-body-big text-text-secondary mt-6">
-                            TODO: Personal takeaway — what you learned about leading a cross-functional redesign under ambiguous decision ownership, and what you&rsquo;d do differently next time.
+                            <span className="text-primary [&_a]:text-inherit">This work also reframed AI for me: done well, it isn&rsquo;t just slop-creation &mdash; it&rsquo;s a way to scale craft, not replace it.</span> Debugging over Zoom while I sent engineers annotated screenshots of inspected HTML over Teams felt deeply un-ideal &mdash; I was reacting to AI output instead of directing it. I wanted to get my hands on Claude Code myself, and I did on my{' '}
+                            <InlineLink href="/work/evidence-of-insurability">next project</InlineLink>
+                            .
                           </p>
                         </div>
                       </TwoColumnSection>
