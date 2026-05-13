@@ -19,7 +19,7 @@ import { caseStudies, type CaseStudy } from '@/data/case-studies'
 const study = caseStudies.find((s) => s.slug === 'conductor-website-redesign')!
 
 export const metadata = {
-  title: `${study.title} — Riley Knowles`,
+  title: study.title,
 }
 
 const tocItems = [
