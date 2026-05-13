@@ -425,7 +425,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
                       <ImageBlock
                         type="video"
                         src="/images/chubb-claim-dashboard.mp4"
-                        caption="TODO: caption for the claim dashboard overview"
+                        caption="New claim type selection"
                       />
 
                       <div className="h-24" />
@@ -440,32 +440,15 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         <div className="flex-1 min-w-0">
                           <ImageBlock
                             src="/images/chubb-claim-selection-before.webp"
-                            alt="TODO: alt text for the original claim-type selection"
-                            caption="TODO: caption for the original claim-type selection"
+                            alt="Original claimant and claim type selection"
+                            caption="Original claimant and claim type selection"
                           />
                         </div>
                         <div className="flex-1 min-w-0">
                           <ImageBlock
                             src="/images/chubb-claim-selection-after.webp"
-                            alt="TODO: alt text for the rebuilt claim-type selection"
-                            caption="TODO: caption for the claim-type selection demo"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="h-24" />
-
-                      <div className="flex flex-col md:flex-row gap-8 items-start">
-                        <div className="md:flex-[2_1_0] min-w-0">
-                          <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
-                            Fully mobile responsive for the first time &mdash; finally giving the 50%+ mobile users of our website the experience they deserve
-                          </h3>
-                        </div>
-                        <div className="md:flex-[1_1_0] min-w-0">
-                          <ImageBlock
-                            type="video"
-                            src="/images/chubb-mobile-claim-selection.mp4"
-                            caption="TODO: caption for the mobile-responsive demo"
+                            alt="New claim type selection"
+                            caption="New claim type selection"
                           />
                         </div>
                       </div>
@@ -476,13 +459,40 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         Using progressive disclosure to handle staggered backend data loads &mdash; improving overall page load time.
                       </h3>
 
+                      <div className="h-4" />
+
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        One of the most frequent customer complaints reported from our customer experience director was users&rsquo; frustration with slow page loading times. I partnered with our principal engineer to solution staggered backend data loads, ensuring pages can load as quickly as possible, while still enabling the user to reach the information they need.
+                      </p>
+
                       <div className="h-8" />
 
                       <ImageBlock
                         type="video"
                         src="/images/chubb-coverage-data-load.mp4"
-                        caption="TODO: caption for the progressive disclosure / data load demo"
+                        caption="Staggered data load interaction"
                       />
+
+                      <div className="h-24" />
+
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="md:flex-[2_1_0] min-w-0">
+                          <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                            Mobile-responsive for the first time, giving the 50%+ of mobile users the experience they deserve.
+                          </h3>
+                          <div className="h-4" />
+                          <p className="text-body-small md:text-body-big text-text-secondary">
+                            By scaffolding our behavioral analytics platform, FullStory, I was able to capture that more than 50% of website sessions happened on mobile. Using this insight, I was able to get buy-in to prioritize mobile-responsive design and development of every page.
+                          </p>
+                        </div>
+                        <div className="md:flex-[1_1_0] min-w-0">
+                          <ImageBlock
+                            type="video"
+                            src="/images/chubb-mobile-claim-selection.mp4"
+                            caption="Mobile responsive starting a claim"
+                          />
+                        </div>
+                      </div>
                     </section>
 
                     <SectionDivider />
