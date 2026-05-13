@@ -116,7 +116,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                   <MetadataGrid items={[
                     { label: 'Role',     content: 'Lead Experience Designer' },
-                    { label: 'Team',     content: 'Myself, 3 Product Owners, 2 Claims Business Analysts, 1 Technical Business Analyst, 1 Project Manager, 1 Principal Engineer, 1 Testing Lead, 8 Offshore Developers' },
+                    { label: 'Team',     content: 'Myself, 2 other Designers, 3 Product Owners, 2 Claims Business Analysts, 1 Technical Business Analyst, 1 Project Manager, 1 Principal Engineer, 1 Testing Lead, 8 Offshore Developers' },
                     { label: 'For',      content: (
                       <InlineLink href="https://www.chubb.com/" external variant="icon">Chubb</InlineLink>
                     ) },
@@ -349,34 +349,28 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="h-12" />
 
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        Goal of this was to maintain Design&rsquo;s position as an authority, while also demonstrating we could extend an olive branch to engineering and be flexible. It was also a legitimate opportunity to introduce meaningful user experience improvements that weren&rsquo;t previously in-scope.
-                      </p>
-
-                      <div className="h-8" />
-
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        I developed a new design strategy with three goals:
+                      <p className="text-body-small md:text-body-big lg:text-body-biggest text-text-secondary">
+                        My goals for this design strategy were to:
                       </p>
 
                       <div className="h-4" />
 
                       <div className="flex flex-col gap-5">
                         <NumberedCallout number="1">
-                          Build a highly collaborative process with engineering.
+                          <span className="text-primary [&_a]:text-inherit">Keep designers as the design authority</span>, while still welcoming AI-recommended improvements, when they were actually improvements.
                         </NumberedCallout>
                         <NumberedCallout number="2">
-                          Keep designers as the design authority.
+                          Find opportunities to add visual hierarchy across claim flows, <span className="text-primary [&_a]:text-inherit">address known customer confusion with claim-type selection</span>, and bring the experience closer to Chubb&rsquo;s brand standards.
                         </NumberedCallout>
                         <NumberedCallout number="3">
-                          Expand the user experience improvements beyond the original targeted updates &mdash; all while meeting the delivery timeline.
+                          <span className="text-primary [&_a]:text-inherit">Position the design team as cooperative</span>, problem-solving oriented cross-functional partners.
                         </NumberedCallout>
                       </div>
 
                       <div className="h-24" />
 
-                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
-                        Figma mockups engineered like code
+                      <h3 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                        Setting engineering up for success with Figma frames structured like code
                       </h3>
 
                       <div className="h-8" />
@@ -404,7 +398,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-body-small md:text-body-big text-text-secondary">
+                          <p className="text-body-big md:text-body-biggest text-text-secondary">
                             I even renamed components and file layers to create a predictable structure Claude could easily read, understand and implement.
                           </p>
                         </div>
