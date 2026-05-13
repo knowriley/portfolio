@@ -414,6 +414,12 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         Reducing overwhelm and bringing clarity to claim initiation
                       </h2>
 
+                      <div className="h-4" />
+
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        In the original website, claimant and claim-type selection lived on the same step, cluttering the page and confusing users. Now they&rsquo;re clear, segmented steps.
+                      </p>
+
                       <div className="h-8" />
 
                       <ImageBlock
@@ -424,20 +430,9 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="h-24" />
 
-                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
-                        Improved claim type selection
-                      </h3>
-
-                      <div className="h-8" />
-
-                      <div className="text-body-small md:text-body-big text-text-secondary">
-                        <p>
-                          In the original design, claimant and claim-type selection lived on the same step, cluttering the page and confusing users. Now they&rsquo;re clear, segmented steps.
-                        </p>
-                        <p className="mt-6">
-                          FullStory recordings and insights from our stakeholder discovery workshop revealed that customers had a really hard time identifying which claim type they needed to submit. Reimagining the claim types themselves was still out of scope, but we could add high-visibility, reassuring disability language for users looking to submit a disability claim. We also added examples to each claim type, leaning on the design principle that recognition is an easier way to inform a choice.
-                        </p>
-                      </div>
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        FullStory recordings and insights from our stakeholder discovery workshop revealed that customers had a really hard time identifying which claim type they needed to submit. <span className="text-primary [&_a]:text-inherit">Reimagining the claim types themselves was still out of scope, but we could add high-visibility, reassuring disability language for users looking to submit a disability claim.</span> We also added examples to each claim type, leaning on the design principle that recognition of examples helps people more quickly assign meaning to choices.
+                      </p>
 
                       <div className="h-12" />
 
