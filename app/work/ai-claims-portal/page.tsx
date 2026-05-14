@@ -13,7 +13,6 @@ import {
   TwoColumnSection,
 } from '@/components/case-study'
 import InlineLink from '@/components/InlineLink'
-import { ArrowUpRight } from 'lucide-react'
 import { caseStudies } from '@/data/case-studies'
 import { isUnlocked } from '@/lib/case-study-lock'
 
@@ -504,22 +503,13 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         Brand-aligned, first-time fully responsive web experience for 350K customers, delivered on time.
                       </h2>
 
-                      <div className="h-8" />
+                      <div className="h-12" />
 
-                      <div className="flex flex-col md:flex-row gap-8">
-                        <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1 flex flex-col gap-4 justify-center">
-                          <p className="text-h3 md:text-h2 font-normal text-primary">TODO</p>
-                          <p className="text-body-small md:text-body-big text-text-primary">
-                            TODO: Quantitative impact (e.g. traffic lift, engagement, enterprise leads)
-                          </p>
-                        </div>
-                        <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1 flex flex-col gap-4 justify-center">
-                          <ArrowUpRight size={48} strokeWidth={1.5} className="text-primary" />
-                          <p className="text-body-small md:text-body-big text-text-primary">
-                            TODO: Qualitative impact (e.g. stakeholder feedback, brand perception shift)
-                          </p>
-                        </div>
-                      </div>
+                      <ImageBlock
+                        src="/images/chubb-new-homepage.webp"
+                        alt="New homepage"
+                        caption="New homepage"
+                      />
                     </section>
 
                     <SectionDivider />
