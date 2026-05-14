@@ -13,7 +13,6 @@ import {
   TwoColumnSection,
 } from '@/components/case-study'
 import InlineLink from '@/components/InlineLink'
-import { ArrowUpRight } from 'lucide-react'
 import { caseStudies } from '@/data/case-studies'
 import { isUnlocked } from '@/lib/case-study-lock'
 
@@ -116,7 +115,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                   <MetadataGrid items={[
                     { label: 'Role',     content: 'Lead Experience Designer' },
-                    { label: 'Team',     content: 'Myself, 3 Product Owners, 2 Claims Business Analysts, 1 Technical Business Analyst, 1 Project Manager, 1 Principal Engineer, 1 Testing Lead, 8 Offshore Developers' },
+                    { label: 'Team',     content: 'Myself, 2 other Designers, 3 Product Owners, 2 Claims Business Analysts, 1 Technical Business Analyst, 1 Project Manager, 1 Principal Engineer, 1 Testing Lead, 8 Offshore Developers' },
                     { label: 'For',      content: (
                       <InlineLink href="https://www.chubb.com/" external variant="icon">Chubb</InlineLink>
                     ) },
@@ -349,34 +348,28 @@ export default async function AiClaimsPortalCaseStudyPage() {
 
                       <div className="h-12" />
 
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        Goal of this was to maintain Design&rsquo;s position as an authority, while also demonstrating we could extend an olive branch to engineering and be flexible. It was also a legitimate opportunity to introduce meaningful user experience improvements that weren&rsquo;t previously in-scope.
-                      </p>
-
-                      <div className="h-8" />
-
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        I developed a new design strategy with three goals:
+                      <p className="text-body-small md:text-body-big lg:text-body-biggest text-text-secondary">
+                        My goals for this design strategy were to:
                       </p>
 
                       <div className="h-4" />
 
                       <div className="flex flex-col gap-5">
                         <NumberedCallout number="1">
-                          Build a highly collaborative process with engineering.
+                          <span className="text-primary [&_a]:text-inherit">Keep designers as the design authority</span>, while still welcoming AI-recommended improvements, when they were actually improvements.
                         </NumberedCallout>
                         <NumberedCallout number="2">
-                          Keep designers as the design authority.
+                          Find opportunities to add visual hierarchy across claim flows, <span className="text-primary [&_a]:text-inherit">address known customer confusion with claim-type selection</span>, and bring the experience closer to Chubb&rsquo;s brand standards.
                         </NumberedCallout>
                         <NumberedCallout number="3">
-                          Expand the user experience improvements beyond the original targeted updates &mdash; all while meeting the delivery timeline.
+                          <span className="text-primary [&_a]:text-inherit">Position the design team as cooperative</span>, problem-solving oriented cross-functional partners.
                         </NumberedCallout>
                       </div>
 
                       <div className="h-24" />
 
-                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
-                        Figma mockups engineered like code
+                      <h3 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                        Setting engineering up for success with Figma frames structured like code
                       </h3>
 
                       <div className="h-8" />
@@ -404,7 +397,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
                           />
                         </div>
                         <div className="flex-1 min-w-0">
-                          <p className="text-body-small md:text-body-big text-text-secondary">
+                          <p className="text-body-big md:text-body-biggest text-text-secondary">
                             I even renamed components and file layers to create a predictable structure Claude could easily read, understand and implement.
                           </p>
                         </div>
@@ -420,61 +413,41 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         Reducing overwhelm and bringing clarity to claim initiation
                       </h2>
 
+                      <div className="h-4" />
+
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        In the original website, claimant and claim-type selection lived on the same step, cluttering the page and confusing users. Now they&rsquo;re clear, segmented steps.
+                      </p>
+
                       <div className="h-8" />
 
                       <ImageBlock
                         type="video"
                         src="/images/chubb-claim-dashboard.mp4"
-                        caption="TODO: caption for the claim dashboard overview"
+                        caption="New claim type selection"
                       />
 
                       <div className="h-24" />
 
-                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
-                        Improved claim type selection
-                      </h3>
-
-                      <div className="h-8" />
-
                       <p className="text-body-small md:text-body-big text-text-secondary">
-                        We rebuilt the claim-type selection step around three targeted improvements:
+                        FullStory recordings and insights from our stakeholder discovery workshop revealed that customers had a really hard time identifying which claim type they needed to submit. <span className="text-primary [&_a]:text-inherit">Reimagining the claim types themselves was still out of scope, but we could add high-visibility, reassuring disability language for users looking to submit a disability claim.</span> We also added examples to each claim type, leaning on the design principle that recognition of examples helps people more quickly assign meaning to choices.
                       </p>
-
-                      <div className="h-4" />
-
-                      <div className="flex flex-col gap-5">
-                        <NumberedCallout number="1">
-                          Reduced cognitive load by simplifying the path to the right claim type.
-                        </NumberedCallout>
-                        <NumberedCallout number="2">
-                          Sharpened the language so users can clearly identify pregnancy and disability claims.
-                        </NumberedCallout>
-                        <NumberedCallout number="3">
-                          <span className="text-primary [&_a]:text-inherit">Made the flow fully mobile-responsive — the previous site had no mobile layout at all, despite more than 50% of user sessions happening on mobile.</span>
-                        </NumberedCallout>
-                      </div>
 
                       <div className="h-12" />
 
-                      <ImageBlock
-                        type="video"
-                        src="/images/chubb-claim-type-selection.mp4"
-                        caption="TODO: caption for the claim-type selection demo"
-                      />
-
-                      <div className="h-24" />
-
                       <div className="flex flex-col md:flex-row gap-8 items-start">
                         <div className="flex-1 min-w-0">
-                          <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
-                            Fully mobile responsive for the first time &mdash; finally giving the 50%+ mobile users of our website the experience they deserve
-                          </h3>
+                          <ImageBlock
+                            src="/images/chubb-claim-selection-before.webp"
+                            alt="Original claimant and claim type selection"
+                            caption="Original claimant and claim type selection"
+                          />
                         </div>
                         <div className="flex-1 min-w-0">
                           <ImageBlock
-                            type="video"
-                            src="/images/chubb-mobile-claim-selection.mp4"
-                            caption="TODO: caption for the mobile-responsive demo"
+                            src="/images/chubb-claim-selection-after.webp"
+                            alt="New claim type selection"
+                            caption="New claim type selection"
                           />
                         </div>
                       </div>
@@ -485,13 +458,40 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         Using progressive disclosure to handle staggered backend data loads &mdash; improving overall page load time.
                       </h3>
 
+                      <div className="h-4" />
+
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        One of the most frequent customer complaints reported from our customer experience director was users&rsquo; frustration with slow page loading times. I partnered with our principal engineer to solution staggered backend data loads, ensuring pages can load as quickly as possible, while still enabling the user to reach the information they need.
+                      </p>
+
                       <div className="h-8" />
 
                       <ImageBlock
                         type="video"
                         src="/images/chubb-coverage-data-load.mp4"
-                        caption="TODO: caption for the progressive disclosure / data load demo"
+                        caption="Staggered data load interaction"
                       />
+
+                      <div className="h-24" />
+
+                      <div className="flex flex-col md:flex-row gap-8 items-start">
+                        <div className="md:flex-[2_1_0] min-w-0">
+                          <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                            Mobile-responsive for the first time, giving the 50%+ of mobile users the experience they deserve.
+                          </h3>
+                          <div className="h-4" />
+                          <p className="text-body-small md:text-body-big text-text-secondary">
+                            By scaffolding our behavioral analytics platform, FullStory, I was able to capture that more than 50% of website sessions happened on mobile. Using this insight, I was able to get buy-in to prioritize mobile-responsive design and development of every page.
+                          </p>
+                        </div>
+                        <div className="md:flex-[1_1_0] min-w-0">
+                          <ImageBlock
+                            type="video"
+                            src="/images/chubb-mobile-claim-selection.mp4"
+                            caption="Mobile responsive starting a claim"
+                          />
+                        </div>
+                      </div>
                     </section>
 
                     <SectionDivider />
@@ -500,25 +500,16 @@ export default async function AiClaimsPortalCaseStudyPage() {
                     <section id="impact">
                       <Label>Impact</Label>
                       <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                        TODO: Impact headline (e.g. &ldquo;Launched on time, on-brand, and on-message&rdquo;)
+                        Brand-aligned, first-time fully responsive web experience for 350K customers, delivered on time.
                       </h2>
 
-                      <div className="h-8" />
+                      <div className="h-12" />
 
-                      <div className="flex flex-col md:flex-row gap-8">
-                        <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1 flex flex-col gap-4 justify-center">
-                          <p className="text-h3 md:text-h2 font-normal text-primary">TODO</p>
-                          <p className="text-body-small md:text-body-big text-text-primary">
-                            TODO: Quantitative impact (e.g. traffic lift, engagement, enterprise leads)
-                          </p>
-                        </div>
-                        <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1 flex flex-col gap-4 justify-center">
-                          <ArrowUpRight size={48} strokeWidth={1.5} className="text-primary" />
-                          <p className="text-body-small md:text-body-big text-text-primary">
-                            TODO: Qualitative impact (e.g. stakeholder feedback, brand perception shift)
-                          </p>
-                        </div>
-                      </div>
+                      <ImageBlock
+                        src="/images/chubb-new-homepage.webp"
+                        alt="New homepage"
+                        caption="New homepage"
+                      />
                     </section>
 
                     <SectionDivider />
@@ -526,26 +517,12 @@ export default async function AiClaimsPortalCaseStudyPage() {
                     {/* ────────────────────────────── TAKEAWAYS ──────────────────────────── */}
                     <section id="takeaways">
                       <Label>Takeaways</Label>
-                      <TwoColumnSection heading="Context Matters">
-                        <div>
-                          <p className="text-body-small md:text-body-big text-text-secondary">
-                            The homepage now sets a visual bar the rest of the site can grow into. The clear next step is to formalize this work as a design system and roll it through the remaining pages as quickly as possible — because the homepage now diverges meaningfully from everything behind it.
-                          </p>
-                          <p className="text-body-small md:text-body-big text-text-secondary mt-6">
-                            TODO: Personal takeaway — what you learned about leading a cross-functional redesign under ambiguous decision ownership, and what you&rsquo;d do differently next time.
-                          </p>
-                        </div>
-                      </TwoColumnSection>
-
-                      <div className="h-8" />
-
                       <TwoColumnSection heading="Personal AI Velocity">
                         <div>
                           <p className="text-body-small md:text-body-big text-text-secondary">
-                            The homepage now sets a visual bar the rest of the site can grow into. The clear next step is to formalize this work as a design system and roll it through the remaining pages as quickly as possible — because the homepage now diverges meaningfully from everything behind it.
-                          </p>
-                          <p className="text-body-small md:text-body-big text-text-secondary mt-6">
-                            TODO: Personal takeaway — what you learned about leading a cross-functional redesign under ambiguous decision ownership, and what you&rsquo;d do differently next time.
+                            Debugging over Zoom while I sent engineers annotated screenshots of inspected HTML over Teams felt deeply un-ideal. I was reacting to AI output instead of directing it. <span className="text-primary [&_a]:text-inherit">This work reframed AI for me: done well, it isn&rsquo;t just slop-creation; it&rsquo;s a way to scale craft, not replace it.</span> I wanted to get my hands on Claude Code myself, and I did, on my very{' '}
+                            <InlineLink href="/work/evidence-of-insurability">next project</InlineLink>
+                            .
                           </p>
                         </div>
                       </TwoColumnSection>

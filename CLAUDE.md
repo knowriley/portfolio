@@ -225,7 +225,7 @@ gap-8, py-20
 ```
 bg-bg-secondary border border-border rounded-sm px-10 py-7
 ```
-- Numbered: `flex gap-4 items-center` | number `text-body-biggest` (fixed, does not step down) | body `text-body-small md:text-body-big text-text-primary`
+- Numbered: `flex gap-4 items-start` | number `text-body-biggest` (fixed, does not step down) | body `text-body-small md:text-body-big text-text-primary`
 - Stat: large value `text-display font-normal text-text-primary` + caption `text-body-big text-text-primary`
 
 **Metadata grid** (Overview section) — responsive CSS grid: `grid grid-cols-2 md:grid-cols-3 gap-8 pt-8`. Six metadata fields (Role, Team, For, Tools, Timeline, Status) reflow from 3 rows × 2 cols on mobile to 2 rows × 3 cols on tablet+. Each cell is `flex flex-col gap-1.5` — label `text-small font-medium uppercase tracking-widest text-text-tertiary pb-2`, value `text-body-small text-text-secondary`. Add new metadata fields in multiples that divide cleanly into both column counts (6 works; 4 or 5 produce a ragged tail on desktop).
