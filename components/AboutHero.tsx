@@ -12,7 +12,7 @@ const audiences = [
   {
     label: 'Recruiters',
     message:
-      'I have 3+ years of experience designing, building and shipping across insurance, B2B, education, and more — for internal teams and consumer-facing experiences.',
+      'I design across enterprise platforms, consumer experiences, and internal tooling, excelling in highly collaborative environments where strategy, systems thinking, and execution intersect.',
   },
   {
     label: 'Designers',
