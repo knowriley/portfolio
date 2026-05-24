@@ -116,10 +116,9 @@ export default function Hero() {
               }`}
               style={enteredFinalFromGreeting ? { animationDelay: '0.2s' } : undefined}
             >
-              Currently designing claims experiences @{' '}
+              Currently designing consumer and agent-facing experiences at{' '}
               <InlineLink href="https://chubb.com" external variant="subtle">Chubb</InlineLink>{' '}
-              and completing a MS in Information Experience Design @{' '}
-              <InlineLink href="https://pratt.edu" external variant="subtle">Pratt</InlineLink>.
+              while scaling AI-enabled ways of working across the design organization.
             </p>
           </>
         )}
