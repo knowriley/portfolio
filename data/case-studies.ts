@@ -59,7 +59,7 @@ const rawCaseStudies: CaseStudy[] = [
     slug: 'service-design-case-study',
     title: "Widening the bottleneck of Pratt's DX Center Consultancy",
     description:
-      "Blueprinted Pratt IXD's client-matching service, identified the recruitment bottleneck through interviews and a co-design workshop, then scoped two interventions to widen the pipeline and reset the professor experience.",
+      "Synthesized research into a service blueprint, surfacing a stakeholder expectation mismatch. Designed a participatory workshop that built mutual empathy and produced two service interventions projected to broaden recruitment reach and improve incoming client quality.",
     tags: ['Service Design', 'Research', 'Co-design'],
     year: 'Jan 2026 - May 2026',
     industry: 'Higher Education',
