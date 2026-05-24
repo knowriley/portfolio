@@ -20,6 +20,7 @@ This file replaces the Code Connect workflow. Code Connect requires a Figma Deve
 | `448:51` | Segmented Control | `components/SegmentedControl.tsx` | `SegmentedControl` |
 | `324:30` | Tab | inline in `components/DesignSystemTabs.tsx` | n/a — extract if reused outside design-system page |
 | `324:33` | Carousel Dot | inline in `components/TestimonialCarousel.tsx` | n/a — extract if reused outside testimonial carousel |
+| — (no Figma counterpart) | ExpandableImage | `components/ExpandableImage.tsx` | `ExpandableImage` — composes the existing IconButton over an `<img>`, then renders a lightbox via `createPortal`. Used internally by `ImageBlock` for `type="image"` when `expandable !== false`. |
 
 Source URLs (used for `documentationLinks` in Figma) point at `main`, e.g.
 `https://github.com/knowriley/portfolio/blob/main/components/Button.tsx`.
