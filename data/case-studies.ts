@@ -55,6 +55,16 @@ const rawCaseStudies: CaseStudy[] = [
     industry: 'Insurance',
     thumbnail: '/images/chubb-cover-unified-experience.mp4',
   },
+  {
+    slug: 'service-design-case-study',
+    title: "Widening the bottleneck of Pratt's DX Center Consultancy",
+    description:
+      "Blueprinted Pratt IXD's client-matching service, identified the recruitment bottleneck through interviews and a co-design workshop, then scoped two interventions to widen the pipeline and reset the professor experience.",
+    tags: ['Service Design', 'Research', 'Co-design'],
+    year: 'Jan 2026 - May 2026',
+    industry: 'Higher Education',
+    thumbnail: '/images/service-design-cover.webp',
+  },
 ]
 
 // Parse the most-recently-active date from the `year` field — i.e. the END of
