@@ -52,7 +52,7 @@ export default function AboutPage() {
                   <InlineLink href="https://www.chubb.com/us-en/" external>
                     Chubb
                   </InlineLink>
-                  , from discovery workshops down to accelerated prototyping
+                  , from discovery workshops to accelerated prototyping
                   and testing with Claude Code.
                 </span>{' '}
                 I am the lead designer on the Chubb Benefits consumer claims
@@ -70,7 +70,7 @@ export default function AboutPage() {
                 nonprofits, and the arts.
               </p>
               <p className="text-body-small md:text-body-big text-text-secondary mt-6">
-                Additionally, I am completing a MS in Information Experience
+                Additionally, I hold a MS in Information Experience
                 Design from{' '}
                 <InlineLink
                   href="https://www.pratt.edu/information/information-experience-design/"
@@ -78,7 +78,7 @@ export default function AboutPage() {
                 >
                   Pratt Institute
                 </InlineLink>{' '}
-                and hold a BS in Computer Science from{' '}
+                and a BS in Computer Science from{' '}
                 <InlineLink href="https://www.cs.ubc.ca/" external>
                   The University of British Columbia
                 </InlineLink>
