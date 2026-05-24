@@ -114,6 +114,8 @@ All tokens are defined in `tailwind.config.ts` (code source of truth) and mirror
 
 **Video play/pause:** All videos display a round play/pause `IconButton` overlay in the bottom-right corner (`absolute bottom-3 right-3`). Videos autoplay muted and loop. The button toggles between `Play` and `Pause` lucide icons. This is handled by the `VideoBlock` client component (`components/VideoBlock.tsx`), which `ImageBlock` delegates to for `type="video"`.
 
+**Image expand (case-study lightbox):** Every `ImageBlock` `type="image"` renders a `Maximize2` lucide-icon `IconButton` overlay in the bottom-right corner (`absolute bottom-3 right-3`), mirroring the play/pause pattern on video. Clicking opens the image in a near-fullscreen lightbox modal — dark `bg-bg-inverse/90` backdrop above the sticky nav (`z-[60]`), close button (X, light fill on dark backdrop) in the top-right, the caption repeated inside the modal in `text-text-inverse`. Dismiss via close button, backdrop click, or Escape. Page scroll is locked while open; keyboard focus moves to the close button on open and is restored to the trigger on close. Handled by the `ExpandableImage` client component (`components/ExpandableImage.tsx`), which `ImageBlock` delegates to for `type="image"` unless `expandable={false}` is passed. The expand affordance is gated to case-study contexts; `AboutBooks.tsx` (book covers on `/about`) and `DesignSystemTabs.tsx` (design-system reference screenshots) opt out via `expandable={false}`.
+
 **Image captions:** Every image and video should have a caption by default. Captions use `text-small text-text-tertiary mt-2 text-center` and are centered below the image. Always provide a `caption` prop when using `ImageBlock` — omitting it should be a deliberate exception, not the default.
 
 **Image & video optimization:** Optimize all `public/` assets per the user-scoped web asset defaults — WebP for images, MP4 H.264 for videos. `VideoBlock` emits `<source type="video/mp4">` so any non-`.mp4` source breaks playback. See `~/.claude/CLAUDE.md` for encoding parameters and the `sharp` / `ffmpeg-static` workflow.
@@ -241,14 +243,14 @@ bg-bg-secondary border border-border rounded-sm px-10 py-7
 
 > Rule: all interactive elements must pass WCAG AA (≥ 4.5:1 text, ≥ 3:1 UI) and differentiate hover by more than color alone.
 
-**Icon Button** — `components/IconButton.tsx` ('use client'). Usage: `<IconButton icon={<ArrowLeft size={20} strokeWidth={2} />} onClick={fn} aria-label="..." />`. Always provide `aria-label`.
+**Icon Button** — `components/IconButton.tsx` ('use client'). Usage: `<IconButton icon={<ArrowLeft size={20} strokeWidth={2} />} onClick={fn} aria-label="..." />`. Always provide `aria-label`. Used in three places: navigation arrows (`TestimonialCarousel`), the play/pause overlay on videos (`VideoBlock`), and the expand overlay on case-study images (`ExpandableImage`).
 
 | State | Key classes |
 |---|---|
 | Default | `size-11 rounded-full bg-bg-inverse text-text-inverse` |
 | Hover | `hover:bg-neutral-800` |
 
-Matches the primary button color. Dark fill at rest; lightens on hover. `VideoBlock`'s play/pause overlay reuses this component (passes `className="absolute bottom-3 right-3"`) so the two stay in sync.
+Matches the primary button color. Dark fill at rest; lightens on hover. Both `VideoBlock`'s play/pause overlay and `ExpandableImage`'s expand overlay reuse this component (each passes `className="absolute bottom-3 right-3"`) so the in-image affordances stay visually in sync. The lightbox modal's close button does **not** use `IconButton` — it needs a light fill (`bg-bg`) to read against the dark `bg-bg-inverse/90` backdrop, which is the inverse contrast of `IconButton`. That close button lives inline inside `ExpandableImage` as a one-off `<button>` rather than a new IconButton variant.
 
 **Button** — `components/Button.tsx` ('use client'). Two variants: `primary` (default) and `outline`. Usage: `<Button href="/work">…</Button>` (internal), `<Button href="https://…" external>…</Button>`, `<Button variant="outline" onClick={fn}>…</Button>`.
 
@@ -366,11 +368,13 @@ Three distinct patterns for rendering images and videos, each chosen by context.
 
 | Context | Component | Why |
 |---|---|---|
-| **Any image or video in a case study body** (hero cover, inline section media, in-body demos) | `<ImageBlock>` — with `type="image"` (default), `type="video"`, `type="vimeo"`, or no props for placeholder | Single abstraction. Applies the standard image chrome (see "Image & video treatment" above), handles optional captions via `<figcaption>`, and delegates video rendering to `VideoBlock` internally (play/pause IconButton in bottom-right). |
+| **Any image or video in a case study body** (hero cover, inline section media, in-body demos) | `<ImageBlock>` — with `type="image"` (default), `type="video"`, `type="vimeo"`, or no props for placeholder | Single abstraction. Applies the standard image chrome (see "Image & video treatment" above), handles optional captions via `<figcaption>`, delegates `type="image"` rendering to `ExpandableImage` (which adds the expand IconButton + lightbox modal), and delegates `type="video"` to `VideoBlock` (play/pause IconButton). |
 | **Work grid card thumbnail** — `components/CaseStudyCard.tsx` | Raw `<Image>` for stills, raw `<video autoPlay loop muted playsInline>` for `.mov` / `.mp4` / `.webm` thumbnails | Card context is different: the thumbnail is a clickable preview (no controls, no caption, `object-cover` + `aspect-video` framing). Wrapping in `ImageBlock` would fight the card's layout. `CaseStudyCard` is the one place where raw `<video>` is acceptable. |
-| **Anywhere else** | `<ImageBlock>` | Do **not** import `VideoBlock` directly into a page. It's an internal implementation detail of `ImageBlock`. One entry point keeps chrome, captions, and play/pause behavior consistent. |
+| **Anywhere else** | `<ImageBlock>` (pass `expandable={false}` outside case studies) | Do **not** import `VideoBlock` or `ExpandableImage` directly into a page. They're internal implementation details of `ImageBlock`. One entry point keeps chrome, captions, play/pause, and expand behavior consistent. |
 
 **Rule:** if you're adding a video to a case study body, reach for `<ImageBlock type="video" src="..." caption="..." />`. The only sanctioned direct-`<video>` call site is `CaseStudyCard.tsx` for thumbnails.
+
+**`expandable` prop:** `ImageBlock`'s `type="image"` variant adds a `Maximize2` IconButton + lightbox by default (`expandable: true`). Pass `expandable={false}` for non-case-study contexts where the lightbox isn't appropriate — currently `AboutBooks.tsx` (book covers on `/about` — the cover is itself a link to Bookshop.org, so an in-cover expand button would conflict with the link affordance) and `DesignSystemTabs.tsx` (the `/design-system` page references images as token examples, not as content to inspect). The `bare` and `expandable` props are independent — bare opts out of the border/shadow chrome; expandable opts out of the lightbox affordance.
 
 **File format:** `.mp4` (H.264) only — see the **Image & video optimization** rules above for encoding parameters. `VideoBlock` emits `<source type="video/mp4">`, so any other source extension breaks playback.
 
