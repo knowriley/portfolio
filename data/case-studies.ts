@@ -12,7 +12,40 @@ export interface CaseStudy {
   thumbnail?: string
 }
 
-const rawCaseStudies: CaseStudy[] = [
+// Manual editorial order — the homepage WorkGrid and the case-study "Next"
+// links render in this array order (after filtering out `hidden` entries).
+// Hidden entries sit at the end since they're excluded from public listings.
+export const caseStudies: CaseStudy[] = [
+  {
+    slug: 'ai-claims-portal',
+    title: "Pivoting design strategy mid-build for Chubb's 350K customer claims portal",
+    description:
+      "Led the design strategy and redesign of Chubb Benefits' unified consumer claims portal supporting 350K customers. Stepped into a leadership role to re-align design and engineering after an AI-accelerated rebuild diverged from the original strategy.",
+    tags: ['Relationship Management', 'AI Workflows'],
+    year: 'Nov 2025 – Present',
+    industry: 'Insurance',
+    thumbnail: '/images/chubb-cover-unified-experience.mp4',
+  },
+  {
+    slug: 'evidence-of-insurability',
+    title: 'Ambiguous interaction to explicit choice: improving insurance product selection accuracy by 62%',
+    description:
+      'Leveraged Claude Code to accelerate design, enabling two rounds of usability testing not originally in scope. These insights drove design changes that improved the customer experience and minimized downstream operational impacts, all without extending the delivery timeline.',
+    tags: ['AI Workflows', 'Rapid Prototyping', 'A/B Testing', 'Interaction Design'],
+    year: 'Apr 2026',
+    industry: 'Insurance',
+    thumbnail: '/images/eoi-cover.mp4',
+  },
+  {
+    slug: 'service-design-case-study',
+    title: "Widening the bottleneck of Pratt's DX Center Consultancy",
+    description:
+      "Synthesized research into a service blueprint, surfacing a stakeholder expectation mismatch. Designed a participatory workshop that built mutual empathy and produced two service interventions projected to broaden recruitment reach and improve incoming client quality.",
+    tags: ['Service Design', 'Research', 'Co-design'],
+    year: 'Jan 2026 - May 2026',
+    industry: 'Higher Education',
+    thumbnail: '/images/service-design-cover.webp',
+  },
   {
     slug: 'design-system-documentation',
     title: 'Creating a single source of truth for the Bricks Design System',
@@ -35,54 +68,4 @@ const rawCaseStudies: CaseStudy[] = [
     thumbnail: '/images/product-overview-move-in-animation.mp4',
     hidden: true,
   },
-  {
-    slug: 'evidence-of-insurability',
-    title: 'Ambiguous interaction to explicit choice: improving insurance product selection accuracy by 62%',
-    description:
-      'Leveraged Claude Code to accelerate design, enabling two rounds of usability testing not originally in scope. These insights drove design changes that improved the customer experience and minimized downstream operational impacts, all without extending the delivery timeline.',
-    tags: ['AI Workflows', 'Rapid Prototyping', 'A/B Testing', 'Interaction Design'],
-    year: 'Apr 2026',
-    industry: 'Insurance',
-    thumbnail: '/images/eoi-cover.mp4',
-  },
-  {
-    slug: 'ai-claims-portal',
-    title: "Pivoting design strategy mid-build for Chubb's 350K customer claims portal",
-    description:
-      "Led the design strategy and redesign of Chubb Benefits' unified consumer claims portal supporting 350K customers. Stepped into a leadership role to re-align design and engineering after an AI-accelerated rebuild diverged from the original strategy.",
-    tags: ['Relationship Management', 'AI Workflows'],
-    year: 'Nov 2025 – Present',
-    industry: 'Insurance',
-    thumbnail: '/images/chubb-cover-unified-experience.mp4',
-  },
-  {
-    slug: 'service-design-case-study',
-    title: "Widening the bottleneck of Pratt's DX Center Consultancy",
-    description:
-      "Synthesized research into a service blueprint, surfacing a stakeholder expectation mismatch. Designed a participatory workshop that built mutual empathy and produced two service interventions projected to broaden recruitment reach and improve incoming client quality.",
-    tags: ['Service Design', 'Research', 'Co-design'],
-    year: 'Jan 2026 - May 2026',
-    industry: 'Higher Education',
-    thumbnail: '/images/service-design-cover.webp',
-  },
 ]
-
-// Parse the most-recently-active date from the `year` field — i.e. the END of
-// the range, or the single date if there's no range, or `Date.now()` for any
-// "Present" sentinel. Accepts "Jun 2024", "Feb 2025 - May 2025",
-// "Mar 2026 - Present", or a bare "2023". Falls back to 0 if unparseable.
-function parseRecency(year: string): number {
-  const parts = year.split(/[–-]/).map((s) => s.trim())
-  const end = parts[parts.length - 1]
-  if (/present/i.test(end)) return Date.now()
-  const t = Date.parse(end)
-  if (!Number.isNaN(t)) return t
-  const startFallback = Date.parse(parts[0])
-  return Number.isNaN(startFallback) ? 0 : startFallback
-}
-
-// Sorted by most recently active first — in-progress ("Present") studies
-// lead, then completed studies by their end date. Keep source order for ties.
-export const caseStudies: CaseStudy[] = [...rawCaseStudies].sort(
-  (a, b) => parseRecency(b.year) - parseRecency(a.year),
-)

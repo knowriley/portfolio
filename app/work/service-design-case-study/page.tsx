@@ -5,6 +5,7 @@ import CaseStudyCard from '@/components/CaseStudyCard'
 import TableOfContents from '@/components/TableOfContents'
 import AnimateOnScroll from '@/components/AnimateOnScroll'
 import ServiceBlueprintToggle from '@/components/ServiceBlueprintToggle'
+import InlineLink from '@/components/InlineLink'
 import {
   Label,
   SectionDivider,
@@ -114,10 +115,12 @@ export default function ServiceDesignCaseStudyPage() {
 
                   <MetadataGrid items={[
                     { label: 'Role',     content: 'Lead Service Designer' },
-                    { label: 'Team',     content: 'Multi-disciplinary IXD graduate team' },
-                    { label: 'For',      content: 'Center for Digital Experiences, Pratt Institute' },
+                    { label: 'Team',     content: 'Myself, 1 Visual Designer, 1 User Researcher, 1 Project Manager' },
+                    { label: 'For',      content: (
+                      <InlineLink href="https://prattdx.org/" external variant="icon">Center for Digital Experiences, Pratt Institute</InlineLink>
+                    ) },
                     { label: 'Tools',    content: 'Figma, FigJam' },
-                    { label: 'Timeline', content: 'Spring 2026, Jan – May' },
+                    { label: 'Timeline', content: 'Jan 2026 - May 2026' },
                     { label: 'Status',   content: 'Recommendations delivered' },
                   ]} />
                 </section>
