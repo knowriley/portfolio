@@ -16,10 +16,15 @@ import {
 } from '@/components/case-study'
 import { caseStudies, type CaseStudy } from '@/data/case-studies'
 
-const study = caseStudies.find((s) => s.slug === 'conductor-website-redesign')!
+const study = caseStudies.find((s) => s.slug === 'ai-gtm-website-launch')!
+
+const metaDescription = study.metaDescription ?? study.description
 
 export const metadata = {
   title: study.title,
+  description: metaDescription,
+  openGraph: { title: study.title, description: metaDescription },
+  twitter: { title: study.title, description: metaDescription },
 }
 
 const tocItems = [
