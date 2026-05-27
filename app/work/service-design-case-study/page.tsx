@@ -24,8 +24,7 @@ export const metadata = {
 const tocItems = [
   { label: 'Overview',     id: 'overview' },
   { label: 'Context',      id: 'context' },
-  { label: 'Research',     id: 'research' },
-  { label: 'Synthesis',    id: 'synthesis' },
+  { label: 'Research & Synthesis', id: 'research' },
   { label: 'Co-design',    id: 'co-design' },
   { label: 'Interventions', id: 'interventions' },
   { label: 'Impact',       id: 'impact' },
@@ -99,7 +98,7 @@ export default function ServiceDesignCaseStudyPage() {
                       The DX Center is a service inside Pratt Institute&rsquo;s IXD program that recruits
                       and matches predominantly non-profit clients with student-project-driven
                       courses. They asked our team to help them{' '}
-                      <span className="text-primary [&_a]:text-inherit">streamline the matching process</span> and{' '}
+                      <span className="text-primary [&_a]:text-inherit">improve efficiency of internal DX Center workflows</span> and{' '}
                       <span className="text-primary [&_a]:text-inherit">grow the volume of high-quality clients</span>{' '}
                       coming through the door.
                     </p>
@@ -114,7 +113,7 @@ export default function ServiceDesignCaseStudyPage() {
                   <div className="h-12" />
 
                   <MetadataGrid items={[
-                    { label: 'Role',     content: 'Lead Service Designer' },
+                    { label: 'Role',     content: 'Service Designer' },
                     { label: 'Team',     content: 'Myself, 1 Visual Designer, 1 User Researcher, 1 Project Manager' },
                     { label: 'For',      content: (
                       <InlineLink href="https://prattdx.org/" external variant="icon">Center for Digital Experiences, Pratt Institute</InlineLink>
@@ -130,73 +129,92 @@ export default function ServiceDesignCaseStudyPage() {
                 {/* ────────────────────────────── CONTEXT ────────────────────────────── */}
                 <section id="context">
                   <Label>Context</Label>
+                  <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3] [&_a]:text-inherit">
+                    The Center for Digital Experiences (DX Center) is a service within Pratt
+                    Institute&rsquo;s IXD program that{' '}
+                    <span className="text-primary">recruits and matches non-profit clients with student-project driven courses in the IXD program</span>.
+                  </h2>
 
-                  <div className="flex flex-col md:flex-row gap-8 items-start">
-                    <div className="flex-1 min-w-0">
-                      <ImageBlock src="/images/service-design-context.webp" alt="DX Center context — Pratt Institute IXD program client matching service" />
+                  <div className="h-12" />
+
+                  <ImageBlock src="/images/service-design-context.webp" alt="DX Center Homepage of their website" caption="DX Center Homepage" />
+
+                  <div className="h-12 md:h-24" />
+
+                  <p className="text-body-small md:text-body-big text-text-secondary">
+                    The DX Center approached our team with two broad goals:
+                  </p>
+
+                  <div className="flex flex-col md:flex-row gap-5 mt-6">
+                    <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1">
+                      <div className="flex gap-4 items-center">
+                        <span className="text-body-biggest text-primary shrink-0">1</span>
+                        <p className="text-body-small md:text-body-big text-text-primary">
+                          Increase the volume and quality of client applications
+                        </p>
+                      </div>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        The DX Center is a service within Pratt Institute&rsquo;s IXD program that
-                        recruits and matches predominantly non-profit clients with student-project
-                        driven courses in the IXD program.
-                      </p>
-                      <p className="text-body-small md:text-body-big text-text-secondary mt-6">
-                        The DX Center approached our team with the request to help in some key areas:
-                      </p>
-                      <ul className="text-body-small md:text-body-big text-text-secondary mt-4 list-disc pl-5 space-y-2">
-                        <li>
-                          <span className="text-primary [&_a]:text-inherit">Streamline the matching process</span>{' '}
-                          to reduce back-and-forth friction.
-                        </li>
-                        <li>
-                          <span className="text-primary [&_a]:text-inherit">Increase the reach of client recruitment</span>{' '}
-                          — getting a higher volume of high-quality clients.
-                        </li>
-                      </ul>
+                    <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1">
+                      <div className="flex gap-4 items-center">
+                        <span className="text-body-biggest text-primary shrink-0">2</span>
+                        <p className="text-body-small md:text-body-big text-text-primary">
+                          Improve efficiency of internal DX Center workflows
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </section>
 
                 <SectionDivider />
 
-                {/* ────────────────────────────── RESEARCH ────────────────────────────── */}
+                {/* ─────────────────────── RESEARCH & SYNTHESIS ─────────────────────── */}
                 <section id="research">
-                  <Label>Research</Label>
+                  <Label>Research &amp; Synthesis</Label>
                   <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                    Structured interviews with the people who run the service.
+                    Structured interviews with all stakeholders and a thorough collection of
+                    touchpoint artifacts.
                   </h2>
 
                   <div className="h-12" />
 
-                  <p className="text-body-small md:text-body-big text-text-secondary">
-                    To understand the current processes, we ran structured interviews with the DX
-                    Center Leads and a representative set of professors who run the
-                    project-driven courses.
-                  </p>
-                </section>
+                  <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        To fully understand the end-to-end service (current recruitment
+                        strategies, internal processes, outcomes, etc), and actors&rsquo;
+                        experiences within the service, we ran structured interviews with the DX
+                        Center Leads and a representative set of professors who run the
+                        project-driven courses. We also compiled all external and internal-facing
+                        materials to understand communication and tools in use at different
+                        touchpoints of the service.
+                      </p>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <ImageBlock src="/images/service-design-application-form.webp" alt="Snapshot of the current project application form." caption="Current Project Application Form" />
+                    </div>
+                  </div>
+                  <div className="h-12 md:h-24" />
 
-                <SectionDivider />
-
-                {/* ────────────────────────────── SYNTHESIS ────────────────────────────── */}
-                <section id="synthesis">
+                  {/* ── Synthesis ── */}
                   <Label>Synthesis</Label>
                   <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                    Mapping the current service to find where it actually broke.
+                    Mapping the current service to identify opportunity.
                   </h2>
 
                   <div className="h-12" />
 
                   <p className="text-body-small md:text-body-big text-text-secondary">
-                    I synthesized those findings into a service blueprint that mapped the service
-                    across five stages:{' '}
-                    <span className="text-primary [&_a]:text-inherit">Outreach, Contact, Review &amp; Evaluation, Additional Intake, and Client Secured</span>.
+                    I then synthesized these findings into a service blueprint so we could
+                    visualize and evaluate the service as whole.
                   </p>
 
                   <div className="h-12" />
                   <ServiceBlueprintToggle />
 
                   <div className="h-12 md:h-24" />
+
+                  {/* ── Key Findings ── */}
+                  <Label>Key Findings</Label>
 
                   {/* Subsection: Bottleneck */}
                   <div>
