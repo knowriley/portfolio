@@ -215,38 +215,83 @@ export default function ServiceDesignCaseStudyPage() {
 
                   {/* ── Key Findings ── */}
                   <Label>Key Findings</Label>
+                  <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                    When Craig did it all, communication broke down and left professors and
+                    potential clients in the dark.
+                  </h2>
 
-                  {/* Subsection: Bottleneck */}
-                  <div>
-                    <TwoColumnSection heading="The DX Center was the bottleneck.">
+                  <div className="h-12" />
+
+                  {/* Finding 1: Craig did everything */}
+                  <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                        Craig was doing it all — personalized communication, manual notifications,
+                        hands-on coordination of everything.
+                      </h3>
+                      <div className="h-6" />
                       <p className="text-body-small md:text-body-big text-text-secondary">
-                        Progress depended almost entirely on the DX Center Leads. Because they
-                        handled all outreach and client communication themselves, they didn&rsquo;t
-                        have capacity to respond to every potential client — even though they
-                        knew{' '}
-                        <span className="text-primary [&_a]:text-inherit">engagement directly drove quality client recruitment</span>. When the
-                        Leads got pulled into other work, the entire process stalled.
+                        Craig manually sent email blasts to previous clients, handled all
+                        communication with ad-hoc personalized responses (because it had proven to
+                        produce better conversion outcomes), reviewed initial client-to-course
+                        auto-matching in the Airtable database and coordinated all manual review
+                        and finalization of assignments with professors.
                       </p>
-                    </TwoColumnSection>
-                    <div className="h-12" />
-                    <ImageBlock src="/images/service-design-bottleneck-mapped.webp" alt="Illustration mapping the DX Center recruitment bottleneck — workload concentrated on the DX Center Leads" caption="DX Center bottleneck mapped" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <ImageBlock src="/images/service-design-bottleneck-mapped.webp" alt="Illustration mapping the DX Center recruitment bottleneck — workload concentrated on the DX Center Leads" caption="Bottleneck identification & zoom-in on the service blueprint" />
+                    </div>
                   </div>
 
                   <div className="h-12 md:h-24" />
 
-                  {/* Subsection: Downstream effects */}
+                  {/* Finding 2: Professors stuck waiting */}
                   <div>
-                    <TwoColumnSection heading="And that bottleneck caused delayed communication, mismatched expectations, and stakeholder stress.">
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        Minimal communication with professors during recruitment built anxiety
-                        and{' '}
-                        <span className="text-primary [&_a]:text-inherit">decreased confidence in the success of their course</span>. The bottleneck
-                        at the early stage was producing negative downstream effects two and
-                        three roles removed.
-                      </p>
-                    </TwoColumnSection>
+                    <div className="flex flex-col md:flex-row gap-8 items-start">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                          Professors got stuck in a waiting cycle, creating stress and weakening
+                          confidence in the service.
+                        </h3>
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-body-small md:text-body-big text-text-secondary">
+                          Minimal communication with professors during recruitment built anxiety
+                          and{' '}
+                          <span className="text-primary [&_a]:text-inherit">decreased confidence in the success of their course</span>. The bottleneck
+                          at the early stage was producing negative downstream effects two and
+                          three roles removed.
+                        </p>
+                      </div>
+                    </div>
                     <div className="h-12" />
                     <ImageBlock src="/images/service-design-professor-experience.webp" alt="Diagram mapping the professor’s experience during recruitment — minimal communication producing anxiety and decreased confidence" caption="Professor experience mapped" />
+                  </div>
+
+                  <div className="h-12 md:h-24" />
+
+                  {/* Finding 3: Unsuitable clients left in the dark */}
+                  <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
+                        Potential clients not suitable for this recruitment cycle, but maybe for
+                        the next, were getting left in the dark with no explanation, creating a
+                        lost opportunity for the DX Center.
+                      </h3>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        Every recruitment cycle is different, and sometimes there are too many
+                        clients and not enough project teams. Because Craig doesn&rsquo;t have the
+                        capacity to respond to every prospective client, clients who could be a
+                        great fit for a different cycle are getting a poor experience, making them
+                        unlikely to apply again in the future. This violates the principles of
+                        good service design that{' '}
+                        <InlineLink href="https://good.services/principle-10" external>there should be no dead ends</InlineLink>, actors should{' '}
+                        <InlineLink href="https://good.services/principle-14" external>receive clear explanation for why a decision is made</InlineLink> and{' '}
+                        <InlineLink href="https://good.services/principle-15" external>be able to access human assistance</InlineLink>.
+                      </p>
+                    </div>
                   </div>
                 </section>
 
