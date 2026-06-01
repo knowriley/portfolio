@@ -5,6 +5,7 @@ import CaseStudyCard from '@/components/CaseStudyCard'
 import TableOfContents from '@/components/TableOfContents'
 import AnimateOnScroll from '@/components/AnimateOnScroll'
 import ServiceBlueprintToggle from '@/components/ServiceBlueprintToggle'
+import BeforeAfterToggle from '@/components/BeforeAfterToggle'
 import InlineLink from '@/components/InlineLink'
 import {
   Label,
@@ -24,7 +25,7 @@ export const metadata = {
 const tocItems = [
   { label: 'Overview',     id: 'overview' },
   { label: 'Context',      id: 'context' },
-  { label: 'Research & Synthesis', id: 'research' },
+  { label: 'Research', id: 'research' },
   { label: 'Co-design',    id: 'co-design' },
   { label: 'Interventions', id: 'interventions' },
   { label: 'Impact',       id: 'impact' },
@@ -147,7 +148,7 @@ export default function ServiceDesignCaseStudyPage() {
 
                   <div className="flex flex-col md:flex-row gap-5 mt-6">
                     <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1">
-                      <div className="flex gap-4 items-center">
+                      <div className="flex gap-4 items-start">
                         <span className="text-body-biggest text-primary shrink-0">1</span>
                         <p className="text-body-small md:text-body-big text-text-primary">
                           Increase the volume and quality of client applications
@@ -155,7 +156,7 @@ export default function ServiceDesignCaseStudyPage() {
                       </div>
                     </div>
                     <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 flex-1">
-                      <div className="flex gap-4 items-center">
+                      <div className="flex gap-4 items-start">
                         <span className="text-body-biggest text-primary shrink-0">2</span>
                         <p className="text-body-small md:text-body-big text-text-primary">
                           Improve efficiency of internal DX Center workflows
@@ -196,17 +197,43 @@ export default function ServiceDesignCaseStudyPage() {
                   <div className="h-12 md:h-24" />
 
                   {/* ── Synthesis ── */}
-                  <Label>Synthesis</Label>
-                  <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                    Mapping the current service to identify opportunity.
-                  </h2>
+                  <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="flex-1 min-w-0">
+                      <Label>Synthesis</Label>
+                      <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                        Mapping the current service to identify bottlenecks and opportunities
+                      </h2>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        I then synthesized these findings into a service blueprint so we could
+                        visualize and evaluate the service as whole. At a high level, the process
+                        works like this:
+                      </p>
 
-                  <div className="h-12" />
+                      <div className="h-4" />
 
-                  <p className="text-body-small md:text-body-big text-text-secondary">
-                    I then synthesized these findings into a service blueprint so we could
-                    visualize and evaluate the service as whole.
-                  </p>
+                      <ul className="list-disc pl-6 space-y-2 text-body-small md:text-body-big text-text-secondary">
+                        <li>
+                          Craig begins recruitment for the upcoming semester ~1 month out from
+                          project start date.
+                        </li>
+                        <li>
+                          Client project proposals are made via a Google form, which
+                          autopopulates in an Airtable with potential course mappings
+                        </li>
+                        <li>
+                          Craig manually reviews Airtable and adjusts assignments based on course
+                          requirements, professor feedback and clients&rsquo; clarifying
+                          information.
+                        </li>
+                        <li>
+                          Craig finalizes assignments and notifies professors so they can make
+                          the initial contact.
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
 
                   <div className="h-12" />
                   <ServiceBlueprintToggle />
@@ -251,16 +278,17 @@ export default function ServiceDesignCaseStudyPage() {
                       <div className="flex-1 min-w-0">
                         <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
                           Professors got stuck in a waiting cycle, creating stress and weakening
-                          confidence in the service.
+                          confidence they&rsquo;d get clients on-time.
                         </h3>
                       </div>
                       <div className="flex-1 min-w-0">
                         <p className="text-body-small md:text-body-big text-text-secondary">
-                          Minimal communication with professors during recruitment built anxiety
-                          and{' '}
-                          <span className="text-primary [&_a]:text-inherit">decreased confidence in the success of their course</span>. The bottleneck
-                          at the early stage was producing negative downstream effects two and
-                          three roles removed.
+                          Professors had some correspondence with Craig mid-match process, but
+                          could go a week or two with silence as client project start dates
+                          quickly approached.{' '}
+                          <span className="text-primary [&_a]:text-inherit">Lack of communication made professors feel anxious</span>{' '}
+                          they&rsquo;d have to pivot their course structure at the last minute or
+                          rapidly onboard a set of ill-matched clients right at the deadline.
                         </p>
                       </div>
                     </div>
@@ -270,26 +298,22 @@ export default function ServiceDesignCaseStudyPage() {
 
                   <div className="h-12 md:h-24" />
 
-                  {/* Finding 3: Unsuitable clients left in the dark */}
+                  {/* Finding 3: Promising clients left in the dark */}
                   <div className="flex flex-col md:flex-row gap-8 items-start">
                     <div className="flex-1 min-w-0">
                       <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
-                        Potential clients not suitable for this recruitment cycle, but maybe for
-                        the next, were getting left in the dark with no explanation, creating a
-                        lost opportunity for the DX Center.
+                        Promising clients were getting left in the dark
                       </h3>
                     </div>
                     <div className="flex-1 min-w-0">
                       <p className="text-body-small md:text-body-big text-text-secondary">
-                        Every recruitment cycle is different, and sometimes there are too many
-                        clients and not enough project teams. Because Craig doesn&rsquo;t have the
-                        capacity to respond to every prospective client, clients who could be a
-                        great fit for a different cycle are getting a poor experience, making them
-                        unlikely to apply again in the future. This violates the principles of
-                        good service design that{' '}
-                        <InlineLink href="https://good.services/principle-10" external>there should be no dead ends</InlineLink>, actors should{' '}
-                        <InlineLink href="https://good.services/principle-14" external>receive clear explanation for why a decision is made</InlineLink> and{' '}
-                        <InlineLink href="https://good.services/principle-15" external>be able to access human assistance</InlineLink>.
+                        Every recruitment cycle is different, and sometimes there are more
+                        clients than the program can place.{' '}
+                        <span className="text-primary [&_a]:text-inherit">Craig doesn&rsquo;t have the capacity to respond to everyone, so clients who weren&rsquo;t a fit this time, but could have been next time, never heard back.</span>{' '}
+                        This is a service design failure: there should be{' '}
+                        <InlineLink href="https://good.services/principle-10" external>no dead ends</InlineLink>, every actor should get a{' '}
+                        <InlineLink href="https://good.services/principle-14" external>clear explanation for decisions</InlineLink>, and{' '}
+                        <InlineLink href="https://good.services/principle-15" external>human assistance</InlineLink> should always be within reach.
                       </p>
                     </div>
                   </div>
@@ -300,101 +324,128 @@ export default function ServiceDesignCaseStudyPage() {
                 {/* ────────────────────────────── CO-DESIGN ────────────────────────────── */}
                 <section id="co-design">
                   <Label>Co-design</Label>
-                  <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                    From themes to opportunities — a co-design workshop with both sides of the
-                    service.
+                  <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3] [&_a]:text-inherit">
+                    Craig and professors had a clear mismatch in communication expectations —{' '}
+                    <span className="text-primary">I saw co-design as an opportunity to build mutual empathy between actors</span>{' '}
+                    in addition to co-creating design interventions.
                   </h2>
 
                   <div className="h-12" />
-
-                  <p className="text-body-small md:text-body-big text-text-secondary">
-                    With those initial findings in hand, I proposed a co-design workshop with the
-                    DX Center Leads and professors together.
-                  </p>
+                  <ImageBlock src="/images/service-design-workshop-planning.webp" alt="Sticky-note board from planning the co-design workshop — candidate workshop formats, with the chosen option (co-design with Craig and a handful of professors, to envision the ideal collaboration and shared information space) highlighted" caption="Scoping the co-design workshop" />
 
                   <div className="h-12 md:h-24" />
 
-                  <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                    Build empathy between the two actors by having them map and share their own
-                    experiences inside the service.
-                  </h2>
+                  <p className="text-body-small md:text-body-big text-text-secondary">
+                    In the first stage of the workshop, we had Craig and the professors each map
+                    their own personal journey following the last recruitment cycle and share what
+                    they created to build empathy and shared understanding.
+                  </p>
 
                   <div className="h-12" />
                   <ImageBlock src="/images/service-design-journey-map-empathy.webp" alt="Journey-map activity from the co-design workshop — participants mapping and sharing their own experiences inside the service" caption="Journey-mapping activity — building empathy through shared experience" />
 
                   <div className="h-12 md:h-24" />
 
-                  <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                    Let them identify, prioritize, and co-design against the biggest existing pain
-                    points themselves.
-                  </h2>
+                  <p className="text-body-small md:text-body-big text-text-secondary">
+                    We then guided them through prioritized pain-point identification and the
+                    co-creation of the &ldquo;ideal workflow.&rdquo;
+                  </p>
 
                   <div className="h-12" />
-                  <ImageBlock src="/images/service-design-prioritization.webp" alt="Prioritization activity from the co-design workshop — DX Center Leads and professors ranking the biggest pain points themselves" caption="Stakeholders prioritizing pain points during the co-design workshop" />
+                  <ImageBlock src="/images/service-design-prioritization.webp" alt="Prioritization activity from the co-design workshop — DX Center Leads and professors ranking the biggest pain points themselves" caption="Prioritizing pain points during the co-design workshop" />
+
+                  <div className="h-12" />
+                  <ImageBlock src="/images/service-design-ideal-workflow.webp" alt="“Creating an Ideal Workflow” activity board from the co-design workshop — participants choose a card, assign an actor, and add a connector to map the ideal recruitment flow across stages like Outreach and Initial Contact" caption="Co-creating the ideal recruitment workflow" />
 
                   <div className="h-12 md:h-24" />
 
-                  <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                    Have professors envision themselves as part of the recruitment process.
-                  </h2>
+                  {/* ── Key Insights ── */}
+                  <Label>Key Insights</Label>
 
-                  <div className="h-12" />
+                  <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="flex-1 min-w-0">
+                      <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                        Professors wanted more involvement in the recruitment process
+                      </h2>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        In the co-creation activity, professors mapped what their ideal
+                        involvement in recruitment could look like — what they&rsquo;d want to own,
+                        where they&rsquo;d want the DX Center to step in, and what artifacts would
+                        help them feel confident doing it. The specifics they surfaced became the{' '}
+                        <span className="text-primary [&_a]:text-inherit">seed for the Faculty Onboarding Kit</span>{' '}
+                        (intervention 2 below) — every piece of the kit traces back to something a
+                        professor said they&rsquo;d need.
+                      </p>
+                    </div>
+                  </div>
 
-                  <p className="text-body-small md:text-body-big text-text-secondary">
-                    In the co-creation activity, professors mapped what their ideal involvement in
-                    recruitment could look like — what they&rsquo;d want to own, where they&rsquo;d
-                    want the DX Center to step in, and what artifacts would help them feel confident
-                    doing it. The specifics they surfaced became the{' '}
-                    <span className="text-primary [&_a]:text-inherit">seed for the Faculty Onboarding Kit</span>{' '}
-                    (intervention 2 below) — every piece of the kit traces back to something a
-                    professor said they&rsquo;d need.
-                  </p>
+                  <div className="h-12 md:h-24" />
 
-                  <div className="h-12" />
-                  <ImageBlock src="/images/service-design-co-creation.webp" alt="Co-creation activity — professors mapping their ideal involvement in the recruitment process" caption="Professors co-creating their role in the recruitment workflow" />
-
-                  <div className="h-12" />
-
-                  <p className="text-body-small md:text-body-big text-text-secondary">
-                    The workshop was{' '}
-                    <span className="text-primary [&_a]:text-inherit">an absolute success</span>. All participants demonstrated empathy and
-                    understanding for the other side&rsquo;s experience, and their conversations
-                    echoed our team&rsquo;s working hypotheses while adding richer insights and
-                    suggestions that ultimately drove our proposed interventions.
-                  </p>
+                  <div className="flex flex-col md:flex-row gap-8 items-start">
+                    <div className="flex-1 min-w-0">
+                      <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                        Prospective clients struggle to identify which project type they&rsquo;re
+                        best suited for
+                      </h2>
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-body-small md:text-body-big text-text-secondary">
+                        Both professors and Craig kept returning to the same gap: prospective
+                        clients often don&rsquo;t understand the different project types being
+                        offered. For both professors and Craig, the priority is always protecting the
+                        students&rsquo; ability to execute the learning outcomes and the specific
+                        deliverables a course is built around.{' '}
+                        <span className="text-primary [&_a]:text-inherit">When a client can&rsquo;t accurately identify the type of work they need most, or what they&rsquo;ll actually &ldquo;get&rdquo; at the end, the &ldquo;messy middle&rdquo; of matching them to the right course drags on far longer than it should.</span>
+                      </p>
+                    </div>
+                  </div>
                 </section>
 
                 <SectionDivider />
 
                 {/* ────────────────────────────── INTERVENTIONS ────────────────────────────── */}
                 <section id="interventions">
-                  <Label>Solution</Label>
+                  <Label>Proposed Interventions</Label>
                   <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                    Two interventions: shift workload off the leads, and give faculty real tools.
+                    Three interventions: a dedicated GA, faculty as recruiters, and a
+                    plain-language intake form.
                   </h2>
 
                   <div className="h-12 md:h-24" />
 
                   {/* Intervention 1: GA Role */}
                   <div>
-                    <TwoColumnSection heading="Intervention 1 — a Graduate Assistant role dedicated to early-stage recruitment.">
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        To release pressure on the DX Center Leads, I proposed a{' '}
-                        <span className="text-primary [&_a]:text-inherit">Graduate Assistant role</span> dedicated entirely to early-stage client
-                        recruitment. The GA owns the end-to-end process: outreach, intake
-                        conversations, pipeline management, and the templated communications that
-                        keep prospects moving. The Leads keep the work that genuinely requires
-                        their judgment — defining course needs and handling the unique assignment
-                        problems that templates can&rsquo;t solve.
-                      </p>
-                    </TwoColumnSection>
+                    <Label>Intervention 1</Label>
+                    <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                      A Graduate Assistant role dedicated to early-stage recruitment and
+                      preliminary matching, so Craig can handle the sticky stuff.
+                    </h2>
 
                     <div className="h-12" />
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                      <ImageBlock src="/images/service-design-bottleneck-before.webp" alt="Diagram of the recruitment flow before intervention — DX Center Leads handle outreach, intake, and pipeline themselves" caption="DX Center bottleneck — before intervention" />
-                      <ImageBlock src="/images/service-design-bottleneck-after.webp" alt="Diagram of the recruitment flow after intervention — Graduate Assistant owns outreach, intake, and pipeline; Leads retain judgment work" caption="DX Center bottleneck — after intervention" />
-                    </div>
+                    <p className="text-body-small md:text-body-big text-text-secondary">
+                      To release pressure on the DX Center Leads, I proposed a Graduate Assistant
+                      (GA) role dedicated entirely to early-stage client recruitment and ownership
+                      of the DX Center&ndash;client relationship. The GA would take over all DX
+                      Center recruitment, early client communications, and preliminary matching.
+                      GAs are students in Pratt&rsquo;s IXD program themselves, so they have
+                      sufficient knowledge to make judgments on initial matching.
+                    </p>
+                    <p className="text-body-small md:text-body-big text-text-secondary mt-6">
+                      <span className="text-primary [&_a]:text-inherit">Craig keeps the work that genuinely requires his judgment</span>: defining
+                      course needs and handling the unique assignment problems that templates
+                      can&rsquo;t solve.
+                    </p>
+
+                    <div className="h-12" />
+
+                    <BeforeAfterToggle
+                      before={{ src: '/images/service-design-bottleneck-before.webp', alt: 'Diagram of the recruitment flow before intervention — DX Center Leads handle outreach, intake, and pipeline themselves' }}
+                      after={{ src: '/images/service-design-bottleneck-after.webp', alt: 'Diagram of the recruitment flow after intervention — Graduate Assistant owns outreach, intake, and pipeline; Leads retain judgment work' }}
+                      caption="DX Center bottleneck — before and after the Graduate Assistant role"
+                    />
 
                     <div className="h-12" />
 
@@ -411,76 +462,43 @@ export default function ServiceDesignCaseStudyPage() {
 
                   {/* Intervention 2: Faculty Onboarding Kit */}
                   <div>
-                    <TwoColumnSection heading="Intervention 2 — a Faculty Onboarding Kit that turns recipients into collaborators.">
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        Both the blueprint and the workshop highlighted how absent professors felt
-                        in the early recruitment stages. For some that was fine; for others it
-                        created anxiety. A unanimously approved idea from the workshop was to{' '}
-                        <span className="text-primary [&_a]:text-inherit">optionally invite professors into recruitment</span> and give them the
-                        right tools to do it confidently.
-                      </p>
-                    </TwoColumnSection>
+                    <Label>Intervention 2</Label>
+                    <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                      Faculty onboarding kit
+                    </h2>
 
                     <div className="h-12" />
 
                     <p className="text-body-small md:text-body-big text-text-secondary">
-                      From that idea, the Faculty Onboarding Kit was born — a packet professors
-                      receive at week -4 containing five pieces:
+                      Both the blueprint and the workshop highlighted how absent professors felt
+                      in the early recruitment stages. For some that was fine; for others it
+                      created anxiety. A unanimously approved idea from the workshop was to{' '}
+                      <span className="text-primary [&_a]:text-inherit">optionally invite professors into recruitment</span> and give them the
+                      right tools to do it confidently. The kit would include:
                     </p>
 
                     <div className="h-8" />
 
                     <div className="flex flex-col gap-5">
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
-                        <div className="flex gap-4 items-center">
-                          <span className="text-body-biggest text-primary shrink-0">1</span>
-                          <p className="text-body-small md:text-body-big text-text-primary">
-                            A <span className="text-primary [&_a]:text-inherit">Client Collaboration Guide</span> explaining the working model.
-                          </p>
-                        </div>
+                        <p className="text-body-small md:text-body-big text-text-primary">
+                          <span className="text-primary [&_a]:text-inherit">Context-setting content:</span> purpose and working model of students&rsquo; client projects, the professors&rsquo; role, and the recruitment timeline.
+                        </p>
                       </div>
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
-                        <div className="flex gap-4 items-center">
-                          <span className="text-body-biggest text-primary shrink-0">2</span>
-                          <p className="text-body-small md:text-body-big text-text-primary">
-                            A <span className="text-primary [&_a]:text-inherit">Working with DX Center</span> overview.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
-                        <div className="flex gap-4 items-center">
-                          <span className="text-body-biggest text-primary shrink-0">3</span>
-                          <p className="text-body-small md:text-body-big text-text-primary">
-                            A <span className="text-primary [&_a]:text-inherit">Recruitment Timeline</span> with milestones.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
-                        <div className="flex gap-4 items-center">
-                          <span className="text-body-biggest text-primary shrink-0">4</span>
-                          <p className="text-body-small md:text-body-big text-text-primary">
-                            A <span className="text-primary [&_a]:text-inherit">&ldquo;Wait or Reach Out&rdquo; decision guide</span> for handling silence.
-                          </p>
-                        </div>
-                      </div>
-                      <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
-                        <div className="flex gap-4 items-center">
-                          <span className="text-body-biggest text-primary shrink-0">5</span>
-                          <p className="text-body-small md:text-body-big text-text-primary">
-                            <span className="text-primary [&_a]:text-inherit">Templates &amp; Artifacts</span> professors can use to surface clients from
-                            their own networks.
-                          </p>
-                        </div>
+                        <p className="text-body-small md:text-body-big text-text-primary">
+                          <span className="text-primary [&_a]:text-inherit">Tools to recruit:</span> email templates and marketing materials for professors who optionally want to recruit for their course, a guide to what makes an acceptable client (must be a non-profit, etc.), and the outlined process and constraints for getting DX Center approval.
+                        </p>
                       </div>
                     </div>
 
                     <div className="h-12" />
 
                     <p className="text-body-small md:text-body-big text-text-secondary">
-                      The kit shifts the professor&rsquo;s role from passive recipient to potential
-                      collaborator. The redesigned journey flips the emotional arc: professors
-                      move from <span className="text-primary [&_a]:text-inherit">Curiosity → Clarity → Awareness → Confidence → Excitement</span>, and
-                      arrive at semester start <span className="text-primary [&_a]:text-inherit">Prepared</span>.
+                      The kit shifts the professor&rsquo;s role from passive recipient to informed
+                      collaborator and potential recruiter. The redesigned journey flips the
+                      emotional arc: professors move from Curiosity → Clarity → Awareness →
+                      Confidence → Excitement, and arrive at semester start Prepared.
                     </p>
 
                     <div className="h-12" />
@@ -489,14 +507,40 @@ export default function ServiceDesignCaseStudyPage() {
                     <div className="h-12" />
 
                     <p className="text-body-small md:text-body-big text-text-secondary">
-                      The risk worth naming is that professors recruiting independently can
-                      introduce inconsistency — projects sourced outside the Center&rsquo;s vetting
-                      process may not match its quality bar, and professors lose visibility into
-                      how proposals are evaluated when they bypass the system entirely. The
-                      kit&rsquo;s templates and intake forms are the guardrails, but the longer-term
-                      answer is{' '}
-                      <span className="text-primary [&_a]:text-inherit">keeping the Center in the loop even when professors bring their own leads</span>.
+                      Enabling professors to recruit for their courses additionally{' '}
+                      <span className="text-primary [&_a]:text-inherit">creates another channel for high-quality client recruitment</span>.
+                      Clients will be high-quality because professors are the experts on their
+                      courses&rsquo; needs, and more professors recruiting minimizes the pressure
+                      on the DX Center to recruit all clients itself.
                     </p>
+                  </div>
+
+                  <div className="h-12 md:h-24" />
+
+                  {/* Intervention 3: New intake form */}
+                  <div>
+                    <Label>Intervention 3</Label>
+                    <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
+                      A new intake form that shows plain-language deliverables instead of
+                      jargon-heavy course topics.
+                    </h2>
+
+                    <div className="h-12" />
+
+                    <p className="text-body-small md:text-body-big text-text-secondary">
+                      Without jargon as an obstacle,{' '}
+                      <span className="text-primary [&_a]:text-inherit">prospective clients can better self-identify their own needs</span> and
+                      have <span className="text-primary [&_a]:text-inherit">more accurate expectations of the project outcomes</span>.
+                    </p>
+                    <p className="text-body-small md:text-body-big text-text-secondary mt-6">
+                      This should create stronger initial course assignments, reducing the
+                      &ldquo;messy middle&rdquo; untangling. It also elevates visibility to, and
+                      protects execution toward, student learning outcomes — which both Craig and
+                      the professors named as their shared top priority for every semester.
+                    </p>
+
+                    <div className="h-12" />
+                    <ImageBlock caption="New plain-language intake form (coming soon)" />
                   </div>
                 </section>
 
@@ -505,29 +549,14 @@ export default function ServiceDesignCaseStudyPage() {
                 {/* ────────────────────────────── IMPACT ────────────────────────────── */}
                 <section id="impact">
                   <Label>Impact</Label>
-                  <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                    Empathy first — the design changes follow.
-                  </h2>
 
-                  <div className="h-12" />
-
-                  <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 md:py-10">
-                    <p className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3]">
-                      &ldquo;I&rsquo;ve never really thought about the professors&rsquo; experiences before.
-                      Just going through the interview and the workshop alone really changed
-                      that, and I think it can be better.&rdquo;
-                    </p>
-                    <p className="text-body-small text-text-tertiary mt-6">
-                      — DX Center Lead, final presentation
-                    </p>
-                  </div>
-
-                  <div className="h-8" />
-
-                  <p className="text-body-small md:text-body-big text-text-secondary">
-                    If implemented, we anticipate that these interventions will{' '}
-                    <span className="text-primary [&_a]:text-inherit">broaden the reach and improve the quality of DX Center recruitment</span>,
-                    while improving the experience of the service&rsquo;s actors on both sides.
+                  <p className="font-normal text-h3 md:text-h2 lg:text-h1 bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink [&_a]:text-inherit">
+                    &ldquo;I&rsquo;ve never really thought about the professors&rsquo; experiences before.
+                    Just going through the interview and the workshop alone really changed that,
+                    and I think it can be better.&rdquo;
+                  </p>
+                  <p className="text-body-big text-text-tertiary text-right mt-6">
+                    — Craig
                   </p>
                 </section>
 
@@ -536,21 +565,29 @@ export default function ServiceDesignCaseStudyPage() {
                 {/* ────────────────────────────── REFLECTION ────────────────────────────── */}
                 <section id="reflection">
                   <Label>Reflection</Label>
-                  <TwoColumnSection heading="The bottleneck wasn’t a process step. It was a person.">
-                    <div>
-                      <p className="text-body-small md:text-body-big text-text-secondary">
-                        The instinct with a service like this is to{' '}
-                        <span className="text-primary [&_a]:text-inherit">reach for automation</span>. But the blueprint made it clear that the
-                        bottleneck wasn&rsquo;t a process step — it was a person, and no amount of
-                        tooling would have changed that.
-                      </p>
-                      <p className="text-body-small md:text-body-big text-text-secondary mt-6">
-                        What moved the work forward was{' '}
-                        <span className="text-primary [&_a]:text-inherit">research</span> — specifically the interviews and co-design sessions
-                        that let us see the service from inside each role. Without that, I think
-                        we would have optimized the wrong thing.
-                      </p>
-                    </div>
+                  <TwoColumnSection heading="The work created impact before anything was implemented.">
+                    <p className="text-body-small md:text-body-big text-text-secondary">
+                      The most striking outcome wasn&rsquo;t a single intervention — it was the
+                      workshop itself. Getting Craig and the professors in one room to map and
+                      share their experiences{' '}
+                      <span className="text-primary [&_a]:text-inherit">already shifted how each side understood the other</span>, before a single
+                      change was made.
+                    </p>
+                  </TwoColumnSection>
+
+                  <div className="h-12 md:h-24" />
+
+                  <TwoColumnSection heading="Automation isn’t always the answer.">
+                    <p className="text-body-small md:text-body-big text-text-secondary">
+                      It also reframed my instinct to{' '}
+                      <span className="text-primary [&_a]:text-inherit">reach for automation</span>. Craig&rsquo;s tailored, personal
+                      communication was converting better than any template would, and the scale
+                      here is manageable — the DX Center supports a fixed set of courses and a
+                      steady volume of requests, and the program isn&rsquo;t expanding. The answer
+                      wasn&rsquo;t to replace the human touch with tooling, but to give a dedicated
+                      GA the capacity to keep responses tailored while building the templates that
+                      make that sustainable.
+                    </p>
                   </TwoColumnSection>
                 </section>
 
