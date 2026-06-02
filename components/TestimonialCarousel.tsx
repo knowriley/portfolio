@@ -24,11 +24,11 @@ const testimonials: Testimonial[] = [
     segments: [
       { text: 'Riley is a ' },
       { text: 'rare talent who I see as a unicorn', highlight: true },
-      { text: '...Her combination of technical and design skills has been instrumental as we all continue to adopt front-end engineering skills with our usage of Claude Code. ' },
-      { text: 'We would have been unable to scale these skillsets across our global chapter without Riley’s involvement, guidance, and instruction', highlight: true },
-      { text: '...She’s an engineer’s dream to collaborate with. When staffing Riley to a project, ' },
-      { text: 'I know I’m providing a design resource who can lead in any and all functions of the role', highlight: true },
-      { text: '...whether that’s 0-1 project or punch something up better than it started.' },
+      { text: '...Her combination of technical and design skills has been instrumental—we would have been ' },
+      { text: 'unable to scale Claude Code across our global chapter without Riley’s involvement, guidance, and instruction', highlight: true },
+      { text: '...she’s an engineer’s dream to collaborate with. When staffing Riley to a project, I know I’m providing a design resource who ' },
+      { text: 'can lead in any and all functions of the role', highlight: true },
+      { text: '.' },
     ],
     author: 'Brendan Gilsenan',
     title: 'Lead Experience Designer & Manager @ Chubb',
@@ -99,25 +99,38 @@ export default function TestimonialCarousel() {
     <section className="flex justify-center px-5 md:px-10 py-12 md:py-20">
       <div className="max-w-page w-full flex flex-col gap-8">
 
-        {/* Card — quote + attribution */}
-        <div className="bg-bg-secondary border border-border rounded-sm p-8 md:p-12 lg:p-16 flex flex-col gap-10">
-          {/*
-            Gradient is applied to the parent <p> (bg-clip:text + text-transparent), so the
-            red→pink wash spans the whole quote as one continuous image. Non-highlighted segments
-            override `color` with `text-text-primary` to render solid; highlighted segments inherit
-            the parent's transparent fill, revealing the slice of gradient at their position.
-            The opening/closing curly quote glyphs use the same masking trick to stay solid black.
-            See CLAUDE.md → Gradient system for the canonical pattern.
-          */}
-          <p className="font-normal text-body-biggest md:text-h2 lg:text-h1 bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink [&_a]:text-inherit">
-            <span className="text-text-primary">“</span>
-            {t.segments.map((seg, i) => (
-              <span key={i} className={seg.highlight ? undefined : 'text-text-primary'}>
-                {seg.text}
-              </span>
-            ))}
-            <span className="text-text-primary">”</span>
-          </p>
+        {/* Card — quote + attribution, led by a large quote mark.
+            Padding is asymmetric: top + left are smaller than right + bottom to optically
+            compensate for the whitespace the quote glyph carries above and to its left. */}
+        <div className="bg-bg-secondary border border-border rounded-sm pt-6 pl-6 pr-8 pb-8 md:pt-8 md:pl-8 md:pr-12 md:pb-12 lg:pt-10 lg:pl-10 lg:pr-16 lg:pb-16 flex flex-col gap-10">
+          <div className="flex flex-col">
+            {/*
+              Large filled quotation mark. lucide has no filled quote glyph, so we use a serif
+              (Lora) typographic mark painted with the red→pink gradient via the same bg-clip-text
+              trick as the highlight text below. Negative bottom margin pulls the quote up under
+              the mark's empty lower half (the glyph sits at the top of its em box).
+            */}
+            <span
+              aria-hidden
+              className="block select-none font-serif leading-none text-[72px] md:text-[104px] -mb-4 md:-mb-6 bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink"
+            >
+              &ldquo;
+            </span>
+            {/*
+              Gradient is applied to the parent <p> (bg-clip:text + text-transparent), so the
+              red→pink wash spans the whole quote as one continuous image. Non-highlighted segments
+              override `color` with `text-text-primary` to render solid; highlighted segments inherit
+              the parent's transparent fill, revealing the slice of gradient at their position.
+              See CLAUDE.md → Gradient system for the canonical pattern.
+            */}
+            <p className="pl-4 md:pl-6 font-normal text-body-big md:text-h3 lg:text-h1 bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink [&_a]:text-inherit">
+              {t.segments.map((seg, i) => (
+                <span key={i} className={seg.highlight ? undefined : 'text-text-primary'}>
+                  {seg.text}
+                </span>
+              ))}
+            </p>
+          </div>
 
           <div className="text-right">
             <p className="text-body-small font-medium text-text-primary">{t.author}</p>
