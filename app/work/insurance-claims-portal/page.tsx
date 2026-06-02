@@ -16,14 +16,19 @@ import InlineLink from '@/components/InlineLink'
 import { caseStudies } from '@/data/case-studies'
 import { isUnlocked } from '@/lib/case-study-lock'
 
-const study = caseStudies.find((s) => s.slug === 'ai-claims-portal')!
+const study = caseStudies.find((s) => s.slug === 'insurance-claims-portal')!
+
+const metaDescription = study.metaDescription ?? study.description
 
 export const metadata = {
   title: study.title,
+  description: metaDescription,
+  openGraph: { title: study.title, description: metaDescription },
+  twitter: { title: study.title, description: metaDescription },
 }
 
 const nextStudy = caseStudies.find(
-  (s) => !s.hidden && s.slug !== 'ai-claims-portal',
+  (s) => !s.hidden && s.slug !== 'insurance-claims-portal',
 )!
 
 // ── Page ─────────────────────────────────────────────────────────────────────
@@ -521,7 +526,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         <div>
                           <p className="text-body-small md:text-body-big text-text-secondary">
                             Debugging over Zoom while I sent engineers annotated screenshots of inspected HTML over Teams felt deeply un-ideal. I was reacting to AI output instead of directing it. <span className="text-primary [&_a]:text-inherit">This work reframed AI for me: done well, it isn&rsquo;t just slop-creation; it&rsquo;s a way to scale craft, not replace it.</span> I wanted to get my hands on Claude Code myself, and I did, on my very{' '}
-                            <InlineLink href="/work/evidence-of-insurability">next project</InlineLink>
+                            <InlineLink href="/work/insurance-product-selection">next project</InlineLink>
                             .
                           </p>
                         </div>
@@ -532,7 +537,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
                   <div className="h-16 md:h-24" />
                 )}
 
-                {!unlocked && <CaseStudyPaywall pathname="/work/ai-claims-portal" />}
+                {!unlocked && <CaseStudyPaywall pathname="/work/insurance-claims-portal" />}
 
               </div>
               {/* end content column */}
