@@ -109,7 +109,7 @@ export default function TestimonialCarousel() {
             The opening/closing curly quote glyphs use the same masking trick to stay solid black.
             See CLAUDE.md → Gradient system for the canonical pattern.
           */}
-          <p className="font-normal text-h3 md:text-h2 lg:text-h1 bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink [&_a]:text-inherit">
+          <p className="font-normal text-body-biggest md:text-h2 lg:text-h1 bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink [&_a]:text-inherit">
             <span className="text-text-primary">“</span>
             {t.segments.map((seg, i) => (
               <span key={i} className={seg.highlight ? undefined : 'text-text-primary'}>
