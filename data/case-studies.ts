@@ -57,7 +57,7 @@ const rawCaseStudies: CaseStudy[] = [
     metaDescription:
       "Led the design strategy and redesign of Chubb Benefits' unified claims portal for 350K customers, re-aligning design and engineering mid-build.",
     tags: ['Relationship Management', 'AI Workflows'],
-    year: 'Nov 2025 – Present',
+    year: 'Nov 2025 – May 2026',
     industry: 'Insurance',
     thumbnail: '/images/chubb-cover-unified-experience.mp4',
   },

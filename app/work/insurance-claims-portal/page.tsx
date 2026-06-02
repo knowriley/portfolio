@@ -132,8 +132,8 @@ export default async function AiClaimsPortalCaseStudyPage() {
                         </InlineLink>
                       </>
                     ) },
-                    { label: 'Timeline', content: 'Nov 2025 – Present' },
-                    { label: 'Status',   content: 'In testing' },
+                    { label: 'Timeline', content: 'Nov 2025 – May 2026' },
+                    { label: 'Status',   content: 'Live' },
                   ]} />
                 </section>
 
