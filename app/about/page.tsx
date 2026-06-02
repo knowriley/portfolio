@@ -22,8 +22,7 @@ export default function AboutPage() {
             <div className="relative w-full md:w-[66vw] lg:w-[33vw]">
               <div
                 aria-hidden
-                className="absolute -inset-2 animate-fade-in-up"
-                style={{ animationDelay: '1.5s', animationDuration: '0.55s' }}
+                className="absolute -inset-2 about-image-anim"
               >
                 <div className="absolute inset-0 rounded-full bg-gradient-to-r from-gradient-red from-[22%] to-gradient-orange blur-2xl opacity-20" />
               </div>
@@ -33,8 +32,7 @@ export default function AboutPage() {
                 width={802}
                 height={802}
                 priority
-                className="relative w-full h-auto border border-border shadow-sm rounded-sm animate-fade-in-up"
-                style={{ animationDelay: '1.5s', animationDuration: '0.55s' }}
+                className="relative w-full h-auto border border-border shadow-sm rounded-sm about-image-anim"
               />
             </div>
           </div>
