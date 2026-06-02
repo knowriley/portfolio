@@ -99,8 +99,10 @@ export default function TestimonialCarousel() {
     <section className="flex justify-center px-5 md:px-10 py-12 md:py-20">
       <div className="max-w-page w-full flex flex-col gap-8">
 
-        {/* Quote + attribution — no card; sits directly on the page, led by a large quote mark */}
-        <div className="flex flex-col gap-10">
+        {/* Card — quote + attribution, led by a large quote mark.
+            Padding is asymmetric: top + left are smaller than right + bottom to optically
+            compensate for the whitespace the quote glyph carries above and to its left. */}
+        <div className="bg-bg-secondary border border-border rounded-sm pt-6 pl-6 pr-8 pb-8 md:pt-8 md:pl-8 md:pr-12 md:pb-12 lg:pt-10 lg:pl-10 lg:pr-16 lg:pb-16 flex flex-col gap-10">
           <div className="flex flex-col">
             {/*
               Large filled quotation mark. lucide has no filled quote glyph, so we use a serif
@@ -121,7 +123,7 @@ export default function TestimonialCarousel() {
               the parent's transparent fill, revealing the slice of gradient at their position.
               See CLAUDE.md → Gradient system for the canonical pattern.
             */}
-            <p className="font-normal text-body-big md:text-h3 lg:text-h1 bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink [&_a]:text-inherit">
+            <p className="pl-4 md:pl-6 font-normal text-body-big md:text-h3 lg:text-h1 bg-clip-text text-transparent bg-gradient-to-r from-gradient-red to-gradient-pink [&_a]:text-inherit">
               {t.segments.map((seg, i) => (
                 <span key={i} className={seg.highlight ? undefined : 'text-text-primary'}>
                   {seg.text}
@@ -130,7 +132,7 @@ export default function TestimonialCarousel() {
             </p>
           </div>
 
-          <div className="text-left">
+          <div className="text-right">
             <p className="text-body-small font-medium text-text-primary">{t.author}</p>
             <p className="text-body-small text-text-tertiary">{t.title}</p>
             {t.subtitle && (
