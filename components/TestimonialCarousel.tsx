@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import IconButton from './IconButton'
+import InlineLink from './InlineLink'
 
 interface Segment {
   text: string
@@ -14,9 +15,29 @@ interface Testimonial {
   author: string
   title: string
   subtitle: string
+  /** Optional external link rendered in place of the subtitle (e.g. "Read full endorsement on LinkedIn"). */
+  link?: { href: string; label: string }
 }
 
 const testimonials: Testimonial[] = [
+  {
+    segments: [
+      { text: 'Riley is a ' },
+      { text: 'rare talent who I see as a unicorn', highlight: true },
+      { text: '...Her combination of technical and design skills has been instrumental as we all continue to adopt front-end engineering skills with our usage of Claude Code. ' },
+      { text: 'We would have been unable to scale these skillsets across our global chapter without Riley’s involvement, guidance, and instruction', highlight: true },
+      { text: '...She’s an engineer’s dream to collaborate with. When staffing Riley to a project, ' },
+      { text: 'I know I’m providing a design resource who can lead in any and all functions of the role', highlight: true },
+      { text: '...whether that’s 0-1 project or punch something up better than it started.' },
+    ],
+    author: 'Brendan Gilsenan',
+    title: 'Lead Experience Designer & Manager @ Chubb',
+    subtitle: '',
+    link: {
+      href: 'https://www.linkedin.com/in/riley-knowles/details/recommendations/',
+      label: 'Read full endorsement on LinkedIn',
+    },
+  },
   {
     segments: [
       { text: 'Riley is the ' },
@@ -103,6 +124,13 @@ export default function TestimonialCarousel() {
             <p className="text-body-small text-text-tertiary">{t.title}</p>
             {t.subtitle && (
               <p className="text-body-small text-text-tertiary">{t.subtitle}</p>
+            )}
+            {t.link && (
+              <p className="text-body-small">
+                <InlineLink href={t.link.href} external variant="icon">
+                  {t.link.label}
+                </InlineLink>
+              </p>
             )}
           </div>
         </div>
