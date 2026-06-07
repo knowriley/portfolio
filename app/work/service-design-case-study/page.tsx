@@ -14,12 +14,19 @@ import {
   TwoColumnSection,
   MetadataGrid,
 } from '@/components/case-study'
-import { caseStudies, type CaseStudy } from '@/data/case-studies'
+import { caseStudies } from '@/data/case-studies'
 
 const study = caseStudies.find((s) => s.slug === 'service-design-case-study')!
 
 export const metadata = {
   title: study.title,
+  description: study.description,
+  openGraph: {
+    title: study.title,
+    description: study.description,
+    type: 'article',
+    url: `/work/${study.slug}`,
+  },
 }
 
 const tocItems = [
@@ -32,26 +39,9 @@ const tocItems = [
   { label: 'Reflection',   id: 'reflection' },
 ]
 
-const nextStudies: CaseStudy[] = [
-  {
-    slug: 'coming-soon-a',
-    title: 'Coming Soon',
-    description: '',
-    tags: [],
-    year: '—',
-    industry: '—',
-    comingSoon: true,
-  },
-  {
-    slug: 'coming-soon-b',
-    title: 'Coming Soon',
-    description: '',
-    tags: [],
-    year: '—',
-    industry: '—',
-    comingSoon: true,
-  },
-]
+const nextStudy = caseStudies.find(
+  (s) => !s.hidden && s.slug !== 'service-design-case-study',
+)!
 
 // ── Page ─────────────────────────────────────────────────────────────────────
 
@@ -104,10 +94,11 @@ export default function ServiceDesignCaseStudyPage() {
                       coming through the door.
                     </p>
                     <p className="mt-6">
-                      I led research synthesis and service blueprint creation, then scoped two
-                      design interventions — a dedicated Graduate Assistant role and a Faculty
-                      Onboarding Kit — to widen the recruitment bottleneck and bring professors
-                      into the process as collaborators, not bystanders.
+                      I led research synthesis and service blueprint creation, then scoped three
+                      design interventions — a dedicated Graduate Assistant role, a Faculty
+                      Onboarding Kit, and a plain-language intake form — to widen the recruitment
+                      bottleneck and bring professors into the process as collaborators, not
+                      bystanders.
                     </p>
                   </div>
 
@@ -253,8 +244,8 @@ export default function ServiceDesignCaseStudyPage() {
                   <div className="flex flex-col md:flex-row gap-8 items-start">
                     <div className="flex-1 min-w-0">
                       <h3 className="text-h4 md:text-h3 font-normal text-text-primary leading-[1.3]">
-                        Craig was doing it all — personalized communication, manual notifications,
-                        hands-on coordination of everything.
+                        Every task ran through one person — personalized communication, manual
+                        notifications, hands-on coordination of everything.
                       </h3>
                       <div className="h-6" />
                       <p className="text-body-small md:text-body-big text-text-secondary">
@@ -540,7 +531,7 @@ export default function ServiceDesignCaseStudyPage() {
                     </p>
 
                     <div className="h-12" />
-                    <ImageBlock caption="New plain-language intake form (coming soon)" />
+                    <ImageBlock label="New plain-language intake form (coming soon)" />
                   </div>
                 </section>
 
@@ -604,19 +595,11 @@ export default function ServiceDesignCaseStudyPage() {
 
         {/* ── Next case studies ── */}
         <AnimateOnScroll>
-          <div className="flex justify-center px-5 md:px-10 pt-12 pb-12 md:pb-24">
+          <div className="flex justify-center px-5 md:px-10 pb-12 md:pb-24">
             <div className="max-w-page w-full">
+              <SectionDivider />
               <Label>Next</Label>
-              <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3] mb-8">
-                I&apos;ve done other cool stuff too
-              </h2>
-              <div className="flex flex-col md:flex-row gap-8">
-                {nextStudies.map((nextStudy) => (
-                  <div key={nextStudy.slug} className="flex-1 min-w-0">
-                    <CaseStudyCard study={nextStudy} />
-                  </div>
-                ))}
-              </div>
+              <CaseStudyCard study={nextStudy} textOnTop />
             </div>
           </div>
         </AnimateOnScroll>

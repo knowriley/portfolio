@@ -19,6 +19,13 @@ const study = caseStudies.find((s) => s.slug === 'evidence-of-insurability')!
 
 export const metadata = {
   title: study.title,
+  description: study.description,
+  openGraph: {
+    title: study.title,
+    description: study.description,
+    type: 'article',
+    url: `/work/${study.slug}`,
+  },
 }
 
 const nextStudy = caseStudies.find(
@@ -490,7 +497,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
             <div className="max-w-page w-full">
               <SectionDivider />
               <Label>Next</Label>
-              <CaseStudyCard study={nextStudy} />
+              <CaseStudyCard study={nextStudy} textOnTop />
             </div>
           </div>
         </AnimateOnScroll>

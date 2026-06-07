@@ -38,7 +38,7 @@ export const caseStudies: CaseStudy[] = [
   },
   {
     slug: 'service-design-case-study',
-    title: "Widening the bottleneck of Pratt's DX Center Consultancy",
+    title: "Widening the bottleneck of Pratt's DX Center Consultancy with 3 service design interventions",
     description:
       "Synthesized research into a service blueprint, surfacing a stakeholder expectation mismatch. Designed a participatory workshop that built mutual empathy and produced two service interventions projected to broaden recruitment reach and improve incoming client quality.",
     tags: ['Service Design', 'Research', 'Co-design'],
@@ -54,8 +54,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ['Design Systems', 'Figma', 'Documentation'],
     year: 'Jun 2024 - Nov 2024',
     industry: 'B2B SEO',
-    thumbnail: '/images/bricks-cover.webp',
-    hidden: true,
+    thumbnail: '/images/bricks-cover.mp4',
   },
   {
     slug: 'conductor-website-redesign',

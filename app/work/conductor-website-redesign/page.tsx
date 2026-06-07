@@ -20,6 +20,13 @@ const study = caseStudies.find((s) => s.slug === 'conductor-website-redesign')!
 
 export const metadata = {
   title: study.title,
+  description: study.description,
+  openGraph: {
+    title: study.title,
+    description: study.description,
+    type: 'article',
+    url: `/work/${study.slug}`,
+  },
 }
 
 const tocItems = [
@@ -442,7 +449,7 @@ export default function ConductorWebsiteRedesignCaseStudyPage() {
               <div className="flex flex-col md:flex-row gap-8">
                 {nextStudies.map((study) => (
                   <div key={study.slug} className="flex-1 min-w-0">
-                    <CaseStudyCard study={study} />
+                    <CaseStudyCard study={study} textOnTop />
                   </div>
                 ))}
               </div>
