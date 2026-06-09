@@ -464,8 +464,8 @@ export default function ServiceDesignCaseStudyPage() {
                       Both the blueprint and the workshop highlighted how absent professors felt
                       in the early recruitment stages. For some that was fine; for others it
                       created anxiety. A unanimously approved idea from the workshop was to{' '}
-                      <span className="text-primary [&_a]:text-inherit">optionally invite professors into recruitment</span> and give them the
-                      right tools to do it confidently. The kit would include:
+                      <span className="text-primary [&_a]:text-inherit">optionally invite professors into recruitment and give them the
+                      right tools to do it confidently</span>. The kit would include:
                     </p>
 
                     <div className="h-8" />
@@ -493,7 +493,11 @@ export default function ServiceDesignCaseStudyPage() {
                     </p>
 
                     <div className="h-12" />
-                    <ImageBlock src="/images/service-design-professor-journey.webp" alt="Improved professor journey — emotional arc moves from Curiosity through Clarity, Awareness, Confidence, and Excitement, arriving at semester start Prepared" caption="Improved professor journey" />
+                    <BeforeAfterToggle
+                      before={{ src: '/images/service-design-professor-experience.webp', alt: 'Diagram mapping the professor’s experience during recruitment — minimal communication producing anxiety and decreased confidence' }}
+                      after={{ src: '/images/service-design-professor-journey.webp', alt: 'Improved professor journey — emotional arc moves from Curiosity through Clarity, Awareness, Confidence, and Excitement, arriving at semester start Prepared' }}
+                      caption="Professor experience — before and after the recruitment kit"
+                    />
 
                     <div className="h-12" />
 
@@ -531,7 +535,22 @@ export default function ServiceDesignCaseStudyPage() {
                     </p>
 
                     <div className="h-12" />
-                    <ImageBlock label="New plain-language intake form (coming soon)" />
+                    <div className="flex flex-col md:flex-row gap-8 items-start">
+                      <div className="flex-1 min-w-0">
+                        <ImageBlock
+                          src="/images/service-design-intake-before.webp"
+                          alt="Original intake form listing jargon-heavy course topics like User Interface Design and Usability Testing with Eye-Tracking, each marked full or half semester"
+                          caption="Before — jargon-heavy course topics"
+                        />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <ImageBlock
+                          src="/images/service-design-intake-after.webp"
+                          alt="Redesigned plain-language intake form asking what are you looking for help with, offering options like make my website or app easier to use"
+                          caption="After — plain-language deliverables"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </section>
 
@@ -570,14 +589,15 @@ export default function ServiceDesignCaseStudyPage() {
 
                   <TwoColumnSection heading="Automation isn’t always the answer.">
                     <p className="text-body-small md:text-body-big text-text-secondary">
-                      It also reframed my instinct to{' '}
-                      <span className="text-primary [&_a]:text-inherit">reach for automation</span>. Craig&rsquo;s tailored, personal
-                      communication was converting better than any template would, and the scale
-                      here is manageable — the DX Center supports a fixed set of courses and a
-                      steady volume of requests, and the program isn&rsquo;t expanding. The answer
-                      wasn&rsquo;t to replace the human touch with tooling, but to give a dedicated
-                      GA the capacity to keep responses tailored while building the templates that
-                      make that sustainable.
+                      Craig&rsquo;s tailored, personal communication was converting better than any
+                      template would, and because of the size of the program and its course
+                      offerings, the scale was manageable — the DX Center supports a fixed set of
+                      courses and a steady volume of requests, and the program isn&rsquo;t expanding.
+                      The answer wasn&rsquo;t to replace the human touch with tooling, but to give a
+                      dedicated GA the capacity to keep responses tailored while building the
+                      templates that make that sustainable. With a fixed budget already allocated to
+                      Graduate Assistants and none set aside for AI, that was also the most accessible
+                      way to keep communication personal.
                     </p>
                   </TwoColumnSection>
                 </section>
