@@ -93,14 +93,23 @@ export default function BricksDesignSystemCaseStudyPage() {
                       , a B2B platform that helps enterprise organizations optimize their online presence.
                     </p>
                     <p className="mt-6">
-                      At the start of my internship, I interviewed design and development teams to understand
-                      current processes and pain points using the Bricks Design System. I then used{' '}
-                      <InlineLink href="https://www.supernova.io/" external variant="emphasis">Supernova</InlineLink>{' '}
-                      to build a maintainable and scalable documentation site from the ground up.
+                      Bricks&rsquo; documentation was nearly non-existent, so designers repeatedly rehashed the same
+                      design decisions in Slack rather than referencing any written record, while developers built
+                      components in Storybook whose capabilities outpaced what Figma showed, creating confusion at
+                      designer-developer handoff. I led the effort to diagnose the problem, interviewing six designers
+                      and engineers to surface their biggest pain points and shape the design
+                      and development of a single source of truth.
                     </p>
                     <p className="mt-6">
-                      I launched V1 in Sept 2024, presenting to 50+ members of R&amp;D and iterated from
-                      feedback to release V1.2 in Oct 2024 and V1.3 in Nov 2024.
+                      I built a new documentation site from the ground up using{' '}
+                      <InlineLink href="https://www.supernova.io/" external variant="emphasis">Supernova</InlineLink>
+                      , leveraging variable syncing so component foundations stayed automatically up to
+                      date without manual maintenance. The site featured scannable dos and don&rsquo;ts, interactive
+                      Storybook embeds that showed real component behavior instead of describing it, and side-by-side
+                      comparisons for the components designers decided between most often. I launched V1 to 50+ members
+                      of R&amp;D in September 2024 and shipped two rounds of iteration based on their feedback,{' '}
+                      <span className="text-primary">ultimately documenting all 26 foundational components across 120+ pages and decreasing design system questions posted to Slack</span>. Nearly two years later, the
+                      documentation is still actively used by the team.
                     </p>
                   </div>
 
@@ -113,7 +122,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                     },
                     {
                       label: 'Team',
-                      content: 'Myself, Design Systems Intern; Dana Cormier, Sr Principal Product Designer & Bricks Lead',
+                      content: 'Myself and 1 Design Systems Lead',
                     },
                     {
                       label: 'For',

@@ -88,7 +88,7 @@ export default function ServiceDesignCaseStudyPage() {
                     <p>
                       The DX Center is a service inside Pratt Institute&rsquo;s IXD program that recruits
                       and matches predominantly non-profit clients with student-project-driven
-                      courses. They asked our team to help them{' '}
+                      courses. They approached our team to help them{' '}
                       <span className="text-primary [&_a]:text-inherit">improve efficiency of internal DX Center workflows</span> and{' '}
                       <span className="text-primary [&_a]:text-inherit">grow the volume of high-quality clients</span>{' '}
                       coming through the door.
