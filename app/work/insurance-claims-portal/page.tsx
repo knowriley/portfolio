@@ -556,7 +556,7 @@ export default async function AiClaimsPortalCaseStudyPage() {
             <div className="max-w-page w-full">
               <SectionDivider />
               <Label>Next</Label>
-              <CaseStudyCard study={nextStudy} />
+              <CaseStudyCard study={nextStudy} textOnTop />
             </div>
           </div>
         </AnimateOnScroll>

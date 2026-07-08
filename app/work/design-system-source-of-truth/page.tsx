@@ -14,7 +14,7 @@ import {
   TwoColumnSection,
   MetadataGrid,
 } from '@/components/case-study'
-import { caseStudies, type CaseStudy } from '@/data/case-studies'
+import { caseStudies } from '@/data/case-studies'
 
 const study = caseStudies.find((s) => s.slug === 'design-system-source-of-truth')!
 
@@ -35,26 +35,7 @@ const tocItems = [
   { label: 'Takeaways', id: 'takeaways' },
 ]
 
-const nextStudies: CaseStudy[] = [
-  {
-    slug: 'coming-soon-a',
-    title: 'Coming Soon',
-    description: '',
-    tags: [],
-    year: '—',
-    industry: '—',
-    comingSoon: true,
-  },
-  {
-    slug: 'coming-soon-b',
-    title: 'Coming Soon',
-    description: '',
-    tags: [],
-    year: '—',
-    industry: '—',
-    comingSoon: true,
-  },
-]
+const nextStudy = caseStudies.find((s) => !s.hidden && s.slug !== 'design-system-source-of-truth')!
 
 // ── Page ─────────────────────────────────────────────────────────────────────
 
@@ -82,10 +63,9 @@ export default function BricksDesignSystemCaseStudyPage() {
           {/* ── Cover image ── */}
           <div className="flex justify-center px-5 md:px-10 pb-10 md:pb-16">
             <div className="max-w-page w-full">
-              <img
-                src="/images/bricks-cover.webp"
-                alt="Bricks Design System documentation site showing the welcome page"
-                className="w-full rounded-sm border border-border shadow-sm"
+              <ImageBlock
+                type="video"
+                src="/images/bricks-cover.mp4"
               />
             </div>
           </div>
@@ -111,14 +91,23 @@ export default function BricksDesignSystemCaseStudyPage() {
                       , a B2B platform that helps enterprise organizations optimize their online presence.
                     </p>
                     <p className="mt-6">
-                      At the start of my internship, I interviewed design and development teams to understand
-                      current processes and pain points using the Bricks Design System. I then used{' '}
-                      <InlineLink href="https://www.supernova.io/" external variant="emphasis">Supernova</InlineLink>{' '}
-                      to build a maintainable and scalable documentation site from the ground up.
+                      Bricks&rsquo; documentation was nearly non-existent, so designers repeatedly rehashed the same
+                      design decisions in Slack rather than referencing any written record, while developers built
+                      components in Storybook whose capabilities outpaced what Figma showed, creating confusion at
+                      designer-developer handoff. I led the effort to diagnose the problem, interviewing six designers
+                      and engineers to surface their biggest pain points and shape the design
+                      and development of a single source of truth.
                     </p>
                     <p className="mt-6">
-                      I launched V1 in Sept 2024, presenting to 50+ members of R&amp;D and iterated from
-                      feedback to release V1.2 in Oct 2024 and V1.3 in Nov 2024.
+                      I built a new documentation site from the ground up using{' '}
+                      <InlineLink href="https://www.supernova.io/" external variant="emphasis">Supernova</InlineLink>
+                      , leveraging variable syncing so component foundations stayed automatically up to
+                      date without manual maintenance. The site featured scannable dos and don&rsquo;ts, interactive
+                      Storybook embeds that showed real component behavior instead of describing it, and side-by-side
+                      comparisons for the components designers decided between most often. I launched V1 to 50+ members
+                      of R&amp;D in September 2024 and shipped two rounds of iteration based on their feedback,{' '}
+                      <span className="text-primary">ultimately documenting all 26 foundational components across 120+ pages and decreasing design system questions posted to Slack</span>. Nearly two years later, the
+                      documentation is still actively used by the team.
                     </p>
                   </div>
 
@@ -131,7 +120,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                     },
                     {
                       label: 'Team',
-                      content: 'Myself, Design Systems Intern; Dana Cormier, Sr Principal Product Designer & Bricks Lead',
+                      content: 'Myself and 1 Design Systems Lead',
                     },
                     {
                       label: 'For',
@@ -148,7 +137,7 @@ export default function BricksDesignSystemCaseStudyPage() {
                         </>
                       ),
                     },
-                    { label: 'Timeline', content: 'Jun 2024 – Nov 2024' },
+                    { label: 'Timeline', content: '6 months, Jun 2024 – Nov 2024' },
                     { label: 'Status',   content: 'Shipped' },
                   ]} />
                 </section>
@@ -399,19 +388,11 @@ export default function BricksDesignSystemCaseStudyPage() {
 
         {/* ── Next case studies ── */}
         <AnimateOnScroll>
-          <div className="flex justify-center px-5 md:px-10 pt-12 pb-12 md:pb-24">
+          <div className="flex justify-center px-5 md:px-10 pb-12 md:pb-24">
             <div className="max-w-page w-full">
+              <SectionDivider />
               <Label>Next</Label>
-              <h2 className="text-h3 md:text-h2 font-normal text-text-primary leading-[1.3] mb-8">
-                I&apos;ve done other cool stuff too
-              </h2>
-              <div className="flex flex-col md:flex-row gap-8">
-                {nextStudies.map((study) => (
-                  <div key={study.slug} className="flex-1 min-w-0">
-                    <CaseStudyCard study={study} />
-                  </div>
-                ))}
-              </div>
+              <CaseStudyCard study={nextStudy} textOnTop />
             </div>
           </div>
         </AnimateOnScroll>

@@ -495,7 +495,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
             <div className="max-w-page w-full">
               <SectionDivider />
               <Label>Next</Label>
-              <CaseStudyCard study={nextStudy} />
+              <CaseStudyCard study={nextStudy} textOnTop />
             </div>
           </div>
         </AnimateOnScroll>

@@ -52,7 +52,8 @@ const books: Book[] = [
 ]
 
 export default function AboutBooks() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
+  // Default to "Designing Your Life" (index 0) selected on load.
+  const [activeIndex, setActiveIndex] = useState<number | null>(0)
   const active = activeIndex !== null ? books[activeIndex] : null
 
   return (

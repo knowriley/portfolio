@@ -64,7 +64,7 @@ export default function Hero() {
   const greetingFading = phase === 'fading-out'
 
   return (
-    <section className="flex justify-center px-5 md:px-10 min-h-[calc(100dvh-64px)] md:h-[calc(100dvh-64px)] pb-12 md:pb-16">
+    <section className="flex justify-center px-5 md:px-10 min-h-[calc(100dvh-64px)] md:h-[calc(100dvh-64px)]">
       <div className="max-w-page w-full flex flex-col">
         {/* Spacer — fills remaining space, pushes content to the bottom of the
             viewport on both mobile and desktop so Featured Work stays below the fold. */}
