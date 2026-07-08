@@ -35,7 +35,7 @@ const tocItems = [
   { label: 'Takeaways', id: 'takeaways' },
 ]
 
-const nextStudy = caseStudies.find((s) => s.slug === 'evidence-of-insurability')!
+const nextStudy = caseStudies.find((s) => !s.hidden && s.slug !== 'design-system-source-of-truth')!
 
 // ── Page ─────────────────────────────────────────────────────────────────────
 

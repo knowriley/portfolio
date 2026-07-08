@@ -473,12 +473,12 @@ export default function ServiceDesignCaseStudyPage() {
                     <div className="flex flex-col gap-5">
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
                         <p className="text-body-small md:text-body-big text-text-primary">
-                          <span className="text-primary [&_a]:text-inherit">Context-setting content:</span> purpose and working model of students&rsquo; client projects, the professors&rsquo; role, and the recruitment timeline.
+                          <span className="text-primary [&_a]:text-inherit">Expectation-setting content:</span>{' '}Explain the purpose of project-driven courses, the working model of students&rsquo; client projects, the professors&rsquo; role, and the recruitment timeline.
                         </p>
                       </div>
                       <div className="bg-bg-secondary border border-border rounded-sm px-5 md:px-10 py-7 w-full">
                         <p className="text-body-small md:text-body-big text-text-primary">
-                          <span className="text-primary [&_a]:text-inherit">Tools to recruit:</span> email templates and marketing materials for professors who optionally want to recruit for their course, a guide to what makes an acceptable client (must be a non-profit, etc.), and the outlined process and constraints for getting DX Center approval.
+                          <span className="text-primary [&_a]:text-inherit">Tools to recruit:</span>{' '}Provide email templates and marketing materials for professors who optionally want to recruit for their course, a guide to what makes an acceptable client (must be a non-profit, etc.), and the outlined process and constraints for getting DX Center approval.
                         </p>
                       </div>
                     </div>

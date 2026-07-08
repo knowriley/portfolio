@@ -60,8 +60,7 @@ export const caseStudies: CaseStudy[] = [
     tags: ['Design Systems', 'Figma', 'Documentation'],
     year: 'Jun 2024 - Nov 2024',
     industry: 'B2B SEO',
-    thumbnail: '/images/bricks-cover.webp',
-    hidden: true,
+    thumbnail: '/images/bricks-cover.mp4',
   },
   {
     slug: 'ai-gtm-website-launch',
