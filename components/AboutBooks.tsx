@@ -86,13 +86,13 @@ export default function AboutBooks() {
                     className="block transition-transform duration-200 hover:-translate-y-2.5"
                   >
                     {active.cover ? (
-                      <ImageBlock src={active.cover.src} alt={active.cover.alt} />
+                      <ImageBlock src={active.cover.src} alt={active.cover.alt} expandable={false} />
                     ) : (
                       <ImageBlock label="Cover image" />
                     )}
                   </a>
                 ) : active.cover ? (
-                  <ImageBlock src={active.cover.src} alt={active.cover.alt} />
+                  <ImageBlock src={active.cover.src} alt={active.cover.alt} expandable={false} />
                 ) : (
                   <ImageBlock label="Cover image" />
                 )}

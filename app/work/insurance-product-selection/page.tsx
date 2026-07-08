@@ -15,21 +15,19 @@ import {
 import { caseStudies } from '@/data/case-studies'
 import { isUnlocked } from '@/lib/case-study-lock'
 
-const study = caseStudies.find((s) => s.slug === 'evidence-of-insurability')!
+const study = caseStudies.find((s) => s.slug === 'insurance-product-selection')!
+
+const metaDescription = study.metaDescription ?? study.description
 
 export const metadata = {
   title: study.title,
-  description: study.description,
-  openGraph: {
-    title: study.title,
-    description: study.description,
-    type: 'article',
-    url: `/work/${study.slug}`,
-  },
+  description: metaDescription,
+  openGraph: { title: study.title, description: metaDescription },
+  twitter: { title: study.title, description: metaDescription },
 }
 
 const nextStudy = caseStudies.find(
-  (s) => !s.hidden && s.slug !== 'evidence-of-insurability',
+  (s) => !s.hidden && s.slug !== 'insurance-product-selection',
 )!
 
 // ── Page ─────────────────────────────────────────────────────────────────────
@@ -478,7 +476,7 @@ export default async function EvidenceOfInsurabilityCaseStudyPage() {
                   <div className="h-16 md:h-24" />
                 )}
 
-                {!unlocked && <CaseStudyPaywall pathname="/work/evidence-of-insurability" />}
+                {!unlocked && <CaseStudyPaywall pathname="/work/insurance-product-selection" />}
 
               </div>
               {/* end content column */}

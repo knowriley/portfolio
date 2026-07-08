@@ -64,10 +64,11 @@ export default function Hero() {
   const greetingFading = phase === 'fading-out'
 
   return (
-    <section className="flex justify-center px-5 md:px-10 md:h-[calc(100dvh-64px)]">
+    <section className="flex justify-center px-5 md:px-10 min-h-[calc(100dvh-64px)] md:h-[calc(100dvh-64px)]">
       <div className="max-w-page w-full flex flex-col">
-        {/* Spacer — fills remaining space on desktop, pushes content to bottom */}
-        <div className="pt-12 md:pt-0 md:flex-1" />
+        {/* Spacer — fills remaining space, pushes content to the bottom of the
+            viewport on both mobile and desktop so Featured Work stays below the fold. */}
+        <div className="pt-12 md:pt-0 flex-1" />
 
         {isGreeting && (
           <h1
@@ -116,10 +117,9 @@ export default function Hero() {
               }`}
               style={enteredFinalFromGreeting ? { animationDelay: '0.2s' } : undefined}
             >
-              Currently designing claims experiences @{' '}
+              Currently designing consumer and agent-facing experiences at{' '}
               <InlineLink href="https://chubb.com" external variant="subtle">Chubb</InlineLink>{' '}
-              and completing a MS in Information Experience Design @{' '}
-              <InlineLink href="https://pratt.edu" external variant="subtle">Pratt</InlineLink>.
+              while scaling AI-enabled ways of working across the design organization.
             </p>
           </>
         )}

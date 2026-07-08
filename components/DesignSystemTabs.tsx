@@ -174,6 +174,7 @@ const componentsToc = [
   { label: 'Carousel Dot',       id: 'carousel-dot' },
   { label: 'Table of Contents',  id: 'table-of-contents' },
   { label: 'Media',              id: 'media' },
+  { label: 'Expandable image',   id: 'expandable-image' },
 ]
 
 // ── Foundations content ───────────────────────────────────────────────────────
@@ -663,6 +664,7 @@ function FoundationsContent() {
           src="/images/bricks-cover.webp"
           alt="Example image with shadow-sm applied"
           caption="shadow-sm on a media excerpt — the only shadow used in production."
+          expandable={false}
         />
       </section>
 
@@ -876,13 +878,26 @@ function ComponentsContent() {
         <ShowcaseCard
           id="media"
           title="Media"
-          useCase="Images and videos share the same treatment — border, soft shadow, rounded corners, centered caption. Videos add a play/pause button."
+          useCase="Images and videos share the same treatment — border, soft shadow, rounded corners, centered caption. Videos add a play/pause button; case-study images add an expand button."
           spanFull
         >
           <ImageBlock
             type="video"
             src="/images/eoi-cover.mp4"
             caption="border-border, shadow-sm, rounded-sm, centered caption — applied identically to every image and video on the site."
+          />
+        </ShowcaseCard>
+
+        <ShowcaseCard
+          id="expandable-image"
+          title="Expandable image"
+          useCase="Case-study images render with an Expand IconButton in the bottom-right corner — click to open the image in a near-fullscreen lightbox with a darkened backdrop, scroll lock, and ESC / backdrop / X dismiss. Mirrors the play/pause affordance on videos. Pass expandable={false} on ImageBlock to opt out (used on /about book covers and inside this design-system page)."
+          spanFull
+        >
+          <ImageBlock
+            src="/images/bricks-cover.webp"
+            alt="Click the expand button to open this image in a lightbox"
+            caption="Click the expand button in the bottom-right to open the lightbox."
           />
         </ShowcaseCard>
 

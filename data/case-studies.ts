@@ -2,6 +2,8 @@ export interface CaseStudy {
   slug: string
   title: string
   description: string
+  /** Optional ~155-char override for the page's meta/OG description. Falls back to `description`. Use when `description` is too long for a search snippet. */
+  metaDescription?: string
   tags: string[]
   year: string
   industry: string
@@ -17,24 +19,28 @@ export interface CaseStudy {
 // Hidden entries sit at the end since they're excluded from public listings.
 export const caseStudies: CaseStudy[] = [
   {
-    slug: 'ai-claims-portal',
-    title: "Pivoting design strategy mid-build for Chubb's 350K customer claims portal",
-    description:
-      "Led the design strategy and redesign of Chubb Benefits' unified consumer claims portal supporting 350K customers. Stepped into a leadership role to re-align design and engineering after an AI-accelerated rebuild diverged from the original strategy.",
-    tags: ['Relationship Management', 'AI Workflows'],
-    year: 'Nov 2025 – May 2026',
-    industry: 'Insurance',
-    thumbnail: '/images/chubb-cover-unified-experience.mp4',
-  },
-  {
-    slug: 'evidence-of-insurability',
+    slug: 'insurance-product-selection',
     title: 'Ambiguous interaction to explicit choice: improving insurance product selection accuracy by 62%',
     description:
       'Leveraged Claude Code to accelerate design, enabling two rounds of usability testing not originally in scope. These insights drove design changes that improved the customer experience and minimized downstream operational impacts, all without extending the delivery timeline.',
+    metaDescription:
+      'Used Claude Code to accelerate design and fit in two extra rounds of usability testing, driving changes that improved product selection accuracy by 62%.',
     tags: ['AI Workflows', 'Rapid Prototyping', 'A/B Testing', 'Interaction Design'],
     year: 'Apr 2026',
     industry: 'Insurance',
     thumbnail: '/images/eoi-cover.mp4',
+  },
+  {
+    slug: 'insurance-claims-portal',
+    title: "Pivoting design strategy mid-build for Chubb's 350K customer claims portal",
+    description:
+      "Led the design strategy and redesign of Chubb Benefits' unified consumer claims portal supporting 350K customers. Stepped into a leadership role to re-align design and engineering after an AI-accelerated rebuild diverged from the original strategy.",
+    metaDescription:
+      "Led the design strategy and redesign of Chubb Benefits' unified claims portal for 350K customers, re-aligning design and engineering mid-build.",
+    tags: ['Relationship Management', 'AI Workflows'],
+    year: 'Nov 2025 – May 2026',
+    industry: 'Insurance',
+    thumbnail: '/images/chubb-cover-unified-experience.mp4',
   },
   {
     slug: 'service-design-case-study',
@@ -47,17 +53,18 @@ export const caseStudies: CaseStudy[] = [
     thumbnail: '/images/service-design-cover.webp',
   },
   {
-    slug: 'design-system-documentation',
+    slug: 'design-system-source-of-truth',
     title: 'Creating a single source of truth for the Bricks Design System',
     description:
       'Aligning internationally distributed design and development teams, removing workflow bottlenecks and setting the foundation for long term maintenance and scale.',
     tags: ['Design Systems', 'Figma', 'Documentation'],
     year: 'Jun 2024 - Nov 2024',
     industry: 'B2B SEO',
-    thumbnail: '/images/bricks-cover.mp4',
+    thumbnail: '/images/bricks-cover.webp',
+    hidden: true,
   },
   {
-    slug: 'conductor-website-redesign',
+    slug: 'ai-gtm-website-launch',
     title: "Redesigning Conductor's website for their AI go-to-market launch",
     description:
       "Modernizing the visual identity, aligning stakeholders across UX and marketing, and launching a homepage that announced Conductor's next chapter.",

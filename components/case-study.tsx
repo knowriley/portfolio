@@ -1,5 +1,6 @@
 import { type ReactNode } from 'react'
 import VideoBlock from './VideoBlock'
+import ExpandableImage from './ExpandableImage'
 
 // ── Case study layout primitives ──────────────────────────────────────────────
 // Shared across all case study pages. All server components (no hooks).
@@ -33,7 +34,7 @@ export function SectionDivider() {
 //   <ImageBlock />                         ← placeholder
 //   <ImageBlock label="Custom label" />    ← placeholder with custom label
 
-type ImageBlockBase = { bare?: boolean }
+type ImageBlockBase = { bare?: boolean; expandable?: boolean }
 
 type ImageBlockProps =
   | (ImageBlockBase & { type?: 'image'; src: string; alt: string; caption?: string })
@@ -69,11 +70,20 @@ export function ImageBlock(props: ImageBlockProps) {
   if ('src' in props) {
     return (
       <figure>
-        <img
-          src={props.src}
-          alt={props.alt}
-          className={`w-full rounded-sm${chrome}`}
-        />
+        {props.expandable === false ? (
+          <img
+            src={props.src}
+            alt={props.alt}
+            className={`w-full rounded-sm${chrome}`}
+          />
+        ) : (
+          <ExpandableImage
+            src={props.src}
+            alt={props.alt}
+            caption={props.caption}
+            bare={props.bare}
+          />
+        )}
         {props.caption && (
           <figcaption className="text-small text-text-tertiary mt-2 text-center">{props.caption}</figcaption>
         )}

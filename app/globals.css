@@ -50,6 +50,31 @@
   animation: fade-in-up 0.55s ease-out both;
 }
 
+/* About hero — mobile-only entrance staggering (label+pills → message → image).
+   Inert at >=768px so desktop/tablet keep their existing (static h1, 1.5s image) timing. */
+@media (max-width: 767.98px) {
+  .about-label-mobile {
+    animation: fade-in-up 0.55s ease-out both;
+    animation-delay: 0.15s;
+  }
+  .about-message-mobile {
+    animation: fade-in-up 0.55s ease-out both;
+    animation-delay: 1.5s;
+  }
+}
+
+/* Portrait: animates on all breakpoints. Base delay matches the previous 1.5s
+   (desktop unchanged); mobile pushes it to 2.1s so it lands after the message. */
+.about-image-anim {
+  animation: fade-in-up 0.55s ease-out both;
+  animation-delay: 1.5s;
+}
+@media (max-width: 767.98px) {
+  .about-image-anim {
+    animation-delay: 2.1s;
+  }
+}
+
 @keyframes fade-in-left {
   from {
     opacity: 0;
