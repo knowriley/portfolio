@@ -104,22 +104,18 @@ export default function Hero() {
                 enteredFinalFromGreeting ? 'animate-fade-in-up' : ''
               }`}
             >
-              <span className="text-text-primary">Riley is an </span>
-              experience strategist,{' '}
-              interaction designer
-              <span className="text-text-primary"> and </span>
-              designer engineer
+              <span className="text-text-primary">Riley is a </span>
+              Senior Experience Designer
               <span className="text-text-primary"> based in Brooklyn, NY.</span>
             </h1>
             <p
-              className={`text-body-small md:text-body-big text-text-secondary pb-12 md:pb-16 ${
+              className={`text-body-big md:text-body-biggest text-text-secondary pb-12 md:pb-16 ${
                 enteredFinalFromGreeting ? 'animate-fade-in-left' : ''
               }`}
               style={enteredFinalFromGreeting ? { animationDelay: '0.2s' } : undefined}
             >
-              Currently designing consumer and agent-facing experiences at{' '}
-              <InlineLink href="https://chubb.com" external variant="subtle">Chubb</InlineLink>{' '}
-              while scaling AI-enabled ways of working across the design organization.
+              Currently designing customer-facing experiences on the Branded Card team at{' '}
+              <InlineLink href="https://jpmorganchase.com" external variant="subtle">JPMorgan Chase</InlineLink>.
             </p>
           </>
         )}
