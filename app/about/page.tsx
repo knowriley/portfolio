@@ -43,33 +43,41 @@ export default function AboutPage() {
           <div className="max-w-page w-full">
             <div className="lg:max-w-[696px]">
               <p className="text-body-small md:text-body-big text-text-secondary">
-                Currently,{' '}
+                Currently, I&rsquo;m designing customer-facing experiences on the{' '}
                 <span className="text-primary [&_a]:text-inherit">
-                  I&rsquo;m driving user-centered design practices end-to-end
-                  at{' '}
-                  <InlineLink href="https://www.chubb.com/us-en/" external>
-                    Chubb
+                  Branded Card team at{' '}
+                  <InlineLink href="https://www.jpmorganchase.com/" external>
+                    JPMorgan Chase
                   </InlineLink>
-                  , from discovery workshops to accelerated prototyping
-                  and testing with Claude Code.
-                </span>{' '}
-                I am the lead designer on the Chubb Benefits consumer claims
-                portal and additionally support the design and testing of
-                multiple agents&rsquo; quoting experiences.
+                </span>
+                .
               </p>
               <p className="text-body-small md:text-body-big text-text-secondary mt-6">
-                Previously, I contributed to major web, product and design
-                system initiatives at{' '}
+                Previously, I led user-centered design for <InlineLink href="https://benefits.chubb.com/us-en/" external>
+                  Chubb Benefits
+                </InlineLink>&rsquo;
+                consumer claims portal and multiple agent-facing experiences at{' '}
+                <InlineLink href="https://www.chubb.com/us-en/" external>
+                  Chubb
+                </InlineLink>
+                , using Claude Code to accelerate prototyping and testing.
+                Earlier, I contributed to major web, product, and design system
+                initiatives at{' '}
                 <InlineLink href="https://www.conductor.com/" external>
                   Conductor
                 </InlineLink>{' '}
-                on highly collaborative cross-functional teams. I&rsquo;ve also
-                led freelance UX research and design projects across education,
-                nonprofits, and the arts.
+                on highly collaborative cross-functional teams, and led freelance
+                UX research and design projects for clients such as <InlineLink href="https://www.cooperhewitt.org/" external>
+                  The Cooper Hewitt Smithsonian Design Museum
+                </InlineLink>, <InlineLink href="https://theinformationlab.com/" external>
+                  The Information Lab
+                </InlineLink>, and <InlineLink href="https://sva.edu/life-at-sva/campus-life/campus-spaces/library" external>
+                  School of Visual Arts Library
+                </InlineLink>.
               </p>
               <p className="text-body-small md:text-body-big text-text-secondary mt-6">
-                Additionally, I hold a MS in Information Experience
-                Design from{' '}
+                Additionally, I hold a MS in Information Experience Design
+                from{' '}
                 <InlineLink
                   href="https://www.pratt.edu/information/information-experience-design/"
                   external
