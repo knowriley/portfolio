@@ -53,10 +53,10 @@ export default function AboutPage() {
                 .
               </p>
               <p className="text-body-small md:text-body-big text-text-secondary mt-6">
-                Previously, I led user-centered design for <InlineLink href="https://benefits.chubb.com/us-en/" external>
+                Previously, I led user-centered design activities for <InlineLink href="https://benefits.chubb.com/us-en/" external>
                   Chubb Benefits
                 </InlineLink>&rsquo;
-                consumer claims portal and multiple agent-facing experiences at{' '}
+                consumer claims portal and designed multiple agent-facing experiences at{' '}
                 <InlineLink href="https://www.chubb.com/us-en/" external>
                   Chubb
                 </InlineLink>
